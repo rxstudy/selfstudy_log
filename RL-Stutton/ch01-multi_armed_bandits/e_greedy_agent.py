@@ -4,16 +4,15 @@ rng = np.random.default_rng()
 
 class EpsilonGreedyAgent:
     # optimal action is input for analytics
-    def __init__(self, epsilon: float, action_space: list, optimal_action: int):
+    def __init__(self, epsilon: float, action_space: list):
         self._epsilon = epsilon
         self._qa = np.zeros((len(action_space),))
         self._num_a = np.zeros((len(action_space),))
         self._rewards = []
         self._optimal_actions = []
-        self._optimal_action = optimal_action
         self._reset_state()
 
-    def choose_action(self, observation, action_space):
+    def choose_action(self, observation, action_space, optimal_action: int):
         if rng.random() < self._epsilon:
             # exploration
             action = rng.choice(action_space)
@@ -26,7 +25,7 @@ class EpsilonGreedyAgent:
         # update state
         self._last_action_performed = action
         # analytics
-        if action == self._optimal_action:
+        if action == optimal_action:
             self._optimal_action_selected += 1
 
         game_step = observation[0] + 1  # game_step is 0 at the beginning
@@ -57,3 +56,17 @@ class EpsilonGreedyAgent:
 
         # performance plot data
         self._optimal_action_selected = 0.0
+
+
+# step size aplha memory based weighted avg.
+class ConstantStepSizeAgent(EpsilonGreedyAgent):
+    def __init__(self, epsilon: float, action_space: list, step_size=0.1):
+        self.step_size = step_size
+        super().__init__(epsilon, action_space)
+
+    def receive_reward(self, reward):
+        if self._last_action_performed >= 0:
+            action = self._last_action_performed
+            # Update Q(a)
+            self._qa[action] += self.step_size * (reward - self._qa[action])
+            self._rewards.append(reward)

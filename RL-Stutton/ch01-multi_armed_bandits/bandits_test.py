@@ -1,5 +1,5 @@
 import unittest
-from stationary_bandits import StationaryBandits
+from bandits_env import StationaryBandits
 from e_greedy_agent import EpsilonGreedyAgent
 
 
@@ -41,12 +41,13 @@ class EpsilonGreedyAgentTest(unittest.TestCase):
     def test_greedy_play(self):
         bandit = StationaryBandits(rounds=10)
         agent = EpsilonGreedyAgent(
-            epsilon=0, action_space=bandit.action_space, optimal_action=bandit.optimal_action)
+            epsilon=0, action_space=bandit.action_space)
 
         obs = bandit.get_observation()
         done = False
         while not done:
-            action = agent.choose_action(obs, bandit.action_space)
+            action = agent.choose_action(
+                obs, bandit.action_space, bandit.optimal_action)
             obs, reward, done, _ = bandit.step(action)
             agent.receive_reward(reward)
 
@@ -55,12 +56,13 @@ class EpsilonGreedyAgentTest(unittest.TestCase):
     def test_exploration_play(self):
         bandit = StationaryBandits(rounds=10)
         agent = EpsilonGreedyAgent(
-            epsilon=1, action_space=bandit.action_space, optimal_action=bandit.optimal_action)
+            epsilon=1, action_space=bandit.action_space)
         for _ in range(3):
             obs = bandit.get_observation()
             done = False
             while not done:
-                action = agent.choose_action(obs, bandit.action_space)
+                action = agent.choose_action(
+                    obs, bandit.action_space, bandit.optimal_action)
                 obs, reward, done, _ = bandit.step(action)
                 agent.receive_reward(reward)
             bandit.reset()

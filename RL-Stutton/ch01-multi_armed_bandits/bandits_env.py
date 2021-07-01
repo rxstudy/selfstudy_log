@@ -27,4 +27,16 @@ class StationaryBandits:
         done = self._game_rounds == self._game_phase
         info = None
 
+        self._update_env_state()
         return [observation, reward, done, info]
+
+    def _update_env_state(self):
+        pass
+
+
+class NonStationaryBandit(StationaryBandits):
+    def _update_env_state(self):
+        for i in range(self._mu.size):
+            rand_incr = rng.normal(0, 0.01)
+            self._mu[i] += rand_incr
+        self.optimal_action = np.argmax(self._mu)
