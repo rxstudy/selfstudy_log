@@ -166,7 +166,7 @@ def ucb_agent_sim():
     plt.xlabel("Games")
     plt.ylabel("Avg Reward/Step")
     plt.legend()
-    plt.savefig("ucb_stationary.png")
+    plt.savefig("avg_reward_ucb_stationary.png")
     plt.show()
 
     plt.figure(1)
