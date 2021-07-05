@@ -70,3 +70,25 @@ class ConstantStepSizeAgent(EpsilonGreedyAgent):
             # Update Q(a)
             self._qa[action] += self.step_size * (reward - self._qa[action])
             self._rewards.append(reward)
+
+
+# UCB (Upper confidence bound) agent   (<----Q(a_k)---->) bound
+class UCBAgent(EpsilonGreedyAgent):
+    def choose_action(self, observation, action_space, optimal_action):
+        game_step = observation[0] + 1
+        action = np.argmax(self._qa + self._epsilon *
+                           np.sqrt(np.log(game_step) / (self._num_a + 0.0001)))
+
+        self._num_a[action] += 1
+
+        # update state
+        self._last_action_performed = action
+        # analytics
+        if action == optimal_action:
+            self._optimal_action_selected += 1
+
+          # game_step is 0 at the beginning
+        self._optimal_actions.append(
+            self._optimal_action_selected / game_step)
+
+        return action

@@ -1,8 +1,9 @@
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
+from tqdm import tqdm
 from bandits_env import StationaryBandits, NonStationaryBandit
-from e_greedy_agent import EpsilonGreedyAgent, ConstantStepSizeAgent
+from e_greedy_agent import EpsilonGreedyAgent, ConstantStepSizeAgent, UCBAgent
 
 
 def play(game, agent):
@@ -37,7 +38,7 @@ def stationary_bandit_sim():
         np.zeros((rounds_per_game,)),
         np.zeros((rounds_per_game,)),
     ]
-    for _ in range(games_played):
+    for _ in tqdm(range(games_played)):
         bandit = StationaryBandits(rounds=rounds_per_game)
         agents = [
             EpsilonGreedyAgent(
@@ -93,7 +94,7 @@ def nonstationary_bandit_sim():
         np.zeros((rounds_per_game,)),
         np.zeros((rounds_per_game,)),
     ]
-    for _ in range(games_played):
+    for _ in tqdm(range(games_played)):
         bandit = NonStationaryBandit(rounds=rounds_per_game)
         agents = [
             EpsilonGreedyAgent(
@@ -131,13 +132,72 @@ def nonstationary_bandit_sim():
     plt.show()
 
 
+def ucb_agent_sim():
+    print("UCB (c=2) vs e-greedy (episolon=0.1)")
+    games_played = 500
+    rounds_per_game = 1000
+    agg_reward = [
+        np.zeros((rounds_per_game,)),
+        np.zeros((rounds_per_game,))
+    ]
+    agg_action = [
+        np.zeros((rounds_per_game,)),
+        np.zeros((rounds_per_game,)),
+    ]
+    for _ in tqdm(range(games_played)):
+        bandit = StationaryBandits(rounds=rounds_per_game)
+        agents = [
+            EpsilonGreedyAgent(
+                epsilon=0.1, action_space=bandit.action_space),
+            UCBAgent(
+                epsilon=2, action_space=bandit.action_space)
+        ]
+        for i, agent in enumerate(agents):
+            play(bandit, agent)
+            add_data(agent, agg_reward[i], agg_action[i])
+
+    x_range = np.arange(rounds_per_game)
+    plt.figure(0)
+    plt.title(str(games_played) + " runs average")
+    plt.plot(x_range,
+             agg_reward[0] / games_played,  label="epsilon=0.1")
+    plt.plot(x_range,
+             agg_reward[1] / games_played,  label="c=2")
+    plt.xlabel("Games")
+    plt.ylabel("Avg Reward/Step")
+    plt.legend()
+    plt.savefig("ucb_stationary.png")
+    plt.show()
+
+    plt.figure(1)
+    plt.title(str(games_played) + " runs average")
+    plt.plot(x_range,
+             agg_action[0] / games_played,  label="epsilon=0.1")
+    plt.plot(x_range,
+             agg_action[1] / games_played,  label="c=2")
+    plt.xlabel("Games")
+    plt.ylabel("% Optiomal Action Selected")
+    plt.legend()
+    plt.savefig("optimal_action_selected_ucb_stationary.png")
+    plt.show()
+
+
+def print_menu():
+    print("Sutton RL Chapter 2: Select simulation:")
+    print("\t 1. Stationary k bandit with e-greedy algorithm (0, 0.1 and 0.01).")
+    print("\t 2. NonStationary k bandit constant step size vs sample averge (0, 0.1 and 0.01).")
+    print("\t 3. UCB (c=2) vs e-greedy (episolon=0.1).")
+
+
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Pass argument nonstationary or stationary")
+        print_menu()
     else:
-        if sys.argv[1] == "nonstationary":
-            nonstationary_bandit_sim()
-        elif sys.argv[1] == "stationary":
+        if sys.argv[1] == "1":
             stationary_bandit_sim()
+        elif sys.argv[1] == "2":
+            nonstationary_bandit_sim()
+        elif sys.argv[1] == "3":
+            ucb_agent_sim()
         else:
-            print("Pass argument nonstationary or stationary")
+            print_menu()
