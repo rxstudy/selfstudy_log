@@ -1,0 +1,42 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage[normalem]{ulem}
+\usepackage{fancyhdr,graphicx,amsmath,amssymb, mathtools, scrextend, titlesec, enumitem}\usepackage[pdftex]{hyperref}
+\usepackage[ruled,vlined]{algorithm2e} 
+\usepackage{parskip}
+\include{pythonlisting}
+
+\title{Chapter 1: Probability Theory Exercises}
+\author{Ran Xie}
+\begin{document}
+\maketitle
+
+\section*{Exercise 1.1}
+(a) $S=\{ ssss | s \in \{H, T\} \}$ , a string of length 4 with alphabet H and T \\
+
+(b) $S=\mathbb{N}\cup\{0\}$ since damaged leaves are non-negative whole number\\
+
+(c) $S=\mathbb{N}\cup\{0\}$ since we count in hours which is a non-negative whole number \\
+
+(d) $S=\mathbb{R}^+$ since weight can be any positive real number \\
+
+(e) $S= [0,1]$ fraction is between 0 and 1 \\
+
+\section*{Exercise 1.4}
+(a) $P(A\cup B \cup(A \cap B)) = P(A \cup B) = P(A) + P(B) - P(A \cap B)$  Note $A\cap B \subset A$ \\
+
+(b) $$\begin{aligned}
+P((A \cup B)\cap (A \cap B)^c) &= P(A\cup B) + P((A \cap B)^c) - P(A\cup B \cup (A \cap B)^c) \\
+&= P(A\cup B) + 1 - P(A \cap B) - 1 \\
+&= P(A) + P(B) - 2P(A\cap B) \\
+\end{aligned}$$
+
+(c) $P(A\cup B) = P(A) + P(B) - P(\cup B)$ \\
+
+(d) $P(A) + P(B) - 2P(A\cap B)$ \\
+
+
+
+
+\end{document}
