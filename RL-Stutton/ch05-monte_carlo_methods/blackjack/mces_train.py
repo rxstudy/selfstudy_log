@@ -12,14 +12,13 @@ if __name__ == "__main__":
     q = np.zeros((22, 22, 2, 2))  # q: (player_sum, dealer_showing, ace,  0/1:stick/hit) -> R
     pi = np.zeros((22, 22, 2), dtype=np.uint)  # pi: (player_sum, dealer_showing, ace) -> (0:stick, 1:hit)
     episodes = 400000
-    ACTION = [0, 1]  # 0:stick, 1:hit
 
     ui_progress_bar = tqdm(total=episodes)
     # Generate starting states
     starting_states = blackjack_env.sample_starting_states(episodes)
     for (init_p_sum, init_d_showing, init_usable_ace) in starting_states:
         ui_progress_bar.update(1)
-        for init_action in ACTION:
+        for init_action in [0, 1]: # 0:stick, 1:hit
             # For each episode
             ep_trajectory = [] # (s, a, r) tuples trajectory of an episode
             state_action_counter = defaultdict(int) # count (s,a) occurrence in an episode
