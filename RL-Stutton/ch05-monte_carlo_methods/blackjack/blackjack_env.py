@@ -38,7 +38,7 @@ class BlackJack:
         self.dealer_showing = None
 
     def get_observation(self):
-        return (self.player_sum, self.dealer_showing, 1 if self.player_usable_ace else 0), self.game_ended
+        return (self.player_sum, self.dealer_showing, int(self.player_usable_ace)), self.game_ended
 
     def apply_action(self, hit):
         # Player's turn
@@ -85,6 +85,16 @@ class BlackJack:
 
 class BlackJackSim(BlackJack):
     def __init__(self):
+        self.reset()
+
+    def reset(self):
+        self.game_ended = False
+        self.dealer_sum = 0
+        self.player_sum = 0
+        self.player_usable_ace = False
+        self.dealer_usable_ace = False
+        self.dealer_showing = None
+
         player_hand = [player_draw(), player_draw()]
         self.player_usable_ace = 1 in player_hand
         self.player_sum = np.sum(player_hand) + (10 if self.player_usable_ace else 0)
