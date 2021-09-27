@@ -1,0 +1,53 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage[normalem]{ulem}
+\usepackage{fancyhdr,graphicx,amsmath,amssymb, mathtools, scrextend, titlesec, enumitem}\usepackage[pdftex]{hyperref}
+\usepackage[ruled,vlined]{algorithm2e} 
+\usepackage{parskip}
+\include{pythonlisting}
+
+\title{Chapter 3: Common Families of Distribution}
+\begin{document}
+\maketitle
+
+\section*{Exercise 3.1}
+There are $N_1 - N_0 +1$ numbers, therefore $P(x = n) = \frac{1}{N_1-N_0+1}$.
+
+$EX = \frac{N_1+N_0}{2}$ which is just the midpoint.
+
+Let $b=N_1, a=N_0$
+$$
+\begin{aligned}
+Var &X=EX^2 - (EX)^2 \\
+    &= \frac{1}{b-a+1} \sum^{b}_{a}x^2  - (EX)^2  \\
+   &= \frac{1}{b-a+1}\left[\sum^{b}_{1}x^2 - \sum^{a-1}_{1}x^2 \right] - (EX)^2 \\
+   &= \frac{1}{b-a+1}\left[\frac{b(b +1)(2b+1)}{6} - \frac{(a-1)a(2a-1)}{6}\right] -  \frac{(b+a)^2}{4} \\
+   &= \frac{2b(b +1)(2b+1)- 2(a-1)a(2a-1)-3(b-a+1)(b+a)^2}{12(b-a+1)} \\
+   &= \frac{2b(b -a +1 + a)(2b+1) + 2a(b - a + 1 - b)(2a-1)-3(b-a+1)(b+a)^2}{12(b-a+1)} \\
+   &= \frac{2b(b -a +1)(2b+1) + 2a(b - a + 1)(2a-1)-3(b-a+1)(b+a)^2 -4ab(b-a+1)}{12(b-a+1)} \\
+   &= \frac{2b(2b+1) + 2a(2a-1)-3(b+a)^2 -4ab}{12} \\
+   &= \frac{a^2+b^2 -2ab +2b-2a}{12} \\
+   &= \frac{(b-a)(b-a+2)}{12} \\
+   &= \frac{(N_1-N_0)(N_1-N_0+2)}{12} \\
+\end{aligned}
+$$
+
+\section*{Exercise 3.2}
+(a)
+Let $X$ be the number of defective part in $K$ samples and $M$ be the total defective parts in 100 parts. Then
+$$P(X=0 | M > 5) = \frac{{100 -M \choose K}}{{100 \choose K}}$$ 
+is the probability of accepting a defective product given $M > 5$. 
+To bound $K$, we can set $M = 6$ since defect parts becomes more prevalent which increases the chance for them to be sampled, setting $M=6$ maximizes the false positive rate $P(X=0|M)$.
+
+Then
+$$P(X=0 | M=6) = \frac{{94 \choose K}}{{100 \choose K}} < 0.1$$
+Solving for $K$ numerically (polynomial of the 5th power), we get $K >31$. We can choose $K=32$.
+
+(b)
+The false positive rate is now 
+$$P(X\leq 1 | M = 6) = P(X=0|M=6) + P(X=1|M=6)=  \frac{{94 \choose K}}{{100 \choose K}} +  \frac{{6 \choose 1}{94 \choose K-1}}{{100 \choose K}} < 0.1 $$
+Solving for $K$ numerically (same as above except there's an additional term $1 + \frac{6K}{95-K}$), We get $K > 50.24$ which means $K=51$.
+
+
+\end{document}
