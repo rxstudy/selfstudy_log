@@ -1,11 +1,7 @@
 \documentclass[12pt]{article}
-\usepackage{fullpage}
-\usepackage{times}
-\usepackage[normalem]{ulem}
-\usepackage{fancyhdr,graphicx,amsmath,amssymb, mathtools, scrextend, titlesec, enumitem}\usepackage[pdftex]{hyperref}
-\usepackage[ruled,vlined]{algorithm2e} 
-\usepackage{parskip}
+
 \include{pythonlisting}
+\include{definitions.tex}
 
 \title{Chapter 3: Common Families of Distribution}
 \begin{document}
@@ -19,7 +15,7 @@ $EX = \frac{N_1+N_0}{2}$ which is just the midpoint.
 Let $b=N_1, a=N_0$
 $$
 \begin{aligned}
-Var &X=EX^2 - (EX)^2 \\
+\Var &X=EX^2 - (EX)^2 \\
     &= \frac{1}{b-a+1} \sum^{b}_{a}x^2  - (EX)^2  \\
    &= \frac{1}{b-a+1}\left[\sum^{b}_{1}x^2 - \sum^{a-1}_{1}x^2 \right] - (EX)^2 \\
    &= \frac{1}{b-a+1}\left[\frac{b(b +1)(2b+1)}{6} - \frac{(a-1)a(2a-1)}{6}\right] -  \frac{(b+a)^2}{4} \\
@@ -49,5 +45,53 @@ The false positive rate is now
 $$P(X\leq 1 | M = 6) = P(X=0|M=6) + P(X=1|M=6)=  \frac{{94 \choose K}}{{100 \choose K}} +  \frac{{6 \choose 1}{94 \choose K-1}}{{100 \choose K}} < 0.1 $$
 Solving for $K$ numerically (same as above except there's an additional term $1 + \frac{6K}{95-K}$), We get $K > 50.24$ which means $K=51$.
 
+\section*{Exercise 3.4}
+(a) Without eliminating the wrong key, every trial is independent with probability of $\frac{1}{n}$ for succeeding. Let $X$ be the number of tries before succeeding. 
+$$P(X=k) = \left(1 - \frac{1}{n}\right)^{k-1} \frac{1}{n}$$
+It is geometric distribution therefore $EX = \frac{1}{1/n} = n$
 
+(b) By eliminating the wrong key, at $k$-th trial, we will be selecting from $n - k + 1$ remaining keys, the success probability is $\frac{1}{n-k+1}$. 
+$$P(X=k) = \frac{1}{n-k+1} \prod^{k-1}_{i=1} \left(1- \frac{1}{n-i+1} \right)$$
+Then
+$$\begin{aligned}
+EX &= \sum_{x=1}^{n} xP(x) \\
+   &= \sum_{k=1}^{n} \frac{k}{n-k+1} \prod^{k-1}_{i=1} \left(1- \frac{1}{n-i+1} \right) \\
+   &= \sum_{k=1}^{n} \frac{k}{n-k+1} \prod^{k-1}_{i=1} \frac{n -i}{n-i+1} \\
+   &= \sum_{k=1}^{n} \frac{k}{n-k+1} \frac{n - k + 1}{n} \\
+   &= \sum_{k=1}^{n} \frac{k}{n} \\
+   &= \frac{n+1}{2}
+\end{aligned}$$
+
+\section*{Exercise 3.8}
+Let $X$ be the number of people who choose theatre 1. Then when $X \leq N$ will be the event theatre 1 not turning away customers and $1000 - X \leq N$ will be when theatre 2 not turning away customers.
+We will find the reverse: $N$ such that the probability of both theatre not turning away customers is greater than 99%.  $P(1000 -N \leq X \leq N) > 0.99)$
+
+The binomial distribution for $X$ is $$ P(X = k) = {1000 \choose k} 0.5^{1000}$$
+From $1000 -N \leq X \leq N$, we get $N \geq 500$ (If total seats of two theatres < customers, one of them will turn away customers)
+Then
+$$ 0.5^{1000} \sum^{N}_{1000-N} {1000 \choose k} > 0.99, \ \ N \geq 500$$
+\begin{lstlisting}
+ from scipy.special import comb
+ def p(N):
+   return sum([comb(1000, i, exact=True) for i in range(1000-N, N+1)]) / (2**1000)
+\end{lstlisting}
+We get $p(540) \approx 0.9896$ and $p(541) \approx 0.9913$. Therefore we can take $N = 540$.
+
+\section*{Exercise 3.20}
+(a) $$ \E X = \int^{\infty}_{0} xf(x) dx = \frac{2}{\sqrt{2\pi}} \int^{\infty}_{0} x e^{-x^2/2} dx
+ = - \frac{2}{\sqrt{2\pi}} e^{-x^2/2} |^{\infty}_{0} =  \frac{2}{\sqrt{2\pi}}$$
+ 
+ $$\E X^2 = \int^{\infty}_{0} x^2f(x) dx =  \frac{2}{\sqrt{2\pi}} \int^{\infty}_{0} x^2 e^{-x^2/2} dx$$
+ 
+To calculate the integral, use integration by part $dg = x e^{-x^2/2}dx$, $f = x$. Therefore $g = -e^{-x^2/2}$ and $df=dx$. 
+
+$$\int^{\infty}_{0} x^2 e^{-x^2/2} dx = -xe^{-x^2/2}|^{\infty}_{0} + \int^{\infty}_{0} e^{-x^2/2} dx = \sqrt{\frac{\pi}{2}}$$
+
+So $$EX^2 = \frac{2}{\sqrt{2\pi}}  \sqrt{\frac{\pi}{2}} = 1$$
+Therefore $\Var X = \E X^2 - (\E X)^2 = 1 - \left( \frac{2}{\sqrt{2\pi}}\right)^2 = 1 - \frac{2}{\pi}$ 
+
+(b) Let $y=sx^2$, by change of variable,
+$$ f_Y(y) = f_X(x(y)) \left| \frac{dx}{dy} \right| = \frac{1}{\sqrt{2\pi s}} y^{1/2} e^{-\frac{y}{2s}}$$
+Now we compare it again the gamma distribution $$ f_Y(y|\alpha, \beta) = \frac{1}{\Gamma(\alpha)\beta^{\alpha}} y^{\alpha - 1} e^{-y/\beta}$$
+First we conclude $\beta = 2s$, $\alpha = 1/2$. Then we have $\Gamma(\alpha)\beta^{\alpha} = \Gamma(1/2)\sqrt{2s} = \sqrt{2\pi s}$ which is consistent with the above. Therefore the change of variable is $y = \frac{\beta}{2} x^2$, and $Y \sim gamma(\alpha=1/2, \beta > 0)$
 \end{document}
