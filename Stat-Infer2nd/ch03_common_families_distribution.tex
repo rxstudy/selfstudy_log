@@ -64,11 +64,12 @@ EX &= \sum_{x=1}^{n} xP(x) \\
 
 \section*{Exercise 3.8}
 Let $X$ be the number of people who choose theatre 1. Then when $X \leq N$ will be the event theatre 1 not turning away customers and $1000 - X \leq N$ will be when theatre 2 not turning away customers.
-We will find the reverse: $N$ such that the probability of both theatre not turning away customers is greater than 99%.  $P(1000 -N \leq X \leq N) > 0.99)$
+We will find the reverse: $N$ such that the probability of both theatre not turning away customers is greater than 0.99 .  $P(1000 -N \leq X \leq N) > 0.99)$
 
 The binomial distribution for $X$ is $$ P(X = k) = {1000 \choose k} 0.5^{1000}$$
-From $1000 -N \leq X \leq N$, we get $N \geq 500$ (If total seats of two theatres < customers, one of them will turn away customers)
-Then
+From $1000 -N \leq X \leq N$, we get $N \geq 500$ (If total seats of two theatres is less than number of customers, one of them will certainly turn away customers).
+
+We have
 $$ 0.5^{1000} \sum^{N}_{1000-N} {1000 \choose k} > 0.99, \ \ N \geq 500$$
 \begin{lstlisting}
  from scipy.special import comb
