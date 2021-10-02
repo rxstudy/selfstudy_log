@@ -63,7 +63,7 @@ EX &= \sum_{x=1}^{n} xP(x) \\
 \end{aligned}$$
 
 \section*{Exercise 3.8}
-Let $X$ be the number of people who choose theatre 1. Then when $X \leq N$ will be the event theatre 1 not turning away customers and $1000 - X \leq N$ will be when theatre 2 not turning away customers.
+(a) Let $X$ be the number of people who choose theatre 1. Then when $X \leq N$ will be the event theatre 1 not turning away customers and $1000 - X \leq N$ will be when theatre 2 not turning away customers.
 We will find the reverse: $N$ such that the probability of both theatre not turning away customers is greater than 0.99 .  $P(1000 -N \leq X \leq N) > 0.99)$
 
 The binomial distribution for $X$ is $$ P(X = k) = {1000 \choose k} 0.5^{1000}$$
@@ -76,7 +76,12 @@ $$ 0.5^{1000} \sum^{N}_{1000-N} {1000 \choose k} > 0.99, \ \ N \geq 500$$
  def p(N):
    return sum([comb(1000, i, exact=True) for i in range(1000-N, N+1)]) / (2**1000)
 \end{lstlisting}
-We get $p(540) \approx 0.9896$ and $p(541) \approx 0.9913$. Therefore we can take $N = 540$.
+We get $p(540) \approx 0.9896$ and $p(541) \approx 0.9913$. Therefore we can take $N = 541$.
+
+(b) Since $X \sim \Binomial (1000, 1/2)$. We can approximate with a normal distributed $Y \sim \Normal (1000 \times 0.5, \sqrt(1000 \times 0.5 \times 0.5)) = \Normal (500, \sqrt{250})$
+$$ P(1000- N \leq X \leq N) \approx P( 1000 - N \leq Y \leq N) = P(- \frac{N - 500}{\sqrt{250}} \leq Z \leq \frac{N - 500}{\sqrt{250}}) > 0.99$$
+
+This means we need to look for a $z$ score where the probability is greater than 0.995 by symmetry. So $z \geq 2.58$. So $N \geq 2.58 (\sqrt{250}) + 500 = 540.8 \approx 541$
 
 \section*{Exercise 3.20}
 (a) $$ \E X = \int^{\infty}_{0} xf(x) dx = \frac{2}{\sqrt{2\pi}} \int^{\infty}_{0} x e^{-x^2/2} dx
