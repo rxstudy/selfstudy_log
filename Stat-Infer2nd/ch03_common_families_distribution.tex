@@ -45,6 +45,9 @@ The false positive rate is now
 $$P(X\leq 1 | M = 6) = P(X=0|M=6) + P(X=1|M=6)=  \frac{{94 \choose K}}{{100 \choose K}} +  \frac{{6 \choose 1}{94 \choose K-1}}{{100 \choose K}} < 0.1 $$
 Solving for $K$ numerically (same as above except there's an additional term $1 + \frac{6K}{95-K}$), We get $K > 50.24$ which means $K=51$.
 
+\section*{Exercise 3.3}
+Pedestrian takes 3 seconds to cross the road if there is no car during the 3 seconds. If a pedestrian waits exact 4 seconds to cross, the process is 7 seconds. The last 3 seconds there needs to have no cars so the probability is $(1-p)^3$. For the pedestrian to cross after 4th seconds, the 4th second must have car (otherwise, event such as (1,1,1,0,0,0,0) will have the pedestrian wait only 3 seconds).The only case that pedestrian will cross without waiting for 4 seconds even when the 4th second has car is (0,0,0,1) for the first 4 seconds. Therefore the probability of user waiting exactly 4 seconds is $1-p(1-p)^3$. The probability of user crossing after 4th second is $(1-p)^3$. The probability of the entire process is the product: $[1-p(1-p)^3](1-p)^3$
+
 \section*{Exercise 3.4}
 (a) Without eliminating the wrong key, every trial is independent with probability of $\frac{1}{n}$ for succeeding. Let $X$ be the number of tries before succeeding. 
 $$P(X=k) = \left(1 - \frac{1}{n}\right)^{k-1} \frac{1}{n}$$
