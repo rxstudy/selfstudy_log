@@ -62,6 +62,29 @@ EX &= \sum_{x=1}^{n} xP(x) \\
    &= \frac{n+1}{2}
 \end{aligned}$$
 
+\section*{Exercise 3.5}
+We want to first assume that if new drug has the same effectiveness of the old drug and see how often would we observe the result of 85 effective cases out of 100 to make sure the experiment result is not a coincident. (Or how often standard drug can produce the same trial result as the new drug).
+
+Let $X$ be the number of effective cases out of 100. Then $X \sim \Binomial (100, 0.8)$.
+
+$$P(X \geq 85) = \sum^{100}_{k=85}{100 \choose 85} 0.8^{85} 0.2^{15} \approx 0.1285$$
+
+So there are about $13\%$ chance that the standard drug can produce the same result. We can't conclude the new drug is better.
+
+\section*{Exercise 3.6}
+(a) We can use binomial distribution $\Binomial (2000, 0.01)$. Then
+$$ P(X= k) = {2000 \choose k} 0.01^k  0.99^{2000 -k }$$
+
+(b) $$ P(X < 100) = \sum^{99}_{k=0} {2000 \choose k} 0.01^k  0.99^{2000 -k } $$
+
+(c) A conservative rule to check if a normal approximation is good is $\min (np, n(1-p)) = 20 \geq 5$. Therefore we can approximate it with $\Normal (\mu=20, \sigma = \sqrt{20(0.99)}) $.
+$$P ( X < 100) = P \left(\frac{X - 20}{\sqrt{20(0.99)}} \leq (\frac{100 - 20}{\sqrt{20(0.99)}}\right) = P(Z < 17.98) \approx 1 $$
+
+\section*{Exercise 3.7}
+Let $X$ be the number of chocolate chips in the cookie and $X \sim \Poisson (\lambda)$. Then 
+$$P(X \geq 2 ) = 1 - P(X = 0) - P(X = 1) = 1 - e^{-\lambda} - \lambda e^{-\lambda} > 0.99$$
+We get $\lambda \approx 6.64$.
+
 \section*{Exercise 3.8}
 (a) Let $X$ be the number of people who choose theatre 1. Then when $X \leq N$ will be the event theatre 1 not turning away customers and $1000 - X \leq N$ will be when theatre 2 not turning away customers.
 We will find the reverse: $N$ such that the probability of both theatre not turning away customers is greater than 0.99 .  $P(1000 -N \leq X \leq N) > 0.99)$
