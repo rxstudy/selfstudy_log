@@ -109,6 +109,17 @@ $$ P(1000- N \leq X \leq N) \approx P( 1000 - N \leq Y \leq N) = P(- \frac{N - 5
 
 This means we need to look for a $z$ score where the probability is greater than 0.995 by symmetry. So $z \geq 2.58$. So $N \geq 2.58 (\sqrt{250}) + 500 = 540.8 \approx 541$
 
+\section*{Exercise 3.9}
+(a) we can think of it as $\Binomial (60, 1/90)$ for a success being having a twin birth (It is natural to assume the twin will sign up for the same elementary school). Therefore having 5 or more twin birth can be approximately
+$$ P(X \geq 5) = 1 - \sum^{4}_{k=0}{60 \choose k} (1/90)^k (89/90)^{60-k} \approx 0.0006 $$
+
+(b) Within New York State, we can calculate the probability of at least one such school. $Y \sim \Binomial (62(5)=310, 0.0006)$
+$$ P(Y \geq 1) = 1- P(Y=0) = 1 - (1-0.0006)^{310} = 0.17$$
+Not a rare occurrence.
+
+(c) For 50 states in even one year, there are 50 independent trial. The probability of having at least 1 success is then $$ 1 - (1 - 0.17)^{50} \approx 0.9999$$ 
+which is close to certain occurrence.
+
 \section*{Exercise 3.20}
 (a) $$ \E X = \int^{\infty}_{0} xf(x) dx = \frac{2}{\sqrt{2\pi}} \int^{\infty}_{0} x e^{-x^2/2} dx
  = - \frac{2}{\sqrt{2\pi}} e^{-x^2/2} |^{\infty}_{0} =  \frac{2}{\sqrt{2\pi}}$$
