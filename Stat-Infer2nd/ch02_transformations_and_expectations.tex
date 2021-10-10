@@ -95,7 +95,7 @@ We can use this as an identity by adjusting $p$. Replace $p \leftarrow 1 - e^t(1
 $$\sum_{x=0}^{\infty}{r+x-1 \choose x}( 1 - e^t(1-p))^r(e^t(1-p))^x = 1$$
 Which gives $\sum_{x=0}^{\infty}{r+x-1 \choose x}(e^t(1-p))^x = \frac{1}{( 1 - e^t(1-p))^r}$.
 Then $$M_X(t) = \sum_{x=0}^{\infty} {r+x-1 \choose x} p^r(e^{t}(1-p))^x =  \frac{p^r}{( 1 - e^t(1-p))^r}$$
-Where $t \neq -\log(1-p)$
+Where $0<1 - e^t(1-p) \leq 1 \Rightarrow t < -\log (1-p)$ 
 
 
 \end{document}
