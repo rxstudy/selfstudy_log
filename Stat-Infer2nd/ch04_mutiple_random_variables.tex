@@ -1,0 +1,120 @@
+\documentclass[12pt]{article}
+
+\include{pythonlisting}
+\include{definitions.tex}
+
+\title{Chapter 4: Multiple Random Variables}
+\begin{document}
+\maketitle
+
+\section*{Exercise 4.1}
+(a) Since $f_{X,Y}(x,y)$ is constant. $X^2+Y^2<1$ is circle of radius 1. Therefore $P(X^2 + Y^2 < 1) = \pi/4$
+
+(b) $2X-Y = 0$ divides the unit square into two region of equal area and $f$ is constant. Therefore $P(2X-Y > 0) = 1/2$
+
+(c) $P(|X+Y|<2) = P (-2 < X + Y < 2)$. The area covers the entire square. Therefore $P(|X+Y|<2) = 1$.
+
+\section*{Exercise 4.4}
+(a) Since $\int_0^1 \int_0^2 f(x,y)dxdy  = \int_0^1 \int_0^2 C(x+2y) dx dy = 4C = 1$
+So $C = 1/4$.
+
+(b) $f(x) = \int^1_0 f(x,y)dy = (1/4) (xy + y^2)|^1_0 = \frac{x+1}{4}, \ \ x \in (0,2)$
+
+(c) 
+For $(x,y) \in (0,2)\times (0,1)$:
+$$F(x, y) = P(X <x, Y <y) = \int_{-\infty}^{x} \int_{\infty}^{y} \frac{t+2s}{4} dsdt = \int_{0}^{x} \int_{0}^{y} \frac{t+2s}{4} dsdt =  \frac{1}{8}(x^2y + 2xy^2) $$
+For $(x,y) \in (0,2) \times [1, \infty)$:
+$$F(x, y) = P(X <x, Y <y) = \int_{0}^{x} \int_{0}^{1} \frac{t+2s}{4} dsdt = \frac{1}{8}(x^2 + 2x) $$
+For $(x,y) \in (-\infty,2] \times (0,1)$:
+$$F(x, y) = P(X <x, Y <y) = \int_{0}^{2} \int_{0}^{y} \frac{t+2s}{4} dsdt = \frac{1}{2}(y + y^2) $$
+
+
+
+(d) from (b), we have $f(x) = \frac{x+1}{4}$. And $z = \frac{9}{(x+1)^2}$ is monotonic for $x\in[0,2]$ with $z\in[1, 9]$. So we can take $x = \frac{\sqrt{z}}{3} - 1$. Then $$f(z) = f(x^{-1}(z))\left|\frac{dx}{dz} \right| =  \frac{3}{4}(z^{-1/2}) (\frac{3}{2}z^{-3/2}) = \frac{9}{8}z^{-2}$$
+
+\section*{Exercise 4.5}
+(a) The area for integration is $0 < x < 1$ and $0 < y < x^2$. 
+$$ P(X > \sqrt{Y}) = \int_0^1 \int_{0}^{x^2} x+ y dy dx =\int_0^1 x^3 + \frac{x^4}{2} dx = 0.35 $$
+
+(b) The area of integration is $0 < x < 1$ and $x^2 < y < x$.
+$$ P(X^2 <Y < X) = \int_0^1 \int_{x^2}^{x} 2x dy dx = \int_0^1 2x^2 - 2x^3 dx = \frac{1}{6}$$
+
+\section*{Exercise 4.6}
+Let $X, Y$ be the time A and B arrive in time interval $[0,1]$. Since they are independent, $f(x,y) = f(x) f(y) = 1$ for $(x,y) \in [0,1]\times [0,1]$.
+
+Let $T$ be the length of time A waits for B. Then $T = \max (Y - X, 0)$ because $T=0$ when $Y < X$. 
+$$ P(T < t) = P(\max (Y - X, 0)) = P(Y - X < t, Y \geq X) + P(Y < X)$$ 
+For term $P(Y - X < t, Y \geq X)$, The area of integration is the area between $y - x = t$ and $ y \geq x$ bounded by unit square. We can find the complement area which is an isosceles right triangle with side of $1-t$, which gives
+$$ P(Y - X < t, Y \geq X) =   \frac{1}{2} - \frac{1}{2} (1-t)^2$$
+$P(Y<X)$ is the lower half triangle of the unit square which has area of $\frac{1}{2}$
+Therefore 
+$$P(T < t) = P(Y - X < t, Y \geq X) + P(Y < X) = 1 - \frac{1}{2} (1-t)^2$$
+
+
+\section*{Exercise 4.7}
+We can formulate the problem as such: $X \in [0,30], Y \in [40,50]$, find $P(X+Y < 60)$. We want to find the intersection of $x+y=60$ with $[0,30] \times [40, 50]$. We get $(10,50), (20,40)$. Since the distributions are uniform, we can simply find area of the trapezoid and divide it by the total area. 
+$$P(X+Y < 60) = \frac{10(10 + 20)0.5}{10(30)} = 150/300 = 0.5$$
+
+\section*{Exercise 4.9}
+For interval $[a,b] \times [c,d]$.
+$$\begin{aligned} 
+P(a \leq X \leq b) P(c \leq Y \leq d) &= [F_X(b)-F_X(a)] [F_Y(d)-F_Y(c)] \\ 
+&= F_X(b)F_Y(d)-F_X(b)F_Y(c)-F_X(a)F_Y(d) + F_X(a)F_Y(c)  \\
+&= F(b,d)-F(b,c)-F(a,d)+F(a,c)
+\end{aligned}$$
+
+If we define the regions $A_1 = [a,b]\times[c,d]$, $A_2=[a,b]\times(-\infty, c)$ , $A_3=(-\infty, a)\times(-\infty, c)$, $A_4 = (-\infty, a)\times [c,d]$. Then
+   $$\begin{aligned}
+   		F(b,d) &= P(A_1)+P(A_2)+P(A_3)+P(A_4) \\
+   		F(b,c) &= P(A_3) + P(A_2) \\
+   		F(a,d) &= P(A_3) + P(A_4) \\
+   		F(a,c) &= P(A_3)
+   \end{aligned}$$
+Hence 
+$$\begin{aligned}
+P(a \leq X \leq b) P(c \leq Y \leq d) &= F(b,d)-F(b,c)-F(a,d)+F(a,c) \\
+&= P(A_1)  \\
+&= P([a,b]\times[c,d])  \\
+&= P(X\in [a,b], Y\in [c,d])
+\end{aligned}$$
+
+
+\section*{Exercise 4.10}
+(a) Summing up the columns and rows, we have $P(X=1) = 1/4$, $P(X=2)=1/2$ , $P(X=3)=1/4$. 
+$P(Y=2)= P(Y=3) = P(Y=4) = 1/3$. 
+
+(b) We can build up a table for independent $U,V$ just be multiplying the marginal probability.
+\begin{center}
+\begin{tabular}{ |c|ccc| } 
+\hline
+U/V & 1& 2&  3 \\
+2 & 1/12 & 1/6 & 1/12 \\ 
+3 & 1/12 & 1/6 & 1/12 \\ 
+4 & 1/12 & 1/6 & 1/12 \\ 
+\hline
+\end{tabular}
+\end{center}
+
+\section*{Exercise 4.11}
+$U$ and $V$ are dependent. Consider $P(V|U=n)$ and $P(V)$, knowing $U=n$ means there is only one toss of head in the first $n$ trials which means $P(V \leq n | U = n) = 0 \neq P(V \leq n)$.
+
+\section*{Exercise 4.12}
+Let $X$ and $Y$ be uniform(0,1). Then $f_{X,Y} = 1$ is a unit square on $[0,1]\times[0,1]$. By symmetry, we only need to consider the probability conditioned on $X > Y$ which is the lower half triangle of the unit square. Then the 3 segments are $1 - X, X - Y$ and $Y$. For the segments to be a triangle, denoted by event $T$, it must satisfy the sum of two sides is larger than the other side. Therefore
+$$\begin{aligned}
+ 1 - X + X - Y &> Y \\
+ 1 - X + Y &> X - Y  \\
+ X - Y + Y &> 1 - X \\
+\end{aligned}$$
+Simplifying the expression, we have event $T$ given $X > Y$ as the area of a region bounded by 
+$$\begin{aligned}
+ \frac{1}{2} &> Y \\
+ Y &> X - \frac{1}{2}  \\
+ X &> \frac{1}{2} \\
+ X &> Y \\
+\end{aligned}$$
+Note that area of $X > Y$ is $\frac{1}{2}$ and the area of the region for $T$ is $\frac{1}{8}$.  So $P(T | X > Y)  = \frac{1/8}{1/2} = \frac{1}{4}$ and .
+
+Finally, we have $P(T) = P(T | X > Y) P(X > Y) + P(T | X \leq Y) P( X \leq Y) = \frac{1}{4}$
+
+\end{document}
+
