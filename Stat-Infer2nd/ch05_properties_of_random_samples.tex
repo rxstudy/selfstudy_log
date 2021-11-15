@@ -1,0 +1,27 @@
+\documentclass[12pt]{article}
+
+\include{pythonlisting}
+\include{definitions.tex}
+
+\title{Chapter 5: Properties of Random Samples}
+\begin{document}
+\maketitle
+
+\section*{Exercise 5.1}
+The samples are drawn from Bernoulli trial with success rate $0.01$. The probability of $n$ samples not containing color-blind is $0.99^n$.  We want to find $N$ such that for $n \geq N$,  $0.99^n \leq 1- 0.95$. $N \approx 299$.
+
+\section*{Exercise 5.2}
+(a) Let $T$ be the number of years until the first year's rainfall is exceeded. Then 
+$$\begin{aligned}
+P(T=k) &= P(X_2 \leq X_1, \ldots , X_{k-1} \leq X_1, X_k > X_1) \\
+&= \int_{x}  P(X_2 \leq x, \ldots , X_{k-1} \leq x, X_k > x | X_1 = x)f(x) dx \\
+&= \int_{x} P(X_k > x) f(x) \prod_{i=2}^{k-1} P(X_i \leq x) dx  \\
+&= \int_{x} (1- F(x)) f(x) F(x)^{k-1} dx  \\
+&= \int_{x}  F(x)^{k-1}f(x) dx - \int_{x}  F(x)^k f(x) dx  \\
+&= \frac{1}{k} F(x)^k|^{\infty}_{-\infty} - \frac{1}{k+1} F(x)^{k+1}|^{\infty}_{-\infty} \\
+&= \frac{1}{k} - \frac{1}{k+1} \\
+&= \frac{1}{k(k+1)}
+\end{aligned} 
+$$
+(b) $$\E T = \sum_k k P(T=k) = \sum_k \frac{1}{k+1} = \infty $$
+\end{document}
