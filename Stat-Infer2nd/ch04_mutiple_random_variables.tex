@@ -116,5 +116,57 @@ Note that area of $X > Y$ is $\frac{1}{2}$ and the area of the region for $T$ is
 
 Finally, we have $P(T) = P(T | X > Y) P(X > Y) + P(T | X \leq Y) P( X \leq Y) = \frac{1}{4}$
 
+\section*{Exercise 4.31}
+We have hierarchical model 
+$$ \begin{aligned}
+Y|X &\sim \Binomial (n, X) \\
+X &\sim \Uniform(0,1)
+\end{aligned}
+$$
+(a)
+$$ \begin{aligned}
+\E(Y)&= \E(\E(Y|X)) = \E(nX) = n \E X = \frac{n}{2} \\
+\Var Y &= \Var (\E(Y|X)) + \E(\Var (Y|X)) \\
+       &= \Var (nX) + \E (nX(1-X))  \\
+       &=  n^2 \frac{(1-0)^2}{12}  + n \int^1_0 x(1-x) dx \\
+       &= \frac{n^2}{12} + \frac{n}{6}
+\end{aligned}
+$$
+
+(b) The joint density is 
+$$\begin{aligned}
+ f(x, y) &= f(y | x)f(x) \\
+ 		 &= {n \choose y} x^y (1-x)^{n-y}
+\end{aligned} 
+$$
+
+(c) 
+$$\begin{aligned}
+f(y) &= \int_0^1 f(x, y) dx \\ 
+&={n \choose y} \int_0^1  x^y (1-x)^{n-y} dx  \\
+&= {n \choose y} \Beta(y+1, n-y+1) \\
+&= {n \choose y} \frac{\Gamma(y+1)\Gamma(n-y+1)}{\Gamma(n+2)}
+\end{aligned} 
+$$
+
+
+\section*{Exercise 4.32}
+(a) Note that $f(y, \Lambda) = f(y |\Lambda) f(\Lambda) = \frac{\Lambda^y e^{-\Lambda}}{y!} \frac{\beta^{\alpha}}{\Gamma(\alpha)}\Lambda^{\alpha -1 } e^{-\beta \Lambda}$
+
+$$
+\begin{aligned}
+f(y) &= \int_0^{\infty} f(y, \Lambda) d\Lambda \\ 
+&=  \frac{\beta^{\alpha}}{\Gamma(\alpha)y!} \int_0^{\infty} \Lambda^{y + \alpha -1 } e^{-(\beta +1) \Lambda}  d\Lambda \\
+&=  \frac{\beta^{\alpha}}{\Gamma(\alpha)y!} \int_0^{\infty}\left( \frac{x}{\beta+1} \right)^{y + \alpha -1 } e^{-x}  \frac{dx}{\beta+1}  & ,(\mbox{Let } x=(\beta+1)\Lambda) \\
+&=  \frac{\beta^{\alpha}}{\Gamma(\alpha)y!(\beta+1)^{y + \alpha}} \int_0^{\infty}x^{y + \alpha -1 } e^{-x} dx \\
+&=  \frac{\beta^{\alpha}\Gamma(y + \alpha)}{y!(\beta+1)^{y + \alpha}\Gamma(\alpha)}
+\end{aligned} 
+$$
+If $\alpha$ is positive interger, then $\Gamma(y+\alpha) = (y+\alpha)!$. So $$f(y) =  \frac{\beta^{\alpha}(y + \alpha)!}{(\beta+1)^{y + \alpha}y! \alpha !} = {y+\alpha - 1 \choose y} \frac{\beta^{\alpha}}{(\beta+1)^{y + \alpha}} = {y+\alpha - 1 \choose y} \left( 1 - \frac{1}{\beta+1}\right)^{\alpha} \left(\frac{1}{\beta+1} \right)^y$$
+
+$$\E(Y) = \E(\E(Y|\Lambda)) = \E(\Lambda) = \alpha \beta $$
+
+$$ \Var (Y) = \E (\Var(Y | \Lambda)) + \Var (\E (Y | \Lambda)) =\E (\Lambda) + \Var (\Lambda) = \alpha \beta + \alpha \beta^2$$
+
 \end{document}
 
