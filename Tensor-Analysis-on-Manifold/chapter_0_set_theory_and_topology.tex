@@ -1,11 +1,7 @@
 \documentclass[12pt]{article}
-\usepackage{fullpage}
-\usepackage{times}
-\usepackage[normalem]{ulem}
-\usepackage{fancyhdr,graphicx,amsmath,amssymb, mathtools, scrextend, titlesec, enumitem}\usepackage[pdftex]{hyperref}
-\usepackage[ruled,vlined]{algorithm2e} 
-\usepackage{parskip}
+
 \include{pythonlisting}
+\input{../definitions.tex}
 
 \title{Chapter 1: Probability Theory Exercises}
 \author{Ran Xie}
@@ -37,4 +33,32 @@ $$ \begin{aligned}
 $$
 \section*{Exercise 0.1.3.1}
 $A \times B \neq B \times A$ Since Cartesian product is a set of ordered pair. 
+
+\section*{Exercise 0.1.4.1}
+Since $f : A \rightarrow B$ and There exists $g$ such that $f \circ g = i_B$.  Since the domain of $f \circ g$ is $B$. Then for each $y \in B$, $f \circ g(y) = i_B(y) = y$ which means there exists $x \in A$ such that $g(y) = x$ and $f(x) = y$. Therefore $f$ is onto.  $\blacksquare$
+
+ If there exists $y_1, y_2$ such that $g(y_1) = g(y_2)$. Then 
+$$ \begin{aligned}
+	f\circ g(y_1) = f \circ g(y_2) & \Leftrightarrow i_B(y_1) = i_B(y_2)  \\
+	 &\Leftrightarrow	y_1 = y_2  \\
+\end{aligned}
+$$
+Therefore $g$ is 1-1.  $\blacksquare$
+
+Let $h = f|_{gB}$, Since $f \circ g = i_B$, for each $y \in B$, $f \circ g (y) = i_B(y) = y$ which means there exists an $x \in g(B)$ such that $f(x) = y$. Therefore $h = f|_{gB}$ is onto. 
+
+Note that $f \circ g$ can be written as $f|_{gB} \circ g = h \circ g = i_B$ since $f$ can only take on values in $g(B)$. $g$ is 1-1 means there is inverse $g^{-1}$ that is also 1-1. Hence $h = h \circ g \circ g^{-1} = i_B \circ g^{-1}$. Both $i_B$ and  $g^{-1}$ are 1-1, so $h$ is also 1-1.  $\blacksquare$
+
+Let $x \in g(B)$ and consider $g \circ h (x)$. There exists $y \in B$ such that $y = h(x)$. We know $h \circ g (y) = i_B(y) = y$. Suppose some $x_1 = g(y)$,  $h \circ g(y) = h(x_1) = y = h(x) \Rightarrow x_1 = x$ since $h$ is 1-1. So $g(y) = x$.  Therefore $g \circ h (x) = g (y) = x \Leftrightarrow g \circ h = i_{gB} \Leftrightarrow g = i_{gB} h^{-1}$  $\blacksquare$
+
+$f$ need not be 1-1. Example: $A = \{1, 2\}, B=\{3\}$. $f(1) = f(2) = 3$, $g(3) = 2$ and $h = f|_{g(B) =\{2\}}$. $\blacksquare$
+
+\section*{Exercise 0.1.4.2}
+Suppose $f: A \rightarrow B$ is 1-1 and onto, then for each $y \in B$ there corresponds a unique $x \in A$ such that $f(x) = y$.  Define $g: B \rightarrow A$ such that for each $y \in B$, $g(y) = x$ where $f(x) =y$. $g$ is a function since each $y$ corresponds to a unique $x$ guaranteed by $f$. Therefore $g\circ f = i_A$ and $f \circ g = i_B$. $\blacksquare$
+
+Suppose There is a function $g : B \rightarrow A$ such that $g \circ f = i_A$ and $f \circ g = i_B$. For $x_1, x_2 \in A$ and $f(x_1) = f(x_2)$. Applying $g$ on both side, we have $x_1 = x_2$. Therefore $f$ is 1-1. 
+
+For $y \in B$, there exists an $x \in A$ such that $g(y) = x$ since $g$ is a function. Applying $f$ to both side, we have $f(g(y)) = f(x) \Leftrightarrow i_B(y) = y = f(x)$. So we have found an $x$ for every $y$ such that $y = f(x)$.  Therefore $f$ is onto.  $\blacksquare$
+
+
 \end{document}
