@@ -60,5 +60,70 @@ Suppose There is a function $g : B \rightarrow A$ such that $g \circ f = i_A$ an
 
 For $y \in B$, there exists an $x \in A$ such that $g(y) = x$ since $g$ is a function. Applying $f$ to both side, we have $f(g(y)) = f(x) \Leftrightarrow i_B(y) = y = f(x)$. So we have found an $x$ for every $y$ such that $y = f(x)$.  Therefore $f$ is onto.  $\blacksquare$
 
+\section*{Exercise 0.1.5.1}
+Suppose $f$ is onto, $B_1, B_2 \in P(B)$ and $f^{-1}(B_1) = f^{-1}(B_2)$. If $y \in B_1$, then there exists $x \in A$ such that $f(x) = y$ since $f$ is onto. By definition of complete inverse image map, $ x \in   f^{-1}(B_1) = f^{-1}(B_2)$ implies $ y = f(x) \in B_2$. The same argument applies to $B_2$. Then we have $B_1 = B_2$. Therefore $f^{-1}$ is 1-1. 
 
+Suppose $f^{-1}$ is 1-1. For $\{y\} \in P(B)$, there exists a unique $\{x\} \in P(A)$ such that $f^{-1}(\{y\}) = \{x\}$. This implies for every $y \in B$ there exists $x$ such that $f(x) = y$.  $\blacksquare$
+
+\section*{Exercise 0.1.5.2}
+(a) $$\begin{aligned}
+	x \in f^{-1}(D_1 \cap D_2) &\Leftrightarrow \exists y \in D_1 \cap D_2, f(x) = y  \\
+	&\Leftrightarrow x \in (f^{-1}D_1) \cap (f^{-1}D_2)	    
+\end{aligned}
+$$
+
+(b) $$
+\begin{aligned}
+	x \in f^{-1}(D_1 \cup D_2) &\Leftrightarrow \exists y \in D_1 \cup D_2, f(x) = y  \\
+	&\Leftrightarrow x \in (f^{-1}D_1) \mbox{ if } y \in D_1, x \in (f^{-1}D_2) \mbox{ if } y \in D_2 \\
+	&\Leftrightarrow x \in (f^{-1}D_1) \cup (f^{-1}D_2)  \\
+\end{aligned}
+$$
+
+(c) $$\begin{aligned}
+	y \in f(C_1 \cap C_2) &\Rightarrow \exists x \in C_1 \cap C_2, f(x) = y \\
+	&\Rightarrow y \in (fC_1) \cap (fC_2)
+\end{aligned}
+$$
+
+(d) $$\begin{aligned}
+	y \in f(C_1 \cup C_2) &\Leftrightarrow \exists x \in C_1 \cup C_2, f(x) = y \\
+	&\Leftrightarrow y \in fC_1 \mbox{ if } x \in C_1 ,  y \in fC_2 \mbox{ if } x \in C_2 \\
+	&\Leftrightarrow y \in (fC_1) \cup (fC_2)
+\end{aligned}
+$$
+
+\section*{Exercise 0.1.5.3}
+Let $A = \{1, 2\}$, $B =\{3\}$,  $f(1) = f(2) = 3$. If $C_1 = \{1\}, C_2=\{2\}$. Then $fC_1 \cap fC_2 = \{3\} \neq f(C_1 \cap C_2) = f (\emptyset)$
+
+\section*{Exercise 0.1.5.4}
+For $B, C \in P(A)$, $\Phi C = \Phi B \Rightarrow \phi_C = \phi_B$. If $\phi_C (x) = 1$,  then $\phi_B(x) = 1$ which means $x \in C$ implies $x \in B$ and vice versa. By the same argument on $\phi_C(x) = 0$, we have $B = C$. So $\Phi$ is 1-1.
+
+For a characteristic function $\phi_D \in 2^A$. By definition $D \subset A \Rightarrow D \in P(A)$. So $\Phi$ is onto. 
+
+
+\section*{Exercise 0.1.5.5}
+If $A$ is finite ($A =\{a_1, \ldots, a_n \}$), there exists a bijection between $P(A)$ and $\{(b_1, \ldots, b_n) | b_i \in \{0, 1\} \}$ where $b_i$ is 0 if $a_i$ is absent in the subset, 1 if $a_i$ is present. We have two choice for each $i$ and there are $n$ of them. So $|P(A)| = 2^n$. From exercise 0.1.5.4, $|2^A| = |P(A)| = 2^n$.
+
+\section*{Exercise 0.1.5.6}
+%TODO
+
+\section*{Exercise 0.2.1.1}
+Let $X = \{a, b\}$, we have $T=\{\{a\}, \emptyset, X\}$ and $T=\{\{b\}, \emptyset, X\}$ with concrete and discrete topologies. Therefore 4 distinct topologies. $\blacksquare$
+
+Let $X = \{a, b, c\}$, 
+
+For 2 elements topolgy, we have the concrete topology $\{X, \emptyset\}$. Total of 1.
+
+For 3 elements topology, we have $T=\{\{a\}, \emptyset, X\}$ (3 of this kind).  $T=\{\{a, b\}, \emptyset, X\}$ (3 of this kind). Total of 6. 
+
+For 4 elements topology, we have $T=\{\{a, b\}, \{a\}, \emptyset, X\}$ ($3 \times 2 = 6$ of this kind). $T=\{\{a, b\}, \{c\}, \emptyset, X\}$ (3 of this kind). Total of 9.
+
+For 5 elements topology, $T=\{\{a, b\}, \{a, c\}, \{a\}, \emptyset, X\}$ (3 of this kind). Total of 3. $T=\{\{a, b\}, \{a\}, \{b\}, \emptyset, X\}$ (3 of this kind). Total of 6.
+
+For 6 elements topology,  $T=\{\{a, b\}, \{a, c\}, \{a\}, \{b\}, \emptyset, X\}$ ($3 \times 2=6$ of this kind). Total of 6
+
+For 8 elements topology, there's only 1 which is $P(X)$. 
+
+Therefore $X$ has 1 + 6 + 9 + 6 + 6 + 1 = 29 distinct topologies. $\blacksquare$
 \end{document}
