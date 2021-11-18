@@ -35,7 +35,7 @@ $$
 $A \times B \neq B \times A$ Since Cartesian product is a set of ordered pair. 
 
 \section*{Exercise 0.1.4.1}
-Since $f : A \rightarrow B$ and There exists $g$ such that $f \circ g = i_B$.  Since the domain of $f \circ g$ is $B$. Then for each $y \in B$, $f \circ g(y) = i_B(y) = y$ which means there exists $x \in A$ such that $g(y) = x$ and $f(x) = y$. Therefore $f$ is onto.  $\blacksquare$
+Since $f : A \rightarrow B$ and There exists $g$ such that $f \circ g = i_B$.  Since the domain of $f \circ g$ is $B$. Then for each $y \in B$, $f \circ g(y) = i_B(y) = y$ which means there exists $x \in A$ such that $g(y) = x$ and $f(x) = y$. Therefore $f$ is onto.  \QED
 
  If there exists $y_1, y_2$ such that $g(y_1) = g(y_2)$. Then 
 $$ \begin{aligned}
@@ -43,27 +43,27 @@ $$ \begin{aligned}
 	 &\Leftrightarrow	y_1 = y_2  \\
 \end{aligned}
 $$
-Therefore $g$ is 1-1.  $\blacksquare$
+Therefore $g$ is 1-1.  \QED
 
 Let $h = f|_{gB}$, Since $f \circ g = i_B$, for each $y \in B$, $f \circ g (y) = i_B(y) = y$ which means there exists an $x \in g(B)$ such that $f(x) = y$. Therefore $h = f|_{gB}$ is onto. 
 
-Note that $f \circ g$ can be written as $f|_{gB} \circ g = h \circ g = i_B$ since $f$ can only take on values in $g(B)$. $g$ is 1-1 means there is inverse $g^{-1}$ that is also 1-1. Hence $h = h \circ g \circ g^{-1} = i_B \circ g^{-1}$. Both $i_B$ and  $g^{-1}$ are 1-1, so $h$ is also 1-1.  $\blacksquare$
+Note that $f \circ g$ can be written as $f|_{gB} \circ g = h \circ g = i_B$ since $f$ can only take on values in $g(B)$. $g$ is 1-1 means there is inverse $g^{-1}$ that is also 1-1. Hence $h = h \circ g \circ g^{-1} = i_B \circ g^{-1}$. Both $i_B$ and  $g^{-1}$ are 1-1, so $h$ is also 1-1.  \QED
 
-Let $x \in g(B)$ and consider $g \circ h (x)$. There exists $y \in B$ such that $y = h(x)$. We know $h \circ g (y) = i_B(y) = y$. Suppose some $x_1 = g(y)$,  $h \circ g(y) = h(x_1) = y = h(x) \Rightarrow x_1 = x$ since $h$ is 1-1. So $g(y) = x$.  Therefore $g \circ h (x) = g (y) = x \Leftrightarrow g \circ h = i_{gB} \Leftrightarrow g = i_{gB} h^{-1}$  $\blacksquare$
+Let $x \in g(B)$ and consider $g \circ h (x)$. There exists $y \in B$ such that $y = h(x)$. We know $h \circ g (y) = i_B(y) = y$. Suppose some $x_1 = g(y)$,  $h \circ g(y) = h(x_1) = y = h(x) \Rightarrow x_1 = x$ since $h$ is 1-1. So $g(y) = x$.  Therefore $g \circ h (x) = g (y) = x \Leftrightarrow g \circ h = i_{gB} \Leftrightarrow g = i_{gB} h^{-1}$  \QED
 
-$f$ need not be 1-1. Example: $A = \{1, 2\}, B=\{3\}$. $f(1) = f(2) = 3$, $g(3) = 2$ and $h = f|_{g(B) =\{2\}}$. $\blacksquare$
+$f$ need not be 1-1. Example: $A = \{1, 2\}, B=\{3\}$. $f(1) = f(2) = 3$, $g(3) = 2$ and $h = f|_{g(B) =\{2\}}$.\QED
 
 \section*{Exercise 0.1.4.2}
-Suppose $f: A \rightarrow B$ is 1-1 and onto, then for each $y \in B$ there corresponds a unique $x \in A$ such that $f(x) = y$.  Define $g: B \rightarrow A$ such that for each $y \in B$, $g(y) = x$ where $f(x) =y$. $g$ is a function since each $y$ corresponds to a unique $x$ guaranteed by $f$. Therefore $g\circ f = i_A$ and $f \circ g = i_B$. $\blacksquare$
+Suppose $f: A \rightarrow B$ is 1-1 and onto, then for each $y \in B$ there corresponds a unique $x \in A$ such that $f(x) = y$.  Define $g: B \rightarrow A$ such that for each $y \in B$, $g(y) = x$ where $f(x) =y$. $g$ is a function since each $y$ corresponds to a unique $x$ guaranteed by $f$. Therefore $g\circ f = i_A$ and $f \circ g = i_B$. \QED
 
 Suppose There is a function $g : B \rightarrow A$ such that $g \circ f = i_A$ and $f \circ g = i_B$. For $x_1, x_2 \in A$ and $f(x_1) = f(x_2)$. Applying $g$ on both side, we have $x_1 = x_2$. Therefore $f$ is 1-1. 
 
-For $y \in B$, there exists an $x \in A$ such that $g(y) = x$ since $g$ is a function. Applying $f$ to both side, we have $f(g(y)) = f(x) \Leftrightarrow i_B(y) = y = f(x)$. So we have found an $x$ for every $y$ such that $y = f(x)$.  Therefore $f$ is onto.  $\blacksquare$
+For $y \in B$, there exists an $x \in A$ such that $g(y) = x$ since $g$ is a function. Applying $f$ to both side, we have $f(g(y)) = f(x) \Leftrightarrow i_B(y) = y = f(x)$. So we have found an $x$ for every $y$ such that $y = f(x)$.  Therefore $f$ is onto.  \QED
 
 \section*{Exercise 0.1.5.1}
 Suppose $f$ is onto, $B_1, B_2 \in P(B)$ and $f^{-1}(B_1) = f^{-1}(B_2)$. If $y \in B_1$, then there exists $x \in A$ such that $f(x) = y$ since $f$ is onto. By definition of complete inverse image map, $ x \in   f^{-1}(B_1) = f^{-1}(B_2)$ implies $ y = f(x) \in B_2$. The same argument applies to $B_2$. Then we have $B_1 = B_2$. Therefore $f^{-1}$ is 1-1. 
 
-Suppose $f^{-1}$ is 1-1. For $\{y\} \in P(B)$, there exists a unique $\{x\} \in P(A)$ such that $f^{-1}(\{y\}) = \{x\}$. This implies for every $y \in B$ there exists $x$ such that $f(x) = y$.  $\blacksquare$
+Suppose $f^{-1}$ is 1-1. For $\{y\} \in P(B)$, there exists a unique $\{x\} \in P(A)$ such that $f^{-1}(\{y\}) = \{x\}$. This implies for every $y \in B$ there exists $x$ such that $f(x) = y$.  \QED
 
 \section*{Exercise 0.1.5.2}
 (a) $$\begin{aligned}
@@ -106,10 +106,13 @@ For a characteristic function $\phi_D \in 2^A$. By definition $D \subset A \Righ
 If $A$ is finite ($A =\{a_1, \ldots, a_n \}$), there exists a bijection between $P(A)$ and $\{(b_1, \ldots, b_n) | b_i \in \{0, 1\} \}$ where $b_i$ is 0 if $a_i$ is absent in the subset, 1 if $a_i$ is present. We have two choice for each $i$ and there are $n$ of them. So $|P(A)| = 2^n$. From exercise 0.1.5.4, $|2^A| = |P(A)| = 2^n$.
 
 \section*{Exercise 0.1.5.6}
-%TODO
+$F: A \rightarrow 2^A$. For each $a \in A$, $(Fa)(a)$ is either 1 or 0. We can define $f \in 2^A$ such that $fa = (1 - (Fa)) a$ for all $a$. Then $fa \neq (Fa)a$ for all $a \in A$.
+
+Now we can show $f$ is not in the range of $F$. Suppose there exists $b \in A$ such that $Fb = f$. But then $(Fb) b = 1 - fb = fb \Leftrightarrow 1 = 0$ which is a contradiction.
+
 
 \section*{Exercise 0.2.1.1}
-Let $X = \{a, b\}$, we have $T=\{\{a\}, \emptyset, X\}$ and $T=\{\{b\}, \emptyset, X\}$ with concrete and discrete topologies. Therefore 4 distinct topologies. $\blacksquare$
+Let $X = \{a, b\}$, we have $T=\{\{a\}, \emptyset, X\}$ and $T=\{\{b\}, \emptyset, X\}$ with concrete and discrete topologies. Therefore 4 distinct topologies. \QED
 
 Let $X = \{a, b, c\}$, 
 
@@ -125,5 +128,73 @@ For 6 elements topology,  $T=\{\{a, b\}, \{a, c\}, \{a\}, \{b\}, \emptyset, X\}$
 
 For 8 elements topology, there's only 1 which is $P(X)$. 
 
-Therefore $X$ has 1 + 6 + 9 + 6 + 6 + 1 = 29 distinct topologies. $\blacksquare$
+Therefore $X$ has 1 + 6 + 9 + 6 + 6 + 1 = 29 distinct topologies.\QED
+
+\section*{Exercise 0.2.1.3}
+(a) If $x \in A^- \cup B^-$, then $x$ is in the all closed set that contain $A$ or all closed sets that contain $B$ which implies $x$ is in all close sets that 
+contain $A \cup B$ since any close sets that contains $A \cup B$ contain $A$ and $B$. Therefore $x \in (A \cup B)^-$.
+
+Let $x \in (A \cup B)^-$.  Suppose $x \notin A^-$ and $x\notin B^-$, then there exists closed set $D_A$ and $D_B$ containing $A$ and $B$ respectively such that $x \notin D_A$ and $x \notin D_B$. But $A \cup B \subset D_A \cup D_B$ and finite union of closed set is also closed. So $D_A \cup D_B$ is a closed set that covers $A\cup B$. So $x$ must be in $D_A \cup D_B$. We have reached contradiction that $x \in D_A$ or $x \in D_B$. 
+
+Therefore $(A \cup B)^- = A^- \cup B^-$. \QED
+
+(b) By definition of closure. \QED
+
+(c) $A^-$ is closed since arbitrary intersection of closed set is closed. 
+ $A^-$ is the smallest closed set that contains itself. So $A^- = (A^-)^-$ \QED
+ 
+(d) $X = X - \emptyset$ is open, therefore $\emptyset$ is closed. By the same argument in (c). $\emptyset^- = \emptyset$. \QED
+
+\section*{Exercise 0.2.1.2}
+We state the dual proposition for interior operator $^0$. 
+
+(a) $(A \cap B)^0 = A^0 \cap B^0$
+
+Proof: If $x \in A^0 \cap B^0$,  then $x \in O_A \cap O_B$ for some open set $O_A \subset A$ and $O_B \subset B$. Finite intersect of open sets is open and $O_A \cap O_B \subset A \cap B$. Therefore $x \in (A \cap B)^0$.
+
+If $x \in (A \cap B)^0$, then $x \in O$ for some open set $O \subset A \cap B$. Note that $O \subset A$ and $O \subset B$. Therefore $x \in A^0$ and $x \in B^0$. So $x \in A^0 \cap B^0$. \QED
+
+(b) $A^0 \subset A$
+
+Proof: Follow by definition of interior. \QED
+
+(c) $(A^0)^0 = A^0$
+
+Proof: The interior of $A^0$ is the largest open set that is contained in $A^0$ which is itself. \QED
+
+(d) $\emptyset^0 = \emptyset$
+
+Proof: $\emptyset$ is open set and by argument in (c). It follows. \QED
+
+\section*{Exercise 0.2.4.1}
+(a) The metric $d_p(x,y) = \left( \sum_i |u^i x - u^i y|^p \right)^{1/p}$ for fixed $x$ and $y$ has the form of $d(p) = f(p)^{g(p)}$ where $f(p) = \sum_i (c_i)^p,  c_i =  |u^i x - u^i y| \geq 0$ and $g(p) = \frac{1}{p}$. 
+$$
+\begin{aligned}
+	d(p) &= f(p)^{g(p)} \\
+	\ln(d(p)) &= g(p) \ln f(p) \\
+	\frac{d'}{d} &= g' \ln f + \frac{gf'}{f} \\
+	d' &= d \left[g' \ln f + \frac{gf'}{f} \right] \\
+	d' &= d  \left[-\frac{1}{p^2} \ln \left(\sum_i (c_i)^p \right) + \frac{\sum_i (c_i)^p \ln c_i}{p \sum_i (c_i)^p} \right]  \\
+	&= \frac{d}{p}  \left[\frac{\sum_i (c_i)^p \ln c_i}{\sum_i (c_i)^p} -\frac{1}{p} \ln \left(\sum_i (c_i)^p \right)  \right] \\
+	&\leq \frac{d}{p}  \left[\ln c_{\max}-\frac{1}{p} \ln \left(\sum_i (c_i)^p \right)  \right] \\
+	&= \frac{d}{p^2}  \left[\ln c_{\max}^p-\ln \left(\sum_i (c_i)^p \right)  \right] \\
+	&= - \frac{d}{p^2} \left[\ln\left(\sum_i (c_i)^p\right) - \ln c_{\max}^p \right] \leq 0  \\
+\end{aligned}
+$$
+Therefore $d_p(x,y)$ is non-increasing. \QED
+
+(b) $d_1(x,y) = \sum_i c_i$ and $d_{\infty} (x,y) = c_{\max}$. Therefore $$d_1(x,y) = \sum_i c_i \leq \sum_i c_{\max} = n c_{\max} = n d_{\infty} (x,y) $$ 
+\QED
+
+Since we have $$ \begin{aligned}
+	d_p(x,y) &= (\sum_i c_i^p)^{1/p} \\
+			& \leq (n c_{\max}^p )^{1/p} \\
+	\ln d_p(x,y) &= \frac{1}{p} \ln (n c_{\max}^p) = \frac{\ln n}{p} + \ln c_{\max} \\
+	\lim_{p \rightarrow \infty}	\ln d_p(x,y) &= \lim_{p \rightarrow \infty} \frac{\ln n}{p} + \ln c_{\max}  \\
+	  &= \ln c_{\max}
+\end{aligned}
+$$
+
+Therefore $d_{\infty} (x,y) = \lim_{p \rightarrow \infty} d_p(x,y) = c_{\max}$
+
 \end{document}
