@@ -195,6 +195,87 @@ Since we have $$ \begin{aligned}
 \end{aligned}
 $$
 
-Therefore $d_{\infty} (x,y) = \lim_{p \rightarrow \infty} d_p(x,y) = c_{\max}$
+Therefore $d_{\infty} (x,y) = \lim_{p \rightarrow \infty} d_p(x,y) = c_{\max}$ \QED
+
+(c) First we show $d_t$ and $d_{\infty}$ are strongly equivalent. By (b), we have shown one direction. Next we shown there exists $k$ such that $k d_{\infty} \leq d_t$.
+
+Consider $\frac{d_t^t}{d_{\infty}^t}$.
+ $$\frac{d_t^t}{d_{\infty}^t} = \frac{\sum c_i^t}{\sum c_{\max}^t} = \sum^n \left( \frac{c_i}{c_{\max}} \right)^t \geq 1$$ Notice that every term is greater or equal to $0$ and there would be a term that is equal to 1 ($c_i = c_{\max})$. So the sum is greater or equal to 1 which means $k = 1$. (We can get this conclusion from (a) as well.) 
+ $$ d_{\infty} \leq d_s \leq n d_{\infty}$$
+\QED
+
+Now for any $s, t$, $d_s, d_t$ are strongly equivalent. 
+By definition, $d_s^s = \sum c_i^s$ and $d_t^t = \sum c_i^t$
+
+Let $t = s + \delta$ and $\delta > 0$. So $t > s$.
+$$ 
+\begin{aligned}
+d_t^t = d_t^{s + \delta} &= \sum c_i^{s+ \delta}  \\
+d_t^s &= \frac{ \sum c_i^{s+ \delta}}{d_t^{\delta}} \\
+& \geq \frac{c_{\max}^\delta \sum c_i^{s}}{d_t^{\delta}} \\ 
+& = \frac{d_{\infty}^\delta \sum c_i^{s}}{d_t^{\delta}} \\
+& \geq \frac{d_{\infty}^\delta \sum c_i^{s}}{(n d_{\infty})^{\delta}}, \mbox{ By (b) } \\
+& = \frac{d_s^s}{n^{\delta}} \\
+\mbox{ Therefore, } n^{\delta/s} d_t &\geq d_s
+\end{aligned}$$
+
+Furthermore, by (a), the metric is non-increase. We have 
+$$ d_t \leq d_s \leq n^{t/s -1} d_t$$
+So they are strongly equivalent. \QED
+
+\section*{Exercise 0.2.5.1}
+Suppose $(X, T_X), (Y, T_Y)$ are Hausdorff and $(x,y) \in X \times Y$. There exists neighorhoods $U_x, V_x \in T_X$ such that $U_x \cap V_x = \emptyset$ and $U_y, V_y \in T_Y$ such that $U_y \cap V_y = \emptyset$. By definition, $U_x \times U_y$ and $V_x \times V_y$ are neighorhood for $(x,y)$. Since $U_x \times U_y \cap V_x \times V_y = \emptyset$ by definition of product. So $X \times Y$ is Hausdorff. \QED
+
+\section*{Exercise 0.2.6.1}
+Let $f: X \rightarrow X$ be any function map from $(X, 2^X)$ to $(X, T)$. For any $Y \in T$, $f^{-1}(Y) \in 2^X$ by definition of $2^X$. $f^{-1}$ maps open sets to open sets hence continueous. \QED
+
+Let $f$ be a continuous function from $(X, \{\emptyset, X\})$ to  $(X, 2^X)$ and $f$ is not constant. There exists $x_1, x_2 \in X$ and $y_1=fx_1$, $y_2=fx_2$ such that $x_1 \neq x_2$ and $y_1 \neq y_2$. Since $f$ is continous and point set are open in $2^X$, $f^{-1}(\{y_1\}) = X = f^{-1}(\{y_2\})$. This means all $x \in X$ maps to $y_1$ or $y_2$. If $y_1 \neq y_2$ then $f$ is not a function. Therefore $y_1 = y_2$ contradicts our assume. So $f$ is constant. \QED
+
+\section*{Exercise 0.2.6.2}
+$\tan$ and $\arctan$ are differentiable hence continous. They are also 1-1 and onto. Hence $\tan$ is homeomorphism.
+
+\section*{Exercise 0.2.7.1}
+Let $f: X \rightarrow Y$ be homeomorphism and suppose $A \subset X$ is connected. If $f(A)$ is not connected, then there exists disjoint open sets $D_1 \cap f(A), D_2 \cap f(A)$ in relative topology of $f(A)$ such that their union is $f(A)$. Then $$ \begin{aligned}
+	f^{-1}(D_1 \cap f(A) \cup D_2 \cap f(A)) &= f^{-1}(D_1 \cap f(A)) \cup f^{-1}(D_2 \cap f(A)) \\
+	&= f^{-1}(D_1)\cap f^{-1}(A) \cup f^{-1}(D_2)\cap f^{-1}(A) \\
+	&= f^{-1}(A) \cap \left[ f^{-1}(D_1)\cup f^{-1}(D_2) \right] \\
+	&= A
+\end{aligned}$$. Since $f$ is homeomorphism, $ f^{-1}(D_1 \cap f(A)) = f^{-1}(D_1)\cap A$ and $f^{-1}(D_2) \cap A$ are two disjoint open sets in relative topology of $A$ and their union is $A$. This contradicts with the assumption that $A$ is connected. \QED
+
+\section*{Exercise 0.2.7.2}
+(a) Let $B = \{ x | x \in A, x \mbox{ polygonal connected to } a \in A \}$. Obviously $B \subset A$. To prove $B$ is open, we show that $B^0 = B$. Suppose $y \in B$ and $y \notin B^0$. Then $y$ isn't in any open set contained in $B$.There exists an open ball $U \subset A$ containing $y$ such that $U-B \neq \emptyset$. But $z \in U - B \subset A$ is polygonal connected to $y$ and hence to $a$. So the points in $U-B$ are in $B$. By contradiction, $y \in B $ implies $y \in B^0$. Hence $B^0 = B$ means $B$ is open. \QED
+
+(b) Suppose $A$ is not polygonally connected. Then for any $x \in A$ define $U_x$ to be the set of points in $A$ that is polygonal connected to $x$ and $V_x$ to be the set of points in $A$ that is not polygonal connected to $x$. By our assumption, $V_x \neq \emptyset$ and $U_x \neq \emptyset$. Furthermore $V_x \cup U_x = A$ and  $V_x \cap U_x = \emptyset$. 
+
+Note that $A$ is open by definition of relative topology. Then we have $U_x$ and $V_x$ being open as well from the result of (a). Therefore $A$ is not connected. By contrapositive, We have proven $A$ connected $\Rightarrow$ $A$ is polygonal connected. \QED
+
+\section*{Exercise 0.2.8.1}
+Suppose $f: X \rightarrow Y$ is homeomorphism and $A \subset X$ is compact. For any open covering $C_A$ of $A$. There exists a finite subcover $C'_A$ of $A$. Define $D_A = \{ f(C) | C \in C_A \}$. Then $D_A$ is an open covering for $f(A)$ since $f$ maps open set to open set. It follows that $D'_A = \{f(C') | C' \in C'_A \}$ is a finite subcovering for $f(A)$. Hence $f(A)$ is compact. Compactness is preserved.
+\QED 
+
+\section*{Exercise 0.2.9.1}
+(a) Let $(X, T_X)$ be locally compact, and $(Y, Y\cap T_X)$ be a subspace where $Y$ is closed. For any $x \in Y$, there exists compact neighborhood $U \subset X$ of $x$.
+We want to show $U \cap Y$ is the compact neighborhood for $x$ in $Y$.
+
+Suppose $C$ is an open covering for $U \cap Y$,  then $X - Y$ is open and covers the portion $U - Y$. Therefore $C \cup \{X - Y\}$ is an open covering for $U$. Given that $U$ is compact, there is a finite subcovering $D \subset C \cup \{X - Y\}$. And $D$ works as a finite subcovering for $U \cap Y$ since $X - Y$ doesn't need to be in $D$ (it doesn't cover the portion $Y \cap U$). So $Y \cap U$ is compact. $Y$ is locally compact.  \QED 
+
+(b) In a discrete space $X$, for any $x \in X$ and any open covering of $\{x\}$, there exists an open set $A$ in the covering such that $\{x\} \subset A$. Therefore $A$ is the finite open subcovering. So $\{x\}$ is compact neighborhood of $x$. So $X$ is locally compact. \QED 
+
+(c) For any $x \in \Real^n$, there exists a closed ball centered at $x$. Closed ball are compact in $\Real^n$. Therefore $\Real^n$ is locally compact. \QED 
+
+\section*{Exercise 0.2.10.1}
+(a) Let $A$ be countable subset of metric space $X$ such that $A^- = X$. For $x \in X$ and a neighborhood $U_x$ containing $x$. We want to show $A \cap U_x \neq \emptyset$.
+
+Suppose $A \cap U_x = \emptyset$, then $U_x \subset X - A = A^- - A \subset \partial A$. This implies $x \in \partial A$. Since $U_x$ is neighborhood of $x$, and by definition of boundary points, $U_x \cap A \neq \emptyset$. By contradiction, there exists some $a$ from $A$ such that $a \in U_x$.
+
+Next we can construct an open ball $B_r(a) \subset U_x$ where $r \in \Real$ and $r > 0$. For such $r$, there exists rational number $r_0$ such that $0 < r_0 < r$. Then we have constructed an open ball with rational radii inside any neighborhood of $x \in X$ which forms a basis of neighorhoods for $X$. Hence $X$ is separable. \QED
+
+(b) Let $A$ be the set of rational in $\Real$. Then $A^- = \Real$. By (a), $\Real$ is separable. And by Exercise 0.2.10.2 (below), product of separable spaces is separable, it follows that $\Real^n$ is separable. \QED
+
+\section*{Exercise 0.2.10.2}
+Let $X, Y$ be separable and $A_X, A_Y$ be the basis respectively. We want to show that $A_X \times A_Y$ forms a basis for $X \times Y$.
+
+First $A_X \times A_Y$ is countable. Second, For any point $(x,y) \in X\times Y$ and any open neighbordhood $U$ containing $(x, y)$. $U$ can be written as $U_X \times U_Y$ by definition of product space. Then $U_X$, $U_Y$ are neighorhood that contains $x, y$ respectively. Since $A_X, A_Y$ are basis, there exist $V_X \in A_X, V_Y \in A_Y$ such that $x \in V_X \subset U_X$ and $y \in V_Y \subset U_Y$. Then $V_X \times V_Y \in A_X \times A_Y$ and $V_X \times V_Y \subset U$. Therefore $A_X \times A_Y$ forms a basis for $X \times Y$. $X \times Y$ is separable. \QED
+
 
 \end{document}
