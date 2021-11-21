@@ -8,7 +8,7 @@
 \maketitle
 
 \section*{Exercise 5.1}
-The samples are drawn from Bernoulli trial with success rate $0.01$. The probability of $n$ samples not containing color-blind is $0.99^n$.  We want to find $N$ such that for $n \geq N$,  $0.99^n \leq 1- 0.95$. $N \approx 299$.
+The samples are drawn from Bernoulli trial with success rate $0.01$. The probability of $n$ samples not containing color-blind is $0.99^n$.  We want to find $N$ such that for $n \geq N$,  $0.99^n \leq 1- 0.95$. $N \approx 299$. \QED
 
 \section*{Exercise 5.2}
 (a) Let $T$ be the number of years until the first year's rainfall is exceeded. Then 
@@ -23,5 +23,101 @@ P(T=k) &= P(X_2 \leq X_1, \ldots , X_{k-1} \leq X_1, X_k > X_1) \\
 &= \frac{1}{k(k+1)}
 \end{aligned} 
 $$
-(b) $$\E T = \sum_k k P(T=k) = \sum_k \frac{1}{k+1} = \infty $$
+\QED
+
+(b) $$\E T = \sum_k k P(T=k) = \sum_k \frac{1}{k+1} = \infty $$  \QED
+
+\section*{Exercise 5.3}
+Since $\{X_i\}$ are i.i.d $\sim F_X(x)$ and $Y_i$ is hierachical wrt to $X_i$. $Y_i \sim \Bernoulli(P(X_i > \mu)) | X_i$. So $Y_i$ are i.i.d. Therefore the sum of $Y_i \sim \Binomial (n, P(X_i > \mu)) = \Binomial (n, 1 - F_X(\mu)) $.
+
+$$ P(Y_i = k) = {n \choose k} (1 - F_X(\mu))^k F_X(\mu)^{n-k}$$      
+\QED
+
+\section*{Exercise 5.4}
+(a) $X_i | P \sim \Bernoulli(P)$ are i.i.d and $P \sim \Uniform(0,1)$. Let $ T = \sum_{i=1}^k X_i$.
+$$ \begin{aligned}
+	P(X_1=x_1,\ldots, X_k=x_k) &= \int^1_0 P(X_1=x_1,\ldots, X_k=x_k |P=p)f(p)dp \\
+	&= \int_0^1 \prod_{i=1}^k P(X_i=x_i |P=p)f(p) dp, \mbox{ Since } X_i|P \mbox{ are i.i.d} \\
+	&= \int_0^1 \prod_{i=1}^k p^{x_i}(1-p)^{1-x_i}f(p) dp \\
+	&= \int_0^1 p^{\sum_i x_i}(1-p)^{1-\sum_i x_i}f(p) dp \\
+	&= \int_0^1 p^t(1-p)^{1-t}f(p) dp
+\end{aligned} 
+$$ 
+where $t = \sum_i x_i$. \QED 
+
+(b) From (a),
+  $$ P(X_1=x_1,\ldots, X_n=x_n) = \int_0^1 p^t(1-p)^{1-t}f(p) dp  $$
+where $t = \sum_i^n x_i$.
+
+On the other hand,  $$\prod^n_i P(X_i=x_i) = \prod^n_i \int_0^1 P(X_i=x_i | P=p)f(p)dp = \prod^n_i \int_0^1 p^{x_i}(1-p)^{1-x_i}dp $$
+Therefore $P(X_1=x_1,\ldots, X_n=x_n) \neq \prod^n_i P(X_i=x_i)$. \QED
+
+\section*{Exercise 5.5}
+let $Y = \sum_i X_i$ then $\bar{X} =Y/n$. Suppose we have $f_Y(y)$,  then $$f_{\bar{X}}(\bar{x}) = f_Y(y) = f_Y(n \bar{x}) \left|\frac{dy}{d\bar{x}}\right| = n f_Y(n\bar{x})
+$$
+
+\section*{Exercise 5.6}
+*Book has typos, it should be 5.2.9 instead of 5.2.3.
+
+(a) Let $Z= X+Y$, $V=X$, then 
+  $$ f_{V, Z}(v, z) = f_{X, Y}(v, z-v) \left| \frac{\partial (X, Y)}{\partial(V, Z)}\right| =f_{X, Y}(v, z-v)  \begin{vmatrix}1 & 0 \\ -1 & 1 \end{vmatrix} = f_{X, Y}(v, z-v) $$
+Therefore $$f_Z(z) = \int_v f_{X, Y}(v, z-v)dv =\int_v f_{X}(v) f_{Y}(z-v)dv $$
+
+(b) Let $Z= XY$, $V = X$, then
+$$ f_{V, Z}(v, z) = f_{X, Y}(v, z/v) \left| \frac{\partial (X, Y)}{\partial(V, Z)}\right| =f_{X, Y}(v, z/v)  \begin{vmatrix}1 & 0 \\ -z/v^2 & 1/v \end{vmatrix} = f_{X, Y}(v, z-v) \left| \frac{1}{v} \right| $$
+Therefore $$f_Z(z) = \int_v f_{X, Y}(v, z/v)dv =\int_v f_{X}(v) f_{Y}(z/v)  \left| \frac{1}{v} \right|dv $$
+
+(c) Let $Z = X/Y$, $V = X$, then 
+$$  \left| \frac{\partial (X, Y)}{\partial(V, Z)}\right|= \begin{vmatrix}1 & 0 \\ 1/z & -v/z^2 \end{vmatrix} = \left| \frac{v}{z^2}\right| $$
+Therefore 
+$$ f_Z(z) = \int_v f_{V, Z}(v,z) dv = \int_v f_{X, Y}(v,v/z)\left| \frac{\partial (X, Y)}{\partial(V, Z)}\right|dv = \int_v f_{X}(v) f_{Y}(v/z) \left| \frac{v}{z^2}\right|dv$$
+
+\section*{Exercise 5.7}
+(a) Combining the terms on the right side and order the term by power of $w$, we get
+$$ \begin{aligned}
+	 \left( \frac{A}{\tau^2}- \frac{C}{\sigma^2} \right) w^3 &= 0 \\
+	 \left( -\frac{2Az}{\tau^2} + \frac{B}{\tau^2} - \frac{D}{\sigma^2} \right)w^2 &= 0\\
+	 \left( A + \frac{Az^2}{\tau^2} - \frac{2Bz}{\tau^2} - C \right)w &= 0 \\
+	 B + \frac{Bz^2}{\tau^2} - D &= 1 
+\end{aligned}
+$$
+We get linear equation of 
+$$ \begin{pmatrix}
+	\sigma^2 & 0 & -\tau^2 & 0 \\
+	-2z\sigma^2 & \sigma^2 & 0 & -\tau^2 \\
+	\tau^2 + z^2 & -2z & -\tau^2 & 0 \\
+	0 & \tau^2 + z^2 & 0 & -\tau^2 \\
+\end{pmatrix}
+\begin{pmatrix}
+	A \\ B \\ C \\ D 
+\end{pmatrix}
+= 
+\begin{pmatrix}
+	0 \\ 0 \\ 0 \\ \tau^2
+\end{pmatrix}
+$$
+The determinant is $(-\sigma^2 + \tau^2 + z^2)^2 + 4z^2\sigma^2 \neq 0$. So $A,B,C,D$ exists.
+
+(b) Skipping the trivial calculation.
+
+\section*{Exercise 5.8}
+(a) $$
+\begin{aligned}
+	(n-1)S^2 &= \sum_i (X_i - \bar{X})^2 \\
+	    &= \sum_i \left(X_i - \frac{1}{n} \sum_j X_j\right)^2 \\
+	    &= \sum_i \left(X_i - \frac{2}{n} X_i \sum_j X_j + \frac{1}{n^2} \left(\sum_j X_j\right)^2 \right) \\
+	    &= \sum_i X_i - \frac{2}{n} \sum_i X_i \sum_j X_j + \frac{1}{n^2} \sum_i \left(\sum_j X_j\right)^2 \\
+	    &= \sum_i X_i - \frac{2}{n} \sum_i \sum_j X_i X_j + \frac{1}{n} \sum_i \sum_j X_i X_j \\
+\end{aligned}
+$$
+Multiply both side by $2n$, we get 
+$$
+\begin{aligned}
+	2n(n-1)S^2 &= 2n \sum_i X_i - 2 \sum_i \sum_j X_i X_j \\
+	&= n \sum_i X_i - 2 \sum_i \sum_j X_i X_j + n \sum_i X_i \\
+	&= n \sum_i X_i - 2 \sum_i \sum_j X_i X_j + n \sum_j X_j \\
+	&= \sum_j \sum_i X_i - 2 \sum_i \sum_j X_i X_j + \sum_i \sum_j X_j , \mbox{ (Note that } n=\sum_i 1=\sum_j 1 \mbox{ )} \\
+	&=  \sum_i \sum_j (X_i - X_j)^2 \\
+\end{aligned}
+$$
 \end{document}
