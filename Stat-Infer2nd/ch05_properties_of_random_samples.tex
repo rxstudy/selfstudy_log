@@ -119,5 +119,74 @@ $$
 	&= \sum_j \sum_i X_i - 2 \sum_i \sum_j X_i X_j + \sum_i \sum_j X_j , \mbox{ (Note that } n=\sum_i 1=\sum_j 1 \mbox{ )} \\
 	&=  \sum_i \sum_j (X_i - X_j)^2 \\
 \end{aligned}
+$$ 
+\QED 
+
+(b) Let $Y_i = X_i - \theta_1$. Then $\E Y_i = 0$, $\E Y_i^j = \theta_j$. $$\begin{aligned}
+	 2N(N-1)S^2 &= \sum_i \sum_j (X_i - X_j)^2 \\
+	 &= \sum_i \sum_j (Y_i - Y_j)^2 \\
+	 &=  \sum_{i\neq j} (Y_i)^2 - Y_i Y_j + (Y_j)^2 \\
+	 2N(N-1) \E S^2 &=\sum_{i\neq j} E(Y_i)^2 - 2\E Y_i \E Y_j + \E (Y_j)^2 \\
+	   		 &= [E(Y_1)^2 - 2\E Y_1 \E Y_2 + E(Y_2)^2] \\
+	   		 &= 2N(N-1) \theta_2 \\
+	   \E S^2 &= \theta_2
+\end{aligned}$$
+For $i\neq j$, $i$ has $N$ choices and $j$ has $N-1$. Therefore there are $N(N-1)$ terms in the sum.
+
+$$ \begin{aligned}
+	(4N^2(N-1)^2)S^4 &=  \sum_i \sum_j (Y_i - Y_j)^2 \sum_m \sum_n (Y_m - Y_n)^2 \\
+	&= \sum_{i\neq j}\sum_{m\neq n} (Y_i^2 -2 Y_i Y_j + Y_j^2)(Y_m^2 - 2Y_m Y_n + Y_n^2) \\
+	&= \sum_{i\neq j, m\neq n} Y_i^2 Y_m^2 -2Y_i^2 Y_m Y_n + Y_i^2 Y_n^2 \\
+	& -2Y_i Y_j Y_m^2 + 4Y_iY_jY_mY_n - 2Y_iY_jY_n^2 \\
+	& + Y_j^2Y_m^2 - 2Y_j^2Y_mY_n + Y_j^2 Y_n^2 \\
+\end{aligned}$$
+We have terms of 3 patterns $Y_i^2 Y_m Y_n$, $Y_i^2Y_m^2$ and $Y_iY_jY_mY_n$. The rest are equivalent. Grouping them together, we have.
+
+$Y_i^2Y_m^2$ can be split into $Y_i^4$ when $i=m$ and $Y_i^2Y_m^2$ when $m\neq i$
+
+$Y_iY_jY_mY_n$ will not vanish only when $i =m, j = n$ or $i = n, j = m$. It can be written as  $2Y_i^2Y_m^2$ when $i=m$ (Times 2 to account for both cases)
+
+
+$Y_i^2 Y_m Y_n$ will vanish when we take the expected value since $m \neq n$ and $\E Y_i=0$ 
+$$\begin{aligned}
+	\E (4N^2(N-1)^2)S^4 &= \E \sum_{i\neq j, m\neq n} 4 Y_i^2 Y_m^2 - 8 Y_i^2 Y_m Y_n + 4 Y_iY_jY_mY_n \\
+	&=\E\left[ \sum_{i\neq j, m\neq n} 4 Y_i^2 Y_m^2  + 4 Y_iY_jY_mY_n \right] \\
+	&=\E \left[4 \sum_{i\neq j, m\neq n, i=m} Y_i^4 + 4 \sum_{i\neq j, m\neq n, i\neq m}   Y_i^2 Y_m^2 + 8 \sum_{i\neq j, m\neq n, i=m, j=n} Y_i^2 Y_m^2 \right]
+\end{aligned}
 $$
+The first term $Y_i^4$, $i=m$ has $N$ choices. Then $j$ and $n$ both have $N-1$ choices. So it has $N(N-1)^2$ terms.
+
+The second term $ Y_i^2 Y_m^2$, $i$ has $N$ choices. Then $m$ has $N-1$ choices. $j \neq i$ so $j$ has $N-1$ choices. $m\neq n$ so $n$ has $N-1$ choices. So it has $N(N-1)^3$ terms.
+
+The third term $Y_i^2 Y_m^2$, Since $i=m$, there are $N$ choices. $j=n$ there are $N-1$ choices since $j\neq i$.  Therefore there are $N(N-1)$ terms.
+
+
+$$
+\begin{aligned}
+		(4N^2(N-1)^2)\E S^4 &= 4N(N-1)^2  \E Y_1^4 + 4 N(N-1)^3 \E Y_1^2 \E Y_2^2 + 8 N(N-1) \E Y_1^2 \E Y_2^2  \\
+		(4N^2(N-1)^2)\E S^4 &=4N(N-1)^2\theta_4 + 4N(N-1)[(N-1)^2 + 2] \theta_2^2 \\
+		\E S^4 &=\frac{1}{N}\theta_4 + \frac{N^2 - 2N + 3}{N(N-1)} \theta_2^2 \\
+\end{aligned}
+$$
+
+Therefore $$\Var S^4 = ES^4 -(ES^2) = \frac{1}{N}\theta_4 + \frac{N^2 - 2N + 3}{N(N-1)} \theta_2^2 - \theta_2^2 =  \frac{1}{N} \left(\theta_4 - \frac{N-3}{N-1} \theta_2^2 \right)
+$$
+\QED
+
+(c)
+ Let $Y_i = X_i - \theta_1$. Then $\E Y_i = 0$, $\E Y_i^j = \theta_j$
+ $$\begin{aligned}
+	\Cov(\bar{X}, S^2) &= \Cov(\bar{Y}, S^2) \\
+	 &= \E(\bar{Y}, S^2) - \E \bar{Y} \E S^2 \\
+	 &= \E(\bar{Y}, S^2) \\
+	 &= \frac{1}{N} \frac{1}{2N(N-1)} \E \sum_{i\neq j, k} Y_k (Y_i - Y_j)^2 \\
+	 &= \frac{1}{2N^2(N-1)} \E \sum_{i\neq j, k} Y_kY_i^2 - 2Y_k Y_iY_j + Y_k Y_j^2 \\
+\end{aligned}$$
+Note that $Y_k Y_iY_j$ vanishes because $i \neq j$ so the expected value of one of them will be 0. By the same argument,  $Y_kY_i^2$ will not be 0 if $k=i$. Therefore 
+ $$\begin{aligned}
+	\Cov(\bar{X}, S^2) &=\frac{1}{2N^2(N-1)} \E \sum_{i\neq j, k=i} 2 Y_i^3 \\
+	&= \frac{1}{2N^2(N-1)} 2N(N-1) \E Y_i^3 \\
+	&= \frac{1}{N } \theta_3 \\
+\end{aligned}$$
+\QED
 \end{document}
