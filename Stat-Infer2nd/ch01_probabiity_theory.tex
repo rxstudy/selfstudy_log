@@ -49,11 +49,41 @@ $$\begin{aligned}
 $$
 We get $p=\frac{1}{3}$, $uw = \frac{1}{3}$, $u + w = 1$. This only has imaginary solution. Hence there is no solution for $w$ and $u$ which satisfy the conditions.
 
+\section*{Exercise 1.7}
+(a) The dart board has area of $\pi r^2$. The probability of scoring $i$ points is
+$$P(X=i) = \begin{cases}
+	\frac{A - \pi r^2}{A}, \ \ &i=0 \\
+	\frac{\pi r^2}{A} \left[ \left( \frac{6-i}{5} \right)^2 -  \left( \frac{5-i}{5}\right)^2  \right], \ \ &i =1,2,3,4,5
+\end{cases}
+$$
+(b) $$ P(\mbox{i points}|\mbox{board hit}) = \frac{P(\mbox{i points and hit board})}{P(\mbox{hit board})} = \frac{\frac{\pi r^2}{A} \left[ \left( \frac{6-i}{5} \right)^2 -  \left( \frac{5-i}{5}\right)^2  \right]}{ \pi r^2/ A} = \left( \frac{6-i}{5} \right)^2 -  \left( \frac{5-i}{5}\right)^2 $$
+
+\section*{Exercise 1.8}
+(a) See 1.7 (a)
+
+(b) The probability of scoring $i < j$ points corresponds to area of rings with area $A_i > A_j$. therefore the probability is decreasing function.
+
+(c) Summing the distribution in 1.7 (a) shows it is equal to 1. And the probability is greater or equal to zero since areas can't be negative.
+
+
 \section*{Exercise 1.13}
 Note that $P(A\cup B) = P(A) + P(B) - P(A\cap B) \leq 1$. Therefore $P(A\cap B) \geq P(A) + P(B) - 1 =\frac{1}{12} \neq 0$, can't be disjoint.
 
 \section*{Exercise 1.14}
 Given $|S| = n$, we can order the elements such that $S=\{a_1,\ldots, a_n\}$, There exists a bijection from the set of binary string of length $n$, $B = \{b^n|b\in \{0,1\}\}$ to elements in power set of $S$ where $0$ at the ith position means the i-th element is not present in the subset and $1$ means otherwise.  For each bit in the binary string, there are two possible states $0$ and $1$. Therefore the total n-binary string count is $2^n$. By property of bijection, power set of $S$ also has the same number of elements.
+
+\section*{Exercise 1.16}
+(a) A person's name has 3 parts, so we have 3 character as initials, each with 26 choices. So $26^3$ possibilities.
+
+(b) If a person can have only 1 given name, then we have $26^2$ for 2 character initials. The total possibilities together with (a) is $26^2 + 26^3$.
+
+(c) By the same argument, for 3 given name, we have $26^4$. In total $26^2+26^3+26^4$.
+
+\section*{Exercise 1.17}
+Assume one piece can only have 2 different numbers and they are not order, we just need to choose 2 numbers from $n$. Therefore the number of combination is ${n \choose 2} = \frac{n(n-1)}{2}$
+
+Now consider the case when a piece have both side the same number, there are $n$ possibilities.
+Therefore the total is $\frac{n(n-1)}{2} + n  = \frac{n(n+1)}{2}$
 
 \section*{Exercise 1.19}
 Taking $r$th partial derivatives of a $n$ variable $f$, is just choosing $r$ variables without order with replacement from $n$ variables, which is ${n-1 + r \choose r}$

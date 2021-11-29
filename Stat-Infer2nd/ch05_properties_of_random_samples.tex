@@ -190,4 +190,71 @@ Note that $Y_k Y_iY_j$ vanishes because $i \neq j$ so the expected value of one 
 \end{aligned}$$
 $\Cov(\bar{X}, S^2) = 0 $ when $\theta_3 = 0$.
 \QED
+
+\section*{Exercise 5.9}
+Using induction, when $n = 2$, 
+$$ \begin{aligned}
+	(a_1^2 + a_2^2)(b_1^2+b_2^2) - (a_1b_1+a_2b_2)^2 &= a_1^2b_2^2 + a_2^2b_1^2 - 2a_1a_2b_1b_2 \\ 
+	&= a_1^2b_2^2 -  a_1a_2b_1b_2  + ( a_2^2b_1^2 - a_1a_2b_1b_2) \\
+	&= a_1b_2(a_1b_2 - a_2b_1) + a_2b_1(a_2b_1 - a_1b_2) \\
+	&= (a_1b_2 - a_2b_1)^2 
+\end{aligned}$$
+The identity holds. Now suppose $n=k$ holds and consider $n=k+1$. Let $t_{ij} = (a_ib_j - a_jb_i)^2$. Then Right hand side is becomes $\sum_{i=1}^{k}\sum_{j=i+1}^{k+1} t_{ij}$. To find the extra term compared to the sum in $n=k$, write the entry in a matrix.
+$$
+\begin{pmatrix}
+	t_{1,1} & \cdots & t_{1, k} & t_{1, k+1}\\
+	\vdots &    & \vdots & \vdots \\
+	t_{k-1, 1} &  \ddots  & t_{k-1, k} & \vdots \\
+	t_{k, 1} &  \cdots  & t_{k,k}  & t_{k, k+1}\\
+	t_{k+1, 1} &  \cdots  & t_{k+1,k}  & t_{k+1, k+1}\\
+\end{pmatrix}
+$$
+Since we sum over $j > i$ so we sum the matrix above the diagonal. The difference between $k$ and $k+1$ for the left hand side is the last column above the diagonal which is $\sum_{i=1}^{k} t_{i, k+1}$. 
+
+Expanding the right hand side
+$$\begin{aligned}
+	RHS = \sum_{i=1}^{k}\sum_{j=i+1}^{k+1} t_{ij} &= \sum_{i=1}^{k-1}\sum_{j=i+1}^k t_{ij} + \sum_{i=1}^{k} t_{i, k+1} \\
+	&= \sum_i^k \sum_j^k a_i^2  b_j^2 - \sum_i^k \sum_j^k a_ib_ia_jb_j + \sum_{i=1}^{k} (a_ib_{k+1} - a_{k+1}b_i)^2
+\end{aligned}$$
+
+Expanding the left hand side
+$$\begin{aligned}
+	LHS &= (\sum_i^k a_i^2 + a_{k+1}^2)(\sum_j^k b_j^2 + b_{k+1}^2) - \left(\sum_i^k a_ib_i + a_{k+1}b_{k+1}\right)^2 \\
+	 &= \sum_i^k \sum_j^k a_i^2  b_j^2 + a_{k+1}^2 \sum_i^k b_i^2 + b_{k+1}^2 \sum_i^k a_i^2 - 2a_{k+1}b_{k+1} \sum_i^k a_ib_i - \sum_i^k \sum_j^k a_ib_ia_jb_j  \\
+	 &= \sum_i^k \sum_j^k a_i^2  b_j^2 +  
+	     \sum_i^k \left[(a_{k+1}^2 b_i^2 -a_{k+1}b_{k+1} a_ib_i)  + (b_{k+1}^2 a_i^2 - a_{k+1}b_{k+1} a_ib_i) \right] 
+	     - \sum_i^k \sum_j^k a_ib_ia_jb_j \\
+	 &= \sum_i^k \sum_j^k a_i^2 b_j^2+
+	     \sum_i^k \left[a_{k+1}b_i(a_{k+1}b_i -b_{k+1} a_i) + b_{k+1}a_i(b_{k+1}a_i-a_{k+1}b_i)\right]
+	     -\sum_i^k \sum_j^k a_ib_ia_jb_j \\
+	 &= \sum_i^k \sum_j^k a_i^2  b_j^2 - \sum_i^k \sum_j^k a_ib_ia_jb_j + \sum_{i=1}^{k} (a_ib_{k+1} - a_{k+1}b_i)^2 \\
+	 &= RHS
+\end{aligned}
+$$
+Therefore the identity holds. 
+
+We don't actually need this identity to prove the proposition.
+The correlation coefficient is defined as $\rho_{xy}= \frac{\Cov(X, Y)}{\sigma_x \sigma_y}$. If data points $(x_i, y_i)$ lies on a line, then $Y = aX + b$. We have 
+$$ \begin{aligned}
+	\rho_{xy} &= \frac{\Cov(X, Y)}{\sigma_x \sigma_y}  \\
+	 		  &= \frac{\Cov{X, aX + b}}{\sqrt{\Var X \Var (aX+b)}} \\
+	 		  &= \frac{a \Var X }{\sqrt{a^2 (\Var X)^2}} \\
+	 		  &= 1
+\end{aligned}
+$$
+
+Now suppose $\rho_{xy}=1$. Since each data point has equal weight, so $p=\frac{1}{n}$. Then we have 
+$$ \begin{aligned}
+	\Cov(X, Y) &= \sigma_x \sigma_y \\
+	\left( \sum_{i}(x_i -\bar{x})(y_i -\bar{y}) \right)^2 &= 
+	\left( \sum_{i}(x_i -\bar{x})^2 \right) \left( \sum_{i}(y_i -\bar{y})^2 \right)
+\end{aligned}$$
+
+Note the left hand side is less or equal to the right side by Cauchy-Schwarz's Inequality. It is equal only when $(x_i -\bar{x})(y_j-\bar{y}) = (x_j -\bar{x})(y_i -\bar{y})$ for any $i,j$.
+Therefore 
+$$  \frac{y_i -\bar{y}}{x_i -\bar{x}} = \mbox{constant} $$
+Which is the definition of linearity.
+\QED
+
+
 \end{document}

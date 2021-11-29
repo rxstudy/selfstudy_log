@@ -1,0 +1,27 @@
+\documentclass[12pt]{article}
+
+\include{pythonlisting}
+\input{../definitions.tex}
+
+\title{Chapter 6: Principles of Data Reduction}
+\begin{document}
+\maketitle
+
+\section*{Exercise 6.1}
+Yes
+$$
+ \frac{p(x|0,\sigma)}{q(|X| | 0, \sigma)} = \frac{p(x|0,\sigma)}{p(x| 0, \sigma) + p(-x|0, \sigma)} = \frac{1}{2}
+$$
+Does not depend on the paramters.
+
+\section*{Exercise 6.2}
+The pdf for $X_i$ is $f_{X_i}(x|\theta) = \exp(i\theta - x)\one_{x\geq i\theta}$. Then 
+$$\begin{aligned}
+   f_X(x_i|\theta) &= \prod_{i=1}^n f_{X_i}(x_i|\theta) \\
+    	&=  \exp\left(\sum_{i=1}^n i\theta - x_i\right) \prod_{i=1}^n \one_{x_i \geq i\theta} \\ 
+    	&=  \exp\left(\frac{n(n+1)\theta}{2}\right) \exp\left(\sum_i x_i\right)  \prod_{i=1}^n \one_{\frac{x_i}{i} \geq \theta} \\
+    	&=  \exp\left(\frac{n(n+1)\theta}{2}\right)   \one_{\min \frac{x_i}{i} \geq \theta}  \exp\left(\sum_i x_i\right)
+\end{aligned}
+$$
+$g(T(x)|\theta) = g(\min \frac{x_i}{i}|\theta) =  \exp\left(\frac{n(n+1)\theta}{2}\right)   \one_{\min \frac{x_i}{i} \geq \theta}$ and $h(x) = \exp\left(\sum_i x_i\right)$. By factorization theorem, it is sufficient statistic.
+\end{document}
