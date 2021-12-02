@@ -72,6 +72,9 @@ Note that $P(A\cup B) = P(A) + P(B) - P(A\cap B) \leq 1$. Therefore $P(A\cap B) 
 \section*{Exercise 1.14}
 Given $|S| = n$, we can order the elements such that $S=\{a_1,\ldots, a_n\}$, There exists a bijection from the set of binary string of length $n$, $B = \{b^n|b\in \{0,1\}\}$ to elements in power set of $S$ where $0$ at the ith position means the i-th element is not present in the subset and $1$ means otherwise.  For each bit in the binary string, there are two possible states $0$ and $1$. Therefore the total n-binary string count is $2^n$. By property of bijection, power set of $S$ also has the same number of elements.
 
+\section*{Exercise 1.5}
+Suppose $n=k$ holds, a job consists of $k$ separate tasks, the entire job can be done in $c_1 \times \cdots \times c_k$ ways. Then when $n=k+1$, denote the ways to do the job when $n=k$ as $C_k$. Then we have two jobs that can be done in ways $C_k$ and $c_{k+1}$. Using the same argument when $k=2$, for each way the job $n=k$ is done, there are $c_{k+1}$ ways to do the new job, the total is $C_k \times c_{k+1} = c_1 \times \cdots \times c_{k+1}$. \QED
+
 \section*{Exercise 1.16}
 (a) A person's name has 3 parts, so we have 3 character as initials, each with 26 choices. So $26^3$ possibilities.
 
@@ -87,6 +90,38 @@ Therefore the total is $\frac{n(n-1)}{2} + n  = \frac{n(n+1)}{2}$
 
 \section*{Exercise 1.19}
 Taking $r$th partial derivatives of a $n$ variable $f$, is just choosing $r$ variables without order with replacement from $n$ variables, which is ${n-1 + r \choose r}$
+
+\section*{Exercise 1.20}
+For the 12 calls, each call has a uniform distribution over the 7 days (with probability of 1/7). Then the count of calls grouped by day is multinomial distribution. 
+
+$$P(c_1, c_2, \ldots, c_7) = \frac{12!}{c_1!c_2!\cdots c_7!} \left(\frac{1}{7}\right)^{\sum c_i} =  \frac{12!}{c_1!c_2!\cdots c_7!} \left(\frac{1}{7}\right)^{12}$$
+Where $c_i$ is the number of calls in day $i$.
+
+If we distribute the 12 calls such that every day gets 1 call. We have 5 calls left. So it comes down to summing the coefficient in the distribution for all possible distribution of the 5 calls.
+
+We have
+\begin{center}
+	\begin{tabular}{| c |c |c| }
+		\hline
+		Distrubtion & Cases & Coefficient \\ 
+		\hline
+		5 & 7 & $\frac{12!}{6!} = 665280$ \\  
+		\hline
+		4,1 & $7 \times 6 = 42$ & $\frac{12!}{5!2!}= 1995840$  \\
+		\hline
+		3, 1,1 & ${7 \choose 2} \times (7-2) = 105 $ &  $\frac{12!}{4!2!2!}= 4989600$ \\
+		\hline
+		3, 2 &  $7 \times 6 = 42$ & $\frac{12!}{4!3!}=3326400$ \\
+		\hline
+		2, 2, 1&  ${7 \choose 2} \times (7-2) = 105 $ & $\frac{12!}{3!3!2!} = 6652800$ \\
+		\hline
+		2, 1, 1, 1&  ${7 \choose 3} \times (7-3) = 140$ & $\frac{12!}{3!2!2!2!} = 9979200$ \\
+		\hline
+		1, 1, 1, 1, 1&  ${7 \choose 5 }= 21$ & $\frac{12!}{2!2!2!2!2!} = 14968800$ \\
+		\hline
+	\end{tabular}
+\end{center}
+If we add up the cases $\times$ coefficient and divide by $7^{12}$, we get $0.22845$.
 
 \section*{Exercise 1.21}
 For no matching shoes, we can only choose 1 shoe from a pair, therefore we need to choose $2r$ pairs so $2r$ must be less than $n$. First we choose $2r$ shoes from $n$ pairs: ${n \choose 2r}$. For each pair, we can choose the left shoe or right shoe and we have $2r$ chosen pairs: $2^{2r}$. So the total way to choose non matching shoes is ${n \choose 2r} 2^{2r}$.  Total way of choosing is ${2n \choose 2r}$. So the probability is the ${n \choose 2r} 2^{2r} / {2n \choose 2r}$.
