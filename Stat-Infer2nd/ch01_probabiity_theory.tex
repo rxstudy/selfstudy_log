@@ -97,13 +97,13 @@ For the 12 calls, each call has a uniform distribution over the 7 days (with pro
 $$P(c_1, c_2, \ldots, c_7) = \frac{12!}{c_1!c_2!\cdots c_7!} \left(\frac{1}{7}\right)^{\sum c_i} =  \frac{12!}{c_1!c_2!\cdots c_7!} \left(\frac{1}{7}\right)^{12}$$
 Where $c_i$ is the number of calls in day $i$.
 
-If we distribute the 12 calls such that every day gets 1 call. We have 5 calls left. So it comes down to summing the coefficient in the distribution for all possible distribution of the 5 calls.
+If we distribute the 12 calls such that every day gets 1 call. We have 5 calls left. So it comes down to counting the number of ways the 5 calls can be distributed in 7 days.And for each case, we have a corresponding probability from the multinomial distribution. So summing all the multinomial probability for each case will get us the desired probability.
 
 We have
 \begin{center}
 	\begin{tabular}{| c |c |c| }
 		\hline
-		Distrubtion & Cases & Coefficient \\ 
+		Distribution & Cases & Coefficient \\ 
 		\hline
 		5 & 7 & $\frac{12!}{6!} = 665280$ \\  
 		\hline
