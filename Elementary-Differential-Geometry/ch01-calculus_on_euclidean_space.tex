@@ -1,0 +1,344 @@
+\documentclass[12pt]{article}
+
+\include{pythonlisting}
+\input{../definitions.tex}
+
+\title{Chapter 1: Calculus on Euclidean Space}
+\author{Ran Xie}
+\begin{document}
+\maketitle
+
+\section*{1.1.1}
+(a) $fg^2 = x^2y(y\sin z)^2 = x^2y^3 \sin^2 z$
+
+(b) $g \partial_x f + f \partial_y g = y \sin z (2xy) + x^2y (\sin z)= (2xy^2 + x^2y)\sin z$
+
+(c) $\partial^2_{yz} (fg) =\partial^2_{yz} (x^2y^2\sin z) = 2x^2 y \cos z $
+
+(d) $\partial_y (\sin f) =\partial_y \sin (x^2y) = x^2 \cos(x^2y) $
+
+\section*{1.1.2}
+(a) $0$
+
+(b) $3^2(-1)- (1) 0.5 = -9 - 0.5 = 9.5$
+
+(c) $a^2 -(1-a) = a^2 + a - 1$
+
+(d) $t^2 t^2 - t^4 t^3 = t^4-t^7$
+
+\section*{1.1.3}
+(a) $\partial_x (x\sin (xy) + y \cos (xz)) = \sin(xy) + xy\cos(xy) - yz\sin(xz)$
+
+(b) $$\partial_x f = \frac{\partial f}{\partial g}\frac{\partial g}{\partial h}\frac{\partial h}{\partial x} = (\cos g)(e^h)(2x)= 2xe^{x^2+y^2+z^2}\cos(e^{x^2+y^2+z^2}) $$
+
+\section*{1.1.4}
+
+Since $h = x^2- yz$, so $h(g_1, g_2, g_3) = g_1^2 - g_2g_3 $
+$$\begin{aligned}
+	\frac{\partial f}{\partial x} &=\frac{\partial h}{\partial g_1}\frac{\partial g_1}{\partial x} + \frac{\partial h}{\partial g_2}\frac{\partial g_2}{\partial x} + \frac{\partial h}{\partial g_3}\frac{\partial g_3}{\partial x} \\
+	&= 2g_1\frac{\partial g_1}{\partial x} -g_3 \frac{\partial g_2}{\partial x} -g_2 \frac{\partial g_3}{\partial x}
+\end{aligned} $$
+
+(a) $2(x+y)(1) - (x+z)(0) - y^2(1) = 2(x+y) - y^2$
+
+(b) $2e^z(0)  - e^x (e^{x+y})   -e^{x+y} (e^x) = -2e^x e^{x+y}$
+
+(c) $2x (1) - x (-1)   + x (1) = 0$
+
+\section*{1.2.1}
+(a) $3v_p - 2w_p =3(-2,1,-1) - 2(0,1,3) = (-6, 1, -9) = -6U_1 + U_2 -9U_3$
+
+\section*{1.2.2}
+$W-xV = 2x^2U_2 - U_3 - x(x^2U_1 + xyU_2) = -x^3U_1 + (2x^2 -x^2y)U_2 - U_3$
+
+At $p=(-1,0,2)$, $$(W-xV)(p) =  -(-1)^3 U_1(p) + (2(-1)^2 -(-1)^2 0)U_2(p) - U_3(p) = U_1(p) + 2U_2(p) - U_3(p) = (1, 2, -1)$$
+
+\section*{1.2.3}
+(a) $V = \frac{1}{7} (2z^2 U_1 - xyU_3) = \frac{2z^2}{7} U_1 - \frac{xy}{7}U_3$
+
+(b) $V  = p_1U_1 + (p_3 - p_1)U_2$
+
+(c) $V = xU_1 + 2y U_2 + xy^2 U_3$
+
+(d) $V = (1+p_1, p_2p_3, p_2) - (p_1, p_2, p_3) = (1, p_2(p_3 - 1), p_2 - p_3) = U_1 + p_2(p_3 - 1) U_2 + (p_2 - p_3) U_3$
+
+(e) $V = 0 - p = -p_1 U_1 - p_2 U_2 - p_3 U_3$
+
+\section*{1.2.4}
+If $f V + g W = f (y^2 U_1 - x^2 U_3) + g(x^2 U_1 - zU_2)$, the coefficient for $U_1$ is $f y^2 + gx^2 = 0$.
+
+
+\section*{1.2.5}
+(a) Suppose $a V_1 + b V_2 + c V_3 = 0$,  then $ (a + cx) U_1 + bU_2 + (-ax + c) U_3 = 0$. By independence of the natural basis, We can see $b = 0$. Moreover  $a +cx = 0$ and $ax - c = 0$ for all $x$. Take $x=0$, we get $c=0$ and $a=0$ follows. Therefore they are linearly independent at each point. 
+
+(b) We can write $V$ in terms of $U$ in matrix form.
+$$
+ \begin{pmatrix}
+ 	V_1 \\  V_2  \\  V_3
+ \end{pmatrix}
+=
+\begin{pmatrix}
+	1 & 0 & -x \\
+	0 & 1 & 0 \\
+	x & 0 & 1  \\
+\end{pmatrix}
+\begin{pmatrix}
+	U_1 \\  U_2  \\  U_3
+\end{pmatrix}
+$$
+Then $$
+ \begin{pmatrix}
+	U_1 \\  U_2  \\  U_3
+\end{pmatrix}
+=
+\begin{pmatrix}
+	1 & 0 & -x \\
+	0 & 1 & 0 \\
+	x & 0 & 1  \\
+\end{pmatrix}^{-1}
+\begin{pmatrix}
+	V_1 \\  V_2  \\  V_3
+\end{pmatrix}
+$$
+Then 
+$$
+\begin{aligned}
+xU_1 + yU_2 + zU_3 = \begin{pmatrix}
+	x & y & z
+\end{pmatrix}
+\begin{pmatrix}
+	U_1 \\ U_2 \\ U_3
+\end{pmatrix}
+&= \begin{pmatrix}
+	x & y & z
+\end{pmatrix} 
+\begin{pmatrix}
+	1 & 0 & -x \\
+	0 & 1 & 0 \\
+	x & 0 & 1  \\
+\end{pmatrix}^{-1}
+\begin{pmatrix}
+	V_1 \\  V_2  \\  V_3
+\end{pmatrix}  \\
+&= \frac{1}{1+x^2} \begin{pmatrix}
+	x & y & z
+\end{pmatrix} 
+\begin{pmatrix}
+	-x^2 & 0 & x \\
+	0 & 1 & 0 \\
+	-x & 0 & 1  \\
+\end{pmatrix}
+\begin{pmatrix}
+	V_1 \\  V_2  \\  V_3
+\end{pmatrix}  \\
+&= -\frac{x^3 + xz}{1+x^2} V_1+\frac{y}{1+x^2} V_2 + \frac{x^2+z}{1+x^2}V_3
+\end{aligned}
+$$
+\QED
+
+\section*{1.3.1}
+(a) $v_p[f] = \frac{d}{dt}f(p + tv) |_{t=0} = \frac{d}{dt}f(2+2t, -t, -1+3t) |_{t=0} = \frac{d}{dt}(t^2(3t-1)) |_{t=0} = 0$
+
+(b) $v_p[f] = \frac{d}{dt}f(p+tv)|_{t=0} =  \frac{d}{dt}f(2+2t, -t, -1+3t) |_{t=0} = 14(2+2t)^6 |_{t=0} = 896$
+
+(c) $v_p[f] = \frac{d}{dt}f(p+tv)|_{t=0} =  \frac{d}{dt}f(2+2t, -t, -1+3t) |_{t=0} = \frac{d}{dt} e^{2+2t}\cos t |_{t=0} = 2e^{2+2t}\cos t |_{t=0} = 2e^2$
+
+
+\section*{1.3.2}
+(a) $v_p[f] = \partial_x f (p) v_1 + \partial_y f (p) v_2 + \partial_z f (p) v_3 = 0 + 2yz(p) (-1) + y^2(p) (3) = 0$
+
+(b) $v_p[f] = \partial_x f (p) v_1 + \partial_y f (p) v_2 + \partial_z f (p) v_3 = 7x^6(p) 2 = 896$
+
+(c) $v_p[f] = e^x\cos y |_p v_1 - e^x \sin y |_p v_2 = 2e^2$
+
+\section*{1.3.3}
+Note that $V = y^2U_1 - xU_3 = y^2 \partial_x - x \partial_z $
+
+(a) $V[f] = y^2 \partial_x (xy) - x \partial_z (xy) = y^3$
+
+(b) $V[g] = y^2 \partial_x z^3 - x \partial_z z^3 = 3xz^2$
+
+(c) $V[fg] =  y^2 \partial_x (xyz^3) - x \partial_z (xyz^3) = y^2 y z^3 - x(3xyz^2) = y^3z^3 - 3x^2yz^2$
+
+(d) $fV[g] - gV[f] = xy(3xz^2) - z^3 y^3 = 3x^2yz^2 - y^3z^3$
+
+(e) $V[f^2 + g^2] = V[f^2] + V[g^2] = 2f V[f] + 2g V[g] = 2xy (y^3) + 2z^3 (3xz^2) = 2xy^4 + 6xz^5$
+
+(f) $V[V[f]] = V[y^3] = y^2 \partial_x y^3 - x \partial_z y^3 = 0$
+
+\section*{1.3.4}
+For any point $p$, $V_p = \sum_i v_i(p)U_i(p)$. Then $V_p[x_j] = \sum_i v_i(p) U_i(p)[x_j] = \sum_i v_i(p) \delta_{ij} = v_j(p)$. \QED
+
+\section*{1.3.5}
+Note that $V= \sum_i v_i U_i$ and $W = \sum_i w_i U_i$. Since $V[f]= W[f]$ for every $f$,  take $f= x_j$, we get $v_j = w_j$ for every $j$. Hence $V = W$ \QED
+
+\section*{1.4.1}
+Since $\alpha(t) = (1 + \cos t, \sin t, 2\sin (t/2))$. $\alpha'(t) = (\sin t, \cos t, \cos(t/2)).$
+
+$t = 0, \alpha'(0) = (0, 1, 1)$ 
+
+$t = \frac{\pi}{2}, \alpha'(\pi/2) = (1, 0, \sqrt{2}/2)$
+
+$t = \pi, \alpha'(\pi) = (0, -1, 0)$
+
+\section*{1.4.2}
+$\alpha(t) = \int \alpha'(t) dt = (t^3/3, t^2/2, e^t) + C$.
+
+Since $\alpha(0) = (0, 0, 1) + C = (1, 0, 5)$, so $C = (1, 0, 4)$.
+
+$\alpha(t) = (t^3/3 + 1, t^2/2, e^t + 4)$
+
+\section*{1.4.3}
+Since $\alpha(t) = (1 + \cos t, \sin t, 2\sin (t/2))$ and $h(s) = \cos^{-1} s$. Therefore $$\beta(s) = \alpha(h(s)) = \left(1 + s, \sin \cos^{-1} s, 2 \sin(\frac{\cos^{-1} s}{2}) \right) $$
+
+Note that $s \in (0, 1)$ meaning $\cos^{-1}s = h$ can be positive or negative. So $ \sin \cos^{-1} s  = \pm \sqrt{1 - s^2}$. Similarly, $2 \sin(\frac{\cos^{-1} s}{2}) = \pm 2\sqrt{\frac{1 - s}{2}}$ by half angle formula of $\sin$. By restricting $h \geq 0$, we get 
+$$\beta(s) = \left(1 + s, \sqrt{1 - s^2}, 2\sqrt{\frac{1 - s}{2}} \right)$$
+
+\section*{1.4.4}
+$\beta = \alpha(h(s)) = (s, s^{-1}, \sqrt{2}\log s)$. Then $\beta'(s) = (1, -s^{-2}, \sqrt{2} s^{-1})$.
+
+By lemma 4.5 $\beta'(s) = (dh/ds) \alpha'(h(s)) = s^{-1}(e^t, -e^{-t}, \sqrt{2})|_{t=h(s)} = (1, -s^{-2}, \sqrt{2} s^{-1})$
+
+\section*{1.4.5}
+$l_1: (1, -3, -1) + t(6-1, 2+3, 1+1) = (5t+1, 5t-3, 2t-1)$.
+
+$l_2: (-1, 1, 0) + s(-5+1, -1 - 1, -1) = (-4s-1, -2s+1, -s)$.
+
+Suppose they meet, then we have 
+\begin{align}
+	5t + 1 &= -4s - 1 \\
+	5t - 3 &= -2s + 1 \\
+	2t - 1 &= -s \\
+\end{align}
+Solving the first two equation, we have $t=2, s= -3$. Putting them into the 3rd equation, we get $3 = 3$ which is consistent. They do meet.
+
+\section*{1.4.6}
+For any curve $\alpha(t)$ with initial velocity of $v_p$. Then $\alpha'(t)[f] = \frac{d(f(\alpha))}{dt} (t)$ by Lemma 4.6. Evaluating at 0, we get $$\begin{aligned}
+	\alpha'(0)[f] = v_p [f] &= \frac{d(f(\alpha))}{dt}(0) \\
+	   &= \sum_i \frac{\partial f}{\partial x_i}(\alpha(0)) \frac{d \alpha_i}{dt}(0) \\
+	   &= \sum_i \frac{\partial f}{\partial x_i}(\alpha(0)) \alpha_i'(0) \\
+	   &= \sum_i \frac{\partial f}{\partial x_i}(p)[v_p]_i \\
+	   &= \sum_i \frac{\partial f}{\partial x_i}(p)\frac{d([p+tv_p]_i)}{dt} \\ 
+	   &= \sum_i \frac{\partial f}{\partial x_i}(p+ tv_p)\frac{d([p+tv_p]_i)}{dt} \bigg|_{t=0} \\
+	   &= \frac{df}{dt}(p + tv_p) \bigg|_{t=0}
+\end{aligned}$$
+\section*{1.4.7}
+(a) $\frac{d}{dt}(t, 1 + t^2, t)\bigg|_{t=0} =(1, 2(0), 1) = (1, 0, 1)$ at point $(0, 1, 0)$.
+
+$\frac{d}{dt}(\sin t, \cos t, t)\bigg|_{t=0} = (1, 0, 1)$ at point $(0, 1, 0)$.
+
+$\frac{d}{dt}(\sinh t, \cosh t, t) \bigg|_{t=0} = (\cosh(0), \sinh(0), 1) = (1, 0, 1)$ at point $(0, 1, 0)$.
+
+(b) $f = x^2 - y^2 + z^2$
+
+$f(t) = f(t, 1+t^2, t) = t^2 - (1+t^2)^2 + t^2$. Then $\frac{df}{dt}\bigg|_0 = 4t-4t(1+t^2)\bigg|_0 =  0$
+
+$f(t) = f(\sin t, \cos t, t) = \sin^2 t - \cos^2 t + t^2$. Then $\frac{df}{dt}\bigg|_0 = 2\sin^t \cos t + 2 \cos t \sin t + 2t \bigg|_0 = 0$.
+
+$f(t) = f(\sinh t, \cosh t, t) = \sinh^2 t - \cosh^2 t + t^2$. Then $\frac{df}{dt}\bigg|_0 = 2\sinh t \cosh t - 2 \cosh t\sinh t + 2t \bigg|_0= 2t \bigg|_0 = 0$
+
+\section*{1.4.8}
+(a)$x=\frac{1}{2} \cos t$, $y=\sin t$.
+
+(b) $x = t$, $y= (1 -3t)/4$.
+
+(c) $x = t$, $y=e^t$.
+
+
+\section*{1.4.9}
+$\alpha(t) = (2\cos t, 2 \sin t, t)$,
+$\alpha'(t) = (-2\sin t, 2\cos t, 1)$.
+
+Line at $0$ is $u \rightarrow (2, 0, 0) + u(0, 2, 1)$
+
+Line at $\pi/4$ is $v \rightarrow (\sqrt{2}, \sqrt{2}, \pi/4) + v(-\sqrt{2}, \sqrt{2}, 1)$
+
+\section*{1.5.1}
+ $p = (0,-2, 1)$, $v_p=(1,2, -3)$.
+  
+(a) $(y^2dx)(v_p) = y^2(p)dx(v_p) = (-2)^2 (1)= 4$
+
+(b) $(zdy-ydz)(v_p) = z(p)dy(v_p) - y(p)dz(v_p) = (1)(2) - (-2)(-3) = -4 $
+
+(c) $[(z^2-1)dx - dy + x^2dz](v_p) = (z^2-1)(p)dx(v_p) - dy(v_p) + x^2(p) dz(v_p) = -2$
+
+\section*{1.5.2}
+For any point $p$, $$\begin{aligned}
+	\phi(V_p) &= (\sum_i f_i dx_i)(V_p) \\ 
+	      &=\sum_i f_i(p) dx_i(V_p) \\ 
+	      &= \sum_i f_i(p) dx_i(\sum_j v_j U_j) \\ 
+	      &= \sum_i f_i(p) \sum_j v_j dx_i(U_j) \\ 
+	      &= \sum_i f_i(p)\sum_j v_j \delta_{ij} \\ 
+	      &= \sum_i f_i(p)v_i
+\end{aligned} $$
+Hence $\phi(V) = \sum_i f_i v_i$.
+
+\section*{1.5.3}
+$\phi = x^2dx - y^2dz$
+
+(a) For $V=xU_1 + yU_2 + zU_3$,  $\phi(V) = x^3 - y^2z$.
+
+(b) For $W= xy(U_1 - U_3) + yz(U_1 - U_2) = (xy+yz)U_1 - yzU_2 - xyU_3$, $\phi(W) = x^2y(x+z) +xy^3$
+
+(c) For $T=(1/x)V + (1/y)W$,  $$\phi(T) = \phi((1/x)V + (1/y)W) = (1/x)\phi(V) + (1/y)\phi(W) = \frac{x^3-y^2z}{x} + x^2(x+z) + xy^2 $$
+
+\section*{1.5.4}
+(a) Since $df^2 = 2fdf$. Suppose $df^n = nf^{n-1}df$,  $$df^{n+1} = d(ff^n) = f^ndf + fd(f^n) = f^ndf + f(nf^{n-1}df) = (n+1)f^ndf$$. Therefore by induction, $df^n = nf^{n-1}df$.  As a result,
+$$df^4 = 4f^3df$$
+
+(b) $df = d(\sqrt{f} \sqrt{f}) =2 \sqrt{f}d (\sqrt{f})$ Then $$d (\sqrt{f}) = \frac{1}{2\sqrt{f}}df$$
+
+(c) $d(\log(1+f^2)) = \frac{1}{1+f^2} d(1+f^2) = \frac{2f}{1+f^2} df$
+
+\section*{1.5.5}
+(a) $$df = \sum_i \partial_i f dx_i = \frac{xdx + ydy + zdz}{\sqrt{x^2+y^2+z^2}}$$
+
+(b) $$ df = \frac{1}{1 + (y/x)^2} (-\frac{y}{x^2}dx + \frac{1}{x} dy) = \frac{1}{x^2 + y^2} (-ydx + xdy)$$
+
+\section*{1.5.6}
+$p = (0,-2, 1)$, $v_p=(1,2, -3)$.
+
+(a) $df = y^2dx + (2xy-z^2) dy -2yzdz$. Then $df(v_p) = (-2)^2(1) + (-1)(2) -2(-2)(-3) = 10$
+
+(b) $df = \exp(yz)(dx + xzdy + xydz)$. Then $df(v_p) = \exp(-2)$.
+
+(c) $df = (y \cos(xy)\cos(xz) - z\sin(xy)\sin(xy))dx + x\cos(xy)\cos(xz)dy - x\sin(xy)\sin(xz)dz$. Then $df(v_p) = y(p)dx(v_p) = (-2)1 = -2$.
+
+\section*{1.5.7}
+$\phi(v_p) = \sum_i f_i(p) v_i$ for $\phi = \sum_i f_i dx_i$.
+
+(a) Yes. $f_1(p) = 1, f_3(p) = -1$,  $\phi = dx - dz$
+
+(b) No.  Because $dx_i(v_p)$ must involve $v_i$.
+
+(c) Yes. $f_1(p) = p_3, f_2(p) = p_1$. So $\phi = zdx + xdy$.
+
+(d) Yes. $df(v_p) = v_p(f) = v_p[x^2+y^2]$. Therefore $f = x^2+y^2$.  $\phi = df = 2xdx + 2ydy$.
+
+(e) Yes. $\phi = 0$.
+
+(f) No. Because $dx_i(v_p)$ must involve $v_i$.
+
+\section*{1.5.8}
+By definition of $d$. $df(v_p) = v_p[f]$. Then by theorem 3.3
+$$ d(fg)(v_p) = v_p(fg) = f(p)v_p(g) + g(p) v_p(f) = f(p)dg(v_p) + g(p) df(v_p)$$
+
+\section*{1.5.9}
+Since $df = -2xydx + (1-x^2-2yz)dy + (1-y^2)dz$,  we need to find points such that $xy =0,  1-x^2-2yz =0, 1-y^2= 0$. From the last equation, we get $y=\pm 1$. Then the first equation gives $x=0$. Putting the values into the 2nd equations, we have $z = \frac{1-x^2}{2y} = \pm \frac{1}{2}$. So the critical points are $(0, 1, 1/2)$ and $(0, -1, -1/2)$
+
+\section*{1.5.10}
+Suppose $p$ is a local maxima of $f$ and $p$ is not a critical point of $f$, then there exists a tangent vector $v_p$ such that $$df(v_p) = \frac{df}{dt}(p+tv_p)\bigg|_0 = \lim_{t \rightarrow 0} \frac{f(p+tv_p) - f(p)}{t} > 0$$
+This is true in general as we can always take the opposite direction $-v_p$ if $df(v_p) < 0$. Then we have $\frac{f(p+t_0v_p) - f(p)}{t_0} > \epsilon$ for some $\epsilon>0$ and $t_0$ which contradicts with the assumption that $p$ is local maxima of $f$. Same argument applies to local minima of $f$. \QED
+
+\section*{1.5.11}
+(a)
+$(df)(v_p) = \sum_i \frac{\partial f}{\partial x_i} v_i$.  Taylor expanding $f(u)$ around $p$, we get $f(u) = f(p) + \sum_i \partial_i f (p)(u_i - p_i) + O(u^2)$. Let $u=p+v$, then $$f(p+v) = f(p) + \sum_i \partial_i f (p)v_i + O_2 = f(p) + df(v_p) + O_2$$.
+Where $O_2$ is second order error. Therefore $f(p+v) - f(p) \approx df(v_p)$ in the first order. \QED
+
+(b) $$df = (2xy/z) dx + (x^2/z) dy - (x^2y/z^2)dz$$. $p = (1,1.5,1)$ and $v_p=(-0.1, 0.1, 0.2)$.
+We get $df(v_p) = 2(1.5)(-0.1) +0.1 - (1.5)(0.2) =-0.3 + 0.1 - 0.3 = -0.5$. 
+
+Direct calculation gives $f(0.9, 1.6, 1.2) - f(1, 1.5, 1) = 1.08 - 1.5 = -0.42$
+
+
+\end{document}
