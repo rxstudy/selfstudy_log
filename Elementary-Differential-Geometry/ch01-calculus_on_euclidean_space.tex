@@ -340,5 +340,111 @@ We get $df(v_p) = 2(1.5)(-0.1) +0.1 - (1.5)(0.2) =-0.3 + 0.1 - 0.3 = -0.5$.
 
 Direct calculation gives $f(0.9, 1.6, 1.2) - f(1, 1.5, 1) = 1.08 - 1.5 = -0.42$
 
+\section*{1.6.1}
+Given $\phi = yzdx + dz$, $\psi = \sin zdx + \cos zdy$, $\xi = dy+zdz$.
 
+(a)
+
+ $\phi \wedge \psi = (yzdx + dz) \wedge ( \sin zdx + \cos zdy) = yz\cos z dx \wedge dy - \sin z dx \wedge dz - \cos z dy \wedge dz $
+
+$ \psi \wedge \xi = (\sin zdx + \cos zdy) \wedge ( dy+zdz)  = \sin z dx \wedge dy + z \sin z dx \wedge dz + z \cos z dy \wedge dz $
+
+$ \xi \wedge \phi = ( dy+zdz) \wedge ( yzdx + dz) = -yzdx \wedge dy + dy \wedge dz - yz^2 dx \wedge dz$
+
+(b)
+
+ $d\phi = d(yz)\wedge dx + d1 \wedge dz = (zdy + ydz)\wedge dx = -z dx \wedge dy - y dx \wedge dz$
+ 
+ $d\psi = d(\sin z) \wedge dx + d(\cos z) \wedge dy = \cos z dz \wedge dx - \sin z dz \wedge dy$
+ 
+ $d\xi = d1 \wedge dy+dz \wedge dz = 0$
+ 
+\section*{1.6.2}
+Given $\phi = dx /y $, $\psi = z dy$. Then $\phi \wedge \psi = (z/y) dx \wedge dy$. Directly computing the differential gives $$d(\phi \wedge \psi) = d(z/y) \wedge dx \wedge dy = (1/y dz - z/y^2 dy) \wedge dx \wedge dy = 1/y dx dy dz$$ Using theorem 6.4, 
+$$ \begin{aligned}
+	d(\phi \wedge \psi &= d\phi \wedge \psi - \phi \wedge d\psi \\
+	  &= (- 1/y^2 dy \wedge dx) \wedge zdy - 1/y dx \wedge (dz \wedge dy) \\
+	  &= 0 - 1/y dx dz dy \\
+	  &= 1/y dx dy dz
+\end{aligned}$$ 
+
+\section*{1.6.3}
+For any function $f$,  $df = \sum_i \partial_i f_i dx_i$. 
+$$
+  \begin{aligned}
+  	d(df) &= \sum_i d(\partial_i f) \wedge dx_i  \\
+  		  &= \sum_i (\sum_j \partial_i \partial_j f dx_j) \wedge dx_i \\
+  		  &= \sum_{i\neq j} \partial_i \partial_j f dx_j \wedge dx_i \\
+  		  &= - \sum_{i < j} \partial_i \partial_j f dx_i \wedge dx_j + \sum_{j < i} \partial_j \partial_i f dx_j \wedge dx_i \\
+  		  &= 0
+  \end{aligned}
+$$
+
+$d(fdg) = df \wedge dg + f d(dg) = df \wedge dg$.
+
+\section*{1.6.4}
+(a) $d(fdg + gdf) = df\wedge dg + dg \wedge df = 0$
+
+(b) $d((f -g)(df + dg))= d(f-g) \wedge (df + dg) = (df - dg) \wedge (df + dg) = df \wedge dg - dg \wedge df = 2 df \wedge dg$
+
+(c) $d(fdg \wedge g df) = d(fdg) \wedge gdf - fdg \wedge d(gdf) = df \wedge dg \wedge g df - f dg \wedge dg \wedge df = 0$
+
+(d) $d(gfdf) + d(fdg) = d(gf) \wedge df + df \wedge dg = (fdg + gdf)\wedge df + df \wedge dg = (1 - f)df \wedge dg$
+
+\section*{1.6.5}
+$ \phi_i = \sum_j f_{ij} dx_j$.  If we do the wedge product, 
+$$ \begin{aligned}
+	\bigwedge_i \phi_i &= \bigwedge_i \sum_j f_{ij} dx_j \\
+					   &= \left[\sum_{\sigma} \prod_i f_{i, \sigma_i} \right](dx_{\sigma_1} \wedge \cdots \wedge dx_{\sigma_n}) \\
+					   &= \left[\sum_{\sigma} \mbox{sgn}(\sigma) \prod_i f_{i, \sigma_i} \right](dx_1 \wedge \cdots \wedge dx_n) \\
+					   &= \det|f_{i,j}| dx_1 \wedge \cdots \wedge dx_n
+\end{aligned} $$
+Each term in the expanded expression is a product of picking a term in $\phi_i$ for each $i$. Since $dx_j \wedge dx_j$ vanishes, so we need to pick $n$ terms with different $j$ from $\phi_1$ to $\phi_n$ and hence the expression above. 
+
+\section*{1.6.6}
+In cylindrical coordinate, $x = r\cos \theta, y=r\sin \theta, z = z$. The volume element in canonical coordinate is $dx \wedge dy \wedge dz$. Then $$
+\begin{aligned}
+	dx \wedge dy \wedge dz &= (\cos\theta dr - r\sin \theta d\theta) \wedge (\sin \theta dr + r\cos\theta d\theta) \wedge dz \\
+	  &= (r\cos^2 theta + r\sin^2\theta) dr \wedge d\theta \wedge dz   \\
+	  &= r dr \wedge d\theta \wedge dz
+\end{aligned}
+$$
+
+\section*{1.6.7}
+Given a one-form $\phi = \sum_i f_i dx_i$, then  $$d(d\phi) = d(d(\sum_i f_i dx_i)) = d(\sum_i df_i \wedge dx_i) = \sum_i d(1)\wedge df_i \wedge dx_i = 0$$
+
+\section*{1.6.8}
+(a) $df = \sum_i \partial_i f dx_i$. $dx_i$ 1-1 to $U_i$. Therefore $df$ 1-1 to $\grad f$.
+
+(b) $\{dx_i\}$ is 1-1 with $\{U_i\}$, for each $\phi = \sum_i f_i dx_i$ there exists $V= \sum_i f_i U_i$.  Then $$\begin{aligned}
+	d\phi = \sum_i df_i \wedge dx_i &= \sum_i (\sum_j \partial_j f_i dx_j ) \wedge dx_i \\
+	  &= \sum_i \sum_j \partial_j f_i dx_j \wedge dx_i \\
+	  &= \sum_{i\neq j} \partial_j f_i dx_j \wedge dx_i \\
+	  &= - \sum_{i < j} \partial_j f_i dx_i \wedge dx_j  +  \sum_{j < i} \partial_j f_i dx_j \wedge dx_i \\ 
+	  &= - \sum_{i < j} \partial_j f_i dx_i \wedge dx_j  +  \sum_{i < j} \partial_i f_j dx_i \wedge dx_j \ \ \ \mbox{(swap i and j)}\\ 
+	  &= \sum_{i < j} (\partial_i f_j - \partial_j f_i )dx_i \wedge dx_j  \\ 
+\end{aligned} $$
+This is equal to $\curl \phi$ when the dimension is 3 because there exists 1-1 mapping between $U_1,U_2,U_3$ and $dx_1\wedge dx_2, dx_2 \wedge dx_3, dx_1 \wedge dx_3$.
+
+(c) For a vector field $V = f_1U_1+f_2U_2+f_3U_3$, there exists $\eta = f_3 dx_1dx_2  - f_2dx_1dx_2 + f_1dx_2dx_3$ by correspondence. Then 
+$$
+ \begin{aligned}
+ 	d\eta &= df_3 dx_1 dx_2 - df_2 dx_1 dx_2 + f_1 dx_2 dx_3 \\
+ 		  &= \partial_3 f_3 dx_3 dx_1 dx_2 - \partial_2 f_2 dx_2 dx_1 dx_3 + \partial_1 f_1 dx_2 dx_3 \\
+ 		  &= (\partial_3 f_3 + \partial_2 f_2 + \partial_1 f_1) dx_1 dx_2 dx_3 \\
+ 		  &= \div V dx_1 dx_2 dx_3
+ \end{aligned}
+$$
+
+
+\section*{1.6.9}
+$df = \partial_x f dx + \partial_y f dy$ and $dg = \partial_x g dx + \partial_y g dy$.
+
+$ df\wedge dg = \partial_xf \partial_y g dx \wedge dy + \partial_y f\partial_x g dy \wedge dx = ( \partial_xf \partial_y g - \partial_y f\partial_x g) dx \wedge dy = 
+\begin{vmatrix}
+	\partial_x f & \partial_y f \\
+	\partial_x g & \partial_y g \\
+\end{vmatrix}
+dx \wedge dy
+$
 \end{document}
