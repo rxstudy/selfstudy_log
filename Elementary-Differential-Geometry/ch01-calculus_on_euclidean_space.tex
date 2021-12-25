@@ -447,4 +447,83 @@ $ df\wedge dg = \partial_xf \partial_y g dx \wedge dy + \partial_y f\partial_x g
 \end{vmatrix}
 dx \wedge dy
 $
+
+\section*{1.7.1}
+$F(u, v) = (u^2 -v^2, 2uv)$.
+
+(a) $F(p)=(0, 0)$ then $(f_1(p), f_2(p)) = (p_1^2 - p_2^2, 2p_1p_2) = (0, 0)$. Therefore $p_1 = 0, p_2 = 0$.
+
+(b) $F(p) = (8, 6)$ then $p_1^2 - p_2^2 = 8$ and $2p_1p_2=6$. Putting together two equations and factoring it, we have $(p_2^2 + 9)(p_2^2 - 1) = 0$. Therefore $p_1 = \pm 3, p_2 = \pm 1$.
+
+(c) $F(p) = p$. Then $p_1^2 - p_2^2 = p_1$ and $2p_1p_2 = p_2$.
+
+\section*{1.7.3}
+$$\begin{aligned}
+	 F_*(v) &= \frac{d}{dt}\big|_{t=0} F(p+ tv) \\ 
+	   &= \frac{d}{dt}\big|_{t=0} ((p_1 + tv_1)^2 - (p_2 + tv_2)^2, 2(p_1+tv_1)(p_2+tv_2))  \\
+	   &= ( 2v_1(p_1 + tv_1) - 2v_2(p_2 + tv_2), 2v_1(p_2+tv_2) + 2(p_1+tv_1)v_2)\big|_{t=0} \\
+	   &= 2(v_1p_1 - v_2p_2, v_1p_2 + p_1v_2)
+\end{aligned}$$
+
+\section*{1.7.4}
+$$
+ F_{*, p} = \begin{pmatrix}
+ 	2u & 2v \\
+ 	-2v & 2u
+ \end{pmatrix}
+$$
+$F_{*, p}$ only vanishes at the origin. 
+
+\section*{1.7.5}
+$F_*(v_p) = \frac{d}{dt}\big|_{t=0} F(p + tv) = \frac{d}{dt}\big|_{t=0}(F(p) + tF(v)) = F(v)$
+
+\section*{1.7.6}
+(a) Take $m=n=1$, for any mapping that is a joint of two line segments with different slope, the mapping is not differential at the point of the joints hence it is not a diffeomorphism.
+
+(b) Suppose $F: \real^n \rightarrow \real^n$ is 1-1 and onto, by inverse function theorem, we can take the open set as the entire $\real^n$ since $F$ is onto. Then $F$ is diffeomorphism.
+
+\section*{1.7.7}
+$$
+\begin{aligned}
+	v_p[g(F)] &= \sum^n_{i} v_i U_i[g(F)] \\ 
+		&= \sum^n_{i} v_i \frac{\partial}{\partial x_i}[g(F)] \\ 
+	   &= \sum^n_{i} v_i \sum^m_j \frac{\partial g}{\partial f_j} \frac{\partial f_j}{\partial x_i} \\
+	   &= \sum^m_j  \left[ \sum^n_{i} v_i \frac{\partial f_j}{\partial x_i} \right] \frac{\partial g}{\partial f_j}  \\
+	   &= \sum^m_j  \left[ F_*(v_p) \right]_j \frac{\partial g}{\partial f_j}  \\
+	   &= F_*(v_p)[g]  \\
+\end{aligned}
+$$
+
+\section*{1.7.8}
+Given any curve $\alpha(t)$ such that $\alpha'(0) = v_p$.
+$$
+\begin{aligned}
+	F_*(v_p) = \frac{d}{dt}\big|_{t=0}F(\alpha(t)) = \sum_i^n \frac{\partial F}{\partial \alpha_i}\frac{d\alpha_i}{dt}\bigg|_{t=0} = \sum_i^n [v_p]_i \frac{\partial F}{\partial \alpha_i}
+\end{aligned}
+$$
+By proof of proposition 7.5, the expression above can give back the line definition of the push forward of $F$.
+
+\section*{1.7.9}
+(a) $GF = (g_i \circ f_i)$. Since $g_i, f_i$ are differentiable, so $g_i \circ f_i$ are differentiable. Hence $GF$ is a mapping.
+
+(b) $$[(GF)_*]_{ij} = \frac{\partial g_i \circ f_i }{\partial x_j} = \sum_k^m \frac{\partial g_i}{\partial f_k} \frac{\partial f_k}{\partial x_j} = [G_*]_{ik}[F_*]_{kj}$$
+
+(c) $F$ is diffeomorpohism means $F^{-1}$ exists and is differentiable. Then since $F$ is differentiable itself, $F^{-1}$ also has a differentiable inverse therefore $F^{-1}$ is also a diffeomorpishm.
+
+\section*{1.7.10}
+(a) Suppose $F(u_1, v_1) = F(u_2, v_2)$,  then $ v_1 \exp u_1 = v_2 \exp u_2$ and $2 u_1 = 2u_2$. It is obvious that $v_1 = v_2$ as well. So $F$ is 1-1. 
+
+For any point $(y_1, y_2)$ in $\real^2$,  Let $u = y_2 / 2$, $v = y_1/\exp(-y_2 / 2)$, then $F(u, v) = (y_1, y_2)$. So $F$ is onto.
+
+$|F_*| = \begin{vmatrix}
+	ve^u & e^u \\
+	2 & 0 \\
+\end{vmatrix} = 2\exp(u) \neq 0$ So $F$ is regular. These properties hold in $\real^2$ so by inverse function theorem,  $F$ is diffeomorphism. 
+
+(b) $F(u, v) = (x, y)$. Then $v e^u = x$ and $2u = y$. Expressing $u, v$ in terms of $x,y$,  $u = y/2, v = x \exp(- y/2)$. We get the inverse 
+$$ F^{-1}(x, y) = (0.5y, x \exp(-y/2))$$
+
+$F^{-1}\circ F (u, v) = F^{-1}(ve^u, 2u) = ((0.5)2u, v\exp(u) \exp(- 2u / 2)) = (u, v) $
+
+$F \circ F^{-1}(x, y) = F(0.5y, x \exp(-y/2)) = (x\exp(-y/2) \exp(0.5y), 0.5y (2)) = (x, y)$
 \end{document}
