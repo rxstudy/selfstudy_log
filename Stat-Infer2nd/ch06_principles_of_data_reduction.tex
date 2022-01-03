@@ -24,4 +24,35 @@ $$\begin{aligned}
 \end{aligned}
 $$
 $g(T(x)|\theta) = g(\min \frac{x_i}{i}|\theta) =  \exp\left(\frac{n(n+1)\theta}{2}\right)   \one_{\min \frac{x_i}{i} \geq \theta}$ and $h(x) = \exp\left(\sum_i x_i\right)$. By factorization theorem, it is sufficient statistic.
+
+\section*{Exercise 6.3}
+Given the pdf 
+$$ f(x | \mu, \sigma) = \frac{1}{\sigma} e^{-(x-\mu)/\sigma}, \ \ u<x <\infty, 0 < \sigma < \infty$$
+We need to get rid of the dependency on $u$ in the range of $x$. With indicator, we can rewrite it as
+$$ f(x | \mu, \sigma) = \frac{1}{\sigma} e^{-(x-\mu)/\sigma}\one_{\mu < x}, \ \ -\infty <x <\infty, 0 < \sigma < \infty$$
+Then $$
+\begin{aligned}
+	f(\vb{x} | \mu, \sigma) &= \prod^n_{i=0} 	f(x_i | \mu, \sigma) \\
+		&= \frac{1}{\sigma^n} \exp\left(-\frac{\sum_i{x_i} - n\mu}{\sigma}\right)   \prod^n_{i=0} \one_{\mu < x_i} \\
+		&= \frac{1}{\sigma^n} \exp\left(-\frac{\sum_i{x_i} - n\mu}{\sigma}\right)   \one_{\mu <  x_{\min}}
+\end{aligned}
+$$
+Define $T(\boldmath(x)) = (t_1, t_2) = (\sum_i x_i, x_{\min})$ and $h(\vb{x}) = 1$. By factorization theorem, it is a sufficient statistics.
+
+\section*{Exercise 6.4}
+The pdf is $$
+\begin{aligned}
+	f(x|\theta) &= \left[\prod_i^n h(x_i) \right] c^n(\theta) \exp \left( \sum_{i=1}^{n} \sum_{j=1}^k w_j(\theta)t_j(x_i) \right) \\
+	&= H(x)C(\theta) \exp \left(  \sum_{j=1}^k w_j(\theta)\sum_{i=1}^{n} t_j(x_i) \right) \\
+	&= H(x)C(\theta) \exp \left(  \sum_{j=1}^k w_j(\theta)T_j(x) \right) \\
+	&= H(x)C(\theta)g(T(x)|\theta)
+\end{aligned}
+$$
+Therefore by Factorization theorem,  $T(X) = [T_j(X)] =  \left( \sum_{i=1}^{n} t_j(x_i) \right) $ is sufficient statistics.
+
+\section*{Exercise 6.8}
+The pdf of sample $X$ is $f(x|\theta) = \prod_{i=1}^n f(x_i - \theta)$. By theorem 6.2.13, we take the ratio of $f(x|\theta)$ and $f(y|\theta)$,  $$ \frac{f(x|\theta)}{f(y|\theta)} = \frac{\prod_{i=1}^n f(x_i - \theta)}{\prod_{i=1}^n f(y_i - \theta)}$$
+Note that the above expression is a constant of $\theta$ only when the terms cancel out which implies there exists an ordering $T$ such that $f(T(x_i) - \theta) = f(T(y_i) - \theta)$. Order statistics is such an ordering. Therefore it is the minimal statistics.
+
+
 \end{document}
