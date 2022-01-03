@@ -1,0 +1,164 @@
+\documentclass[12pt]{article}
+
+\include{pythonlisting}
+\input{../definitions.tex}
+
+\title{Chapter 1: Calculus on Euclidean Space}
+\author{Ran Xie}
+\begin{document}
+\maketitle
+\section{Dot Product}
+\subsection*{1.1}
+(a) $v \cdot w = 1(-1)+2(0)+(-1)3 = -4$
+
+(b) $v \cross w = 2(3)U_1 - (3- 1)U_2 + (2)U_3 = 6U_1 - 2U_2 + 2U_3$
+
+(c) $v/||v|| = \frac{1}{\sqrt{6}}(1, 2, -1)$.  and $w/||w|| = \frac{1}{\sqrt{10}}(-1, 0, 3)$
+
+(d) $||v \cross w|| = \sqrt{36 + 4 + 4} = \sqrt{44}$
+
+(e) $\cos \theta = \frac{v \cdot w}{||v||||w||} = \frac{-4}{\sqrt{6} \sqrt{10}} = - \frac{2}{\sqrt{15}}$
+
+\subsection*{1.2}
+(a) $d(p, q) = 0 \Leftrightarrow ||p-q|| = 0 \Leftrightarrow p - q = 0 \Leftrightarrow q = p$
+
+(b) $d(p, q) = || p - q|| = |-1|||q - p| = d(q, p)$
+
+(c) $d(p, q) + d(q, r) = ||p - q|| + ||q - r|| \geq ||p - q + q - r|| = ||p - r||$
+
+\subsection*{1.3}
+ $v = xe_1 + y e_2 + ze_3$. Then
+ $$
+ \begin{aligned}
+ 	\begin{pmatrix}
+ 		1/\sqrt{6} &  2/\sqrt{6} &  1/\sqrt{6} \\
+ 		-2/\sqrt{8} &  0 &  2/\sqrt{8} \\
+ 		1/\sqrt{3} &  -1/\sqrt{3} &  1/\sqrt{3} \\
+ 	\end{pmatrix}
+ 	\begin{pmatrix}
+ 		x \\ y \\ z\\
+ 	\end{pmatrix}
+ 	&=
+ 	\begin{pmatrix}
+ 		6 \\ 1 \\ -1
+ 	\end{pmatrix} \\
+ \begin{pmatrix}
+ 	x \\ y \\ z\\
+ \end{pmatrix}
+&=
+ \begin{pmatrix}
+ 	1/\sqrt{6} &  2/\sqrt{6} &  1/\sqrt{6} \\
+ 	-2/\sqrt{8} &  0 &  2/\sqrt{8} \\
+ 	1/\sqrt{3} &  -1/\sqrt{3} &  1/\sqrt{3} \\
+ \end{pmatrix}^{-1}
+\begin{pmatrix}
+	6 \\ 1 \\ -1
+\end{pmatrix} \\
+ \end{aligned}
+ $$
+
+\subsection*{1.4}
+(a)
+$$\begin{aligned}
+	u\cdot (v \cross w) &= (u_1 U_1 + u_2 U_2 + u_3 U_3) \cdot \begin{vmatrix}
+		U_1 & U_2 & U_3 \\
+		v_1 & v_2 & v_3 \\
+		w_1 & w_2 & w_3 \\
+	\end{vmatrix} \\
+ &=  (u_1 U_1 + u_2 U_2 + u_3 U_3) \cdot (D_1U_1 - D_2 U_2 + D_3 U_3) \\
+ &= D_1 u_1 - D_2 u_2 + D_3 u_3 \\
+ &=  \begin{vmatrix}
+ 	u_1 & u_2 & u_3 \\
+ 	v_1 & v_2 & v_3 \\
+ 	w_1 & w_2 & w_3 \\
+ \end{vmatrix}
+\end{aligned}$$
+
+(b) By (a), the product is equal to the determinant, the 3 vectors are independent iff the determinant is non zero. 
+
+(c) By (a),  the product is equal to the determinant, swapping any two vectors is equivalent to swapping the rows in the determinant which in turn changes the sign.
+
+(d) This is equivalent to swapping the rows even numbers of times so the sign of the determinant is unchanged.
+
+\subsection*{1.5}
+(a) Suppose $v$ and $w$ are linearly dependent, then $v\cross w =a (w \cross w) = 0$. 
+
+Now suppose $v \cross w = 0$, then for any vector $u$, $u \dot (v \cross w) = \det(u, v, w) = 0$. This means for any $u$,  $u,v,w$ are linearly dependent. Since $\real^3$ requires 3 vectors to span the space, there exists $u$ such that $u$ is not linearly dependent with $v$ and $w$ yet the determinant of the three is 0. Therefore $v, w$ are linearly dependent.
+
+(b) Since $v \cross w= ||v|| ||w|| \sin \theta$, by basic geometry, $||w|| \sin \theta$ is the height of the parallelogram and the $||v||$ is the base of it. Therefore cross product is the area of the parallelogram formed by $w, v$.
+
+\subsection*{1.6}
+Consider a matrix $E$, where its rows are denoted as $e_1, e_2, e_3$. Then $$E^T E = \begin{pmatrix}
+	e_1 \cdot e_1  & 	e_1 \cdot e_2  & 	e_1 \cdot e_3  \\
+	e_2 \cdot e_1  & 	e_2 \cdot e_2  & 	e_1 \cdot e_3  \\
+	e_3 \cdot e_1  & 	e_1 \cdot e_2  & 	e_3 \cdot e_3  \\
+\end{pmatrix}$$.  
+If $E$ is orthogonal matrix, then the product above is the identity matrix which means the $e_1, e_2, e_3$ will need to satisfy the definition of a frame. If we take determinant on both side
+$$ \det{E^TE} = (\det E)^2 = 1$$.
+Therefore $\det E = \pm 1$.
+
+\subsection*{1.7}
+Take $v_1 = (v\cdot u) u$ to be the projection along $u$. Then $v = v_1 + v_2$ where $v_2$ is defined by $v - v_1$. We just need to check their dot product. 
+
+$$ v_1 \cdot v_2 = v_1 \cdot (v - v_1) = v_1 \cdot v - ||v_1||^2 = (v \cdot u)u \cdot v - ||(v\cdot u) u||^2 = (v \cdot u)^2 (1 - ||u||^2) = 0$$ 
+
+Since $u$ is unit vector.
+
+\subsection*{1.8}
+For a parallelepipe formed by $u, v, w$, the volume is the height, $h$ times the base parallogram area $A$, formed by $v, w$. 
+
+$h$ can be found by projecting $u$ onto the unit vector $v\cross w / ||v\cross  w||$. So $h = u \cdot v\cross w / ||v\cross  w||$.
+
+$A$ is simply $||v\cross  w||$. 
+
+Therefore$$V = hA = u \cdot \frac{v\cross w}{||v\cross  w||} ||v\cross  w|| = u \cdot (v \cross w)$$
+
+\subsection*{1.9}
+(a) For any point $p$ such that $||p||<1$. There exists an $\epsilon > 0$ such that $||p|| < 1 -  \epsilon$. Then we have an open ball $B_\epsilon(p)$. For any $q$ in the open ball,  $$||q|| = ||q - p + p|| \leq ||q - p|| + ||p|| < \epsilon + (1 - \epsilon) = 1$$
+Therefore the open ball is a proper subset and hence $\{p | ||p|| < 1\}$ is open.
+
+(b) $\{p | p_3 > 0\} = \real^2 \cross H^+$. $H^+$ is open by the same argument from (a). Product of open sets is open in the induced product topology.
+
+\subsection*{1.10}
+(a) closed. Sphere boundary points are closed.
+
+(b) Open.  $p_3\neq =0$ means $\{ p_3 > 0 \} \cup \{p_3 < 0\}$. And union of open sets is open from 1.9(b).
+
+(c) Not open. This set is equal to the set of points on the plane constructed by $p_1=p_2$ minus the set of points on the line by $p_1=p_2 =p_3$. For example $(1,1,2)$ is a boundary point in the set. So not open.
+
+(d) Open. Interior of a cylinder.
+
+\subsection*{1.11}
+(a) 
+$$\begin{aligned}
+	v \cdot (\grad{f}(p)) &= \langle \sum_i v_i U_i, \sum_i \partial_if U_i \rangle (p)\\
+		&= \sum_i v_i \partial_i f (p) \\
+		&= v[p] \\
+		&= (df)(v)
+\end{aligned}
+$$
+
+(b) For a unit vector $u$ at $p$, $u= \frac{v}{||v||}$ for some $v$. Therefore $u[f] = \langle u, \grad f \rangle \leq  \frac{1}{||v||}\left|\langle v, \grad f \rangle \right| \leq \frac{1}{||v||}||v|| ||\grad f|| = ||\grad f||$ by Cauchy Schwarz inequality. It achieves maximum when $v = \grad f $ which implies $u = \frac{v}{||v||} = \frac{\grad f}{||\grad f||}$
+
+\subsection*{1.12}
+Since $f^2 + g^2 = 1$, so $f'f + g'g = 0$. The derivative of $U$, $U'= fg' - gf'$.
+Let $K(t) = (f - \cos U)^2 + (g - \sin U)^2$
+$$
+\begin{aligned}
+	K'/2 &= (f - \cos U)(f' + U' \sin U ) + (g - \sin U) (g' -  U' \cos U) \\
+	&=ff'+ fU'\sin U - f' \cos U -U' \sin U \cos U + gg' - gU'\cos U - g'\sin U + U'\sin U \cos U \\ 
+	&=(ff'+g'g) + fU'\sin U - f' \cos U - gU'\cos U - g'\sin U \\
+	&=  fU'\sin U - f' \cos U - gU'\cos U - g'\sin U \\
+	&= U'(f \sin U - g \cos U) - (f' \cos U + g'\sin U) \\
+	&= (fg' - gf')(f \sin U - g \cos U) - (f' \cos U + g'\sin U) \\
+	&= f^2g'\sin U - fgg' \cos U - gf'f \sin U + g^2f' \cos U  - (f' \cos U + g'\sin U) \\
+	&= f^2g'\sin U + f^2f' \cos U + g^2 g' \sin U + g^2 f' \cos U  - (f' \cos U + g'\sin U) \\
+	&= f^2 (g'\sin U + f' \cos U) + g^2 (g' \sin U + f' \cos U ) - ( g'\sin U + f' \cos U) \\
+	&=(g'\sin U + f' \cos U)(f^2 + g^2 - 1)\\
+	&= 0
+\end{aligned}
+$$
+The implies $K(t) = (f - \cos U)^2 + (g - \sin U)^2 = \mbox{ constant }$. Let $t=0$, $K(0) = (f(0) - \cos U_0)^2 + (g(0) - \sin U_0)^2 = 0$ since $f(0) = \cos U_0$ and $g(0) = \sin U_0$. Therefore $ (f - \cos U)^2 + (g - \sin U)^2  = 0$ for all $t$. Hence $f = \cos U$ and $g = \sin U$.\QED
+
+
+\end{document}
