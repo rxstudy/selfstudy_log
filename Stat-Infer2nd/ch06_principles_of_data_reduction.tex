@@ -54,5 +54,92 @@ Therefore by Factorization theorem,  $T(X) = [T_j(X)] =  \left( \sum_{i=1}^{n} t
 The pdf of sample $X$ is $f(x|\theta) = \prod_{i=1}^n f(x_i - \theta)$. By theorem 6.2.13, we take the ratio of $f(x|\theta)$ and $f(y|\theta)$,  $$ \frac{f(x|\theta)}{f(y|\theta)} = \frac{\prod_{i=1}^n f(x_i - \theta)}{\prod_{i=1}^n f(y_i - \theta)}$$
 Note that the above expression is a constant of $\theta$ only when the terms cancel out which implies there exists an ordering $T$ such that $f(T(x_i) - \theta) = f(T(y_i) - \theta)$. Order statistics is such an ordering. Therefore it is the minimal statistics.
 
+\section*{Exercise 6.9}
+(a) the ratio is $$\frac{f(x|\theta)}{f(y|\theta)} = \exp\left( -\frac{1}{2} \sum_i (x_i - \theta)^2 + \frac{1}{2} \sum_i (y_i-\theta)^2 \right) =\exp\left( -\frac{1}{2} \sum_i (x_i^2 - y_i^2) + n \theta (\bar{x} - \bar{y}) \right)$$ 
+For the ration to be constant function of $\theta$ iff $\bar{x} = \bar{y}$. So sample mean is the min sufficient statistics.
+
+(b) the joint pdf is $f(x|\theta) = \exp( -\sum_i (x_i - \theta))$ Where $x_i > \theta, \theta \in \real$. We can rewrite this with indicator function, $$f(x|\theta) = I_{\min{x} > \theta } \exp( -\sum_i (x_i - \theta)), \mbox{  where  } x_i,\theta \in \real$$
+
+So the ratio becomes 
+$$
+\frac{f(x|\theta)}{f(y|\theta)} = \frac{I_{\min{x} > \theta } \exp( -\sum_i (x_i - \theta))}{I_{\min{y} > \theta } \exp( -\sum_i (y_i - \theta))} =  \frac{I_{\min{x} > \theta } \exp( -\sum_i x_i) }{I_{\min{y} > \theta } \exp( -\sum_i y_i )}
+$$
+
+$\frac{I_{\min{x} > \theta }}{I_{\min{y} > \theta }}$ cancels out iff $\min x = \min y$ which is the minimal sufficient statistics.
+
+(c) The ratio is the following 
+$$
+ \frac{f(x|\theta)}{f(y|\theta)} = \frac{\exp(\bar{y} - \bar{x})}{\prod_i (1 + \exp(x_i - \theta))^2/(1+ \exp(y_i - \theta))^2 }
+$$
+The only way for the ratio to be constant of $\theta$ is to have the bottom term cancels out which means for each $i$, there is $j$ such that $1 + \exp(x_i - \theta) = 1 + \exp(y_j - \theta)$. This can only happen when $T$ is order statistics of $x$ and $T(x) = T(y)$. Therefore order statistics is the minimal sufficient statistics.
+
+(d) Same reasoning as (c),  order statistics is the minimal sufficient statistics.
+
+(e) The ratio is $$
+\frac{f(x|\theta)}{y|\theta} = \exp{- \sum_i |x_i - \theta| + \sum_i |y_i - \theta|}
+$$
+The expression in the exponent is the difference between the distance from $\theta$ to $x$ and that of $y$. Since $\theta$ can be any value, so the difference between $x$ and $y$ to $\theta$ cannot stay constant unless the data point in $x$ is the same as data point in $y$ which means ordered statistic is the minimal sufficient statistics.
+
+\section*{Exercise 6.12}
+(a.1)The distribution of $N$ is just $P(N=k) = p_k$ independent of $\theta$, therefore $N$ is ancillary statistics.
+
+(a.2)Suppose $(X(x), N(x)) = (X(y), N(y))$, then $x$ and $y$ have the same successes and same length, so the ratio $f(x|\theta) / f(y|\theta)$ is constant 1.
+
+Now Suppose $x=(x_1,\ldots, x_{n_1})$ and $y=(y_1,\ldots,y_{n_2})$ such that $f(k_1|
+\theta) / f(k_2|\theta)$ is constant  (Here $k_1 = X(x)$ and $k_2 = X(y)$ are successes).  Then $$
+  \frac{f(k_1, n_1|\theta)}{f(k_2, n_2|\theta)} = \frac{f(k_1|\theta, n_1)p(n_1)}{f(k_2 |\theta, n_2)p(n_2)} = \frac{{n_1 \choose k_1}}{{n_2 \choose k_2}} \theta^{k_1 - k_2} (1-\theta)^{n_1 -n_2 - (k_1-k_2)} \frac{p_{n_1}}{p_{n_2}} $$
+For the expression to be constant, we get $k_1=k_2$ and $n_1 -n_2 - (k_1 -k_2) = 0 \Rightarrow n_1 = n_2$ So there $(X,N)$ is minimal statistics.
+
+(b) Since the bias of the estimator $X/N$ is $\E [X/N - \theta]$. 
+$$ 
+\begin{aligned}
+  \mbox{Bias}(X/N, \theta) &= \E[X/N - \theta] \\
+        &= \E[X/N] - \theta \\
+        &= \sum_{X, N} \frac{X}{N}P(X, N|\theta)  - \theta \\ 
+        &= \sum_{n=1}^\infty \sum_{k=1}^n \frac{k}{n}P(X=k|N=n, \theta)P(N=n) - \theta \\
+        &= \sum_{n=1}^\infty \sum_{k=1}^n \frac{k}{n} {n \choose k} \theta^k (1- \theta)^{n-k} p_n - \theta \\
+        &= \sum_{n=1}^\infty  \frac{p_n}{n} \sum_{k=1}^n k {n \choose k} \theta^k (1- \theta)^{n-k} - \theta \\
+        &= \sum_{n=1}^\infty  \frac{p_n}{n} \E_{\Binomial(n, \theta)}[X]  - \theta \\
+        &=  \sum_{n=1}^\infty  \frac{p_n}{n} n\theta - \theta \\
+        &= \theta - \theta = 0 
+\end{aligned}
+$$
+
+\subsection*{Exercise 6.13}
+Since $f(x, y|\alpha) = \alpha (xy)^{\alpha - 1}e^{-x^{\alpha} - y^{\alpha}}$
+
+Let $$ \begin{cases}
+	s = \log x / \log y \\
+	t = \log x + \log y
+\end{cases}
+\Rightarrow
+ \begin{cases}
+	x = \exp(\frac{st}{s+1}) \\
+	y = \exp(\frac{t}{s+1})
+\end{cases}
+$$
+$$
+\Rightarrow
+\frac{\partial(x,y)}{\partial(s,t)} =
+\begin{vmatrix}
+	\frac{t}{(s+1)^2}e^{st/(s+1)}  &  \frac{s}{s+1}e^{st/(s+1)}  \\
+	-\frac{t}{(s+1)^2}e^{t/(s+1)} & \frac{1}{s+1}e^{t/(s+1)} \\
+\end{vmatrix}
+= \frac{t}{(s+1)^2}e^t
+$$
+Then by change of variables, $$
+f(s, t|\alpha) = f(x, y|\alpha)\left|\frac{\partial(x,y)}{\partial(s,t)}\right| = \alpha \frac{\alpha t}{(s+1)^2} e^{\alpha t} e^{-\exp(\frac{\alpha t s}{s+1}) - \exp(\frac{\alpha t} {s+1})} 
+$$
+
+We want to find $f(s|\alpha) = \int_t f(s, t|\alpha) dt$. If we let $u = \alpha t$, then $\alpha dt = du$. Therefore
+$$
+\begin{aligned}
+	f(s|\alpha) &= \int_t f(s, t|\alpha) dt \\
+	&= \int_t  \frac{\alpha t}{(s+1)^2} e^{\alpha t} \exp{-\exp(\frac{\alpha t s}{s+1}) - \exp(\frac{\alpha t} {s+1})} \alpha dt \\
+	&= \int_u  \frac{u}{(s+1)^2} e^{u} \exp{-\exp(\frac{u s}{s+1}) - \exp(\frac{u} {s+1})} du \\
+	&= f(s)
+\end{aligned}
+$$
+$\alpha$ has vanished from the final expression, therefore the distribution of $s=\log x / \log y$ which does not depend on $\alpha$ is ancillary.
 
 \end{document}
