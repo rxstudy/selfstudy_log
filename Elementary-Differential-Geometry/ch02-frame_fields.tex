@@ -160,5 +160,129 @@ $$
 $$
 The implies $K(t) = (f - \cos U)^2 + (g - \sin U)^2 = \mbox{ constant }$. Let $t=0$, $K(0) = (f(0) - \cos U_0)^2 + (g(0) - \sin U_0)^2 = 0$ since $f(0) = \cos U_0$ and $g(0) = \sin U_0$. Therefore $ (f - \cos U)^2 + (g - \sin U)^2  = 0$ for all $t$. Hence $f = \cos U$ and $g = \sin U$.\QED
 
+\section{Curves}
+\subsection*{2.1}
+(a)  $\alpha(t) = (2t, t^2, t^3/3)$, $v(t) = (2, 2t, t^2)$, $|v(t)|= \sqrt{4+4t^2+t^4} = 2+t^2$ and $a(t) = (0, 2, 2t)$.  Then $v(1) = (2,2,1)$, $|v(1)| = 3$ and $a(1) = (0, 2, 2)$.
+
+(b) $s(t) = \int^t_0 |v(u)| du =  \int^t_0 2 + u^2 du = 2t + t^3/3$
+
+(c) Since $|v(t)| = 2+t^2$ is even function, so $s=\int^{1}_{-1}2+u^2du = 2 \int^1_0 2+u^2du = 2 s(1) = 4 + 2/3$
+
+\subsection*{2.2}
+Suppose $|\alpha'(t)| = c$, Then $ \alpha' \cdot \alpha' = c^2$. Take derivative on both side, $ 2 \alpha' \cdot \alpha '' = 0$ so they are orthogonal. 
+
+Suppose $\alpha' \cdot \alpha '' = 0$,  then  $c = \int 0 = \int \alpha' \cdot \alpha '' = \frac{1}{2} \int \frac{d}{dt}(\alpha' \cdot \alpha' ) dt = ||\alpha||^2 /2$. \QED
+
+\subsection*{2.3}
+$a(t) = (\cosh t, \sinh t, t)$. Then $a'(t) = (\sinh t, \cosh t, 1)$. So $$s(t) = \int_0^{t}|a'(t)| dt = \int_0^t \sqrt{\sinh^2t + \cosh^2 t + 1} dt = \int_0^t \sqrt{2}\cosh t dt= \sqrt{2}\sinh t$$
+
+So a unit lenght parameterization is $t = \sinh^{-1} \left( \frac{s}{\sqrt{2}}\right)$. $$\beta(s) = a( \sinh^{-1} \left( \frac{s}{\sqrt{2}}\right)) = \left(1 + \frac{s^2}{2},  \frac{s}{\sqrt{2}},  \sinh^{-1} \left( \frac{s}{\sqrt{2}}\right) \right)$$
+
+\subsection*{2.4}
+$a(t) = (2t, t^2, \log t)$, take $t=1$ and $t=2$ the curve passes through both points. the length between the two point is $l = \int^2_1 |a'(t)|dt = \int^2_1 \sqrt{4 + 4t^2 + 1/t^2}dt =  \int^2_1 2t + 1/t dt = 3 + \log 2$
+
+\subsection*{2.5}
+Suppose $\alpha(s)$ with unit parameterization and $\beta(s_1) = \alpha(s)$ is another unit parameterization ($s(s_1)$). Then $\frac{d\beta}{ds_1} = \frac{d\alpha}{ds} \frac{ds}{ds_1}$. Take the norm on both side, by the unit length assumption, we get $\left| \frac{ds}{ds_1} \right| = 1$. Integrating both side gives us $s = s_1 + C$. 
+
+\subsection*{2.6}
+(a) $Y(t) = -\cos tU_1  -\sin tU_2 - t U_3$
+
+(b) $Y(t) = (-\sin t, \cos t, 1) - (-\cos t, -\sin t, 0) = (\cos t - \sin t)U_1 + (\cos t + \sin t)U_2 + U_3$
+
+(c) $$a'(t) \cross a''(t) = \begin{vmatrix}
+	U_1 & U_2 & U_3 \\
+	-\sin t & \cos t & 1 \\
+	-\cos t & -\sin t & 0 \\
+\end{vmatrix} = \sin t U_1 - \cos t U_2 + U_3$$
+
+Then $Y(t) = \frac{1}{\sqrt{2}}(\sin t U_1 - \cos t U_2 + U_3)$
+
+(d) $Y(t) = a(t+\pi) - a(t) = (-\cos t, -\sin t, t+\pi) - (\cos t, \sin t, t) = -2\cos t U_1 - 2 \sin t U_2 + \pi U_3 $
+
+\subsection*{2.7}
+After parameterization, $a(h(t))$ is now defined on $t\in [c, d]$. Then the new arc length is $$ s = \int_c^d \left|\frac{da}{dt}\right|dt = \int_c^d \left|\frac{da}{dh}\right| \left|\frac{dh}{dt}\right|dt $$ 
+Only when $\left|\frac{dh}{dt}\right|$ is monotone can we remove the absolute value. When we remove the absolute value, we get
+$$ s = \int_c^d \left|\frac{da}{dh}\right| \left|\frac{dh}{dt}\right|dt = \pm \int_c^d \left|\frac{da}{dh}\right| \frac{dh}{dt} dt =  \pm \int_{h(c)}^{h(d)} \left|\frac{da}{dh}\right| dh  = \pm \int_{a}^{b} \left|\frac{da}{dh}\right| dh  $$ 
+The last expression is exactly the definition of arc length of the original curve. \QED
+
+\subsection*{2.8}
+Let a reparameterization $h: I' \rightarrow I$ be $t = h(u)$ where $h$ is bijective. For each $u$, there exists $t$ such that $t = h(u)$. Then $Y(h(u)) = Y(h(h^{-1}t)) = Y(t)$ is a tangent vector at point $\alpha (h(u)) = \alpha (h(h^{-1}t)) = \alpha(t)$ by definition. \QED
+
+By chain rule, $$(Y(h(t)))' =  \frac{d}{dt}\sum_i Y_i(\alpha(h(t)))U_i = \sum_i h'(t) \frac{dY_i \circ \alpha}{dt} (h(t))U_i =  h'(t)Y'(h(t))$$
+
+\subsection*{2.9}
+The integral for $\alpha$ is $$s = \int^\pi_0 \sqrt{\cos^2 t + (2t\cos t - t^2 \sin t)^2 + 4 \cos^2(2t)} dt \approx 12.9153$$
+
+The integral for $\beta$ is $$s = \int^\pi_0 \sqrt{(2t\sin t + t^2\cos t)^2 + 4t^2 +(2t + 2t\cos t - t^2 \sin t)^2 }dt \approx 14.461$$
+
+$\beta$ is longer.
+
+\subsection*{2.10}
+If $\alpha'$ and $\beta'$ are parallel for all $t$, then they have the same tangent vector component. $\alpha_i'(t) = \beta_i'(t)$ for all $i$. Integrating both side gives $\alpha_i(t) = \beta_i(t) + c_i$. Let $p=(c_1, c_2,c_3)$, then $\alpha(t) = \beta(t) + p$.
+
+\subsection*{2.11}
+(a) $L(\sigma) = |\sigma'(t)| = |-p + q| = d(p, q)$
+
+(b) Perform Gram-schmidt on $u$, we get an orthornormal basis $\{u, u_2, \ldots u_n\}$. $\alpha'$ can be expressed in this new basis. $||\alpha'|| = ||\alpha_u' u + \sum_{i=2}^n \alpha_i' u_i|| =\sqrt{||\alpha_u||^2 + \sum_{i=2}^n||\alpha_i||^2 }\geq ||\alpha_u'|| = \alpha' \cdot u$.
+
+$$ \begin{aligned}
+L(\alpha) &= \int_a^b |\alpha'(t)|dt  \\
+	  &\geq \int_a^b \alpha'(t) \cdot u dt \\
+	  & = \int_a^b \alpha_u'(t) dt \\
+	  & = \alpha_u(b) - \alpha_u(a) \\
+	  & = |p - q|
+\end{aligned}$$
+The last equality holds because we use basis $\{u, u_2, \ldots u_n\}$. $p$ and $q$ both lies on the line $p + tu$ So $\alpha(a) = p = (\alpha_u(a), 0, 0)$ and $\alpha(b) = q = (\alpha_u(b), 0, 0)$.
+
+(c)*
+
+\section{The Frenet Formula}
+\subsection*{3.1}
+$\beta(s) = (\frac{4}{5}\cos s, 1- \sin s, -\frac{3}{5}\cos s)$
+
+$T(s) = \beta'(s) =(-\frac{4}{5}\sin s, -\cos s, \frac{3}{5}\sin s) $
+
+$T'(s) = (-\frac{4}{5}\cos s, \sin s, \frac{3}{5} \cos s)$
+
+$\kappa = |T'(s)| = 1$
+
+$N = T' / \kappa = T'$
+
+$B = T \cross N = (-3/5, -4/5)$. Base on Frenet Formula, $B' = 0 = -\tau N \Rightarrow \tau = 0$.
+
+$\beta$ is planar and has constant curvature. Therefore it is a circle. To find its center, note that $s$ has a period of $2\pi$ and since it is unit speed, we can find center as the midpoint of two points $s=0$ and $s=\pi$ on the circle. 
+
+ $\beta(0) = (4/5, 1, -3/5)$ and  $\beta(\pi) = (-4/5, 1, 3/5)$. So the center is $(0, 1, 0)$. It's radius is $1$.
+
+\subsection*{3.2}
+$\beta(s) = \left(\frac{(1+s)^{3/2}}{3}, \frac{(1-s)^{3/2}}{3}, \frac{s}{\sqrt{2}}  \right)$
+
+$T=\beta'(s) =(\sqrt{1+s}/2, -\sqrt{1 - s}/ 2, \frac{1}{\sqrt{2}})$
+
+$T' = (\frac{1}{4\sqrt{1+s}}, \frac{1}{4\sqrt{1-s}}, 0)$
+
+$\kappa = |T'| = \frac{1}{\sqrt{8(1+s)(1-s)}} $
+
+$N = T'/\kappa = \left(\sqrt{(1-s)/ 2}, \sqrt{(1+s)/2}, 0 \right)$
+
+$B = T \cross N = \left(-\sqrt{1+s}/2, \sqrt{1-s}/2, 1/\sqrt{2} \right)$
+
+\subsection*{3.3}
+Skip
+
+\subsection*{3.4}
+use $T, N, B$ are orthornmal basis which is equivalent to the $i, j, k$ canonical basis. The identities follow.
+
+\subsection*{3.5}
+$A = \tau T + \kappa B$
+
+Using Frenet's formula and identities from exercise 3.4, we have
+$$
+\begin{aligned}
+	&A \cross T = \tau T\cross T + \kappa B \cross T =  \kappa B \cross T = \kappa N = T' \\ 
+	&A \cross B = \tau T \cross B + \kappa B \cross B = -\tau N = B' \\
+	&A \cross N = \tau T \cross N + \kappa B \cross N = \tau B - \kappa T = N'
+\end{aligned}
+$$
 
 \end{document}
