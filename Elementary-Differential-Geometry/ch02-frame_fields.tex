@@ -206,9 +206,9 @@ $$ s = \int_c^d \left|\frac{da}{dh}\right| \left|\frac{dh}{dt}\right|dt = \pm \i
 The last expression is exactly the definition of arc length of the original curve. \QED
 
 \subsection*{2.8}
-Let a reparameterization $h: I' \rightarrow I$ be $t = h(u)$ where $h$ is bijective. For each $u$, there exists $t$ such that $t = h(u)$. Then $Y(h(u)) = Y(h(h^{-1}t)) = Y(t)$ is a tangent vector at point $\alpha (h(u)) = \alpha (h(h^{-1}t)) = \alpha(t)$ by definition. \QED
+Let $Y$ be a vector field on $\alpha$ and $h(t)$ be a parameterization of $\alpha$. For each $t$, there exists $Y(t)$ as a vector on $\alpha(t)$. For each $h$, there exists $t$ such that $h=h(t)$, $Y(h) = Y(h(t))$ is a tangent vector at $\alpha(h(t))$. Therefore $Y(h)$ is a tangent vector at $\alpha(h)$ hence a vector field on $\alpha(h)$. 
 
-By chain rule, $$(Y(h(t)))' =  \frac{d}{dt}\sum_i Y_i(\alpha(h(t)))U_i = \sum_i h'(t) \frac{dY_i \circ \alpha}{dt} (h(t))U_i =  h'(t)Y'(h(t))$$
+By chain rule, $$Y(h)' = \sum_i Y_i(h)'U_i = \sum_i Y'_i(h)h'U_i = h'Y'(h)$$  \QED
 
 \subsection*{2.9}
 The integral for $\alpha$ is $$s = \int^\pi_0 \sqrt{\cos^2 t + (2t\cos t - t^2 \sin t)^2 + 4 \cos^2(2t)} dt \approx 12.9153$$
@@ -284,5 +284,115 @@ $$
 	&A \cross N = \tau T \cross N + \kappa B \cross N = \tau B - \kappa T = N'
 \end{aligned}
 $$
+
+\subsection*{3.6}
+Suppose $\gamma(s) = c + r\cos \frac{s}{r} e_1 + r \sin \frac{s}{r} e_2$.
+
+We will find the torsion of $\gamma$. $$
+\begin{aligned}
+	&T_{\gamma} = \gamma'(s) = -\sin \frac{s}{r} e_1 + \cos \frac{s}{r}e_2 \\
+	&T'_{\gamma} = \gamma''(s) = -\frac{1}{r} \cos \frac{s}{r}e_1 - \frac{1}{r} \sin \frac{s}{r} e_2 \\
+	&\kappa = ||T'_{\gamma}|| = \frac{1}{r} \\
+	&N_{\gamma} = T'_{\gamma} / \kappa =r T'_{\gamma} \\
+	&B_{\gamma} = T_{\gamma} \cross N_{\gamma} = e_3 \\
+	&\tau N_{\gamma} = B'_{\gamma} = 0 \Rightarrow \tau = 0
+\end{aligned}$$
+$\tau = 0$ implies $\gamma$ is planar. 
+
+Let $\gamma(0) = \beta(0)$, $\gamma'(0) = \beta'(0)$ and $\gamma''(0) = \beta''(0)$. We have $$
+\begin{aligned}
+	&\beta(0) = c + re_1 \\
+	&T(0) = \beta'(0) = e_2  \\
+	&T'(0) = \beta''(0) = - \frac{1}{r} e_1 \\
+	& \kappa(0) = ||T'(0)|| = \frac{1}{r} \\
+	& N(0) = T'(0) / \kappa = - e_1 \\
+	& B(0) = T(0) \cross N(0) = e_2 \cross e_1 = -e_3
+\end{aligned}
+$$
+Since $\gamma$ is planar, we just need to show $B(0)$ is perpendicular to the difference between any two points on $\gamma$, so $$
+B(0)\cdot (\gamma(0) - \gamma(s)) = - e_3 \cdot (r- r\cos \frac{s}{r}e_1 - r\sin \frac{s}{r}e_2) = 0$$
+$\gamma$ lies on the osculating plane at $\beta(0)$.
+
+Now we can calculate $c$ and $r$ for the circle.
+
+$\beta''(0) \cdot \beta''(0) = \frac{1}{r^2} \Rightarrow r = \frac{1}{||\beta''(0)||}$
+
+$c = \beta(0) - r e_1 = \beta(0) + r^2 \beta''(0) =\beta(0) + \frac{\beta''(0)}{\beta''(0) \cdot \beta''(0)} $
+
+\subsection*{3.7}
+Let $\alpha(s)$ be unit speed curves and $h(s)$ be unit length parameterization and $\bar{\alpha} = \alpha(h)$.
+
+(a) Taking the derivative on both side wrt to $u$, $\bar{\alpha}' = \alpha'(h)h'$. Since both tangents are unit length, by taking the norm on both side we have $|h'| = 1 \Rightarrow h = \pm s + s_0$.
+
+(b)
+
+ $\bar{T} = \bar{\alpha}' = \alpha'(h)h' = \pm \alpha'(h)  = \pm T(h)$.
+
+$\bar{N} = \bar{T}' = \alpha''(h)h' h' + \alpha'(h)h'' = (\pm)^2 \alpha''(h) = N(h)$
+
+$\bar{\kappa} = |\bar{T}'| = |N'(h)| = \kappa(h)$
+
+$\bar{B} = \bar{T} \cross \bar {N} = \pm T(h) \cross N(h) = \pm B(h)$
+
+$ - \bar{\tau} \bar{N} = \bar{B}' = \pm B'(h) h' = B'(h) = -\tau(h)N(h) \Rightarrow \bar{\tau} = \tau(h) $
+
+\subsection*{3.8}
+(a) Since $T'=\tilde{\kappa} N$, take dot product of $N$ on both side gives $\tilde{\kappa} = T' \cdot N$.
+
+ From definition of $N$ being vertical to $T$, $N, T$ form a basis. So $N' = aN + bT$. Note that $N \cdot N = 1$. Take derivative on both sides gives $N'\cdot N = 0$. Therefore we know $a = 0$. So $T, N'$ are collinear, $N' = b T$.  Multiply by $T$ on both sdie, $b = T \cdot N'$.
+
+To find $b$, we take derivative of $T\cdot N = 0$, which gives $$ 
+\begin{aligned}
+	&T' \cdot N + N' \cdot T = 0 \\ 
+	\Rightarrow &(\tilde{\kappa}N) \cdot N + b = 0 \\
+	\Rightarrow &b= - \tilde{\kappa}
+\end{aligned}
+$$. 
+Therefore $N' = -\tilde{\kappa} T$
+
+(b) Suppose $T = (x', y')= (\cos \psi, \sin \psi)$,  $N=(-y', x') = (-\sin \psi, \cos \psi)$ and $N'=(-\psi' \cos \psi, -\psi' \sin \psi )$. From (a), $\tilde{\kappa} = -T\cdot N' = \psi'$
+
+(c) Regardless of the sign for $t/r$, both curves gives $T = (\sin\frac{t}{r}, \cos(\frac{t}{r}))$ due to chain rule. So $\tilde{\kappa} = \psi' = \frac{1}{r}$ in both cases independent of the orientation.
+
+(d) 
+
+\subsection*{3.9}
+Skipping the sketch.
+
+\subsection*{3.10}
+(a)
+$(\alpha-c)(\alpha - c) = r^2$, then $(\alpha-c)'(\alpha-c) = T \cdot (\alpha - c) = 0$. This implement $\alpha -c = aN + bB$. for some $a$ and $b$. Take derivative on both side. 
+
+$$\begin{aligned}
+	& \alpha' = a'N + a N' + b' B + b B' \\
+	\Rightarrow &T = a'N + a(-\kappa T + \tau B) + b' B - b \tau N \\
+	\Rightarrow &0 = (a' - b \tau )N + (-1 -a\kappa )T + (a\tau + b')B \\
+	\Rightarrow &\begin{cases}
+				a' - b \tau = 0 \\
+				-1 -a\kappa = 0 \\
+				a\tau + b' = 0
+	\end{cases}
+	\Rightarrow \begin{cases}
+		a = -\frac{1}{\kappa} = -\rho \\
+		b = \frac{a'}{\tau} = - \rho' \sigma
+	\end{cases}
+\end{aligned}$$
+Therefore $\alpha - c = -\rho N - \rho' \sigma B$
+
+(b) We need to find a fixed point $c$ such that $|\alpha - c| = r$. From (a), we have $\alpha - c = -\rho N - \rho' \sigma B$.  So $c= \alpha + \rho N + \rho'\sigma B$ is a candidate, we just need to show $c$ is constant, in other word $c' = 0$.
+
+Taking the derivative of $c$, we get $$
+  \begin{aligned}
+  	c' &= \alpha' + \rho'N + \rho N' + (\rho'\sigma)'B + \rho'\sigma B' \\
+  	&= T + \rho' N + \rho (-\kappa T + \tau B) + (\rho'\sigma)'B - \rho'\sigma \tau N \\
+  	&= T + \rho' N + \rho (- \frac{1}{\rho} T + \frac{1}{\sigma} B) + (\rho'\sigma)'B - \rho'\sigma \frac{1}{\sigma} N \\
+  	&= (\frac{\rho}{\sigma} + (\rho'\sigma)') B 
+  \end{aligned}
+$$
+Note that we assume $\rho^2 + (\rho'\sigma)^2 = r^2$. Taking the derivative on both side gives $(\rho'\sigma)' = -\frac{\rho}{\sigma}$. Substituting the expression for $c'$ above gives $c'=0$. Therefore $c$ is a fixed point.  \QED
+
+
+\subsection*{3.11}
+If $B= \bar{B}$, then $B' = \bar{B}' \Rightarrow \tau N = \bar{\tau} \bar{N}$. $N, \bar{N}$ are colinear. Since they are also unit vector, $|\tau| = |\bar{\tau}| \Rightarrow \tau = \pm \bar{\tau} \Rightarrow N = \pm \bar{N}$. Since $T \cross N = B$, by cross product property for basis, $T = N \cross B$. So we end up with $T = \pm \bar{T}$.  By 2.10, $\beta$ is either parallel to $\bar{beta}$ or $\bar{beta}$ with $-s$ parameterization.
 
 \end{document}
