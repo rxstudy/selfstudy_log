@@ -3,7 +3,7 @@
 \include{pythonlisting}
 \input{../definitions.tex}
 
-\title{Chapter 1: Calculus on Euclidean Space}
+\title{Chapter 2: Frame Fields}
 \author{Ran Xie}
 \begin{document}
 \maketitle
@@ -394,5 +394,203 @@ Note that we assume $\rho^2 + (\rho'\sigma)^2 = r^2$. Taking the derivative on b
 
 \subsection*{3.11}
 If $B= \bar{B}$, then $B' = \bar{B}' \Rightarrow \tau N = \bar{\tau} \bar{N}$. $N, \bar{N}$ are colinear. Since they are also unit vector, $|\tau| = |\bar{\tau}| \Rightarrow \tau = \pm \bar{\tau} \Rightarrow N = \pm \bar{N}$. Since $T \cross N = B$, by cross product property for basis, $T = N \cross B$. So we end up with $T = \pm \bar{T}$.  By 2.10, $\beta$ is either parallel to $\bar{beta}$ or $\bar{beta}$ with $-s$ parameterization.
+
+\section{Arbitrary speed curves}
+\subsection*{4.1}
+(a)
+$$ \begin{aligned}
+	&\alpha = (2t, t^2, t^3 / 3) \\
+	&\alpha' = (2, 2t, t^2) \\
+	& |\alpha'| = \sqrt{4+4t^2+t^4} = 2+t^2 \\
+	&\alpha '' = (0, 2, 2t) \\
+	&\alpha''' = (0, 0, 2) \\
+	&\alpha' \cross \alpha'' = (2t^2, -4t, 4) \\
+	&|\alpha' \cross \alpha''| = \sqrt{4t^4 + 16t^2 + 16} = 2t^2 + 4 \\
+	& T = \frac{\alpha'}{|\alpha'|} = \frac{1}{2+t^2} \left(2, 2t, t^2\right) \\
+	& B = \frac{\alpha' \cross \alpha''}{|\alpha' \cross \alpha''|} = \frac{1}{ 2(t^2 + 2) }\left(2t^2, -4t, 4\right) \\
+	& N = B\cross T= \frac{1}{2(t^2+2)}\left(-4t, -2(t^2-2), 4t \right) \\
+	& \kappa = \frac{|\alpha' \cross \alpha''|}{|\alpha'|^3} = \frac{2t^2+4}{(2+t^2)^3} = \frac{2}{(t^2+ 2)^2} \\
+	& \tau = \frac{(\alpha' \cross \alpha'')\cdot \alpha'''}{|\alpha' \cross \alpha''|^2} = \frac{2}{(t^2+2)^2}
+\end{aligned}$$
+
+(b) $$\begin{aligned}
+	&T(2) = \frac{1}{6}(2, 4, 4) = \frac{1}{3}(1, 2, 2) \\
+	&N(2) = \frac{1}{12}(-8, -4, 8) = \frac{1}{3}(-2, -1, 2) \\
+	&B(2) = \frac{1}{12}(8, -8, 4) = \frac{1}{3}(2, -2, 1)
+\end{aligned}$$
+
+(c) As $t \Rightarrow \infty$, $$ \begin{aligned}
+	& T_{\infty} = (0, 0, 1) \\
+	& B_{\infty} = (1, 0, 0) \\
+	& N_{\infty} = (0, -1, 0) \\
+\end{aligned}$$
+
+\subsection*{4.2}
+$$\begin{aligned}
+	&\alpha(t) = (\cosh t, \sinh t, t) \\
+	&\alpha'(t) = (\sinh t, \cosh t, 1) \\
+	&\alpha''(t) = (\cosh t, \sinh t, 0) \\
+	&\alpha'''(t) = (\sinh t, \cosh t, 0) \\
+	&|\alpha'(t)| = \sqrt{\cosh^2 t + \sinh^2 + 1} = \sqrt{2}\cosh t \\
+	&\alpha' \cross \alpha'' = (-\sinh t , \cosh t, -1) \\
+	& s(t) = \int_{u=0}^t |\alpha'(u)|du = \sqrt{2} \sinh(u) |^{t}_{0} = \sqrt{2}\sinh(t) \\
+	&\kappa = \frac{|\alpha' \cross \alpha''|}{|\alpha'(t)|^3} = \frac{1}{2 \cosh^2 t} = \frac{1}{2 + s^2} \\
+	&\tau = \frac{1}{2 \cosh^2 t} = \frac{1}{2 + s^2}
+\end{aligned}
+$$
+So $\kappa(0) = \tau(0) = 1/2$.
+
+\subsection*{4.3}
+(a) $$
+\begin{aligned}
+	&\alpha = (t\cos t, t\sin t, t) \\
+	&\alpha' = (\cos t - t \sin t, \sin t + t\cos t , 1) \\
+	&\alpha'' = (-2\sin t - t\cos t, 2\cos t - t \sin t , 0) \\
+	&\alpha''' = (-3\cos t + t\sin t, -3\sin t - t\cos t, 0) \\
+	&\alpha'''(0) = (-3, 0, 0) \\
+	&\alpha'(0) \cross \alpha''(0) = (1, 0, 1) \cross (0, 2, 0) = (-2, 0, 2) \\
+	&T(0) = \frac{1}{\sqrt{2}} (1, 0, 1) \\
+	&B(0) = \frac{ (-2, 0, 2)} {| (-2, 0, 2)|} = \frac{1}{\sqrt{2}} (-1, 0, 1) \\
+	&N(0) = B(0) \cross T(0) = (0, 1, 0) \\
+	&\kappa(0) = \frac{|(-2, 0, 2)|}{|(1, 0, 1)|^3} = 1 \\
+	&\tau(0) =  (-2, 0, 2) \cdot (-3 , 0, 0) / | (-2, 0, 2)|^2  = \frac{3}{4}
+\end{aligned}
+$$
+
+\subsection*{4.4}
+Since $\alpha' = v T$,  then $\alpha'' = v'T + vT'$. By Frenet's formula, we have 
+$$\begin{aligned}
+&\Leftrightarrow T' = \kappa v N \\
+  &\Leftrightarrow \left(\frac{\alpha'}{v}\right)' = \kappa v N \\
+  &\Leftrightarrow \alpha''v - \alpha' v' = \kappa v^3 N \\
+  &\Leftrightarrow \frac{\alpha''}{v}\cdot \left(\alpha''v - \alpha' v' \right) =  \frac{\alpha''}{v}\cdot (\kappa v^3 N) \\
+  &\Leftrightarrow |\alpha''|^2 - \alpha'' \cdot \alpha' \frac{v'}{v} = \kappa v^2 (\alpha'' \cdot N)  \\
+  &\Leftrightarrow |\alpha''|^2 - (v'T + vT')\cdot T v' = \kappa v^2 ((v'T + vT')\cdot N) \\
+  &\Leftrightarrow |\alpha''|^2 - (v')^2 = \kappa v^3 (T'\cdot N) \\
+  &\Leftrightarrow |\alpha''|^2 - (v')^2 = \kappa v^3 (\kappa v N \cdot N) \\
+  &\Leftrightarrow |\alpha''|^2 - (v')^2 = \kappa^2 v^4 \\
+\end{aligned}$$
+\QED
+
+\subsection*{4.5}
+Given $|\alpha'| = c$ where $c$ is constant. We have  $T = \frac{\alpha'}{c}$ obviously. 
+
+By Frenet's equation, $T'= \frac{\alpha''}{c} = \kappa c N $. Given $\kappa > 0$. $N$ has the same direction of $\alpha''$ 
+therefore $N = \frac{\alpha''}{|\alpha''|}$.  And we can find $\kappa = \frac{|\alpha''|}{c^2}$ by substituting $N$ back in.
+
+$B = T \cross N = \alpha' \cross \alpha'' / (c |\alpha'|)$ and $\tau$ follows.
+
+\subsection*{4.6}
+By definition of cylindrical helix, $u$ is a unit fixed vector such that $T\cdot u = \cos \theta$ for some constant $\theta$. If we take derivative on both side, we get
+ $$\begin{aligned}
+ 	&\Leftrightarrow T'\cdot u + T \cdot u' = 0 \\
+ 	&\Leftrightarrow T'\cdot u = 0 \\
+ 	&\Leftrightarrow \kappa v N \cdot u = 0 \\
+ 	&\Leftrightarrow N \cdot u = 0 \ \ \mbox{ Regularity} \\
+ 	&\Leftrightarrow N \perp u  \\
+ 	&\Leftrightarrow u = a T + b B
+ \end{aligned}$$
+We can take derivative of $N \cdot u = 0$ and we get $$
+ \begin{aligned}
+ 	N' \cdot u = (-\kappa vT + \tau v B)\cdot(aT +b B) = -\kappa a +  \tau b = 0 \Rightarrow b = \frac{\kappa a}{\tau}
+ \end{aligned}
+$$
+On the other hand, $T \cdot u = \cos \theta$ implies $a = \cos \theta$. So $b = \frac{\kappa \cos \theta}{\tau}$. The fact that $u$ is unit vector gives an expression of $\theta$. $$ a^2 + b^2 = \cos^2 \theta + \frac{\kappa^2 \cos^2 \theta}{\tau^2} = 1 \Rightarrow \cos \theta = \frac{\tau}{\sqrt{\kappa^2 + \tau^2}}$$ Therefore 
+$$u = aT + bB = \frac{\tau}{\sqrt{\kappa^2 + \tau^2}} T + \frac{\kappa}{\sqrt{\kappa^2 + \tau^2}} B$$
+
+\section{Covariant Derivative}
+\subsection*{5.1}
+$p + tv = (1, 3, -1) + t(1, -1, 2) = (1 + t, 3 -t, -1 + 2t)$
+
+(a) $W = x^2 U_1 + yU_2$.
+
+$W(p+tv)'(0) = ((1+t)^2 U_1 + (3-t)U_2)'(0) = (2(1+t)U_1 - U_2)(0) = 2U_1 - U_2 $ 
+
+(b) $W = xU_1 + x^2U_2 - z^2 U_3$
+
+$W(p+tv)'(0) = ((1+t)U_1 + (1+t)^2U_2 - (2t-1)^2U_3)'(0) = U_1 + 2U_2 + 4U_3$
+
+\subsection*{5.2}
+(a) 
+
+$$
+\begin{aligned}
+	\grad_V W &= \sum_i V[W_i]U_i \\ 
+	&= \sum_i \sum_j v_j \frac{\partial W_i}{\partial x_j}U_i \\
+	&= \left(\sum_i v_i \partial_i W_1\right) U_1  +  \left(\sum_i v_i \partial_i W_2\right) U_2  +  \left(\sum_i v_i \partial_i W_3\right) U_3 \\ 
+	&= y\sin x U_1  - y\cos x U_2
+\end{aligned} $$
+
+(b) $$\begin{aligned}
+	\grad_V V  = -y U_3
+\end{aligned}$$
+
+(c) $$\begin{aligned}
+	\grad_V (z^2 W) &= V[z^2]W + z^2 \grad_V W \\
+	 &= 2xzW + z^2(y\sin x U_1  - y\cos x U_2) \\
+	 &= (2xz\cos x + z^2 y\sin x)U_1 + (\sin x - z^2y\cos x)U_2\\
+\end{aligned} $$
+
+(d) $$
+	\grad_W(V) = W_2 \partial_2 (-y) U_1 + W_1 \partial_1(x) U_3 = -\sin x U_1 + \cos x U_3$$
+
+(e) $$\begin{aligned}
+	 \grad_V(\grad_V W) &= \grad_V(y\sin x U_1  - y\cos x U_2) \\
+	 &=  -y^2 \cos x U_1   -y^2\sin xU_2
+\end{aligned}$$	
+
+(f) $$\begin{aligned}
+	\grad_V(xV - zW) &= \grad_V(xV) - \grad_V(zW) \\
+	&= V[x]V + x\grad_V V - V[z]W - z \grad_V W \\
+	&= -yV + x \grad_V V - xW - z \grad_V W \\
+	&= (y^2 - x\cos x - zy\sin x)U_1 \\
+	&+ (- x\sin x - zy\cos x)U_2 \\
+	&+ (-2xy)U_3
+\end{aligned}$$
+	
+\subsection*{5.3}
+If $|W|= \sum_i W_i^2 = c$, then $ \sum_i W_i \partial_jW_i = 0$ for any $j$.
+
+$\grad_V W \cdot W = \sum_i \sum_j v_j  W_i \partial_j W_i = \sum_j v_j \sum_i  W_i \partial_j W_i = \sum_j v_j 0 = 0 $	
+\QED
+
+\subsection*{5.4}
+$\grad_V X = \sum_i \sum_j V_j \partial_j X_i U_i  = \sum_i \sum_j V_j \delta_{ij} U_i = \sum_i V_i U_i = V$
+
+\subsection*{5.5}
+$$\grad_{\alpha'}W = \sum_i \sum_j \frac{d \alpha_j}{dt} \frac{\partial W_i(\alpha(t))}{\partial x_j} U_i = \sum_i \sum_j \frac{d \alpha_j}{dt} \frac{\partial x_j}{\partial \alpha_j } \frac{\partial W_i(\alpha(t))}{\partial x_j} U_i = \sum_i \frac{dW_i(\alpha(t))}{dt}U_i  = (W_\alpha)'(t)$$
+
+\section{Frame Fields}
+
+\subsection*{6.1}
+By definition of cross product, $E_3 \perp E_2, E_3 \perp E_2$. Since $V$ and $W$ are linearly independent, $W$ is linearly independent with $E_1$ as well, $W = aE_1 + bE_1^{\perp}$ where $E_1^{\perp}$ is not 0 and $a = W\cdot E_1, b= W \cdot E_1^{\perp}$. From the definition of $\tilde{W}$, we see $\tilde{W} = E_1^{\perp} \perp E_1$. So $E_2 \perp E_1$.
+
+\subsection*{6.2}
+To express in terms of cylindrical frame, we just need to calculate $M^{-1}v$
+where 
+$$ M^{-1} =  \begin{pmatrix}
+	\cos\theta &  -\sin \theta & 0\\
+	\sin \theta & \cos \theta & 0\\ 
+	0 & 0 & 1
+\end{pmatrix}^{-1}$$
+
+For spherical frame, 
+$$
+ M^{-1} = \begin{pmatrix}
+ 	\cos \phi \cos \theta &  -\sin \theta & -\sin\phi \cos \theta \\
+ 	\cos \phi \sin \theta & \cos \theta & -\sin\phi \sin \theta \\
+ 	\sin \phi & 0 & \cos \phi
+ \end{pmatrix}^{-1}
+$$
+
+
+(a) $$ v = (1, 0, 0)^T$$
+
+(b) $$ v = (\cos \theta, \sin \theta, 1)^T $$
+
+(c) $$ v = (x, y, z)^T$$
+
+\subsection*{6.3}
+Since $ E_1 = (\cos x, \sin x \cos z, \sin x \sin z)$, this is just a variant of spherical frame. Let $E_2 = (-\sin x, \cos x \cos z, \cos x \sin z)$. Then $E_2 \cdot E_1 = -\sin x \cos x + \sin x \cos x(\cos^2 z + \sin^2 z) = 0$, $|E_2| = 1$. $E_3 = E_1 \cross E_2 = (0, -\sin z, \cos z)$ \QED
 
 \end{document}
