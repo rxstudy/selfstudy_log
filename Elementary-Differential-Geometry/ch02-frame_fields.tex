@@ -593,4 +593,222 @@ $$
 \subsection*{6.3}
 Since $ E_1 = (\cos x, \sin x \cos z, \sin x \sin z)$, this is just a variant of spherical frame. Let $E_2 = (-\sin x, \cos x \cos z, \cos x \sin z)$. Then $E_2 \cdot E_1 = -\sin x \cos x + \sin x \cos x(\cos^2 z + \sin^2 z) = 0$, $|E_2| = 1$. $E_3 = E_1 \cross E_2 = (0, -\sin z, \cos z)$ \QED
 
+
+\section{Connection Forms}
+
+\subsection*{7.1}
+Take the inner product and norm we can easily show $E_i \cdot E_j = \delta_{ij}$ and $|E_i| = 1$. For connection form $\omega$. The attitude matrix 
+$$ A = \begin{pmatrix}
+	\frac{1}{\sqrt{2}}\sin f & 	\frac{1}{\sqrt{2}} & -	\frac{1}{\sqrt{2}}\cos f \\
+		\frac{1}{\sqrt{2}}\sin f & - \frac{1}{\sqrt{2}} & -	\frac{1}{\sqrt{2}}\cos f \\
+		\cos f & 0 & \sin f
+\end{pmatrix}$$
+Then $$dA = \begin{pmatrix}
+		\frac{1}{\sqrt{2}} \cos f df  & 0 & 	\frac{1}{\sqrt{2}} \sin f df \\
+			\frac{1}{\sqrt{2}} \cos f df & 0  & 	\frac{1}{\sqrt{2}} \sin f df \\
+			-\sin f df & 0 & \cos f df
+\end{pmatrix} $$
+Therefore 
+$$\omega = dA A^T = \begin{pmatrix}
+	0 & 0 & 	\frac{1}{\sqrt{2}} df \\
+	0 & 0 & 	\frac{1}{\sqrt{2}} df \\
+	- 	\frac{1}{\sqrt{2}} df & - 	\frac{1}{\sqrt{2}} df & 0 \\
+\end{pmatrix}$$
+
+\subsection*{7.2}
+$a = I$ where $I$ is the identity matrix, then $dA = 0$. So $\omega = dA A^T = 0$.
+
+\subsection*{7.3}
+Taking the inner product between row vectors, we find $R_i \cdot R_j = \delta_{ij}$ and $|R_i| = 1$. So the frame field vectors are each row of this matrix. So the matrix is an attitude matrix. 
+
+$$ dA = \begin{pmatrix}
+	-2\cos f \sin f df &  (-\sin^2 f + \cos^2 f ) df  & \cos f df \\
+	 (-\sin^2 f + \cos^2 f ) df  & 2\sin f \cos f df & \sin f df \\
+	 -\cos f df & -\sin f df & 0 \\
+\end{pmatrix} $$
+
+and $$
+A^T = 
+\begin{pmatrix}
+	\cos^2f & \sin f \cos f & -\sin f \\
+	\sin f \cos f & \sin^2f & \cos f \\
+	\sin f & - \cos f & 0
+\end{pmatrix}
+$$
+
+Therefore $$\omega = dA A^T = \begin{pmatrix}
+	0  & -df & \cos f df  \\
+	df & 0   &   \sin f df\\
+	-\cos f df & -\sin f df & 0  
+\end{pmatrix} $$
+
+\subsection*{7.4}
+$$\begin{aligned} \omega = &dA A^T = \begin{pmatrix}
+	-\sin\phi \cos\theta d\phi -\cos\phi\sin\theta d\theta & -\sin\phi\sin\theta d\phi + \cos\phi\cos\theta d\theta & \cos\phi d\phi \\ 
+	-\cos\theta d\theta & -\sin\theta d\theta & 0 \\
+	-\cos\phi\cos\theta d\phi + \sin\phi\sin\theta d\theta & -\cos\phi\sin\theta d\phi - \sin\phi\cos\theta d\theta & -\sin\phi d\phi \\ 
+\end{pmatrix} \\
+&\begin{pmatrix}
+	\cos\phi \cos \theta & -\sin \theta & -\sin \phi \cos \theta \\
+	\cos\phi\sin\theta & \cos\theta &-\sin\phi \sin\theta \\
+	\sin\phi & 0 & \cos\phi
+\end{pmatrix} 
+\end{aligned}
+$$
+
+$
+\omega_{ii} =0
+$ By skew symmetry 
+
+
+$\omega_{12} = \sin\phi \sin\theta\cos\theta d\phi + \cos\phi\sin^2\theta d\theta - \sin\phi \sin\theta\cos\theta d\phi + \cos\phi\cos^2\theta d\theta = \cos\phi d\theta 
+$
+
+$
+\omega_{13} = \sin^2\phi \cos^2\theta d\phi + \sin\phi\cos\phi\sin\theta\cos\theta d\theta +\sin^2\phi \sin^2\theta d\phi - \sin\phi\cos\phi\sin\theta\cos\theta d\theta + \cos^2\phi d\phi = d\phi
+$
+
+$
+ \omega_{23} = \sin\phi \cos^2\theta d\theta + \sin\phi\sin^2\theta d\theta = \sin\phi d\theta
+$
+
+\subsection*{7.5}
+$$\begin{aligned}
+	\grad_V W &= \grad_V \sum_i f_i E_i \\
+	&= \sum_i \grad_V f_i E_i \\
+	&= \sum_i ( V[f_i]E_i + f_i \grad_V E_i ) \\
+	&= \sum_i ( V[f_i]E_i + f_i  \sum_j \omega_{ij}(V) E_j ) \\
+	&= \sum_j V[f_j]E_j +  \sum_j \sum_i f_i \omega_{ij}(V) E_j  \\
+	&= \sum_j \{V[f_j] + \sum_i f_i \omega_{ij}(V) \}  E_j
+\end{aligned}
+$$
+
+\subsection*{7.6}
+ $$\begin{aligned}
+ 	\grad_V(r\cos\theta E_1 + r\sin\theta E_2) &= V[r\cos\theta]E_1 + r\cos\theta \grad_V E_1 + V[r\sin\theta]E_3 + r \sin\theta \grad_V E_3 \\ &= d(r\cos\theta)[V]E_1 + d(r\sin\theta)[V]E_3  + r\cos\theta \grad_V E_1 + r \sin\theta \grad_V E_3 \\&= (\cos\theta dr - r\sin\theta d\theta)[V]E_1 + (\sin\theta dr + r\cos\theta d\theta)[V]E_3  \\ &+ r\cos\theta \grad_V E_1 + r \sin\theta \grad_V E_3 \\
+ 	&= r(\cos\theta - \sin\theta)E_1 + r\cos\theta E_2 + r(\sin\theta  + \cos\theta)E_3 
+ \end{aligned}$$
+
+\subsection*{7.8}
+From 5.5, the definition of covariant derivative can be replaced by any curve with velocity $v$ at point $p$.
+
+ Then at each point on $\beta(s)$, we reparameterize $\beta$ as $\bar{\beta}(\bar{s}) = \beta(s + \bar{s})$, Then $\grad_T T = T(\bar{\beta}(\bar{s}))'(0)$ where $\bar{\beta}'(0) = T$. Then
+ $$ \grad_T T = \frac{dT(\bar{\beta}(\bar{s}))}{d\bar{s}}(0) = \frac{dT(\beta(s))}{ds} = T' $$
+ 
+ Therefore $\omega_{12} (T) = \grad_T T \cdot N = T' \cdot N = \kappa$. We also have $\omega_{13}(T) = \grad_T T \cdot B = T' \cdot B = 0$. So we have the first Frenet's equation.
+ 
+ Using the same argument for $\grad_TT$, $\omega_{23}(T) = \grad_T N \cdot B = N' \cdot B = \tau$. 
+
+
+\subsection*{8.1}
+$$\begin{aligned}
+	d\phi &= d(\sum_i f_i \theta_i) \\
+	      &= \sum_i d(f_i \theta_i) \\
+	      &= \sum_i [df_i \wedge \theta_i + f_i d\theta_i] \\
+	      &= \sum_i \{df_i \wedge \theta_i + f_i \sum_j \omega_{ij}\wedge \theta_j \} \\
+	      &= \sum_j df_j \wedge \theta_j + \sum_j \sum_i f_i  \omega_{ij}\wedge \theta_j  \\
+	      &= \sum_j \{df_j + \sum_i f_i  \omega_{ij} \} \wedge \theta_j \\
+\end{aligned}
+$$
+
+\subsection*{8.2}
+See example 8.4
+
+\subsection*{8.3}
+For cylindrical coordinate, 
+$$\begin{cases}
+	x = r \cos \theta \\
+	y = r \sin\theta \\
+	z = z
+\end{cases}
+\begin{cases}
+	dx = \cos\theta dr - r\sin\theta d\theta \\
+	dy = \sin\theta dr + r\cos\theta d\theta \\
+	dz = dz
+\end{cases}
+\begin{cases}
+	E_1 = \cos\theta U_1 + \sin\theta U_2 \\
+	E_2 = -\sin\theta U_1 + \cos\theta U_2 \\
+	E_3 = U_3 
+\end{cases}
+$$
+
+(a)
+
+We have $\omega_{12} = d\theta$.  Then $$
+\begin{cases}
+	\theta_1 = \cos\theta dx + \sin\theta dy = \cos^2\theta dr-r\sin\theta\cos\theta d\theta + \sin^2\theta dr + r\sin\theta\cos\theta d\theta  = dr  \\
+	\theta_2 = -\sin\theta dx + \cos\theta dy = -\sin\theta\cos\theta dr +r\sin^2\theta d\theta +\sin\theta\cos\theta dr + r\cos^2\theta d\theta = rd\theta \\
+	\theta_3 = dz 
+\end{cases}
+$$
+
+(b)
+$$
+\begin{cases}
+	E_1[r] = dr(E_1) = \theta_1(E_1) = 1 \\
+	E_2[\theta] = d\theta(E_2) = \frac{1}{r}\theta_2(E_2) = \frac{1}{r} \\
+	E_3[z] = dz(E_3) = \theta_3(E_3) = 1  
+\end{cases}
+$$
+The rest are 0 due to orthogonality of the dual. 
+
+(c)
+$$
+\begin{cases}
+	E_1[f] = df(E_1) = (\partial_r f dr + \partial_\theta f d\theta + \partial_z f dz)(E_1) = \partial_r f\\
+	E_2[f] = \partial_\theta f d\theta[E_2] = \frac{1}{r}\partial_\theta f \\
+	E_3[f] = \partial_z f dz(E_3) = \partial_z f
+\end{cases}
+$$
+
+\subsection*{8.4}
+ Note that the frame is formed from the transformation
+$$ \begin{cases}
+	x = \cos\psi \\
+	y= \sin \psi  \\
+\end{cases}
+\Rightarrow
+\begin{cases}
+	dx = -\sin\psi d\psi \\
+	dy = \cos\psi d\psi \\
+\end{cases}
+$$
+
+$$
+\begin{cases}
+  E_1 = \cos\psi U_1 + \sin\psi U_2 \\
+  E_2 = -\sin\psi U_1 + \cos\psi U_2 \\
+\end{cases}
+\begin{cases}
+	\theta_1 = \cos\psi dx + \sin\psi dy \\
+	\theta_2 = -\sin\psi dx + \cos\psi dy \\
+\end{cases}$$
+
+The connection form $$
+ \omega = dA A^T = \begin{pmatrix}
+ 	-\sin\psi d\psi& \cos\psi d\psi \\
+ 	-\cos\psi d\psi & -\sin\psi d\psi \\
+ \end{pmatrix}
+\begin{pmatrix}
+	\cos\psi & -\sin\psi \\
+	\sin\psi & \cos\psi 
+\end{pmatrix}
+= 
+\begin{pmatrix}
+	0 &  d\psi \\
+	-d\psi & 0  \\
+\end{pmatrix}
+$$
+
+$$\begin{cases}
+	d\theta_1 = \omega_{12}\wedge \theta_2 = d\psi \wedge (-\sin\psi dx + \cos\psi dy) \\
+	d\theta_2 = \omega_{21}\wedge \theta_1 = -d\psi \wedge(\cos\psi dx + \sin\psi dy) \\
+	d\omega_{12} = dd\psi = 0
+\end{cases}$$
+
+
 \end{document}
+
+
+

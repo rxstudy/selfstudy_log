@@ -1,0 +1,21 @@
+\documentclass[12pt]{article}
+
+\include{pythonlisting}
+\input{../definitions.tex}
+
+\title{Chapter 3: Euclidean Geometry}
+\author{Ran Xie}
+\begin{document}
+	\maketitle
+
+\section{Isometries of $\real^3$}	
+\subsection{}
+Consider $$ \begin{aligned}
+	|C(p+a) - C(p) - C(a)|^2 &= C(p+a)\cdot C(p+a) + C(p)\cdot C(p) + C(a) \cdot C(a) \\&\ \ \   - 2C(p+a)\cdot C(p) - 2C(p+a)\cdot C(a) + 2C(p)\cdot C(a)  \\
+	          &= (p+a)^2 + p^2 + a^2 - 2(p+a)p - 2(p+a)a + 2pa \\
+	          &= p^2 + 2pa + a^2 + p^2 + a^2 - 2p^2 - 2pa - 2pa - 2a^2 + 2pa \\
+	          &= 0
+\end{aligned}$$
+Therefore $C(p + a) = C(p) + C(a)$. It follows that $CT_a(p) = C(p + a) = C(p) + C(a) = T_{C(a)}C(p)$ \QED
+
+\end{document}
