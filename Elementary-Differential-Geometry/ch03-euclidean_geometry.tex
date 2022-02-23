@@ -9,7 +9,7 @@
 	\maketitle
 
 \section{Isometries of $\real^3$}	
-\subsection{}
+\subsection*{1}
 Consider $$ \begin{aligned}
 	|C(p+a) - C(p) - C(a)|^2 &= C(p+a)\cdot C(p+a) + C(p)\cdot C(p) + C(a) \cdot C(a) \\&\ \ \   - 2C(p+a)\cdot C(p) - 2C(p+a)\cdot C(a) + 2C(p)\cdot C(a)  \\
 	          &= (p+a)^2 + p^2 + a^2 - 2(p+a)p - 2(p+a)a + 2pa \\
@@ -18,4 +18,77 @@ Consider $$ \begin{aligned}
 \end{aligned}$$
 Therefore $C(p + a) = C(p) + C(a)$. It follows that $CT_a(p) = C(p + a) = C(p) + C(a) = T_{C(a)}C(p)$ \QED
 
+
+\subsection*{2}
+From the result in problem 1.1
+$FG = T_aA T_b B = T_aT_{A(b)}AB$ and $GF=T_bBT_aA = T_bT_{B(a)}BA$. The transnational parts are $T_{a+A(b)}$ and $T_{b+B(a)}$ respectively.
+
+\subsection*{3}
+Suppose $Cp = Cq$,  Then $$
+\begin{aligned}
+	&\Leftrightarrow \langle Cp - Cq, Cp - Cq\rangle = 0 \\
+	&\Leftrightarrow CpCp - 2CpCq - CqCq = 0 \\
+	&\Leftrightarrow p^2 - 2pq - q^2 = 0 \\
+	&\Leftrightarrow p = q
+\end{aligned}$$ 
+$C$ is 1-1. Therefore there exists inverse $C^{-1}$. To show $C^{-1}$ is orthogonal transformation. Suppose $p, q$ such that $C^{-1}p = \tilde{p}$ and $C^{-1}q = \tilde{q}$
+$$ \langle C^{-1}p, C^{-1}q\rangle =  \langle\tilde{p}, \tilde{q}\rangle = \langle C\tilde{p}, C\tilde{q}\rangle = \langle p, q\rangle $$
+So $C^{-1}$ is orthogonal transformation. We can define the inverse of $F$. $F^{-1} = (T_aC)^{-1}  = C^{-1}T_{-a}$. $F^{-1}$ is isometry. 
+
+\subsection*{4}
+$$
+ C = \frac{1}{3} \begin{pmatrix}
+ 	-2 & 2 & -1 \\
+ 	2 & 1 & -2 \\
+ 	1 & 2 & 2 \\
+ \end{pmatrix}
+$$
+It's trivial to check orthogonality after factoring out 1/3.
+
+$Cp = \frac{1}{3}(2, 19, -7)$ and $Cq=\frac{1}{3}(-5, -4, 7)$. Then $\langle Cp, Cq \rangle = \frac{1}{9} (-135) = -15 = \langle p, q \rangle$.
+
+\subsection*{5}
+(a) $q = F(p) = T_a C(p) = (-3\sqrt{2} + 1, 1, 5\sqrt{2} - 1)^T$
+
+(b) $q = F^{-1}(p) = (T_aC)^{-1}(p) = C^{-1}T_{-a}(p) = C^T T_{-a}(p) = (5\sqrt{2}, -5, 4\sqrt{2})^T $
+
+(c) $q = (CT_a)(p) = (5\sqrt{2}, 1, 2\sqrt{2})^T$
+
+\subsection*{6}
+(a) $C= \mbox{diag}(-1, -1, -1)$ and $a = (0,0,0)$.
+
+(b) Not isometry. If $p\perp a$, then $d(F(p), 0) = d(0,0) = 0 \neq d(p, 0)$. 
+
+(c) $C = I$, $a = (-1, -2, -3)$.
+
+(d) $C = \mbox{diag}(1, 1, 0)$, $a=(0, 0, 1)$.
+
+\subsection*{7}
+For $F_1, F_2 \in \mbox{Iso}(3)$, $F_1F_2 = T_aC_1T_bC_2 = T_aT_{C_1(b)}C_1C_2 \in \mbox{Iso}(3)$. Associative is trivial since they are functions. Inverse exists for every $F$ as proven in problem 3.
+
+\subsection*{8}
+Only Identity is in both subgroups.
+
+\subsection*{9}
+(a) For an orthgonal matrix $\begin{pmatrix}
+	a & b \\ c& d \\
+\end{pmatrix}$, it satisfies 
+$$\begin{cases}
+	ac + bd = 0 \\
+	a^2 + b^2 = 1 \\
+	c^2 + d^2 = 1 
+\end{cases}$$
+We have a free parameter. Let $d = \pm \sin \theta$, then $$ \begin{cases}
+	d = \pm \sin \theta \\
+	c = \cos\theta\\
+	b = \mp \cos\theta \\
+	a = \sin\theta 
+\end{cases} $$
+So $\begin{pmatrix}
+	a & b \\ c& d \\
+\end{pmatrix} = \begin{pmatrix}
+\sin\theta & \mp \cos\theta \\ \cos\theta&  \pm \sin\theta \\
+\end{pmatrix}$
+
+(b) $F = T_a C$. $Cp Cp = p^2 \Rightarrow c^2 p^2 = p^2 \Rightarrow c = 1$. So an isometry in $\real$ is just a displacement by a constant $a$.
 \end{document}
