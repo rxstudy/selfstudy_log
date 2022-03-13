@@ -91,4 +91,76 @@ So $\begin{pmatrix}
 \end{pmatrix}$
 
 (b) $F = T_a C$. $Cp Cp = p^2 \Rightarrow c^2 p^2 = p^2 \Rightarrow c = 1$. So an isometry in $\real$ is just a displacement by a constant $a$.
+
+\section{The tangent map of an isometry}
+\subsection*{1}
+Translation is an isometry, so $T(v_p) = I(v)_{T{p}} = v_{T(p)}$ which has the same Euclidean coordinates as $v_p$.
+
+\subsection*{2}
+Given isometries $G=T_gC_g, F=T_fC_f $,  $(GF)_*(v_p) = (T_gC_gT_fC_f)_*(v_p) = (T_gT_{C_g(f)} C_g C_f)_*(v_p) = C_g C_f (v)_{G\circ F(p)} = G_* F_* (v) $
+
+\subsection*{3}
+$F = T_a C$,  $p=(0, 1, 0)$, $q=(3, -1, 1)$
+
+we have $[e] = A[u] =  \frac{1}{3}\begin{pmatrix}
+	2 & 2 & 1 \\-2 & 1 & 2 \\ 1 & -2 & 2 
+\end{pmatrix} [u]$ and   $[f] = B[u] =  \frac{1}{\sqrt{2}} \begin{pmatrix}
+1 & 0 & 1 \\ 0 & \sqrt{2} & 0 \\ 1 & 0 & -1
+\end{pmatrix} $
+
+To transform from coordinates of $e$ to $f$.
+$$C = B^tA =  \frac{1}{\sqrt{2}} \begin{pmatrix}
+	1 & 0 & 1 \\ 0 & \sqrt{2} & 0 \\ 1 & 0 & -1
+\end{pmatrix} \frac{1}{3}\begin{pmatrix}
+2 & 2 & 1 \\-2 & 1 & 2 \\ 1 & -2 & 2 
+\end{pmatrix} = \begin{pmatrix}
+1 / \sqrt{2} & 0 & 1 /\sqrt{2} \\  -2 /3 & 1/3 & 2/3 \\  \sqrt{2}/6 &  2\sqrt{2}/3  & - \sqrt{2}/6
+\end{pmatrix}$$
+
+$F(p) = T_a C (p) = a + Cp =  q$.  So $ a = q - Cp = (3, -1, 1) - (0, 1/3 , 2\sqrt{2}/3) = (3, -4/3, 1 - 2\sqrt{2}/3) $
+
+\subsection*{4}
+(a)
+A plane is defined by $\langle (x - p)_p , q_p \rangle = 0$. If an isometry $F=T_aC$, 
+then $$
+ \begin{aligned}
+ 	& \langle (x - p)_p , q_p \rangle = 0 \\
+ 	&\Leftrightarrow \langle F_* (x - p)_p ,  F_* q_p \rangle = 0 \\
+ 	&\Leftrightarrow \langle C (x - p)_{F(p)} ,  Cq_{F(p)}  \rangle = 0 \\
+ 	&\Leftrightarrow \langle C(T_{C(a)}x - T_{C(a)}p) _{F(p)} ,  Cq_{F(p)}  \rangle = 0 \\
+ 	&\Leftrightarrow \langle (F(x) - F(p))_{F(p)} ,  Cq_{F(p)}  \rangle = 0 \\
+ \end{aligned}
+$$
+Note that $(T_{C(a)}x - T_{C(a)}p = x - p$ since translation is canceled out. \QED
+
+(b)
+Let $e_1 = (0, 1, 0),  e_2 = (1/\sqrt{2}, 0, - 1/\sqrt{2})$, then $e_3 = e_1 \cross e_2 = (-1/\sqrt{2}, 0, -1/\sqrt{2})$ form a frame. From $e_1$ to $e_2$, we simply need to perform a 90 degree rotation along $e_3$. The transformation is  $C_e = \begin{pmatrix}
+	0 & -1 & 0 \\ 
+	1 & 0 & 0 \\
+	0 & 0 & 1 \\
+\end{pmatrix}$ wrt to the frame. Then it is $A^t C_e A$ in the canonical frame where $A$ is the attitude matrix. We get 
+$$
+  C_u = A^t C_e A = \begin{pmatrix}
+  	0 & 1 & 0 \\
+  	1/\sqrt{2} & 0 & -1/\sqrt{2} \\
+  	-1/\sqrt{2} & 0 & -1/\sqrt{2} 
+  \end{pmatrix}^t
+\begin{pmatrix}
+	0 & -1 & 0 \\
+	1 &  0 & 0 \\
+	0 &  0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+	0 & 1 & 0 \\
+	1/\sqrt{2} & 0 & -1/\sqrt{2} \\
+	-1/\sqrt{2} & 0 & -1/\sqrt{2} 
+\end{pmatrix}
+= \frac{1}{2} \begin{pmatrix}
+	1 & \sqrt{2} & 1 \\- \sqrt{2} & 0  & \sqrt{2} \\ 1 & - \sqrt{2} & 1 
+\end{pmatrix}
+$$
+
+Since $F(1/2, -1, 0) = TC(1/2, -1, 0) = (1, -2, 1)$, we get $T = (3/4 - \sqrt{2}/2, -2 + \sqrt{2}/4 , 3/4 - \sqrt{2}/ 2) $
+
+
 \end{document}
