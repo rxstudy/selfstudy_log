@@ -162,5 +162,81 @@ $$
 
 Since $F(1/2, -1, 0) = TC(1/2, -1, 0) = (1, -2, 1)$, we get $T = (3/4 - \sqrt{2}/2, -2 + \sqrt{2}/4 , 3/4 - \sqrt{2}/ 2) $
 
+\section{Orientation}
+\subsection*{1}
+$\Sgn(FG) = \Sgn (T_aC_1T_bC_2 ) =\Sgn(T_aT_{C_1(b)}C_1C_2) = \det(C_1C_2)  = \det(C_1)\det(C_2) = \Sgn F \cdot \Sgn G  $
+
+Let $G = F^{-1}$, then $\Sgn F \cdot \Sgn F^{-1} = \Sgn I = 1$. Therefore $\Sgn F = \Sgn(F^{-1})$
+
+\subsection*{2}
+Suppose $H_1$ is orientation reversing isometry, let $H_1 = H_0F$ , then $F = H_1 H_0^{-1}$. $H_0^{-1}$ is an isometry so it has unique inverse. Then $F$ is also unique and $\Sgn F = \Sgn H_1 \Sgn H_0^{-1} = 1$ which is orientation preserving.
+
+\subsection*{3}
+$v = 3U_1 + U_2 - U_3$ and $w = -3U_1 -3U_2 + U_3$. $$
+ v \cross w = \begin{vmatrix}
+ 	U_1 & U_2 & U_3 \\
+ 	3 & 1 & -1 \\
+ 	-3 & -3 & 1
+ \end{vmatrix}
+ = -2U_1 -6 U_3 $$
+$$ 
+ C_*(v \cross w) = \frac{1}{3} 
+ \begin{pmatrix}
+ 	e_1 & e_2 & e_3
+ \end{pmatrix} \begin{pmatrix}
+ 	-2 & 2 & -1 \\ 2 & 1 & -2 \\ 1 & 2 & 2
+ \end{pmatrix} 
+\begin{pmatrix}
+ -2 \\ 0 \\ -6 
+\end{pmatrix} = \frac{1}{3} (10 e_1 + 8e_2 - 14e_3)
+$$
+
+On the right hand side
+$$
+ C_*(v) = -e_1 + 3e_2 + e_3
+$$
+
+$$
+C_*(w) = \frac{1}{3} (-e_1 - 11e_2 - 7e_3)
+$$
+
+$$
+\Sgn(C) C_*(v) \cross C_*(w) = (-1) \frac{1}{3} \begin{vmatrix}
+	e_1 & e_2 & e_3 \\
+	-1 & 3 & 1 \\
+	-1 & -11 & -7 \\
+\end{vmatrix}
+=  \frac{1}{3}  \begin{vmatrix}
+	e_1 & e_2 & e_3 \\
+	-1 & 3 & 1 \\
+	1 & 11 & 7 \\
+\end{vmatrix}
+=  \frac{1}{3}  (10e_1 + 8e_2 -14e_3)
+$$
+
+\subsection*{4}
+Since $\det C= +1$ is the product of all eigenvalues of $C$, so it has at least 1 eigenvalue of value $1$, let $e_3$ be the corresponding eigenvector. Then $C(e_3) = e_3$. So $C$ is a rotation around $e_3$ by $\theta$. Now pick $e_1$ and $e_2$ in the plane $A$ perpendicular to $e_3$ such that $e_1 \perp e_2$. Then $e_1, e_2$ form a basis for $A$.
+
+By right hand rule, $C(e_1)$ rotates $e_1$ counterclock wise by $\theta$ and $C(e_2)$ rotates $e_2$ the same amount. Coordinate vector $(1, 0)$ gets rotated to $(\cos\theta, \sin\theta)$. We can then work out $C(e_1) = \cos\theta e_1 + \sin \theta e_2$ and $C(e_2) = -\sin_\theta e_1 + \cos \theta e_2$.
+
+\subsection*{5}
+Let $a$ be a point such that $\norm{a} = 1$. 
+$$
+\begin{aligned}
+	C(p) \cdot C(q) &= [a \cross p + (p \cdot a) a] \cdot [a \cross q + ( q \cdot a) a] \\
+	&= (a \cross p) \cdot (a \cross q)  + ( q \cdot a) (a \cross p)\cdot a +  (p \cdot a) a \cdot a \cross q + (p \cdot a) a \cdot  ( q \cdot a) a \\
+	&=  (a \cross p) \cdot (a \cross q) + (p \cdot a) ( q \cdot a) \norm{a} \\
+	&=   a \cdot (q \cross (a \cross p)) + (p \cdot a) ( q \cdot a)	\\
+	&=   a \cdot ((q \cdot p)a - (q \cdot a) p ) + (p \cdot a) ( q \cdot a)	\\
+	&=  (q \cdot p) \norm{a} - (q \cdot a) (a\cdot p ) + (p \cdot a) ( q \cdot a)	\\
+	&=  q \cdot p	\\
+\end{aligned} $$
+\QED
+
+\subsection*{6}
+(a) $O^+(3)$ is not empty (obviously). By definition in Ex 3.3.4, a rotation $A$ is orthogonal such that $\det A = 1$. Then for $A, B$,  the product $AB$ is orthogonal since $O(3)$ is a group and $\det(AB) = \det A \det B = 1 $ is also a rotation.  For each $A$, there exist an orthogonal inverse, and $\det A^{-1} = \frac{1}{\det A} = 1$ which is also a rotation.
+
+(b) By Ex 3.3.1,  $\Sgn(FG) = \Sgn F \Sgn G = 1$ for orientation preserving isometry $F$ and $G$. So it is closed under multiplication. And $\Sgn F = \Sgn F^{-1}$ means the inverse is also orientation preserving.
+
 
 \end{document}
