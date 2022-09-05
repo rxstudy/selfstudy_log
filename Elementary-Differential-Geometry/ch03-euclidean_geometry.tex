@@ -294,6 +294,48 @@ $$L_C = \int_0^{s_1} \langle \frac{dC}{ds},  \frac{dC}{ds} \rangle^{1/2} ds = \i
 \subsection*{5}
  By definition of covariant derivative, $$\overline{\grad_V W} = F_* \frac{d}{dt} W(p + tv) |_{t=0} =   \frac{d}{dt}F_* W(p + tv) |_{t=0} =  \frac{d}{dt} \overline{W}(F(p) + t F_* v) |_{t=0} = \grad_{\overline{V}} \overline{W}$$
 
+\section{Congruence of Curves}
+\subsection*{1}
+Let $F=T$ be a translation of $p$,  then $F$ is isometry. Then $\alpha$ and $\beta$ are congruent iff $F(\alpha) = p + \alpha = \beta$.
+
+\subsection*{3}
+$$ 
+\begin{aligned}
+	 \beta &= (t + \sqrt{3} \sin t, 2 \cos t, \sqrt{3}t - \sin t)  \\
+	  \beta' &= (1 + \sqrt{3} \cos t, -2 \sin t, \sqrt{3} - \cos t) \\ 
+	   \beta'' &= (- \sqrt{3} \sin t, -2\cos t, \sin t) \\
+	   \beta''' &= (-\sqrt{3}\cos t, 2\sin t, \cos t) \\
+	  \beta' \times \beta'' &= (-2 + 2\sqrt{3}\cos t, -4 \sin t, -2\cos t - 2 \sqrt{3}) \\
+	  \kappa &= \frac{|\beta' \times \beta''| }{| \beta'|^3} = \frac{\sqrt{20}}{\sqrt{8}^3} \neq 0 \\
+	  \tau &= \frac{|(\beta' \times \beta'' ) \cdot \beta '''| }{| \beta' \times \beta''|^2} = - \frac{8}{20} \neq 0
+\end{aligned}
+$$
+Therefore $\beta$ is a helix.  To find an isometry $F$ that maps helix $\alpha = (a\cos t,  a \sin t, bt)$ to $\beta$, we consider when $t=0$ the transformation between the two frames.
+$$
+F \begin{cases}
+	T_{\beta}(0) = \frac{1}{2\sqrt{2}} (1 + \sqrt{3}, 0, \sqrt{3} - 1)\\
+	B_{\beta}(0) = \frac{1}{2\sqrt{2}}(-1 + \sqrt{3}, 0, -1 -\sqrt{3}) \\
+	N_{\beta}(0) = (0, -1, 0)
+	\end{cases}
+=
+\begin{cases}
+T_{\alpha}(0) = \frac{1}{\sqrt{a^2+b^2}}(0, a, b) \\
+B_{\alpha}(0) = \frac{1}{\sqrt{a^2 + b^2}}(0, -b, a) \\
+N_{\alpha}(0) = (-1, 0, 0)
+\end{cases}$$
+Then $$
+F =  C = 
+\begin{pmatrix}
+	0 & \frac{a}{\sqrt{a^2+b^2}} &  \frac{b}{\sqrt{a^2+b^2}} \\
+	0 & - \frac{b}{\sqrt{a^2+b^2}} &  \frac{a}{\sqrt{a^2+b^2}} \\
+	-1 & 0 & 0 \\
+\end{pmatrix}
+\begin{pmatrix}
+	\frac{1 + \sqrt{3}}{2\sqrt{2}} & 0 &  \frac{- 1 + \sqrt{3} }{2\sqrt{2}} \\
+	\frac{-1 + \sqrt{3}}{2\sqrt{2}} & 0 &  \frac{- 1 -\sqrt{3} }{2\sqrt{2}} \\
+	0 & -1 & 0 \\
+\end{pmatrix}^T
+$$
 
 
 \end{document}
