@@ -231,12 +231,111 @@ $$
 	&=  (q \cdot p) \norm{a} - (q \cdot a) (a\cdot p ) + (p \cdot a) ( q \cdot a)	\\
 	&=  q \cdot p	\\
 \end{aligned} $$
+Therefore C is an orthogonal transformation.
 \QED
 
 \subsection*{6}
 (a) $O^+(3)$ is not empty (obviously). By definition in Ex 3.3.4, a rotation $A$ is orthogonal such that $\det A = 1$. Then for $A, B$,  the product $AB$ is orthogonal since $O(3)$ is a group and $\det(AB) = \det A \det B = 1 $ is also a rotation.  For each $A$, there exist an orthogonal inverse, and $\det A^{-1} = \frac{1}{\det A} = 1$ which is also a rotation.
 
 (b) By Ex 3.3.1,  $\Sgn(FG) = \Sgn F \Sgn G = 1$ for orientation preserving isometry $F$ and $G$. So it is closed under multiplication. And $\Sgn F = \Sgn F^{-1}$ means the inverse is also orientation preserving.
+
+\section{Euclidean Geometry}
+
+\subsection*{1}
+
+\subsection*{2}
+$\bar{\alpha} = C(\alpha) = -\cos t U_1 + \frac{1}{\sqrt{2}}(\sin t - 2t)U_2 +  \frac{1}{\sqrt{2}}(\sin t + 2t)U_3$ 
+
+$\alpha'' = -\cos t U_1  -\sin t U_2$
+
+$ Y' = U_1 - 2t U_2 + 2t U_3 $
+
+$\bar{Y} = C_*(Y) = -t U_1 - \sqrt{2}t^2 U_2 + \sqrt{2}U_3$
+
+Then 
+
+$ C_*(Y') =- U_1 - 2\sqrt{2} tU_2 $ and $(\bar{Y})' = -U_1 -2\sqrt{2}t U_2$
+
+$C_*(\alpha'') = \cos t U_1 - \frac{1}{\sqrt{2}} \sin t U_2 - \frac{1}{\sqrt{2}} \sin t U_3$ and $(\bar{\alpha})'' = \cos t U_1 - \frac{1}{\sqrt{2}} \sin t U_2 - \frac{1}{\sqrt{2}} \sin t U_3$
+
+$Y'\cdot \alpha'' = -\cos t + 2t \sin t$ and $\bar{Y}' \cdot \bar{\alpha}'' = - \cos t  + 2t\sin t  $
+
+\subsection*{3}
+Let the triangle vertex be A,B and C. The sides of triangle one are of length $(AB, BC, CA) = (4, 3, 5)$. The sides for triangle two are of length $(AB, BC, CA) = (5, 3, 4) $. Therefore $(3, 1)$ maps to $(2, 0)$, $(7, 1)$ maps to $(-2/5, 16/5)$ and $(7, 4)$ maps to $(2, 5)$.
+
+If we write $F(p) = \begin{pmatrix}
+	a \\ b
+\end{pmatrix} + \begin{pmatrix}
+\cos \theta & \sin \theta \\
+-\sin \theta & \cos \theta \\
+\end{pmatrix} p = q
+$, plugging in point A and C from both triangle for $p$ and $q$.  We get 4 equations: $$
+  \begin{aligned}
+  	&a + 3c + d = 2\\
+  	&b - 3d + c = 0\\
+  	&a + 7c + 4d = 2 \\
+  	&b - 7d + 4c = 5 \\
+  \end{aligned}
+$$
+where $c = \cos \theta$ and $d = \sin \theta$. Solving it, we get $a = 1, b = -3, c=\cos\theta = 0.6, d = \sin \theta = 0.8$.
+Therefore $F(p)$ in homogeneous coordinate is $$ \begin{pmatrix}
+	0.6 & 0.8 & 1 \\
+	-0.8 & 0.6 & -3 \\
+	0 & 0 & 1
+\end{pmatrix} \begin{pmatrix}
+ p_1 \\ p_2 \\ 1
+\end{pmatrix}$$
+
+\subsection*{4}
+We will show that $F$ preserves length of any line segment. Given a line segment $C$ parameterized by arc length from $0$ to $s_1$, $\frac{dC}{ds} |_{C(s_1)}$ is the tangent of the curve at $C(s_1)$, and $F_*\frac{dC}{ds}|_{F(C(s_1))}$ is the tangent of the curve mapped by $F$ at $F(C(s_1))$. Since $F_*$ preserves dot product, so the length of the segments $L_C$ and $L_{F \circ C}$ are equal.
+$$L_C = \int_0^{s_1} \langle \frac{dC}{ds},  \frac{dC}{ds} \rangle^{1/2} ds = \int_0^{s_1} \langle F_* \frac{dC}{ds},  F_* \frac{dC}{ds} \rangle^{1/2} ds = L_{F \circ C}$$ 
+
+
+\subsection*{5}
+ By definition of covariant derivative, $$\overline{\grad_V W} = F_* \frac{d}{dt} W(p + tv) |_{t=0} =   \frac{d}{dt}F_* W(p + tv) |_{t=0} =  \frac{d}{dt} \overline{W}(F(p) + t F_* v) |_{t=0} = \grad_{\overline{V}} \overline{W}$$
+
+\section{Congruence of Curves}
+\subsection*{1}
+Let $F=T$ be a translation of $p$,  then $F$ is isometry. Then $\alpha$ and $\beta$ are congruent iff $F(\alpha) = p + \alpha = \beta$.
+
+\subsection*{3}
+$$ 
+\begin{aligned}
+	 \beta &= (t + \sqrt{3} \sin t, 2 \cos t, \sqrt{3}t - \sin t)  \\
+	  \beta' &= (1 + \sqrt{3} \cos t, -2 \sin t, \sqrt{3} - \cos t) \\ 
+	   \beta'' &= (- \sqrt{3} \sin t, -2\cos t, \sin t) \\
+	   \beta''' &= (-\sqrt{3}\cos t, 2\sin t, \cos t) \\
+	  \beta' \times \beta'' &= (-2 + 2\sqrt{3}\cos t, -4 \sin t, -2\cos t - 2 \sqrt{3}) \\
+	  \kappa &= \frac{|\beta' \times \beta''| }{| \beta'|^3} = \frac{\sqrt{20}}{\sqrt{8}^3} \neq 0 \\
+	  \tau &= \frac{|(\beta' \times \beta'' ) \cdot \beta '''| }{| \beta' \times \beta''|^2} = - \frac{8}{20} \neq 0
+\end{aligned}
+$$
+Therefore $\beta$ is a helix.  To find an isometry $F$ that maps helix $\alpha = (a\cos t,  a \sin t, bt)$ to $\beta$, we consider when $t=0$ the transformation between the two frames.
+$$
+F \begin{cases}
+	T_{\beta}(0) = \frac{1}{2\sqrt{2}} (1 + \sqrt{3}, 0, \sqrt{3} - 1)\\
+	B_{\beta}(0) = \frac{1}{2\sqrt{2}}(-1 + \sqrt{3}, 0, -1 -\sqrt{3}) \\
+	N_{\beta}(0) = (0, -1, 0)
+	\end{cases}
+=
+\begin{cases}
+T_{\alpha}(0) = \frac{1}{\sqrt{a^2+b^2}}(0, a, b) \\
+B_{\alpha}(0) = \frac{1}{\sqrt{a^2 + b^2}}(0, -b, a) \\
+N_{\alpha}(0) = (-1, 0, 0)
+\end{cases}$$
+Then $$
+F =  C = 
+\begin{pmatrix}
+	0 & \frac{a}{\sqrt{a^2+b^2}} &  \frac{b}{\sqrt{a^2+b^2}} \\
+	0 & - \frac{b}{\sqrt{a^2+b^2}} &  \frac{a}{\sqrt{a^2+b^2}} \\
+	-1 & 0 & 0 \\
+\end{pmatrix}
+\begin{pmatrix}
+	\frac{1 + \sqrt{3}}{2\sqrt{2}} & 0 &  \frac{- 1 + \sqrt{3} }{2\sqrt{2}} \\
+	\frac{-1 + \sqrt{3}}{2\sqrt{2}} & 0 &  \frac{- 1 -\sqrt{3} }{2\sqrt{2}} \\
+	0 & -1 & 0 \\
+\end{pmatrix}^T
+$$
 
 
 \end{document}
