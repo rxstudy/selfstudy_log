@@ -2,37 +2,74 @@
 
 #include <iostream>
 #include <Windows.h>
+#include <stdlib.h>
+#include <vector>
 #include "RunTimer.h"
 
+// Perform 100000 read and write
 int MemManDemo::run() {
+    const int OP_COUNT = 1000000;
     struct Position {
-        float x;
-        float y;
+        int x;
+        int y;
     };
-    Position pox = Position{ 1.0, 2.0 };
+    const int size_of_pos = sizeof(Position);
+
+    std::vector<int> access_index = std::vector<int>();
+    for (int i = 0; i < OP_COUNT; ++i) {
+        access_index.push_back(rand() % OP_COUNT); 
+    }
+
     RunTimer rt1 = RunTimer();
     rt1.start();
-    void* mem = calloc(10, sizeof(int));
+    Position* mem = (Position*) calloc(OP_COUNT, sizeof(Position));
     if (mem == NULL) {
         throw L"内存不足";
     }
-    const int int_size = sizeof(int);
-    int* storage = (int*)mem;
-    *storage = 99;
-    storage += int_size;
-    *storage = 100;
 
-    std::wcout << L"整数储存初始地址:" << mem << std::endl;
-    int* reader = (int*)mem;
-    for (int i = 0; i < 2; i++) {
-        std::wcout << L"第 " << i << L"个整数" << *reader << L"位于地址<" << reader << ">" << std::endl;
-        reader += int_size;
+    Position* ptr = mem;
+    for (int i = 0; i < OP_COUNT; ++i) {
+        *ptr = Position{ i, i };
+        ptr += 1; // Since ptr is of type Position, +1 will make it advance by sizeof(Position);
     }
 
-    std::wcout << L"清除内存" << std::endl;
-    free(mem);
     rt1.finish();
-    rt1.summary();
+
+    RunTimer rt1_access = RunTimer();
+    rt1_access.start();
+    Position* start = mem;
+    for (auto it = access_index.begin(); it != access_index.end(); ++it) {
+        Position* cur = start + (*it);
+        cur->x *= cur->y;
+    }
+    rt1_access.finish();
+
+    free(mem);
+
+    RunTimer rt2 = RunTimer();
+    rt2.start();
+    Position** positions = new Position*[OP_COUNT];
+    for (int i = 0; i < OP_COUNT; i++) {
+        positions[i] = new Position{ i, i };
+    }
+    rt2.finish();
+
+    RunTimer rt2_access = RunTimer();
+    rt2_access.start();
+    for (auto it = access_index.begin(); it != access_index.end(); ++it) {
+        Position* cur = positions[*it];
+        cur->x *= cur->y;
+    }
+    rt2_access.finish();
+
+
+    std::wcout << L"写入对比:" << std::endl;
+    rt1.compare(rt2);
+
+    std::wcout << L"读取对比:" << std::endl;
+    rt1_access.compare(rt2_access);
+
+    return 0;
 }
 
 std::wstring MemManDemo::title() {
