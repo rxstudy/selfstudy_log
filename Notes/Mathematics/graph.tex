@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+\usepackage{multicol}
+\usepackage[margin=0.4in]{geometry}
+\include{pythonlisting}
+\input{../../definitions.tex}
+\title{Graph Theory Note}
+\author{Ran Xie}
+\begin{document}
+\twocolumn
+\maketitle
+\section{Definitions}
+\textbf{Graph} $G$ is a finite set $V$(vertex set) with irreflexive, \textbf{symmetric} relation $R$ on $V$. $E$ the edge set is the set of symmetric pairs in $R$.  $|V|$ is \textbf{order} of $G$ and $|E|$ is size of $G$. A $(p, q)$ graph is a graph with order $p$ and size $q$.
+
+\textbf{Subgraph} $H$ of $G$ is when $V(H) \subseteq V(G)$ and $E(H) \subseteq  E(G)$
+
+\textbf{$G - e$} is subgraph of $G$ where $V(G) = V(G -e)$ and $E(G) - \{e\} = E(G-e)$.
+
+\textbf{$G - v$} is subgraph of $G$ where $V(G) - \{v\} = V(G - v)$ and $E(G) - \{(v, u) \in E(G) | \forall u \in V(G) \} = E(G - v)$
+
+\textbf{Degree of vertice} $v$ denoted by $\text{deg}_G v$ is the number of edges incident with $v$. $v$ is odd or even is when its degree is odd or even.
+
+\textbf{Adjacent vertices} $v$ and $w$ means $(v,w)\in E(G)$. Adjacent edges $(v, w_1)$ and $(v, w_2)$ are when $w_1 \neq w_2$.
+
+\textbf{Digraph}(Directed Graph) $G$ has a relation $R$ that is not necessarily symmetric. $(u,v) \in E$ is called a directed edge or an arc.
+
+\textbf{Network} is a graph/digraph with a function $f: E \rightarrow \real$. When $f : E \rightarrow \{\pm 1\}$ it is called a signed graph. 
+
+\textbf{Multigraph} is a network when $f$ is a multi map, e.g. $f=\{(v_1, v_2, 1), (v_1, v_2, 2)\}$
+
+\textbf{Loop-graph} is when $R$ is no longer irreflexive.
+
+\textbf{Isomorphism } from $G_1$ to $G_2$ is a bijection $\phi: V(G_1) \rightarrow V(G_2)$ s.t $(v_1, v_2) \in E(G_1) \iff (\phi(v_1), \phi(v_2))\in E(G_2)$.
+
+\textbf {Graph traversal} \begin{enumerate}
+	\item A $u_1$-$u_n$ \textbf{walk} is a sequence $\{u_1, \ldots, u_n\}$ where $(u_i, u_{i+1})$ is an edge.
+	\item  A $u_1$-$u_n$ \textbf{trail} is a walk with no repeating edges.
+	\item A $u_1$-$u_n$ \textbf{path} is a walk with no repeating vertices.
+	\item $u$-$u$ trail that contains at least 3 edges is a \textbf{circuit}
+	\item A \textbf{cycle} is a circuit with no repeating vertices. 
+\end{enumerate} 
+
+\textbf{Connected graph} $G$ is when $u$-$v$ path exists for any $u\neq v \in V(G)$. Otherwise a graph is disconnected.
+
+\textbf{Component} $H$ of a graph $G$ is the largest connected subgraph that contains itself. 
+
+\textbf{Cut-vertex} is a vertex $v$ in connected graph $G$ such that $G - v$ is disconnected.
+
+\textbf{Bridge} is an edge $e$ in connected graph $G$ such that $G - e$ is disconnected.
+
+
+\section{Examples Modelings}
+Friendship can be represented as a graph.
+
+City can be represented as a digraph where road intersection are vertices and arcs as one-way or two- way streets.
+
+Employer/Employee hierarchy can be represented as diagraph with people as vertices and arc connecting subordinate with their supervisor.  
+
+\section{Results}
+\begin{enumerate}[wide, labelwidth=!, labelindent=0pt]
+	\item For $(p,q)$ graph, $\sum_v \text{deg} v = 2 q$.
+	\item Every graph has even number of odd vertices.
+	\item Let $G$ be connected graph, $e$ is a bridge iff $e$ not in any cycle of $G$.
+\end{enumerate}
+
+\section{Graph Algorithms}
+
+\end{document}
