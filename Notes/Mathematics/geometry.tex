@@ -1,0 +1,44 @@
+\documentclass[12pt]{article}
+\usepackage{multicol}
+\usepackage[margin=0.4in]{geometry}
+\include{pythonlisting}
+\input{../../definitions.tex}
+\title{Geometry Note}
+\author{Ran Xie}
+\begin{document}
+\twocolumn
+\maketitle
+\section{Definitions}
+
+\textbf{Space of linear function} $L(V, W)$ vector space of linear functions from $V$ to $W$.
+
+\textbf{Dual Space} $V^* = L(V, R)$. For each basis $\{e_i\}$ of $V$, there exists unique $\{e^i\}$ of $V^*$ such that $e^i (e_j) = \delta^i_j$
+
+\textbf{Tensor Space} $T^r_s = \underbrace{V \otimes V}_\text{r times} \otimes \underbrace{V^* \otimes V^*}_\text{s times}  $  is space of multilinear functions on $$\underbrace{V^* \cross \ldots \cross V^*}_\text{r times} \cross \underbrace{V \cross \ldots \cross V}_\text{s times}$$
+
+\textbf{Tensor Product} between $A$ of $(r,s)$ and $B$ of $(t, u)$,  is $$\begin{aligned}  A \otimes B &(\tau^1,\ldots, \tau^{r+t}, v_1,\ldots, v_{s+u}) \\ & = A(\tau^1, \ldots, \tau^r, v_1, \ldots, v_s) \\ &B(\tau^{r+1}, \ldots , \tau^{r+t}, v_{s+1}, \ldots, v_{s+u})\end{aligned}$$
+
+\textbf{Vector Field} $X$ on coordinate neighborhood $U$ of a manifold $M$,  with coordinate $x^i$. For each point $p$, $X = X^i \partial_i$.  $X[f] = X^i \partial_i f$
+
+\textbf{Change of Coordinates} If $Y$ has coordinate neighborhood $V$ of $y^i$, then $Y^i = X^j \frac{\partial y^i }{\partial x^j}$
+
+\textbf{Map Differential(Pushforward)} $F_*$ is induced map $F_*: TM \rightarrow TN$ of $C^\infty$ map $F: M\rightarrow N$. $F_* (v_p) = (F_*v)_{F(p)}$. With coordinate, $F_* = [ \partial_j ( y^i \circ F ) ]$, the Jacobian of $F$. Note that $y^i \circ F = F^i(x^1, \ldots, x^m)$
+
+\textbf{Tensor Bundle} $T^r_s M$  of type $(r,s)$ is the union of all tensor spaces $M^r_s(p)$ at each point $p \in M$.  
+
+\textbf{Tangent Bundle} $TM=T^1_0M$, 
+
+\textbf{Scalar Bundle} $T^0_0M = M \cross \real$, 
+
+\textbf{Cotangent Bundle/ Differentials / Phase space} $T^0_1M$
+
+\textbf{Tensor Field} $T$ of type $(r,s)$, $T(p) \in T^r_s M (p)$ for each $p$. $(1,0)$  is vector field, $(0,0)$ gives real-valued function. $(0, 1)$ gives differential.
+
+\textbf{Tensor Coordinate} of $T^r_s$ wrt coordinate $x^i$ are $d^{r+s}$ real-valued functions $$T^{i_1\ldots i_r}_{j_1\ldots j_s} = T(dx^{i_1}, \ldots dx^{i_r}, \partial_{j_1}, \ldots , \partial_{j_s})$$
+
+\textbf{Tensor Product}
+
+\textbf{Exterior Product}
+
+\textbf{Differential forms} p-form is $C^\infty$ skew-symmetric covariant tensor field of degree $p$ (type $(0,p)$). Local basis has ${d \choose p}$ p-forms $dx^{i_1}\cdots dx^{i_p}$ where $(i_1,\ldots,i_p)$ is increasing.
+\end{document}
