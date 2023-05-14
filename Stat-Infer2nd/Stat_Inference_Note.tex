@@ -1,0 +1,86 @@
+\documentclass[12pt]{article}
+
+\input{../definitions.tex}
+\usepackage{multicol}
+
+\title{Statistical Inference Note}
+\begin{document}
+\maketitle
+\section*{Notation}
+\begin{multicols}{2}
+	\begin{enumerate}
+		\item $\chi$ - sample space
+		\item $X$ - random variable
+		\item $F_X(x)$ - cdf of $X$
+		\item $f_X(x)$ - pdf of $X$
+		\item $X =(X_1, \ldots, X_n)$ - $X$ is a random sample of size $n$
+	\end{enumerate}
+\end{multicols}
+
+\section*{Chapter 5: Properties of a Random Sample}
+
+\begin{definition}[Random Sample]: The random variables $X_1, \ldots, X_n$ are called a random sample of size $n$ from the population $f(x)$ if $X_1,\ldots, X_n$ are mutually independent variables and the marginal pdf or pmf of each $X_i$ is the same $f(x)$. $\{X_i\}$ are called iid rv with pdf or pmf $f(x)$.
+\end{definition}
+
+\begin{definition}[Statistics]: Let $X_1,\ldots,X_n$ be \textbf{a} random sample of size $n$ from a population and let $T(x_1, \ldots, x_n)$ be a real-valued or vector-valued function whose domain includes the sample space of $(X_1, \ldots, X_n)$. Then the random variable or random vector $Y = T(X_1, \ldots , X_n)$ is called a \textbf{statistics}. The probability distribution of a statistic $Y$ is called the sampling distribution of $Y$.
+\end{definition}
+
+\begin{definition}[Sample mean and variance]
+	\begin{align*}
+		&\overline{X} = \frac{1}{n} \sum^{n}_{i=1} X_i &\text{(Sample mean)} \\
+		&S^2 = \frac{1}{n-1} \sum^{n}_{i=1} (X_i - \overline{X})^2 &\text{(Sample variance)}
+	\end{align*}
+$\bar{x}, s^2$ denote to observed values of $\overline{X}, S^2$
+\end{definition}
+
+\begin{theorem}
+	Let $X_1,\ldots, X_n$ be a random sample from a population with mean $\mu$ and variance $\sigma^2 < \infty$. Then
+	\begin{enumerate}
+		\item $\E\bar{X} = \mu$
+		\item $\Var \bar{X} = \frac{\sigma^2}{n}$
+		\item $\E S^2 = \sigma^2$
+	\end{enumerate}
+Remark: The statistics $\bar{X}$ is unbiased estimator of $\mu$. $S^2$ is unbiased estimator of $\sigma^2$ due to the $n-1$ denominator. If we use $n$ as denominator, $\E S^2$ would be $\frac{n-1}{n} \sigma^2$.
+\end{theorem}
+	
+\section*{Chapter 7: Point Estimation}
+Motivation: we want to find a good estimator for $\theta$ or $\tau{\theta}$ using samples from a pdf $p(x |\theta)$ since $\theta$ yields knowledge of the entire population.
+	
+\begin{definition}[Point Estimator]
+	A point estimator is any function $W(X_1 \ldots X_n)$ of a sample; that is any statistic is a point estimator.
+\end{definition}
+Remark: When a sample is taken, estimator is a function of the rv $\varvec{X}$ while an estimate is a function of realized values $\varvec{X}$.
+
+\subsection*{Method of Finding Estimator}
+
+\begin{theorem}[Method of Moments]
+	Let $\varvec{X}$ be a sample from population $f(x|\varvec{\theta})$. The method of moments estimators are found by equating the first $k$ sample moments ($m_k = \frac{1}{n}\sum^n_{i=1}X_i^k$) to the corresponding $k$ population moments ($\mu_k' = EX^k$)
+\end{theorem}
+
+Example: Suppose $\varvec{X}$ are iid from $f(x|\theta, \sigma^2)$, we have sample moment $m_1 = \frac{1}{n}\sum^n_{i=1}X_i = \bar{X}$, $m_2 = \frac{1}{n} \sum^n_{i=1}X_i^2$ and population moment $\mu_1' = \E X = \theta$,  $\mu_2' = \E X^2 = \theta^2 + \sigma^2$.
+
+Then we have \begin{align*}
+  &\theta = \bar{X} &\rightarrow &\theta = \frac{1}{n}\sum^n_{i=1}X_i  \\
+  &\theta^2 + \sigma^2 =  \frac{1}{n} \sum^n_{i=1}X_i^2 
+  &\rightarrow &\sigma^2 = \frac{1}{n} \sum^n_{i=1}X_i^2 - \theta^2  = \frac{1}{n} \sum^n_{i=1}X_i^2 - \bar{X}^2
+\end{align*}
+
+\subsection{Maximum Likelihood Estimator}
+\begin{definition}(Likelihood function)
+	If $\varvec{X}$ is an iid sample from a population $f(x|\varvec{\theta})$, the likelihood function is defined by $$
+	 L(\theta|x) = L(\varvec[k]{\theta} | \varvec{x}) = \prod^n_{i=1} f(x_i | \varvec[k]{\theta})
+	$$
+\end{definition}
+
+\begin{definition}
+	For each sample point $x$, let $\hat{\theta}(x)$ be a parameter value at which $L(\theta| x)$ attains its maximum as a function of $\theta$ with $x$ held fixed. A maximum likelihood estimator(MLE) of the parameter $\theta$ based on a sample $X$ is $\hat{\theta}(X)$
+\end{definition}
+
+If the likelihood function is differentiable wrt $\theta_i$, the candidate extrema are $\frac{\partial}{\partial \theta_i}L(\theta |x) = 0$ (Extrema can occur on boundary, we need to check those as well).
+
+Remark: The drawbacks are: \begin{enumerate}
+	\item The problem of actually finding the global maximum and verifying it.
+	\item Numerical sensitivity; how sensitive is the estimate to the change in data.
+\end{enumerate}
+
+\end{document}

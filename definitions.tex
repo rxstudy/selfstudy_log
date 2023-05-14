@@ -10,6 +10,9 @@
 \usepackage{physics}
 \usepackage{bbm}
 \usepackage{bm}
+\usepackage{geometry}
+\geometry{top=1cm, left=1cm, bottom=1cm, right=1cm, margin=1cm}
+\newcommand{\varvec}[2][n]{#2_1,\ldots, #2_#1}
 \newcommand{\Var}{\mathrm{Var}}
 \newcommand{\Cov}{\mathrm{Cov}}
 \newcommand{\E}{{\rm I\kern-.3em E}}
@@ -24,6 +27,7 @@
 \newcommand{\Sgn}{\mbox{Sgn}}
 \renewcommand*{\arraystretch}{1.4}
 \newtheorem{theorem}{Result}
+\newtheorem{definition}{Definition}
 \lstset{frame=tb,
 	language=Python,
 	aboveskip=3mm,
