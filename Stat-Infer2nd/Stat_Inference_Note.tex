@@ -52,7 +52,7 @@ Motivation: we want to find a good estimator for $\theta$ or $\tau{\theta}$ usin
 Remark: When a sample is taken, estimator is a function of the rv $\varvec{X}$ while an estimate is a function of realized values $\varvec{X}$.
 
 \subsection*{Method of Finding Estimator}
-
+\subsubsection{Method of Moments}
 \begin{theorem}[Method of Moments]
 	Let $\varvec{X}$ be a sample from population $f(x|\varvec{\theta})$. The method of moments estimators are found by equating the first $k$ sample moments ($m_k = \frac{1}{n}\sum^n_{i=1}X_i^k$) to the corresponding $k$ population moments ($\mu_k' = EX^k$)
 \end{theorem}
@@ -65,7 +65,7 @@ Then we have \begin{align*}
   &\rightarrow &\sigma^2 = \frac{1}{n} \sum^n_{i=1}X_i^2 - \theta^2  = \frac{1}{n} \sum^n_{i=1}X_i^2 - \bar{X}^2
 \end{align*}
 
-\subsection{Maximum Likelihood Estimator}
+\subsubsection{Maximum Likelihood Estimator}
 \begin{definition}(Likelihood function)
 	If $\varvec{X}$ is an iid sample from a population $f(x|\varvec{\theta})$, the likelihood function is defined by $$
 	 L(\theta|x) = L(\varvec[k]{\theta} | \varvec{x}) = \prod^n_{i=1} f(x_i | \varvec[k]{\theta})
@@ -80,7 +80,31 @@ If the likelihood function is differentiable wrt $\theta_i$, the candidate extre
 
 Remark: The drawbacks are: \begin{enumerate}
 	\item The problem of actually finding the global maximum and verifying it.
-	\item Numerical sensitivity; how sensitive is the estimate to the change in data.
+	\item Numerical sensitivity; how sensitive is the estimate to the change in data. This can occur when the likelihood function is very flat in the neighborhood of its maximum or when there is no finite maximum. When using numerical methods, spend some time investigating the stability of the solution.
 \end{enumerate}
+
+\begin{theorem}[ \textbf{invariance property of MLE} ]
+	If $\hat{\theta}$ is the MLE of $\theta$, then for any function $\tau$, $\tau(\hat{\theta})$ is the MLE of $\tau(\theta)$.
+\end{theorem}
+
+\subsubsection{Bayes Estimators}
+In the Bayesian approach, $\theta$ is not thought to be fixed but a quantity whose variation can be described by a probability distribution (\textbf{the prior distribution}).
+
+\begin{definition}[Prior distribution]
+	is a subjective distribution based on experimenter's belief and is formulated before the data are seen. Denoted as $\pi(\theta)$
+\end{definition}
+
+\begin{definition}[Posterior distribution] is the updated prior distribution with the information after a sample taken from the population. Denoted as $\pi(\theta | x)$.
+\end{definition}
+
+The prior distribution and posterior distribution are related by Bayesian rule:
+
+$$
+  \pi(\theta|x) = \frac{f(x, \theta)}{m(x)} =  \frac{f(x|\theta) \pi(\theta)} {m(x)} 
+$$
+where $m(x) = \int f(x|\theta)\pi(\theta) d\theta$
+
+Remark: Posterior distribution is a conditional distribution based on observing the sample. It can be used to make statements about $\theta$. E.g. the mean of posterior distribution can be used as a point estimate of $\theta$.
+
 
 \end{document}
