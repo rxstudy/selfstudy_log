@@ -106,5 +106,9 @@ where $m(x) = \int f(x|\theta)\pi(\theta) d\theta$
 
 Remark: Posterior distribution is a conditional distribution based on observing the sample. It can be used to make statements about $\theta$. E.g. the mean of posterior distribution can be used as a point estimate of $\theta$.
 
+\begin{definition}[Conjugate family]
+	Let $\mathcal{F}$ denote the class of pdf/pmf $f(x|\theta)$ (indexed by $\theta$). A class $\prod$ of prior distribution is called the conjugate family for $\mathcal{F}$ if the posterior distribution is in $\prod$ for all $f \in \mathcal{F}$, all priors in $\prod$ and all $x \in \mathcal{X}$
+\end{definition}
+
 
 \end{document}
