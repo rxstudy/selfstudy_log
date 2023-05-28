@@ -49,7 +49,7 @@ This is essentially the same as method 1.
  $$
  Let $\frac{\partial L(\beta|x, \alpha)}{\partial \beta} = 0$, we get the MLE for $\beta$. $$\hat{\beta} = \frac{\alpha}{\bar{x}}$$
  
-If $\alpha$ is also unknown,
+If $\alpha$ is also unknown, 
 
 $$
   \frac{\partial L(\alpha, \beta |x)}{\partial \alpha} =  
@@ -67,11 +67,19 @@ $\log$ is monotonic increasing function, when $L$ attains maximum values, $\log 
 
 
 \section*{Exercise 7.6}
-$f(x|\theta) = \theta x^{-2}$ with $0 < \theta \leq x < \infty$. We need to extend the range of $x$ in order to get rid of the $\theta$ dependency with indicator function. So $f(x | \theta) =  \mathbb{I}_{\theta \leq x} \theta x^{-2}$ and $x \in \mathbb{R}$. 
+$f(x|\theta) = \theta x^{-2}$ with $0 < \theta \leq x < \infty$. We need to extend the range of $x$ in order to get rid of the $\theta$ dependency with indicator function (This will make $x_i$ iid so we can compute the likelihood function by taking the product). So $f(x | \theta) =  \mathbb{I}_{\theta \leq x} \theta x^{-2}$ and $x \in \mathbb{R}$. 
 
 (a) For a sample $\varvec{X}$, by factorization theorem, $f(x|\theta) = g(T(x)|\theta)h(x)$. So $h(x) = x^-2$ and $g(T(x)|\theta) =  \mathbb{I}_{\theta \leq x} \theta = \mathbb{I}_{\theta \leq x_i,  \forall i} \theta = \mathbb{I}_{\theta \leq \min{x_i} }$. Therefore $T(x) = \min{x_i}$ is a sufficient statistics.
 
 (b) The likelihood function $L(\theta | x) = \mathbb{I}_{\theta \leq x_i} \theta^n (\prod_i x_i)^{-2}$. $L(\theta | x)$ is non zero only when $\theta \leq \min{x_i}$. Then $L(\theta | x) = \theta^n (\prod_i x_i)^{-2} $ when $\theta \leq \min{x_i}$ decreases monotonically as $\theta$ decreases. So it attains maximum when $\theta = \min{x_i}$
 
+(c) Computing the first moment of the pdf gives 
+$$EX = \int_{\theta}^{\infty} x \theta x^{-2} dx =\theta \int_{\theta}^{\infty} x^{-1} dx = \theta \ln(x)|_{\theta}^{\infty} = \infty$$
+Therefore moment doesn't exist for $f$. We cannot use moment to get an estimator.
+
+\section*{Exercise 7.7}
+We have $L(\theta=0| x) = \prod_i^n I_{x_i \in (0, 1)} $ and $L(\theta=1|x) = \prod_i^n \frac{1}{2\sqrt{x_i}} I_{x_i \in (0,1)} $. We can ignore the case when $x_i \notin (0,1)$ and take the log likelihood. We get $\log L(\theta=0| x) = 0$ and $\log L(\theta=1|x) = -n - \frac{1}{2} \log_2 (s) $ where $s = \prod x_i$ and $s \in (0, 1)$.
+
+When $s^{1/n} < \frac{1}{4}$, $\theta = 1$ is the MLE otherwise 0 is the MLE.
 
 \end{document}

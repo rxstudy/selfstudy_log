@@ -42,6 +42,38 @@ $\bar{x}, s^2$ denote to observed values of $\overline{X}, S^2$
 	\end{enumerate}
 Remark: The statistics $\bar{X}$ is unbiased estimator of $\mu$. $S^2$ is unbiased estimator of $\sigma^2$ due to the $n-1$ denominator. If we use $n$ as denominator, $\E S^2$ would be $\frac{n-1}{n} \sigma^2$.
 \end{theorem}
+
+
+\section*{Chapter 6: Principles of Data Reduction}
+
+Remark: Any statistics $T(X)$ defines a form of data reduction or data summary. When we use only the observed value of the statistics $T(X)$ rather than the entire observed sample $x$,  we will treat two samples as equal if $T(x) = T(y)$. Therefore data reduction in terms of a particular statistic can be though of as a partition of the sample space. The image $\mathcal{T} = \{t: t = T(x) for some x \in \chi \}$ partition $\chi$ into $A_t = \{x | T(x) = t\}$
+
+\subsection*{The Sufficiency Principle of data reduction}
+
+\begin{definition}[Sufficient Statistics]
+A statistic $T(X)$ is a sufficient statistics for $\theta$ if the conditional distribution of the sample $X$ given the value of $T(X)$ does no depend on $\theta$. In other word, $T(X)$ captures all the information about $\theta$ contained in the sample $X$. Knowing $X$ does not provide more information about $\theta$.
+\end{definition}
+
+\begin{definition}[Sufficiency Principle]
+	If $T(X)$ is sufficient statistics for $\theta$, then any inference about $\theta$ should depend on sample $X$ only through $T(X)$. If $x, y$ are two sample points such that $T(x) = T(y)$, the inference about $\theta$ should be the same whether $X=x$ or $X=y$ is observed.
+\end{definition}
+
+\begin{theorem}[Factorization Theorem]
+	Let $f(x|\theta)$ denote the joint pdf or pmf of a sample $X$. A statistic $T(X)$ is a sufficient statistic for $\theta$ if and only if there exist functions $g(t|\theta)$ and $h(x)$ such that for all sample points $x$ and all parameter points $\theta$.
+	$$ f(x|\theta) = g(T(x)|\theta) h(x)$$
+\end{theorem}
+
+\subsection*{The Likelihood Principle}
+\begin{definition}
+	Let $f(x|\theta)$ be joint pdf/pmf of a sample $X = (\varvec{X})$, the likelihood function is defined as 
+	$$ L(\theta|x) = f(x | \theta) $$
+\end{definition}
+
+\subsubsection*{LIKELIHOOD PRINCIPLE (Informal)}
+If $x$ and $y$ are two sample points such that $L(\theta|x)$ is proportional to $L(\theta|y)$, that is there exist a constant $C(x, y)$ (only depends on $(x, y)$) such that
+$$ L(\theta |y ) = C(x, y) L(\theta |x)$$
+Then the conclusions drawn from $x$ and $y$ should be identical.
+
 	
 \section*{Chapter 7: Point Estimation}
 Motivation: we want to find a good estimator for $\theta$ or $\tau{\theta}$ using samples from a pdf $p(x |\theta)$ since $\theta$ yields knowledge of the entire population.
@@ -87,7 +119,7 @@ Remark: The drawbacks are: \begin{enumerate}
 	If $\hat{\theta}$ is the MLE of $\theta$, then for any function $\tau$, $\tau(\hat{\theta})$ is the MLE of $\tau(\theta)$.
 \end{theorem}
 
-\subsubsection{Bayes Estimators}
+\subsubsection*{Bayes Estimators}
 In the Bayesian approach, $\theta$ is not thought to be fixed but a quantity whose variation can be described by a probability distribution (\textbf{the prior distribution}).
 
 \begin{definition}[Prior distribution]
@@ -110,5 +142,17 @@ Remark: Posterior distribution is a conditional distribution based on observing 
 	Let $\mathcal{F}$ denote the class of pdf/pmf $f(x|\theta)$ (indexed by $\theta$). A class $\prod$ of prior distribution is called the conjugate family for $\mathcal{F}$ if the posterior distribution is in $\prod$ for all $f \in \mathcal{F}$, all priors in $\prod$ and all $x \in \mathcal{X}$
 \end{definition}
 
+\subsection*{Methods of Evaluating Estimators}
+\subsubsection*{Mean Squared Error}
+\begin{definition}
+	The bias of a point estimator $W$ of a parameter $\theta$ is the difference between the expected value of $W$ and $\theta$; $\Bias_{\theta} W = \E_{\theta} W - \theta$. An estimator whose ibas is equal to 0 is called unbiased and satisfies $\E_{\theta}W = \theta$ for all $\theta$.
+\end{definition}
+\begin{definition}
+	The mean square error (MSE) of an estimator $W$ of a parameter $\theta$ is the function of $\theta$ defined by  $$\E_{x|\theta}(W - \theta)^2 = \Var_{\theta} W + (\E_{\theta}W - \theta )^2 = \Var_{\theta} W + (\Bias_{\theta}W)^2$$
+\end{definition}
+
+Remark: Be aware that controlling bias does not guarantee that MSE is controlled. A biased estimator can have a lower MSE due to low variance.
+
+Remark: MSE is a reasonable criterion for location parameters but not for scale parameters. In scale case, 0 is a natural lower bound, so the estimation problem is not symmetric. MSE tends to be forgiving of underestimation.
 
 \end{document}
