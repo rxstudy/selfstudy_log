@@ -3,14 +3,18 @@
 \usepackage[normalem]{ulem}
 \usepackage{multirow}
 \usepackage{fancyhdr,graphicx,amsmath,amssymb, mathtools, scrextend, titlesec, enumitem}\usepackage[pdftex]{hyperref}
-\usepackage[ruled,vlined]{algorithm2e} 
+\usepackage[ruled,vlined]{algorithm2e}
 \usepackage{parskip}
 \usepackage{listings}
 \usepackage{amsmath}
 \usepackage{physics}
 \usepackage{bbm}
 \usepackage{bm}
+\usepackage{geometry}
+\geometry{top=1cm, left=1cm, bottom=1cm, right=1cm, margin=1cm}
+\newcommand{\varvec}[2][n]{#2_1,\ldots, #2_#1}
 \newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Bias}{\mathrm{Bias}}
 \newcommand{\Cov}{\mathrm{Cov}}
 \newcommand{\E}{{\rm I\kern-.3em E}}
 \newcommand{\Binomial}{\mathrm{Binomial}}
@@ -23,6 +27,8 @@
 \newcommand{\Real}{\mathbb{R}}
 \newcommand{\Sgn}{\mbox{Sgn}}
 \renewcommand*{\arraystretch}{1.4}
+\newtheorem{theorem}{Result}
+\newtheorem{definition}{Definition}
 \lstset{frame=tb,
 	language=Python,
 	aboveskip=3mm,

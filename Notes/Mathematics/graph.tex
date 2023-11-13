@@ -1,12 +1,10 @@
 \documentclass[12pt]{article}
 \usepackage{multicol}
 \usepackage[margin=0.4in]{geometry}
-\include{pythonlisting}
 \input{../../definitions.tex}
 \title{Graph Theory Note}
 \author{Ran Xie}
 \begin{document}
-\twocolumn
 \maketitle
 \section{Definitions}
 \textbf{Graph} $G$ is a finite set $V$(vertex set) with irreflexive, \textbf{symmetric} relation $R$ on $V$. $E$ the edge set is the set of symmetric pairs in $R$.  $|V|$ is \textbf{order} of $G$ and $|E|$ is size of $G$. A $(p, q)$ graph is a graph with order $p$ and size $q$.
@@ -39,13 +37,19 @@
 	\item A \textbf{cycle} is a circuit with no repeating vertices. 
 \end{enumerate} 
 
+\textbf{Eulerian circuit} is a circuit that contains all vertices and edges of a multigraph
+
 \textbf{Connected graph} $G$ is when $u$-$v$ path exists for any $u\neq v \in V(G)$. Otherwise a graph is disconnected.
+
+\textbf{Traversable Graph} is a graph that has a Eulerian trial (containing all edges and vertices).
 
 \textbf{Component} $H$ of a graph $G$ is the largest connected subgraph that contains itself. 
 
 \textbf{Cut-vertex} is a vertex $v$ in connected graph $G$ such that $G - v$ is disconnected.
 
 \textbf{Bridge} is an edge $e$ in connected graph $G$ such that $G - e$ is disconnected.
+
+\textbf{Hamiltonian Graph} is a graph with a cycle that contains every vertex.
 
 
 \section{Examples Modelings}
@@ -60,6 +64,10 @@ Employer/Employee hierarchy can be represented as diagraph with people as vertic
 	\item For $(p,q)$ graph, $\sum_v \text{deg} v = 2 q$.
 	\item Every graph has even number of odd vertices.
 	\item Let $G$ be connected graph, $e$ is a bridge iff $e$ not in any cycle of $G$.
+	\item A multigraph is eulerian iff it is connected and every vertex is even.
+	\item A multigraph is traversable iff it is connected and has exactly two odd vertices. Any eulerian trail starts on one and ends on the other.
+	\item Eulerian or traversable graph can be drawn without lifting pencil. (Connected with odd vertices count either 0 or 2)
+	\item $G$ is hamiltonian if order $p \geq 3$ and $\deg v \geq p/ 2$ for every vertex of $G$.
 \end{enumerate}
 
 \section{Graph Algorithms}
