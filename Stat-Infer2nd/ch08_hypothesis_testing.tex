@@ -1,0 +1,63 @@
+\documentclass[12pt]{article}
+
+\input{../definitions.tex}
+
+\title{Chapter 8: Hypothesis Testing}
+\begin{document}
+\maketitle
+
+\section*{Exercise 8.1}
+
+Let $H_0$ be the hypothesis that the coin is fair, aka $\theta_0 = 0.5$.
+\subsection*{Likelihood ratio test} 
+The likelihood method for independent Bernoulli trial is $L(\theta | x) = \theta^{560} (1 - \theta)^{1000 - 560}$ where $560$ is the number of head. We know that $\theta=\frac{560}{1000}$ is the empirical estimator of $\theta$ that maximizes the likelihood function. So the ratio test gives 
+ $$\log{\lambda(x)} = \log{\frac{  L(0.5 |x)}{L(0.56 | x)}} = 1000 \log{0.5} - \{560\log {0.56} + 440 \log {0.44}\} \Rightarrow \lambda(x) \approx  0.00073 $$
+
+$0.00073$ is too small so $H_0$ can be rejected. Therefore the coin is not fair.
+
+\subsection*{Check the probability of such event}
+Assume coin is fair $\theta = 0.5$, then the CDF of the process is$$P(X \geq x) = \sum_{i = x}^{1000} P(X = i) = \sum_{i=x}^{1000} {1000 \choose i} 0.5^i 0.5^{1000 - i}$$
+
+Then we can check if the event ${X \geq 560}$ is a small event for this $\theta$. Indeed it is $\approx0.08\%$. So the coin is not fair.
+
+\section*{Exercise 8.2}
+Let $H_0$ be the null hypothesis that the incident number of this year is generated from $Pois(\lambda)$ where $\lambda < 15$. To estimate whether the generating distribution has decreased in $\lambda$, we let $\pi(\lambda) = \mathcal{N}(\mu = \frac{10+15}{2} = 12.5, \sigma^2 = (15-10)^2) = \frac{1}{5 \sqrt{2 \pi}}\exp(- 0.5 \frac{(12.5 - \lambda)^2}{5^2})$ (we choose midpoint between 15 and 10 is because 10 is the MLE for the latest year's data point)
+
+\begin{equation*}
+\begin{split}
+ P(\lambda < 15 | x = 10) &= \sum_{\lambda = 0}^{14} P(\lambda | x = 10) \\
+  &= \frac{\sum_0^{14}  P(x= 10| \lambda)\pi(\lambda)}{\sum_0^\infty P(x=10|\lambda) \pi(\lambda)} \\
+  &=  \frac{\sum_0^{14}  P(x= 10| \lambda)} {\sum_0^{30} P(x=10|\lambda)}  \left( \text{Let the prior } P(\lambda) = Uniform(0, 30) \right) \\
+  &= \frac{\sum^{14}_{i = 0} i^{10} e^{-i}}{\sum^{30}_{i=0} i^{10} e^{-i}} \approx 0.87
+\end{split}
+\end{equation*}
+
+Type I Error is about 1- 0.87 = 0.13, not small. If we compute $P(x <= 10 | \lambda = 15) \approx 0.11$, so $\lambda = 15$ is still capable of producing such result. It is inconclusive. 
+
+\section*{Exercise 8.3}
+$H_0$ region is $\theta \leq \theta_0$ and $H_1$'s region is $\theta > \theta_0$. Then define $b = m \theta_0$ to be the expected success count if $\theta = \theta_0$. 
+
+A Bernoulli trial $f(y|\theta) = I_{Y=1}\theta + I_{Y=0}(1-\theta)$. Then the likelihood function $$L(\theta|y) = \prod_1^m f(y_i | \theta) ={m \choose k} \theta^k (1- \theta)^{m-k} $$ 
+where $k = \sum_i Y_i$
+
+To maximize $L$, we can use the MLE which is the $\theta_{\text{max}} = \frac{k}{m}$. To reject $H_0$, we need the MLE to stay out $H_0$ region, so $\frac{k}{m} > \theta_0 \Rightarrow  \sum_i Y_i = k > m\theta_0 = b$ 
+
+
+\section*{Exercise 8.5}
+
+\textbf{(a)} The likelihood function $$L(\theta, v|x) = \prod_{i=1}^n f(x_i |\theta, v) = \frac{\theta^n  v^{n\theta}}{(\prod_i x_i)^{\theta+1}} \prod_i I_{\left[v, \infty\right)}(x_i) = \frac{\theta^n  v^{n\theta}}{(\prod_i x_i)^{\theta+1}}, (\text{given } v \leq x_{\text{min}}, 0 {\text{ otherwise}})$$
+
+Holding $\theta$ fixed, $L$ is a monotonic polynomial function of $v$. So $v_0 = x_{(1)}$ the boundary of $v$ maximizes $L$. 
+
+Let $\frac{\partial \log L}{\partial \theta} = \frac{n}{\theta} + \log(x_{(1)}^n) - \log(\prod_i x_i) = 0$, then we get $$\theta_0 = \frac{n}{\log \left( \frac{ \prod_i x_i}{x_{(1)}^n}\right)} = \frac{n}{T(x)}$$
+
+where $T \equiv  \log \left( \frac{ \prod_i x_i}{x_{(1)}^n}\right)$
+
+\textbf{(b)} $H_0 = \{(\theta = 1, v)\}$,
+So the rejection region of $H_0$ is $$\lambda(x) = \frac{\sup_{\theta=1} L(\theta, v| x)}{\sup_{\theta} L(\theta, v | x)} = \frac{T^n}{n^n}\exp(n - T) \leq c$$ 
+
+We take derivative of $\lambda$,  $$\partial_{T}\lambda = \left(\frac{T}{n}\right)^{n-1} e^{n-T} \left( 1- \frac{T}{n} \right)$$ 
+
+So the monotonicity of $\lambda$ is determined by $(1 - T/n)$. When $T = n$, $\lambda$ reaches maximum of 1, when $T < n$, $\lambda$ increases monotonically and when $T > n$, $\lambda$ decreases monotonically. Therefore, if $\lambda(x) < c$ for $0 < c \leq 1$, we will have two values $c_1$ and $c_2$ (on left/right side of $n$ respectively) where $T \leq c_1 \leq n$ or $n \leq c_2 \leq T$.
+
+\end{document}
