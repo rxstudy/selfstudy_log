@@ -60,4 +60,36 @@ We take derivative of $\lambda$,  $$\partial_{T}\lambda = \left(\frac{T}{n}\righ
 
 So the monotonicity of $\lambda$ is determined by $(1 - T/n)$. When $T = n$, $\lambda$ reaches maximum of 1, when $T < n$, $\lambda$ increases monotonically and when $T > n$, $\lambda$ decreases monotonically. Therefore, if $\lambda(x) < c$ for $0 < c \leq 1$, we will have two values $c_1$ and $c_2$ (on left/right side of $n$ respectively) where $T \leq c_1 \leq n$ or $n \leq c_2 \leq T$.
 
+\section*{Exercise 8.6}
+(a) Let $$L(\theta, \mu|x, y) = f(x_1, \ldots, x_n, y_1, \ldots, y_m | \theta, \mu) = \prod_i^n f(x_i|\theta) \prod_i^m f(y_i|\mu) = \theta^n \mu^m \exp(-\theta \sum_i^n x_i - \mu \sum_i^m y_i)$$ be the likelihood function of the joint distribution. Then 
+$$ \ln(L(\theta, \mu)) = n\ln(\theta) + m \ln(\mu) -\theta \sum_i^n x_i - \mu \sum_i^m y_i$$.
+For $H_0$ where $\theta = \mu$, we solve $\frac{d\ln(L(\theta, \mu | \theta = \mu))}{d\theta} =0$ and get $$\hat{\theta_0} = \frac{n+m}{\sum_i^n x_i + \sum_i^m y_i}$$ as the MLE under the constraint.
+
+For $H_1$,  we solve $\frac{\partial \ln L}{\partial \theta} = 0$ and $\frac{\partial \ln L }{\partial \mu} = 0$ and get $$\hat{\theta_1} = \frac{n}{\sum_i^n x_i},  \quad \hat{\mu_1} = \frac{n}{\sum_i^m y_i}$$.
+
+Therefore $$\lambda((x, y)) = \frac{\sup_{\theta=\mu} L(\theta, \mu|x, y)}{\sup_{\theta, \mu} L(\theta, \mu|x, y)} = \frac{ L(\hat{\theta_0}, \hat{\theta_0}|x, y)}{L(\hat{\theta_1}, \hat{\mu_1})} = \frac{(n+m)^{n+m}}{n^nm^m}\frac{\left(\sum_i^nx_i\right)^n \left(\sum_i^m y_i\right)^m}{\left(\sum_i^nx_i +  \sum_i^m y_i \right)^{n+m}}$$
+
+(b) To show that $T = \frac{\sum X}{\sum X + \sum Y}$ can also give the same LRT, we just need to express the LRT in terms of $T$. Let $C= \frac{(n+m)^{n+m}}{n^nm^m}$, then
+$$\lambda((x, y)) =C \frac{\left(\sum_i^nx_i\right)^n \left(\sum_i^m y_i\right)^m}{\left(\sum_i^nx_i +  \sum_i^m y_i \right)^{n+m}} 
+= C  \left(\frac{\sum_i^nx_i}{\sum_i^nx_i +  \sum_i^m y_i}\right)^n \left(\frac{\sum_i^m y_i}{\sum_i^nx_i +  \sum_i^m y_i}\right)^m  = C T^n (1 - T)^m $$
+
+(c)
+Let $U = \sum^{n}_{1} X_i$, then we calculate the MGF,  $M_U(t) = E\left[e^{\sum_i t}\right] = \prod E\left[e^{X_it}\right]=\prod M_{X_i}(t) = \frac{1}{(1 - \theta t)^n}$ since $H_0$ is true. It matches the gammar distribution's MGF, therefore $U = \sum_i X_i \sim \GammaPDF(n, \theta)$. Similarly $V = \sum^m_1 Y_i \sim \GammaPDF(m, \theta)$.
+
+Next is to find the distribution of $T  = \frac{U}{U + V}$. Since $U, V$ are independent, so $$f(u, v) = f(u) f(v) = \GammaPDF(n, \theta)\GammaPDF(m, \theta) = \frac{1}{\Gamma(n)\Gamma(m) \theta^{n+m}} u^{n-1}v^{m-1} e^{-\frac{1}{\theta}(u + v)}$$
+
+Let $S = U + V$, then $T = \frac{U}{U + V} = \frac{U}{S}$. We have $U = TS,  V = S(1-T)$. So the Jacobian $|J| = |S|$. By change of variables, we have 
+$$ g(t, s) = f(u(t, s)) f(v(t, s)) |J| = \frac{1}{\Gamma(n)\Gamma(m) \theta^{n+m}} t^{n-1}(1-t)^{m-1} s^{n + m-1} e^{-\frac{1}{\theta}s}$$
+Next we maginalize $s$, 
+\begin{equation*}
+ \begin{split}
+	g(t) &= \int_{0}^{\infty} g(t, s) ds =  \frac{1}{\Gamma(n)\Gamma(m)\theta^{n+m}}  t^{n-1}(1-t)^{m-1} \int_{0}^{\infty} s^{n + m-1} e^{-\frac{1}{\theta}s}ds \\ 
+	&= \frac{\Gamma(n+m)}{\Gamma(n)\Gamma(m)} t^{n-1}(1-t)^{m-1} \int_0^\infty \frac{1}{\Gamma(n + m) \theta^{n+m}} s^{n + m-1} e^{-\frac{1}{\theta}s}ds \\
+	&=  \frac{\Gamma(n+m)}{\Gamma(n)\Gamma(m)} t^{n-1}(1-t)^{m-1} \\
+	&= \BetaPDF(n, m)
+\end{split}
+\end{equation*}
+
+
+
 \end{document}
