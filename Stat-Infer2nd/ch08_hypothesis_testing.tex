@@ -90,6 +90,38 @@ Next we maginalize $s$,
 \end{split}
 \end{equation*}
 
+\section*{Exercise 8.37}
+(a) 
+Given $Z \sim \Normal(0, 1)$ and $P(Z > z_\alpha) = \alpha$,  Consider \begin{align*}
+	&\sup_{\theta \in \Theta_0} P_{\theta}\left( \overline{X} > \theta_0 + z_{\alpha}\frac{\sigma}{ \sqrt{n}} \right) \\
+	&\sup_{\theta \in \Theta_0} P_{\theta}\left( \frac{\overline{X} - \theta}{\sigma / \sqrt{n}} > \frac{\theta_0 - \theta}{\sigma / \sqrt{n}} + z_{\alpha} \right) \\
+	&\sup_{\theta \leq \theta_0} P_{\theta}\left( z > \frac{\theta_0 - \theta}{\sigma / \sqrt{n}} + z_{\alpha} \right) \\
+\end{align*}
+the above probability is an increasing function of $\theta$ when $\theta \leq \theta_0$, therefore
+$$
+ \sup_{\theta \leq \theta_0} P_{\theta}\left( z > \frac{\theta_0 - \theta}{\sigma / \sqrt{n}} + z_{\alpha} \right) = P_{\theta_0}(z > z_\alpha) = \alpha \\
+$$
+So $ \overline{X} > \theta_0 + z_{\alpha}\frac{\sigma}{ \sqrt{n}} $ is indeed a test of size $\alpha$ that rejects $H_0$.  \QED
 
+To derive the test from LRT is, we have $$
+\begin{aligned}
+	\lambda(x) &= \frac{\sup_{\theta \leq \theta_0} L(x, | \theta, \sigma^2) }{\sup_{\theta \leq \theta_0} L(x, | \theta, \sigma^2)} 
+   = \frac{\exp{-\frac{1}{2\sigma^2} \sum (x_i - \min(\bar{x}, \theta_0))^2 }}{\exp{-\frac{1}{2\sigma^2} \sum (x_i - \theta_0)^2 }}  \\
+    &= \begin{cases*}
+	      	1,                                                      & $\theta_0 = \min(\overline{x}, \theta_0)$ \\
+	      	\exp{-\frac{n}{2\sigma^2}(\overline{x} - \theta_0)^2 }, & $\overline{x} = \min(\overline{x}, \theta_0)$ \\
+    \end{cases*}\\
+\end{aligned}
+$$
+The rejection region for $H_0$ is $\{x\in R | \lambda(x) < c\}$ for $c \in [0, 1]$.  We can write  \begin{align*}
+		& \sup_{\theta \leq \theta_0} P (x \in R) \\
+		&\Rightarrow \sup_{\theta \leq \theta_0} P (\lambda(x) < c) \\
+		&\Rightarrow \sup_{\theta \leq \theta_0} P\left(\exp{-\frac{n}{2\sigma^2}(\overline{x} - \theta_0)^2 }  < c\right)  \\
+		&\Rightarrow \sup_{\theta \leq \theta_0} P\left(\overline{x} > \theta_0 + \frac{\sigma}{\sqrt{n}}\sqrt{2\ln(1/c)} \right) \\ 
+		&\Rightarrow \sup_{\theta \leq \theta_0} P\left(\overline{x} > \theta_0 + \frac{\sigma}{\sqrt{n}}z_\alpha \right)  \quad \quad, (\text{Simply choose } z_\alpha \equiv \sqrt{2\ln(1/c)}) \\
+		&\Rightarrow \sup_{\theta \leq \theta_0} P\left( \frac{\overline{X} - \theta}{\sigma / \sqrt{n}} > \frac{\theta_0 - \theta}{\sigma / \sqrt{n}} + z_{\alpha} \right) \\
+		&\Rightarrow \sup_{\theta \leq \theta_0} \left( z > \frac{\theta_0 - \theta}{\sigma / \sqrt{n}} + z_{\alpha} \right), \quad \quad (Z \sim \Normal(0, 1)) \\
+		&\Rightarrow P\left( z > z_{\alpha} \right) = \alpha
+\end{align*}
 
 \end{document}
