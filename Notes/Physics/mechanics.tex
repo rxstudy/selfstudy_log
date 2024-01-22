@@ -1,0 +1,53 @@
+\documentclass[12pt]{article}
+
+\include{pythonlisting}
+\input{../../definitions.tex}
+
+\title{Mechanics}
+\begin{document}
+	\maketitle
+	
+\section{Basic Elementary Principles}
+\subsection{Single particle}
+Let $\bb{r}$ be radius vector of a particle from given origin and $\bb{v}$ its velocity vector:
+$$ \bb{v} = \frac{d \bb{r}}{dt}$$
+
+acceleration is given by $$ \bb{a} = \frac{d^2 \bb{r}}{d t^2}$$
+
+Linear momentum $\bb{p} \equiv m \bb{v}$. Vector sum of forces exerted on the particle is total force $\bb{F}$,  
+$$\bb{F} = \frac{d\bb{p}}{dt} \equiv  \bb{\dot p} \quad \quad \text{(Newton's second law)}$$
+
+Conversation Theorem for linear momentum: If $\bb{F} = 0$, then $\bb{\dot p} = 0$ hence conserved.
+
+Angular momentum of the particle around point $O$ is $\bb{L} = \bb{r} \times \bb{p}$. Torque $\bb{N} = \bb{r} \times \bb{F}$.
+We can relationship $$ \bb{N} = \frac{d}{dt} (\bb{r} \times m\bb{v}) = \frac{d \bb{L}}{dt} \equiv \bb{\dot L}$$
+
+Conservation Theorem for angular momentum: If $\bb{N}$ is zero then $\bb{\dot L} = 0$, hence conserved.
+
+If force field does the same work for any possible path between point 1 and 2 ($W_{12} = \int^2_1 \bb{F}\cdot d \bb{s})$), 
+$\bb{F}$ is conservative or $\oint \bb{F} \cdot d \bb{s} = 0$. As a result, 
+there exists a potential scalar field $V$ such that $$\bb{F} = -\grad{V(\bb{r})}$$
+
+Energy Conservation Theorem for a particle: If $\bb{F}$ acting on a particle is conservative, then $E = T + V$ is conserved.
+
+\subsection{System of particles}
+Let $\bb{F}^{(e)}_i$ external force acting on particle $i$-th, and $\bb{F}_{ji}$ is the force 
+exerted by $j$-th particle on $i$-th particle in the system, 
+$$\sum_j \bb{F}_{ji} +  \bb{F}^{(e)}_i = \bb{\dot{p}}_i$$
+Summing over all particles, we get  \begin{align}
+	& \frac{d^2}{dt^2} \sum_i m_i \bb{r}_i = \sum_i \bb{F}^{(e)}_i + \sum_{i \neq j} \bb{F}_{ji} \\
+	\Rightarrow & M \frac{d^2 \bb{R}}{dt^2} = \sum_i \bb{F}^{(e)}_i \equiv \bb{F}^{(e)}
+\end{align}
+where $R = \frac{m_i \bb{r}_i}{\sum m_i} =  \frac{m_i \bb{r}_i}{M}$ is the center of mass.
+The total linear momentum $\bb{P} = \sum m_i \frac{d\bb{r}_i}{dt} = M \frac{d\bb{R}}{dt}$.
+
+Conservation theorem for the linear Momentum of a system of particles: 
+if the total external force is zero, the total linear momentum is conserved.
+
+Conservation Theorem for total angular momentum of a system of particles: $\bb{L}$ is constant in time 
+if the applied external torque is zero. $\frac{d\bb{L}}{dt} = \bb{N}^{(e)}$
+
+The total angular momentum of a system of particles is $\bb{L} = \bb{R} \times M \bb{v} + \sum_i \bb{r}_i' \times \bb{p}_i'$ 
+where $\bb{r}_i' = \bb{R} - \bb{r}_i$ position relative to the center of mass.
+
+\end{document}
