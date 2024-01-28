@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 
 \input{../definitions.tex}
+\graphicspath{ {./figures/} }
 
 \title{Chapter 8: Hypothesis Testing}
 \begin{document}
@@ -89,6 +90,68 @@ Next we maginalize $s$,
 	&= \BetaPDF(n, m)
 \end{split}
 \end{equation*}
+
+\section*{Exercise 8.7}
+(a)
+ For the integration of the pdf to converge, $\lambda > 0$.
+ \begin{align*}
+	LRT(x) = \frac{\sup_{\theta \leq 0, \lambda} L(\lambda, \theta | x)}{\sup_{\theta, \lambda} L(\lambda, \theta | x)} = \frac{\sup_{\theta \leq 0, \lambda}\frac{1}{\lambda^n} \exp(- \frac{1}{\lambda} \sum_i (x_i - \theta)) I(\theta \leq x_{(1)})}{\sup_{\theta, \lambda}\frac{1}{\lambda^n}  \exp(- \frac{1}{\lambda} \sum_i (x_i - \theta)) I(\theta \leq x_{(1)}) } 
+\end{align*}
+Let $f(\theta, \lambda) = \frac{1}{\lambda^n} \exp(- \frac{1}{\lambda} \sum_i (x_i - \theta)) $ and $\log f = -n\log \lambda - \frac{1}{\lambda} \sum_i (x_i - \theta)$. Take the partial derivative wrt $\theta$, $\frac{\partial \log f}{\partial \theta} = \frac{n\theta}{\lambda}$ which means $f$ is a monotonic increasing function along $\theta$ (attains maximum at $\theta = 0$). 
+
+Let $g(\theta, \lambda) = f(\theta, \lambda) I(\theta \leq x_{(1)})$, then $g(\theta, \lambda)$ attains maximum at $\theta = x_{(1)}$ holding $\lambda$ fixed.  Then we have $g(x_{(1)}, \lambda) = \frac{1}{\lambda^n} \exp(- \frac{1}{\lambda} \sum_i (x_i - x_{(1)})))$
+
+Next we take the deritvative wrt to $\lambda$,  $\frac{\partial \log g(x_{(1)}, \lambda)}{\partial \lambda} = -\frac{n}{\lambda} + \frac{\sum_i (x_i -  x_{(1)})}{\lambda^2} = 0$ implies when $\lambda = \bar{x} - x_{(1)}$, $g(x_{(1)}, \lambda)$ attains maximum. 
+
+Now we have
+$$\sup_{\theta, \lambda}\frac{1}{\lambda^n}  \exp(- \frac{1}{\lambda} \sum_i (x_i - \theta)) I(\theta \leq x_{(1)}) = g(x_{(1)}, \bar{x} - x_{(1)})$$
+
+If we constrain $\theta \leq 0$,  then by the same computation, $g$ will attain maximum when $\theta = \min(0, x_{(1)})$ and $\lambda = \bar{x} - \min(0, x_{(1)})$.
+
+Now we can write the LRT as 
+\begin{align*}
+	LRT(x) &=  \frac{\sup_{\theta \leq 0, \lambda} L(\lambda, \theta | x)}{\sup_{\theta, \lambda} L(\lambda, \theta | x)} \\
+	&=  \frac{g(\min(0, x_{(1)}), \bar{x} - \min(0, x_{(1)}))}{g(x_{(1)}, \bar{x} - x_{(1)})} \\
+	&= \begin{cases*}
+		1 &  $x_{(1)} < 0$ \\
+		\left(1 - \frac{x_{(1)}}{\bar{x}} \right)^n & $x_{(1)} \geq 0 $
+	\end{cases*}
+\end{align*}
+
+\section*{Exercise 8.12}
+(a) By Exercise 8.37 below, when $\sigma^2$ is known, we can write the power function of the test as 
+$$ \beta(\mu) = P_\mu(X \in R) = P_\mu(\overline{X} > 0 + z_\alpha \frac{\sigma}{\sqrt{n}}) $$
+where $P(Z > z_alpha) = z_\alpha$. By subtracting both side with $\mu$, we have 
+$$ \beta(\mu) =  P_\mu( \frac{\overline{X} - \mu}{ \frac{\sigma}{\sqrt{n}}} > z_\alpha - \frac{\mu}{ \frac{\sigma}{\sqrt{n}}}) = P_\mu(Z > z_\alpha - \frac{\mu}{ \sigma / \sqrt{n}})$$
+Now we can plot the value of the power function for each $\mu \in [-1, 2]$.
+
+\begin{lstlisting}[language=Python]
+	import numpy as np
+	import scipy.stats as st
+	import matplotlib.pyplot as plt
+	
+	sigma = 1
+	samples = [1, 4, 16, 64, 100]
+	test_size = 0.05
+	z_test_size = st.norm.ppf(1 - test_size)
+	
+	def get_power_fun(n):
+	return lambda mean: 1 - st.norm.cdf(z_test_size - mean / (sigma / np.sqrt(n)))
+	
+	data = []
+	mean_range = np.linspace(-1.2, 2, num=100)
+	
+	ax = plt.subplot()
+	for n in samples:
+	values = get_power_fun(n)(mean_range)
+	ax.plot(mean_range, values, label=f"sample size={n}")
+	
+	ax.set_title="Power function by sample sizes"
+	ax.set_ylabel("power function")
+	ax.set_xlabel("sample mean")
+	ax.legend()
+\end{lstlisting}
+\includegraphics{fig_ch_08_12_a}
 
 \section*{Exercise 8.37}
 (a) 
