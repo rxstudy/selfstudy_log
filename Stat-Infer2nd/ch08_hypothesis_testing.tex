@@ -118,6 +118,29 @@ Now we can write the LRT as
 	\end{cases*}
 \end{align*}
 
+\section*{Exercise 8.8}
+(a)
+For $\Normal(\theta, a\theta)$, the likelihood function $$L = \left(\frac{1}{a\theta \sqrt{2\pi}}\right)^n \exp(-\frac{1}{2} \sum \left(\frac{x_i - \theta}{a\theta}\right)^2) = \left(\frac{1}{a\theta \sqrt{2\pi}}\right)^n \exp(-\frac{1}{2a^2} \sum \left(\frac{x_i}{\theta} - 1\right)^2)$$
+Then $$\log L = -n (\log a + \log \theta + \log(\sqrt{2\pi})) - \frac{1}{2a^2} \sum \left(\frac{x_i}{\theta} - 1\right)^2$$
+Now we need to find $\sup_{a=1, \theta} L$ and $\sup_{a,\theta} L$. We will take the derivative wrt to $\theta$ first.
+\begin{align*}
+	&\frac{\partial \log L}{\partial \theta} = 0 \\
+	\Rightarrow & a^2  = \frac{n-1}{n} \frac{s^2}{\theta^2} - \frac{\overline{x}}{\theta}
+\end{align*}
+where $s^2$ is the sample variance and $\overline{x}$ is the sample mean.
+$$ \frac{\partial \log L}{\partial a} = 0 \Rightarrow a^2 = \frac{1}{n} \sum \left(\frac{x_i}{\theta} - 1 \right)^2  = \frac{n-1}{n} \frac{s^2}{\theta^2} - \frac{2 \overline{x}}{\theta} + 1$$
+
+When $a = 1$, we solve
+
+\begin{align*}
+	&\frac{n-1}{n} \frac{s^2}{\theta^2} - \frac{\overline{x}}{\theta} = a^2 = 1 \\
+	\Rightarrow & \theta^2 + \overline{x} \theta - \frac{n-1}{n}s^2 = 0 \\
+	\Rightarrow & \hat{\theta}_R = \frac{\sqrt{\overline{x}^2 + 4\frac{(n-1)}{n}s^2} - \overline{x}}{2}
+\end{align*}
+When $a$ is unrestricted, we combined the two derivative above and get $\hat{\theta} = \overline{x}$ and $\hat{a} = \sqrt{\frac{n-1}{n}} \frac{s}{\overline{x}}$
+
+So $$LRT(x) = \frac{\sup_{a=1, \theta} L}{\sup_{a,\theta} L} = \frac{L(a=1, \theta=\hat{\theta}_R| x ) }{L(a = \hat{a}, \theta=\hat{\theta} | x)}$$
+
 \section*{Exercise 8.12}
 (a) By Exercise 8.37 below, when $\sigma^2$ is known, we can write the power function of the test as 
 $$ \beta(\mu) = P_\mu(X \in R) = P_\mu(\overline{X} > 0 + z_\alpha \frac{\sigma}{\sqrt{n}}) $$
