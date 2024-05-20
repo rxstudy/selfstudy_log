@@ -65,6 +65,28 @@ One can think of this as giving a temporary identification between $U$ and $\psi
 
 Given the same chart, the coordinate vectors $\partial_\theta, \partial_\phi$ form a basis for $T_pS^2$. If $v \in T_pS^2$, then  $$v = v^1 \frac{\partial}{\partial \theta}\bigg\rvert_p + v^2 \frac{\partial}{\partial \phi}\bigg\rvert_p = v^1\partial_\theta + v^2 \partial_\phi = v^i \partial_i $$
 
+The dual space to $T_pS^2$ is $T^*_pS^2$, if $w \in T^*_pS^2$, $$w = w_1 d\theta + w_2 d\phi = w_i dx^i \text{(in generic coordinates)}$$
+and $w(v) = w_i v^i$
+
+$S^2$ is Riemannian with symmetric metric tensor defined as 
+$$
+\begin{aligned}
+	g &= g_{ij}dx^i \otimes dx^j  \\
+	  &= g_{11}d\theta\otimes d\phi + g_{12}d\theta \otimes d\phi + g_{21}d\phi \otimes d\theta + g_{22} d\phi \otimes d\phi \\
+	  &= g_{11}(d\theta)^2 + \frac{1}{2}(g_{12} + g_{21}) d\theta \otimes d\phi +  \frac{1}{2}(g_{21} + g_{12})  d\phi\otimes d\theta +  g_{22} (d\phi)^2 \qquad ,(g_{12} = g_{22}) \\
+	  &= g_{11}(d\theta)^2 + \frac{g_{12}}{2}(d\theta \otimes d\phi + d\phi\otimes d\theta) + \frac{g_{21}}{2}(d\phi\otimes d\theta + d\theta \otimes d\phi) + g_{22} (d\phi)^2 \\
+	  &= g_{11}(d\theta)^2 + g_{12}d\theta d\phi + g_{21}d\phi d\theta + g_{22} (d\phi)^2 \\
+	  &= g_{ij}dx^i dx^j
+\end{aligned}$$
+
+We will now compute $g$. Since $(\theta, \phi)$ are local coordinate  of $S^2$, we can introduce  a smooth embedding map $\iota = \psi^{-1} = (\sin\theta \cos\phi, \sin\theta\sin\phi, \cos\theta)$ into $\Real^3$. Since $\Real^3$ has Euclidean metric $\bar{g} = (dx)^2 + (dy)^2 + (dz)^2$, then $g$ is the pullback of $\bar{g}$,
+$$\begin{aligned} 
+	g &= \iota^*\bar{g} \\
+	  &= (d(\sin\theta \cos\phi))^2 + (d(\sin\theta\sin\phi))^2 + (d(\cos\theta))^2\\
+	  &= (\cos\theta \cos\phi d\theta - \sin\theta \sin\phi d\phi)^2 + (\cos\theta\sin\phi d\theta + \sin\theta\cos\phi d\phi)^2 + (\sin\theta d\theta))^2\\
+	  &= (d\theta)^2 + \sin^2\theta (d\phi)^2
+\end{aligned} 
+$$
 
 
 \end{document}
