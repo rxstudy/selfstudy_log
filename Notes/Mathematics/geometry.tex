@@ -6,8 +6,9 @@
 \title{Geometry Note}
 \author{Ran Xie}
 \begin{document}
-\twocolumn
 \maketitle
+
+\twocolumn
 \section{Definitions}
 
 \textbf{Space of linear function} $L(V, W)$ vector space of linear functions from $V$ to $W$.
@@ -41,4 +42,29 @@
 \textbf{Exterior Product}
 
 \textbf{Differential forms} p-form is $C^\infty$ skew-symmetric covariant tensor field of degree $p$ (type $(0,p)$). Local basis has ${d \choose p}$ p-forms $dx^{i_1}\cdots dx^{i_p}$ where $(i_1,\ldots,i_p)$ is increasing.
+
+\onecolumn
+\section{Case Study 1: Surface of a sphere}
+The surface of sphere of radius 1 is a manifold $$S^2 = \{(x, y, z) \in \Real^3 | x^2+y^2+z^2 = 1 \}$$
+We can define a chart $(U, \psi)$ for $S^2$ where $U\subseteq M$ with spherical coordinate.  Let $$U = \left\{(\theta, \phi) \in [0, 2\pi]\times [0, \pi] \right\} $$
+and $$
+\psi(x,y,z): \begin{cases}
+	\theta = \arccos(z) \\
+	\phi = \text{sng}(y) \arccos \frac{x}{\sqrt{x^2 + y^2}}
+\end{cases}, 
+\psi^{-1}(\theta, \phi): 
+\begin{cases}
+	x &= \sin\theta \cos\phi \\
+	y &= \sin\theta \sin\phi \\
+	z &= \cos \theta
+\end{cases} 
+$$
+Then $\psi(U) \subseteq \Real^2$ is a homeomorphism from $U$ to $\psi(U)$. $\psi$ is called a \textbf{Locale coordinate map}. And the component functions $(\theta, \phi)$ defined by $\psi(p) = (\theta(p), \phi(p))$ for $p \in S^2$ are called \textbf{local coordinates} on $U$.
+
+One can think of this as giving a temporary identification between $U$ and $\psi(U)$. When we work in this chart, we can think of $U$ as an open subsets of the manifold and as an open subset of $\Real^2$. Thus, we can represent a point $p \in U \subseteq S^2$ by its coordinate $(\theta, \phi) = \psi(p)$ and think of it as being the point $p$. We say $(\theta, \phi)$ is the local coordinate for $p$ or $p = (\theta, \phi)$ in local coordinates. \textit{(See Lee's Smooth Manifold Local Coordinate Representations section)}
+
+Given the same chart, the coordinate vectors $\partial_\theta, \partial_\phi$ form a basis for $T_pS^2$. If $v \in T_pS^2$, then  $$v = v^1 \frac{\partial}{\partial \theta}\bigg\rvert_p + v^2 \frac{\partial}{\partial \phi}\bigg\rvert_p = v^1\partial_\theta + v^2 \partial_\phi = v^i \partial_i $$
+
+
+
 \end{document}
