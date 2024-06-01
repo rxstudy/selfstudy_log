@@ -116,6 +116,23 @@ Note that area of $X > Y$ is $\frac{1}{2}$ and the area of the region for $T$ is
 
 Finally, we have $P(T) = P(T | X > Y) P(X > Y) + P(T | X \leq Y) P( X \leq Y) = \frac{1}{4}$
 
+\section*{Exercise 4.27}
+Suppose $X \sim n(\mu, \sigma^2)$,  $Y \sim n(\gamma, \sigma^2)$ and $X \perp Y$.  Let $U = X + Y$ and $V = X - Y$. We have $X = \frac{U + V}{2}$ and $Y = \frac{U - V}{2}$. then $$\begin{aligned}
+g(u, v) &= f(x(u, v), y(u, v)) \left|\frac{\partial(x,y)}{\partial(u,v)}\right| \\
+&= \frac{1}{2} f(x(u, v))f(y(u, v))  \\
+&= \frac{1}{4\pi \sigma^2} \exp(-\frac{(\frac{u + v}{2} - \mu)^2}{2\sigma^2})\exp(-\frac{(\frac{u - v}{2} - \gamma)^2}{2\sigma^2}) \\
+&= \frac{1}{4\pi \sigma^2} \exp(-\frac{1}{4 \sigma^2}(u -(\mu + \gamma))^2)  \exp(-\frac{1}{4\sigma^2}(v - (\mu - \gamma))^2) 
+\end{aligned}$$
+
+We just need to get the marginal distribution for each $u$ and $v$. Let $s = \frac{1}{2\sigma}(v - (\mu - \gamma))$,  $ds = \frac{1}{2\sigma}dv$
+$$\begin{aligned}
+	g(u) &= \int g(u, v) dv = \frac{1}{4\pi \sigma^2} \exp(-\frac{1}{4 \sigma^2}(u -(\mu + \gamma))^2) \int  \exp(-\frac{1}{4\sigma^2}(v - (\mu - \gamma))^2) dv \\
+	&=  \frac{1}{4\pi \sigma^2} \exp(-\frac{1}{4 \sigma^2}(u -(\mu + \gamma))^2) 2\sigma \int  e^{-s^2}  ds \\
+	&=  \frac{1}{4\pi \sigma^2} \exp(-\frac{1}{4 \sigma^2}(u -(\mu + \gamma))^2) 2\sigma \sqrt{\pi} \\
+	&=  \frac{1}{\sqrt{\pi (\sqrt{2}\sigma)^2}} \exp(-\frac{1}{2 (\sqrt{2}\sigma)^2}(u -(\mu + \gamma))^2)
+\end{aligned}$$
+We get $u \sim \Normal(\mu + \gamma, 2\sigma^2)$, similarly, we get $v \sim \Normal(\mu - \gamma, 2\sigma^2)$. They are independent because $g(u,v) = g(u)g(v)$.
+
 \section*{Exercise 4.31}
 We have hierarchical model 
 $$ \begin{aligned}
@@ -162,7 +179,7 @@ f(y) &= \int_0^{\infty} f(y, \Lambda) d\Lambda \\
 &=  \frac{\beta^{\alpha}\Gamma(y + \alpha)}{y!(\beta+1)^{y + \alpha}\Gamma(\alpha)}
 \end{aligned} 
 $$
-If $\alpha$ is positive interger, then $\Gamma(y+\alpha) = (y+\alpha)!$. So $$f(y) =  \frac{\beta^{\alpha}(y + \alpha)!}{(\beta+1)^{y + \alpha}y! \alpha !} = {y+\alpha - 1 \choose y} \frac{\beta^{\alpha}}{(\beta+1)^{y + \alpha}} = {y+\alpha - 1 \choose y} \left( 1 - \frac{1}{\beta+1}\right)^{\alpha} \left(\frac{1}{\beta+1} \right)^y$$
+If $\alpha$ is positive integer, then $\Gamma(y+\alpha) = (y+\alpha)!$. So $$f(y) =  \frac{\beta^{\alpha}(y + \alpha)!}{(\beta+1)^{y + \alpha}y! \alpha !} = {y+\alpha - 1 \choose y} \frac{\beta^{\alpha}}{(\beta+1)^{y + \alpha}} = {y+\alpha - 1 \choose y} \left( 1 - \frac{1}{\beta+1}\right)^{\alpha} \left(\frac{1}{\beta+1} \right)^y$$
 
 $$\E(Y) = \E(\E(Y|\Lambda)) = \E(\Lambda) = \alpha \beta $$
 

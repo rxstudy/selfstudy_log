@@ -44,7 +44,7 @@
 \textbf{Differential forms} p-form is $C^\infty$ skew-symmetric covariant tensor field of degree $p$ (type $(0,p)$). Local basis has ${d \choose p}$ p-forms $dx^{i_1}\cdots dx^{i_p}$ where $(i_1,\ldots,i_p)$ is increasing.
 
 \onecolumn
-\section{Case Study 1: Surface of a sphere}
+\section*{Case Study 1: Surface of a sphere}
 The surface of sphere of radius 1 is a manifold $$S^2 = \{(x, y, z) \in \Real^3 | x^2+y^2+z^2 = 1 \}$$
 We can define a chart $(U, \psi)$ for $S^2$ where $U\subseteq M$ with spherical coordinate.  Let $$U = \left\{(\theta, \phi) \in [0, 2\pi]\times [0, \pi] \right\} $$
 and $$
@@ -88,5 +88,54 @@ $$\begin{aligned}
 \end{aligned} 
 $$
 
+
+\section*{Case Study 2: Relativistic length contraction}
+Given a stationary frame, it has Minkowski flat metric of $(d\tau)^2 = (dt)^2 - (dx)^2$.
+A measure of length between location $A$ and $B$ along $x$-axis in a stationary frame are the distance between two simultaneous events $E_A = (t_0, x_a)^T$ and $E_B = (t_0, x_b)^T$. We want to calculate the distance with respect to a moving frame with constant velocity.
+
+Let $S$ be the stationary frame with axis $(t, x)$ and $S'$ with axis $(\bar{t}, \bar{x})$ be the moving frame in the $x$-direction with speed $v$. The line element $d\tau$ is invariant in different frames, therefore $(dt)^2 - (dx)^2 = (d\tau)^2 = (d\bar{t})^2 - (d\bar{x})^2$. So we have $(t)^2 - (x)^2 = (\bar{t})^2 - (\bar{x})^2$. The solution is given by $$
+ \begin{aligned}
+ 	t &= \bar{t}\cosh \theta + \bar{x} \sinh\theta   & \\
+ 	x &= \bar{t}\sinh \theta + \bar{x} \cosh\theta   & 
+ \end{aligned}
+$$
+The trajectory of the origin of $S'$ along x axis is $x(t) = vt$ in frame $S$ but $\bar{x}(\bar{t}) = 0$ in $S'$ after the above transformation. So the above transformation is mapping $(\bar{t}, 0)$ to $(t, vt)$. Substituting those in the solution, then we have $v = \tanh\theta \equiv \beta$. From that, we have $\cosh \theta = \frac{1}{\sqrt{1 - v^2}} \equiv \gamma$, $\sinh\theta = \frac{v}{\sqrt{1 - v^2}} = \gamma\beta$ and . We arrive at Lorentz transform from $S \rightarrow S'$: $$\Lambda = \begin{pmatrix}
+	\cosh\theta & \sinh\theta \\
+	\sinh\theta & \cosh\theta \\ 
+\end{pmatrix}^{-1}
+= \begin{pmatrix}
+	\cosh\theta & - \sinh\theta \\
+	-\sinh\theta & \cosh\theta \\ 
+\end{pmatrix}
+= \begin{pmatrix}
+	\gamma & -\gamma\beta \\
+	-\gamma \beta & \gamma \\
+\end{pmatrix}
+$$
+
+Now consider the world line of $A$ and $B$ in $S$,  
+$$W_A(t) = \begin{pmatrix}
+	t \\ x_a
+\end{pmatrix},  
+W_B(t) =  \begin{pmatrix}
+t \\  x_b
+\end{pmatrix}$$. After Lorentz transform, $$
+\widehat{W}_A(t) = \begin{pmatrix}
+ \gamma t - \gamma \beta x_a \\
+ - \gamma\beta t + \gamma x_a
+\end{pmatrix},
+\widehat{W}_B(t) = \begin{pmatrix}
+	\gamma t - \gamma \beta x_b \\
+	- \gamma\beta t + \gamma x_b
+\end{pmatrix}
+$$
+As we can see when $E_A$ and $E_B$ that are simultaneous in $S$ is not simultaneous in $S'$ because their time component is not the same. To measure the distance in $S'$, we will choose two events along the world line of $A$ and $B$ with the same time component in $S'$ that is $\widehat{W}_A^{(0)}(t_a) = \widehat{W}_B^{(0)}(t_b)$. Therefore we have $\gamma t_a  -  \gamma\beta x_a = \gamma t_b - \gamma \beta x_b$. We can choose $t_a = \beta x_a$ and $t_b = \beta x_b$ which is their  $\bar{x}$-intercept in $S'$.
+
+Then the distance measured in $S'$ is $$\begin{aligned}
+\widehat{L} & =  \widehat{W}_B^{(1)}(\beta x_b) - \widehat{W}_A^{(1)}(\beta x_a)\\
+   & = -\gamma\beta^2 x_b + \gamma x_b + \gamma \beta^2 x_a - \gamma x_a  = \gamma(1 - \beta^2)(x_b - x_a) \\
+   &= \frac{x_b - x_a}{\gamma}\\
+   &= \frac{L}{\gamma}
+\end{aligned}$$
 
 \end{document}

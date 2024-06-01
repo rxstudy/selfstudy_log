@@ -1,0 +1,19 @@
+\documentclass[12pt]{article}
+
+\input{../definitions.tex}
+
+\title{Chapter 9: Interval Estimation}
+\begin{document}
+	\maketitle
+	
+\section*{Exercise 9.1}
+\begin{align*}
+	P(L \leq \theta \leq U) &= P(L \leq \theta \leq U | L \leq U) \\
+	 &= 1 - P(L < \theta \text{ or } \theta > U | L \leq U) \\
+	 &= 1 - \left[P(L < \theta| L \leq U) + P( \theta > U | L \leq U) - P(U < \theta < L | L \leq U)\right] \\
+	 &= 1 - (\alpha_1 + \alpha_2 - 0) \\
+	 &=  1 - \alpha_1 - \alpha_2
+\end{align*}
+
+
+\end{document}
