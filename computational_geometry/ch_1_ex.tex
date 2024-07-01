@@ -1,0 +1,60 @@
+\documentclass[12pt]{article}
+\usepackage{multicol}
+\usepackage[margin=0.4in]{geometry}
+\include{pythonlisting}
+\input{../definitions.tex}
+\title{Computational Geometry: Convex Hull}
+\author{Ran Xie}
+\begin{document}
+\maketitle
+
+\section*{Exercise 1}
+
+(a) Let $A$ and $B$ be convex set, let $p, q\in A \cap B$, then $\overline{pq}$ lies in $A$ and $B$ due to convexity. Therefore $\overline{pq}$ lines in $A\cap B$ hence convex.
+
+(b) 
+Let $S$ be a set of points, $\mathcal{P} = \{\overline{p_ip_{i+1}}\}$ be the smallest perimeter polygon, $P$ be the perimeter set of points.
+
+Note that in the incremental algorithm, we are always replacing two connected edges and with one (e.g. removing $\overline{p_{i}p_{i+1}}, \overline{p_{i-1}p_{i}}$ and replace with $\overline{p_{i-1}p_{i+1}}$).
+ By triangle inequality, the length $$|\overline{p_{i-1}p_{i+1}}| < |\overline{p_{i}p_{i+1}}| + |\overline{p_{i-1}p_{i}}|$$
+This means the total length of the perimeter is strictly decreasing if there are left turns.
+
+Now suppose $\mathcal{P}$ isn't convex, as we traverse the edges of $\mathcal{P}$, there will be left turns. By applying the incremental algorithm, we have removed the left turns which means the total perimeter length has strictly decreased. Which contradicts with the fact that $\mathcal{P}$ has the minimal total length. Therefore $\mathcal{P}$ must be convex. 
+
+(c) If there is a convex set $A$ that contains $P$ but doesn't contain $\mathcal{P}$, then there exists a point $p$ on a edge $\overline{{p_k p_{k+1}}}$ in $\mathcal{P}$ such that $p \in A$. But since $p_k$ and $p_{k+1}$ are in $A$, therefore $A$ is not convex.
+
+
+\section*{Exercise 2}
+
+
+\section*{Exercise 4}
+(a) To determine if a point $r=(r_x, r_y)$ lies to the left or right of line through $p=(p_x,p_y)$ and $q=(q_x, q_y)$, we consider creating a 3d coordinate system with vectors $q - p$ and $r - p$ and $u = (q - p) \times (r - p)$. Whether $u$ points inward or outward determines whether $r$ is on the left side or right side respectively. We just need to check the sign of the $k$ component.
+
+$$
+\begin{aligned}
+	u_3 = 
+	\begin{vmatrix}
+		q_x - p_x & q_y - p_y \\
+		r_x - p_x & r_y - p_y \\
+	\end{vmatrix}  
+    &= 
+	\begin{vmatrix}
+		0 &  0 & 1 \\
+		q_x - p_x & q_y - p_y & 0 \\
+		r_x - p_x & r_y - p_y & 0 \\
+	\end{vmatrix}   \\
+	&= \begin{vmatrix}
+		p_x &   p_y  & 1 \\
+		q_x - p_x & q_y - p_y & 0 \\
+		r_x - p_x & r_y - p_y & 0 \\
+	\end{vmatrix} \text{(column addition operation)} \\
+	&= \begin{vmatrix}
+		p_x &  p_y & 1 \\
+		q_x & q_y  & 1 \\
+		r_x & r_y  & 1 \\
+	\end{vmatrix}  \text{(row addition operation)}
+\end{aligned}
+$$
+
+
+\end{document}
