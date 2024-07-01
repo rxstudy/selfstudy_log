@@ -31,5 +31,4 @@ class Program:
             j -= 1
             
         lower_hull.pop(0)
-        lower_hull.pop()
         return upper_hull + lower_hull
