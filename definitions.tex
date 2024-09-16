@@ -5,6 +5,7 @@
 \usepackage{fancyhdr,graphicx,amsmath,amssymb, mathtools, scrextend, titlesec, enumitem}\usepackage[pdftex]{hyperref}
 \usepackage[ruled,vlined]{algorithm2e}
 \usepackage{parskip}
+\usepackage[font=small,labelfont=bf]{caption}
 \usepackage{listings}
 \usepackage{amsmath}
 \usepackage{physics}
@@ -14,6 +15,9 @@
 \usepackage{geometry}
 \usepackage{xcolor}
 \usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning, arrows.meta}
+\usepackage[most]{tcolorbox}
 \geometry{top=1cm, left=1cm, bottom=1.5cm, right=1.5cm, margin=1cm}
 \newcommand{\varvec}[2][n]{#2_1,\ldots, #2_#1}
 \newcommand{\Var}{\mathrm{Var}}
@@ -60,4 +64,7 @@
 	tabsize=2
 }
 \lstset{style=mystyle}
-
+\tikzset{
+	->, % makes the edges directed
+	every state/.style={thick, fill=gray!10}, % sets the properties for each ’state’ node
+}
