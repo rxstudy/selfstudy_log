@@ -181,9 +181,6 @@
 </node>
 </node>
 <node TEXT="GPU" POSITION="bottom_or_right" ID="ID_1618621171" CREATED="1739823411746" MODIFIED="1739823416645">
-<node TEXT="" ID="ID_1807400921" CREATED="1739823664495" MODIFIED="1739823664495">
-<hook NAME="FirstGroupNode"/>
-</node>
 <node TEXT="Features" ID="ID_288807086" CREATED="1739823416647" MODIFIED="1739823419825">
 <node TEXT="Numbers of CUDA cores" ID="ID_1127418901" CREATED="1739823419826" MODIFIED="1739823428251"/>
 <node TEXT="Memory Size" ID="ID_1228408749" CREATED="1739823431345" MODIFIED="1739823434452"/>
@@ -192,9 +189,6 @@
 <node TEXT="peak computational performance&#xa;(peak single-precision float perf)" ID="ID_59714363" CREATED="1739823445521" MODIFIED="1739823477667"/>
 <node TEXT="Memory bandwidth" ID="ID_1857003698" CREATED="1739823479139" MODIFIED="1739823483715"/>
 </node>
-<node TEXT="" ID="ID_1160340785" CREATED="1739823664494" MODIFIED="1739823664495">
-<hook NAME="SummaryNode"/>
-<hook NAME="AlwaysUnfoldedNode"/>
 <node TEXT="vs CPU" ID="ID_1909490279" CREATED="1739823489014" MODIFIED="1739823491553">
 <node TEXT="Advantanges" ID="ID_1612888121" CREATED="1739823492284" MODIFIED="1739823503391">
 <node TEXT="CPU good for control intensive task with small data size" ID="ID_758911108" CREATED="1739823504846" MODIFIED="1739823517790"/>
@@ -215,6 +209,30 @@
 </node>
 </node>
 </node>
+<node TEXT="Architecture Overview(Fermi)" ID="ID_230359049" CREATED="1740041157476" MODIFIED="1740041396545">
+<node TEXT="Streaming Multiprocessor #1(SM)" POSITION="bottom_or_right" ID="ID_177433819" CREATED="1740041466103" MODIFIED="1740041569658">
+<node TEXT="" POSITION="bottom_or_right" ID="ID_1271972186" CREATED="1740041334201" MODIFIED="1740041334201">
+<hook NAME="FirstGroupNode"/>
+</node>
+<node TEXT="CUDA Cores" POSITION="bottom_or_right" ID="ID_605040223" CREATED="1740041171907" MODIFIED="1740041175934"/>
+<node TEXT="Shared Memory/L1 Cache" POSITION="bottom_or_right" ID="ID_1466936482" CREATED="1740041176512" MODIFIED="1740041182019"/>
+<node TEXT="Register File" POSITION="bottom_or_right" ID="ID_1917528327" CREATED="1740041182412" MODIFIED="1740041353159"/>
+<node TEXT="Load/Store Units" POSITION="bottom_or_right" ID="ID_839311535" CREATED="1740041354373" MODIFIED="1740041358395"/>
+<node TEXT="Special Function Units" POSITION="bottom_or_right" ID="ID_995149806" CREATED="1740041358765" MODIFIED="1740041362897"/>
+<node TEXT="Warp Shceduler" POSITION="bottom_or_right" ID="ID_1350223885" CREATED="1740041363153" MODIFIED="1740041366759"/>
+<node TEXT="" POSITION="bottom_or_right" ID="ID_1470175516" CREATED="1740041334200" MODIFIED="1740041334201">
+<hook NAME="SummaryNode"/>
+<hook NAME="AlwaysUnfoldedNode"/>
+<node TEXT="Fermi Architecture Overview of an SM" ID="ID_1286782668" CREATED="1740041231833" MODIFIED="1740041521634">
+<hook URI="CUDA%20Programming_files/png-250220-004709675-7370897898046150413.png" SIZE="0.46324548" NAME="ExternalObject"/>
+</node>
+</node>
+</node>
+<node TEXT="Streaming Multiprocessor #2(SM)" POSITION="bottom_or_right" ID="ID_1810079694" CREATED="1740041590770" MODIFIED="1740041595390">
+<node TEXT="support hundreds of concurrent threads" ID="ID_1745015447" CREATED="1740041642354" MODIFIED="1740041667700"/>
+</node>
+<node TEXT="Streaming Multiprocessor #3(SM)" POSITION="bottom_or_right" ID="ID_2367886" CREATED="1740041595824" MODIFIED="1740041605980"/>
+<node TEXT="........" POSITION="bottom_or_right" ID="ID_479362591" CREATED="1740041607146" MODIFIED="1740041612297"/>
 </node>
 </node>
 <node TEXT="CUDA" POSITION="bottom_or_right" ID="ID_1305242774" CREATED="1739824070152" MODIFIED="1739824075526">
@@ -317,6 +335,38 @@
 <node TEXT="Qualifiers" POSITION="bottom_or_right" ID="ID_1796096962" CREATED="1739843036127" MODIFIED="1739843046321">
 <hook URI="CUDA%20Programming_files/png-250217-174354962-5177316999757968774.png" SIZE="0.85227275" NAME="ExternalObject"/>
 </node>
+</node>
+</node>
+<node TEXT="CUDA Execution Model" POSITION="bottom_or_right" ID="ID_1657529337" CREATED="1740041028742" MODIFIED="1740041038938">
+<node TEXT="Goal" ID="ID_1457170079" CREATED="1740041043571" MODIFIED="1740041045444">
+<node TEXT="How to choose grid and block size" ID="ID_391362779" CREATED="1740041045811" MODIFIED="1740041052591"/>
+</node>
+<node TEXT="Warp" ID="ID_1110060939" CREATED="1740123417082" MODIFIED="1740123484887">
+<node TEXT="Group of 32 threads (32 constrained by hardware)" ID="ID_1830004529" CREATED="1740123485243" MODIFIED="1740123498383"/>
+<node TEXT="Execute the same instruction at the same time" ID="ID_1678832584" CREATED="1740123503549" MODIFIED="1740123514930"/>
+<node TEXT="Basic unit of execution in SM" ID="ID_1091154211" CREATED="1740123508581" MODIFIED="1740123866333"/>
+<node TEXT="warps will be launched by SM to support # of threads in a thread block will" ID="ID_17274335" CREATED="1740124148394" MODIFIED="1740124204271">
+<node TEXT="Suppose warp size 32,  80 threads will launch 3 warps (96 threads) in total in an SM" ID="ID_1142998733" CREATED="1740124205190" MODIFIED="1740124232597"/>
+</node>
+<node TEXT="Warp Divergence&#xa;(Only happens in a single warp)" ID="ID_1029904335" CREATED="1740124447193" MODIFIED="1740124522958">
+<node TEXT="if N threads in a wrap goes in a different path (if true vs if false),  The other 32 - N threads will wait for the N threads" ID="ID_685229986" CREATED="1740124458005" MODIFIED="1740124582487">
+<node TEXT="Warp divergence impacts performance significantly" ID="ID_1222888412" CREATED="1740124648064" MODIFIED="1740124672725">
+<hook URI="CUDA%20Programming_files/png-250220-235726408-6979601907410251618.png" SIZE="0.7210168" NAME="ExternalObject"/>
+</node>
+</node>
+<node TEXT="Remedy: Avoid divergence using the fact that warp assignment in a thread block is deterministic." ID="ID_677425438" CREATED="1740124716893" MODIFIED="1740124824999">
+<font BOLD="true"/>
+<node TEXT="2D ThreadBlock will be flatten into 1D array going through each row" ID="ID_33864351" CREATED="1740124817278" MODIFIED="1740124860719">
+<hook URI="CUDA%20Programming_files/png-250221-000015800-5240840948730876151.png" SIZE="0.56657225" NAME="ExternalObject"/>
+</node>
+</node>
+<node TEXT="Branch Efficiency  = 1 -  #divergent branches / #total branches" ID="ID_964981158" CREATED="1740125033484" MODIFIED="1740125203357">
+<font SIZE="14"/>
+</node>
+</node>
+</node>
+<node TEXT="Software view and Hardware view" POSITION="bottom_or_right" ID="ID_144754918" CREATED="1740123450740" MODIFIED="1740123469283">
+<hook URI="CUDA%20Programming_files/png-250220-233728891-8925800099242859688.png" SIZE="0.5925926" NAME="ExternalObject"/>
 </node>
 </node>
 </node>
