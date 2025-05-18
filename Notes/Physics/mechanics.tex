@@ -8,32 +8,40 @@
 	\maketitle
 	
 \section{Basic Elementary Principles}
+\begin{theorem}(Newton's law)
+	\begin{enumerate}
+		\item  \textnormal{In an inertial reference frame, an object remains at rest or constant velocity unless acted upon by external force.}
+		\item  $$\dot{\bb{p}} = \frac{d(m\bb{v})}{dt} = \bb{F}^{(e)}$$
+		\item  \textnormal{Two particles exert forces on each other } $\bb{F}_{ij} = -\bb{F}_{ji}$
+	\end{enumerate}
+\end{theorem}
 \subsection{Single particle}
-Let $\bb{r}$ be radius vector of a particle from given origin and $\bb{v}$ its velocity vector:
-$$ \bb{v} = \frac{d \bb{r}}{dt}$$
 
-acceleration is given by $$ \bb{a} = \frac{d^2 \bb{r}}{d t^2}$$
+ \begin{theorem}[Conversation Theorem for linear momentum]
+ 	$$\text{If } \bb{F} = 0, \text{ then } \bb{\dot p} = 0$$
+ \end{theorem}
 
-Linear momentum $\bb{p} \equiv m \bb{v}$. Vector sum of forces exerted on the particle is total force $\bb{F}$,  
-$$\bb{F} = \frac{d\bb{p}}{dt} \equiv  \bb{\dot p} \quad \quad \text{(Newton's second law)}$$
+Angular momentum of the particle around point $O$ is $\bb{L} = \bb{r} \times \bb{p}$. Torque $\bb{N} = \bb{r} \times \bb{F}$. 
 
-Conversation Theorem for linear momentum: If $\bb{F} = 0$, then $\bb{\dot p} = 0$ hence conserved.
+$$ \bb{N} = \frac{d}{dt} (\bb{r} \times m\bb{v}) = \frac{d \bb{L}}{dt} \equiv \bb{\dot L}$$
 
-Angular momentum of the particle around point $O$ is $\bb{L} = \bb{r} \times \bb{p}$. Torque $\bb{N} = \bb{r} \times \bb{F}$.
-We can relationship $$ \bb{N} = \frac{d}{dt} (\bb{r} \times m\bb{v}) = \frac{d \bb{L}}{dt} \equiv \bb{\dot L}$$
+\begin{theorem}[Conservation Theorem for angular momentum]
+	$$\textnormal{If } \bb{N} = 0,  \textnormal{then } \bb{\dot L} = 0$$
+\end{theorem}
 
-Conservation Theorem for angular momentum: If $\bb{N}$ is zero then $\bb{\dot L} = 0$, hence conserved.
+If force field $\bb{F}$ is conservative ($\oint \bb{F} \cdot d \bb{s} = 0$ or $\int_a^b \bb{F} \cdot d\bb{s} = T_b - T_a$ is the same for any path between $a$ and $b$). 
+There exists a potential scalar field $V$ such that $$\bb{F} = -\grad{V(\bb{r})}$$
 
-If force field does the same work for any possible path between point 1 and 2 ($W_{12} = \int^2_1 \bb{F}\cdot d \bb{s})$), 
-$\bb{F}$ is conservative or $\oint \bb{F} \cdot d \bb{s} = 0$. As a result, 
-there exists a potential scalar field $V$ such that $$\bb{F} = -\grad{V(\bb{r})}$$
-
-Energy Conservation Theorem for a particle: If $\bb{F}$ acting on a particle is conservative, then $E = T + V$ is conserved.
+\begin{theorem}[Energy Conservation Theorem for a particle]
+	 $$E = T + V \textnormal{ is conserved where } T \textnormal{ and } V \textnormal{ are kinetic energy and potential energy respectively}$$
+\end{theorem}
 
 \subsection{System of particles}
+Center of mass: $$\bb{R} = \frac{\sum_i m_i \bb{r}_i}{\sum m_i} =  \frac{\sum_i m_i \bb{r}_i}{M}$$
+
 Let $\bb{F}^{(e)}_i$ external force acting on particle $i$-th, and $\bb{F}_{ji}$ is the force 
 exerted by $j$-th particle on $i$-th particle in the system, 
-$$\sum_j \bb{F}_{ji} +  \bb{F}^{(e)}_i = \bb{\dot{p}}_i$$
+$$  m_i \frac{d^2(\bb{r_i})}{dt^2} = \bb{\dot{p_i}} = \sum_{j} \bb{F}_{ji} +  \bb{F}^{(e)}_i  $$
 Summing over all particles, we get  \begin{align}
 	& \frac{d^2}{dt^2} \sum_i m_i \bb{r}_i = \sum_i \bb{F}^{(e)}_i + \sum_{i \neq j} \bb{F}_{ji} \\
 	\Rightarrow & M \frac{d^2 \bb{R}}{dt^2} = \sum_i \bb{F}^{(e)}_i \equiv \bb{F}^{(e)}
