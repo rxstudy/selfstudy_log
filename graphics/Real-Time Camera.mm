@@ -1,7 +1,7 @@
 <map version="freeplane 1.12.1">
 <!--To view this file, download free mind mapping software Freeplane from https://www.freeplane.org -->
-<node TEXT="Real-Time Game Camera" LOCALIZED_STYLE_REF="AutomaticLayout.level.root" FOLDED="false" ID="ID_1090958577" CREATED="1409300609620" MODIFIED="1740940758393"><hook NAME="MapStyle" background="#2e3440ff" zoom="1.4641001">
-    <properties show_icon_for_attributes="true" edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" show_note_icons="true" fit_to_viewport="false" show_icons="BESIDE_NODES" associatedTemplateLocation="template:/dark_nord_template.mm" show_tags="UNDER_NODES"/>
+<node TEXT="Real-Time Game Camera" LOCALIZED_STYLE_REF="AutomaticLayout.level.root" FOLDED="false" ID="ID_1090958577" CREATED="1409300609620" MODIFIED="1740940758393"><hook NAME="MapStyle" background="#2e3440ff" zoom="1.21">
+    <properties show_icon_for_attributes="true" edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" show_tags="UNDER_NODES" show_note_icons="true" associatedTemplateLocation="template:/dark_nord_template.mm" fit_to_viewport="false" show_icons="BESIDE_NODES"/>
     <tags category_separator="::"/>
 
 <map_styles>
@@ -86,6 +86,128 @@
 <font BOLD="true"/>
 <node TEXT="Cinematic" POSITION="bottom_or_right" ID="ID_1823464545" CREATED="1740940559637" MODIFIED="1740946722746">
 <font BOLD="true"/>
+<node TEXT="Nomenclature" ID="ID_209449451" CREATED="1741156988577" MODIFIED="1741156995853">
+<node TEXT="Dolly" FOLDED="true" ID="ID_1247481872" CREATED="1741156996810" MODIFIED="1741159243387">
+<node TEXT="" ID="ID_1044161805" CREATED="1741159354538" MODIFIED="1741159358841">
+<hook URI="Real-Time%20Camera_files/png-250304-232233136-11479778543442881764.png" SIZE="0.49033818" NAME="ExternalObject"/>
+</node>
+</node>
+<node TEXT="Pan/Yaw" FOLDED="true" ID="ID_1259751554" CREATED="1741159245308" MODIFIED="1741159264937">
+<node TEXT="" ID="ID_359815986" CREATED="1741159375368" MODIFIED="1741159382641">
+<hook URI="Real-Time%20Camera_files/png-250304-232253991-9604407783476365951.png" SIZE="0.52359164" NAME="ExternalObject"/>
+</node>
+</node>
+<node TEXT="Tilt / Pitch" FOLDED="true" ID="ID_735178597" CREATED="1741159246996" MODIFIED="1741159316835">
+<node TEXT="" ID="ID_1608778688" CREATED="1741159327388" MODIFIED="1741159340021">
+<hook URI="Real-Time%20Camera_files/png-250304-232205891-18373740373828041848.png" SIZE="0.4508816" NAME="ExternalObject"/>
+</node>
+</node>
+<node TEXT="Tracking" ID="ID_44962280" CREATED="1741159280030" MODIFIED="1741159282389"/>
+<node TEXT="Depth of field" FOLDED="true" ID="ID_1031497851" CREATED="1741159282771" MODIFIED="1741159286361">
+<node TEXT="due to size of camera aperture, small region be in focus" ID="ID_66881921" CREATED="1741159415377" MODIFIED="1741159458997">
+<hook URI="Real-Time%20Camera_files/png-250304-232334208-14778085925401603757.png" SIZE="0.3834554" NAME="ExternalObject"/>
+</node>
+</node>
+<node TEXT="Color Fade" ID="ID_173915957" CREATED="1741159490908" MODIFIED="1741159493221"/>
+<node TEXT="Lens Flare" ID="ID_1029373355" CREATED="1741159514489" MODIFIED="1741159519789"/>
+<node TEXT="Forced Perspective" ID="ID_1636804309" CREATED="1741160350881" MODIFIED="1741160355087">
+<node TEXT="fool human visual system of relatives sizes or positions of objects.  (e.g. Lord of the Rings)" LOCALIZED_STYLE_REF="default" ID="ID_240003070" CREATED="1741160357119" MODIFIED="1741160551268"/>
+</node>
+</node>
+<node TEXT="Shooting methods" ID="ID_334716183" CREATED="1741159948749" MODIFIED="1741159955033">
+<node TEXT="Cut-away shot" POSITION="bottom_or_right" ID="ID_1450980748" CREATED="1741159633844" MODIFIED="1741159639002">
+<node TEXT="e.g. Jump cut" ID="ID_1037521496" CREATED="1741159688410" MODIFIED="1741159696248">
+<node TEXT="30 degree rule: the difference in camera angle should be greater than 30 degree" ID="ID_980366324" CREATED="1741160213920" MODIFIED="1741160266177"/>
+</node>
+</node>
+<node TEXT="Insert shot" POSITION="bottom_or_right" ID="ID_1766018047" CREATED="1741159639598" MODIFIED="1741159645138">
+<node TEXT="e.g. new scene is more detailed view such as close-up on the actor" ID="ID_1269201929" CREATED="1741160000347" MODIFIED="1741160021160"/>
+</node>
+<node TEXT="180 degree rule/line of action" POSITION="bottom_or_right" ID="ID_1240155024" CREATED="1741159770002" MODIFIED="1741159841139">
+<node TEXT="" ID="ID_1010438990" CREATED="1741159908276" MODIFIED="1741159914368">
+<hook URI="Real-Time%20Camera_files/png-250304-233146999-229526750493953364.png" SIZE="0.4721733" NAME="ExternalObject"/>
+</node>
+</node>
+<node TEXT="Point of view (POV) shot" POSITION="bottom_or_right" ID="ID_251706736" CREATED="1741160058390" MODIFIED="1741160074680"/>
+<node TEXT="Crane shot" POSITION="bottom_or_right" ID="ID_1687929608" CREATED="1741160090705" MODIFIED="1741160095816">
+<node TEXT="equivalent to 3rd person camera in game" ID="ID_20068203" CREATED="1741160096070" MODIFIED="1741160111539"/>
+</node>
+<node TEXT="Reaction shot" POSITION="bottom_or_right" ID="ID_727238637" CREATED="1741160114044" MODIFIED="1741160128040"/>
+<node TEXT="Reverse shot" POSITION="bottom_or_right" ID="ID_158928618" CREATED="1741160150181" MODIFIED="1741160159127">
+<node TEXT="camera direction is reversed, still obeys 180 degree rule" ID="ID_567410840" CREATED="1741160160473" MODIFIED="1741160183513"/>
+</node>
+</node>
+<node TEXT="Movies" ID="ID_1244315244" CREATED="1741332255403" MODIFIED="1741332264596">
+<node TEXT="Pre-rendered movies" ID="ID_649452432" CREATED="1741332265070" MODIFIED="1741332270037">
+<node TEXT="Small data requirement" ID="ID_45984093" CREATED="1741332376576" MODIFIED="1741332382371"/>
+<node TEXT="Can lose immersion. Careful transition needs to be considered" ID="ID_323052161" CREATED="1741332442785" MODIFIED="1741332463558"/>
+</node>
+<node TEXT="Real-time movies" ID="ID_1623253231" CREATED="1741332270238" MODIFIED="1741332274615">
+<node TEXT="Large data requirement" ID="ID_655911327" CREATED="1741332362985" MODIFIED="1741332373839"/>
+</node>
+</node>
+<node TEXT="Editing" ID="ID_365476080" CREATED="1741577847315" MODIFIED="1741577849057">
+<node TEXT="Transitions" ID="ID_394697613" CREATED="1741577849382" MODIFIED="1741577852077">
+<node TEXT="Jump cut" ID="ID_200785055" CREATED="1741577856705" MODIFIED="1741577859681"/>
+<node TEXT="Cross fade" ID="ID_1207705065" CREATED="1741577860061" MODIFIED="1741577961767">
+<node TEXT="Rendering two scenes with an alpha blender between them" ID="ID_1441966614" CREATED="1741577882240" MODIFIED="1741577970176"/>
+<node TEXT="Cheaper alternative,  capture one frame of source scene blender it with newly rendered destination scene. (For exmaple, &quot;shattering&quot; the original scene to reveal the new scene)" ID="ID_1579882903" CREATED="1741577972001" MODIFIED="1741578039150"/>
+</node>
+<node TEXT="Iris transition" ID="ID_674153516" CREATED="1741578242773" MODIFIED="1741578251607">
+<node TEXT="Sweeping from center of screen to its dge in concentric circles" ID="ID_717060247" CREATED="1741578294836" MODIFIED="1741578307382"/>
+</node>
+<node TEXT="Wipes" ID="ID_768519421" CREATED="1741578309530" MODIFIED="1741578312580"/>
+<node TEXT="Viewport transition" ID="ID_821257044" CREATED="1741578722094" MODIFIED="1741578725441">
+<node TEXT="e.g. expanding one view until it fills the full screen" ID="ID_510575478" CREATED="1741578725833" MODIFIED="1741578737381"/>
+</node>
+</node>
+</node>
+<node TEXT="Interactive cinematics" ID="ID_1374528486" CREATED="1741332536996" MODIFIED="1741332544486">
+<node TEXT="" ID="ID_969067023" CREATED="1741562155172" MODIFIED="1741562155172">
+<hook NAME="FirstGroupNode"/>
+</node>
+<node TEXT="pre-defined interactive" ID="ID_104257439" CREATED="1741415221484" MODIFIED="1741415226342"/>
+<node TEXT="real-time interactive" ID="ID_730382260" CREATED="1741415226595" MODIFIED="1741415235183"/>
+<node TEXT="pre-rendered interactive" ID="ID_1457440993" CREATED="1741415236498" MODIFIED="1741415251084"/>
+<node TEXT="" ID="ID_1300192955" CREATED="1741562155170" MODIFIED="1741562155171">
+<hook NAME="SummaryNode"/>
+<hook NAME="AlwaysUnfoldedNode"/>
+<node TEXT="Cinematic branching depending on player choice" ID="ID_233721142" CREATED="1741562155172" MODIFIED="1741562176392">
+<node TEXT="e.g. dialog choices or other interaction with game character" ID="ID_1285525302" CREATED="1741562231368" MODIFIED="1741562243527"/>
+</node>
+<node TEXT="Cinematic branching depnding upon player action during cinematics" ID="ID_1325751804" CREATED="1741562176707" MODIFIED="1741562254435">
+<node TEXT="e..g button presses" ID="ID_422034946" CREATED="1741562254736" MODIFIED="1741562260704"/>
+</node>
+<node TEXT="Modified cinematic sequence depending on previous game event" ID="ID_1586927559" CREATED="1741562262506" MODIFIED="1741562274776"/>
+</node>
+</node>
+<node TEXT="Replay Cameras" ID="ID_1819956624" CREATED="1741562532461" MODIFIED="1741562537033">
+<node TEXT="Approaches" ID="ID_733025934" CREATED="1741562636030" MODIFIED="1741562641669">
+<node TEXT="Record the rendering state of every object on every couple of frames with interpolation" POSITION="bottom_or_right" ID="ID_935966811" CREATED="1741562611037" MODIFIED="1741562635409"/>
+<node TEXT="Determinism: only the initial game state and player input are stored. Playback is deterministic." POSITION="bottom_or_right" ID="ID_248177220" CREATED="1741562644780" MODIFIED="1741562675866"/>
+</node>
+<node TEXT="Types" ID="ID_315342409" CREATED="1741569534649" MODIFIED="1741569564016">
+<node TEXT="Reproduction cameras /keyframed cameras" ID="ID_1949438472" CREATED="1741569542159" MODIFIED="1741569567123">
+<node TEXT="Replaying stored data (key framing)" ID="ID_276054046" CREATED="1741569589708" MODIFIED="1741569601537"/>
+</node>
+<node TEXT="Scripted Cameras" ID="ID_256083385" CREATED="1741569564490" MODIFIED="1741569949333">
+<node TEXT="Pre-defined + interactive" ID="ID_1117306659" CREATED="1741569949723" MODIFIED="1741569975097">
+<node TEXT="Discrete camera behaviors" ID="ID_973965561" CREATED="1741569989351" MODIFIED="1741570002325"/>
+<node TEXT="Path-based motion" ID="ID_610065692" CREATED="1741570002620" MODIFIED="1741570006974"/>
+<node TEXT="Slaved motion (positioned relative to a specific game object)" ID="ID_871674223" CREATED="1741570007369" MODIFIED="1741570282180"/>
+</node>
+</node>
+<node TEXT="Dynamically generated" ID="ID_196111248" CREATED="1741576998463" MODIFIED="1741577005778"/>
+<node TEXT="Death cameras" ID="ID_886123024" CREATED="1741577053266" MODIFIED="1741577057794"/>
+<node TEXT="Respawn cameras" ID="ID_795474028" CREATED="1741577108973" MODIFIED="1741577112207"/>
+</node>
+<node TEXT="Effects" ID="ID_625136826" CREATED="1741577117501" MODIFIED="1741577118986">
+<node TEXT="Reorientation changes" ID="ID_1760195546" CREATED="1741577120048" MODIFIED="1741577129590"/>
+<node TEXT="Camera shake" ID="ID_338795312" CREATED="1741577234678" MODIFIED="1741577236570">
+<node TEXT="Rather than moving the actual camera within the game world. Implemented as a displacement applied during the rendering process." ID="ID_1245874591" CREATED="1741577361929" MODIFIED="1741577387319"/>
+</node>
+</node>
+</node>
 </node>
 <node TEXT="Interactive" POSITION="bottom_or_right" ID="ID_622025719" CREATED="1740940568271" MODIFIED="1740946723298">
 <font BOLD="true"/>
@@ -173,7 +295,17 @@
 <node TEXT="Application of specific behaviors dictating the positioning, motion and orientation of cameras" ID="ID_891311742" CREATED="1740940835844" MODIFIED="1740940860944"/>
 <node TEXT="Control over changing camera behaviors based on game play requirements" ID="ID_418448066" CREATED="1740940861677" MODIFIED="1740940873434"/>
 <node TEXT="Generation of information used by graphics engine to render views of the game world" ID="ID_943532873" CREATED="1740940873738" MODIFIED="1740940892089"/>
-<node TEXT="Control of reference frames used for player control" ID="ID_1292691166" CREATED="1740940892622" MODIFIED="1740940902470"/>
+<node TEXT="Control of reference frames used for player control" ID="ID_1292691166" CREATED="1740940892622" MODIFIED="1740940902470">
+<node TEXT="Character-relative" ID="ID_78212812" CREATED="1741077134053" MODIFIED="1741077139432">
+<node TEXT="The control reference frame corresponds to the front facing direction of character and restricted to 2D orientation around world up axis" POSITION="bottom_or_right" ID="ID_697486949" CREATED="1741076930592" MODIFIED="1741077167659"/>
+</node>
+<node TEXT="Camera-relative" ID="ID_1158986000" CREATED="1741077170268" MODIFIED="1741077176120">
+<node TEXT="3rd person games,  control ref frame based on position of camera and player character or view transform of the camera" ID="ID_200185840" CREATED="1741077176123" MODIFIED="1741077227227"/>
+</node>
+<node TEXT="World relative" ID="ID_1336423487" CREATED="1741077275803" MODIFIED="1741077279509">
+<node TEXT="based on world coordinate" ID="ID_473232508" CREATED="1741077279937" MODIFIED="1741077294462"/>
+</node>
+</node>
 </node>
 <node TEXT="Game Camera" POSITION="bottom_or_right" ID="ID_1362494281" CREATED="1740942243613" MODIFIED="1740946716641">
 <font BOLD="true"/>
