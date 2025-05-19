@@ -76,4 +76,17 @@ $$
 
 In general $\bb{L}$ depends on choice of $O$ through $\bb{R}$ except when the center of mass is at rest $\bb{R} = 0$.
 
+The total kinetic energy of the system is $$
+T = \sum_i \frac{1}{2}m_i v_i^2 =  \sum_i \frac{1}{2} m_i (\bb{v} + \bb{v}_i') (\bb{v} + \bb{v}_i') = \frac{1}{2} M v^2 + \sum_i \frac{1}{2}m_i (v_i')^2 
+$$
+
+The ith particle has trajectory $\bb{r}_i(t)$ from time $a$ to $b$. Then the work is the change in kinetic energy.
+$$W_i = \int_a^b \bb{F}_i  \cdot  d\bb{r_i} =  \int_a^b \frac{d(m_i v_i)}{dt}   \cdot  \frac{d \bb{r_i}}{dt} dt =  \int_a^b  m_i \bb{\dot{v}}_i  \cdot \bb{v}_i dt =  \int_a^b  d(\frac{1}{2} m_i v_i^2) = T_i(b) - T_i(a)$$
+
+Also we can write 
+$$
+ W_i = \int_a^b \bb{F}_i  \cdot  d\bb{r_i}  = \int_a^b \bb{F}_i^{(e)}  \cdot  d\bb{r_i}  +  \sum_j \int_a^b \bb{F}_{ji} \cdot  d\bb{r_i}
+$$
+
+
 \end{document}
