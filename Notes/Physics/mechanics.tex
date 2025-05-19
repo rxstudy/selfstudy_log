@@ -8,16 +8,17 @@
 	\maketitle
 	
 \section{Basic Elementary Principles}
+
 \begin{theorem}(Newton's law)
 	\begin{enumerate}
 		\item  \textnormal{In an inertial reference frame, an object remains at rest or constant velocity unless acted upon by external force.}
 		\item  $$\dot{\bb{p}} = \frac{d(m\bb{v})}{dt} = \bb{F}^{(e)}$$
-		\item  \textnormal{Two particles exert forces on each other } $\bb{F}_{ij} = -\bb{F}_{ji}$
+		\item  \textnormal{Action and reaction: $\bb{F}_{ij} = -\bb{F}_{ji}$ (Additional condition for strong version: $\bb{r}_{ij} \times \bb{F}_{ji} = 0$)}
 	\end{enumerate}
 \end{theorem}
 \subsection{Single particle}
 
- \begin{theorem}[Conversation Theorem for linear momentum]
+ \begin{theorem}[Conservation of Linear Momentum]
  	$$\text{If } \bb{F} = 0, \text{ then } \bb{\dot p} = 0$$
  \end{theorem}
 
@@ -25,14 +26,14 @@ Angular momentum of the particle around point $O$ is $\bb{L} = \bb{r} \times \bb
 
 $$ \bb{N} = \frac{d}{dt} (\bb{r} \times m\bb{v}) = \frac{d \bb{L}}{dt} \equiv \bb{\dot L}$$
 
-\begin{theorem}[Conservation Theorem for angular momentum]
-	$$\textnormal{If } \bb{N} = 0,  \textnormal{then } \bb{\dot L} = 0$$
+\begin{theorem}[Conservation of Angular Momentum]
+	$$\textnormal{If $\bb{N} = 0$,  then $\bb{\dot L} = 0$} $$
 \end{theorem}
 
 If force field $\bb{F}$ is conservative ($\oint \bb{F} \cdot d \bb{s} = 0$ or $\int_a^b \bb{F} \cdot d\bb{s} = T_b - T_a$ is the same for any path between $a$ and $b$). 
 There exists a potential scalar field $V$ such that $$\bb{F} = -\grad{V(\bb{r})}$$
 
-\begin{theorem}[Energy Conservation Theorem for a particle]
+\begin{theorem}[Conservation of Energy]
 	 $$E = T + V \textnormal{ is conserved where } T \textnormal{ and } V \textnormal{ are kinetic energy and potential energy respectively}$$
 \end{theorem}
 
@@ -42,20 +43,37 @@ Center of mass: $$\bb{R} = \frac{\sum_i m_i \bb{r}_i}{\sum m_i} =  \frac{\sum_i 
 Let $\bb{F}^{(e)}_i$ external force acting on particle $i$-th, and $\bb{F}_{ji}$ is the force 
 exerted by $j$-th particle on $i$-th particle in the system, 
 $$  m_i \frac{d^2(\bb{r_i})}{dt^2} = \bb{\dot{p_i}} = \sum_{j} \bb{F}_{ji} +  \bb{F}^{(e)}_i  $$
-Summing over all particles, we get  \begin{align}
-	& \frac{d^2}{dt^2} \sum_i m_i \bb{r}_i = \sum_i \bb{F}^{(e)}_i + \sum_{i \neq j} \bb{F}_{ji} \\
-	\Rightarrow & M \frac{d^2 \bb{R}}{dt^2} = \sum_i \bb{F}^{(e)}_i \equiv \bb{F}^{(e)}
-\end{align}
-where $R = \frac{m_i \bb{r}_i}{\sum m_i} =  \frac{m_i \bb{r}_i}{M}$ is the center of mass.
-The total linear momentum $\bb{P} = \sum m_i \frac{d\bb{r}_i}{dt} = M \frac{d\bb{R}}{dt}$.
+Summing over all particles, we get $$ \bb{\dot{p}} =  M \frac{d^2 \bb{R}}{dt^2} = \sum_i \bb{F}^{(e)}_i \equiv \bb{F}^{(e)}$$
 
-Conservation theorem for the linear Momentum of a system of particles: 
-if the total external force is zero, the total linear momentum is conserved.
+\begin{theorem}[Conservation of Linear Momentum for a system of particles]
+	$$\textnormal{if the total external force $\bb{F}^{(e)} = 0$, the total linear momentum $\bb{p}$ is conserved.}$$
+\end{theorem}
 
-Conservation Theorem for total angular momentum of a system of particles: $\bb{L}$ is constant in time 
-if the applied external torque is zero. $\frac{d\bb{L}}{dt} = \bb{N}^{(e)}$
+The change of total angular momentum: $$\begin{aligned}
+ \frac{d}{dt}\bb{L} &= \sum_i \bb{r_i}\times \bb{\dot{p}_i} = \sum_i \bb{r_i} \times (\bb{F}^{(e)}_i + \sum_j \bb{F}_{ji}) \\
+  &= \bb{N}^{(e)}   + \sum_{i, j} \bb{r_i} \times \bb{F}_{ji} \\
+  &= \bb{N}^{(e)}   + \sum_{i < j} \bb{r_i} \times \bb{F}_{ji} + \sum_{j < i} \bb{r_i} \times \bb{F}_{ji} \\
+  &= \bb{N}^{(e)}   + \sum_{i < j} \bb{r_i} \times \bb{F}_{ji} + \sum_{i < j} \bb{r_j} \times \bb{F}_{ij} \\
+  &= \bb{N}^{(e)}   + \sum_{i < j} \bb{r_i} \times \bb{F}_{ji} - \sum_{i < j} \bb{r_j} \times \bb{F}_{ji} \\
+  &= \bb{N}^{(e)}  + \sum_{i < j} \left(\bb{r_i} - \bb{r_j} \right) \times \bb{F}_{ji} \\
+  &= \bb{N}^{(e)}  + \sum_{i < j} \bb{r}_{ij} \times \bb{F}_{ji} \\
+\end{aligned}$$
 
-The total angular momentum of a system of particles is $\bb{L} = \bb{R} \times M \bb{v} + \sum_i \bb{r}_i' \times \bb{p}_i'$ 
-where $\bb{r}_i' = \bb{R} - \bb{r}_i$ position relative to the center of mass.
+When the internal force abides strong version of Newton's 3rd law, internal force pair has the same direction as the two particles $\bb{r}_{ij}$. Then $\bb{r}_{ij}  \times \bb{F}_{ji} = 0$.  Forces satisfy strong Newton's 3rd law are \textbf{central}.
+\begin{theorem}[Conservation of Angular Momentum for a system of particles]
+   $$\textnormal{$\bb{L}$ is constant in time if applied external torque $\bb{N}^{(e)} = 0$ and internal forces are central}$$
+\end{theorem}
+
+Let $\bb{r}_i = \bb{R} + \bb{r}_i'$ where $\bb{r}_i'$ is the position of ith particle wrt to $\bb{R}$ instead of $O$. Similarly, $\bb{v}_i = \bb{v} + \bb{v}_i'$ where $\bb{v} = \dot{\bb{R}}$.  We can find $\bb{R} = \frac{\sum_i m_i \bb{r}_i}{M} = \frac{\sum_i m_i (\bb{R} + \bb{r}_i')}{M} = \bb{R} + \sum_i \bb{r}_i' $ which means $$\sum_i  \bb{r}_i' = 0, \quad\quad \sum_i  \bb{\dot{r}}_i' = \sum_i  \bb{v}_i' = 0 $$.
+
+So the total angular momentum about $O$ is the angular momentum of center of mass + angular momentum of each particle around the center of mass. 
+$$\begin{aligned}
+	\bb{L} &=  \sum_i \bb{r_i}\times \bb{p_i} \\
+	       &=\bb{R}\times M \bb{v} + \sum_i \bb{r}_i'\times \bb{p}_i' + \sum_i \bb{R}\times m_i \bb{v}_i' + \sum_i m_i \bb{r}_i' \times \bb{v} \\
+	       &=    \bb{R}\times M \bb{v} + \sum_i \bb{r}_i'\times \bb{p}_i'
+\end{aligned}
+$$
+
+In general $\bb{L}$ depends on choice of $O$ through $\bb{R}$ except when the center of mass is at rest $\bb{R} = 0$.
 
 \end{document}
