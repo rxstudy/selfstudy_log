@@ -66,19 +66,23 @@ When the internal force abides strong version of Newton's 3rd law, internal forc
 
 Let $\bb{r}_i = \bb{R} + \bb{r}_i'$ where $\bb{r}_i'$ is the position of ith particle wrt to $\bb{R}$ instead of $O$. Similarly, $\bb{v}_i = \bb{v} + \bb{v}_i'$ where $\bb{v} = \dot{\bb{R}}$.  We can find $\bb{R} = \frac{\sum_i m_i \bb{r}_i}{M} = \frac{\sum_i m_i (\bb{R} + \bb{r}_i')}{M} = \bb{R} + \sum_i \bb{r}_i' $ which means $$\sum_i  \bb{r}_i' = 0, \quad\quad \sum_i  \bb{\dot{r}}_i' = \sum_i  \bb{v}_i' = 0 $$.
 
-So the total angular momentum about $O$ is the angular momentum of center of mass + angular momentum of each particle around the center of mass. 
+\begin{theorem}
+\textnormal{The total angular momentum about $O$ is the angular momentum of center of mass + angular momentum of each particle around the center of mass.}
 $$\begin{aligned}
 	\bb{L} &=  \sum_i \bb{r_i}\times \bb{p_i} \\
 	       &=\bb{R}\times M \bb{v} + \sum_i \bb{r}_i'\times \bb{p}_i' + \sum_i \bb{R}\times m_i \bb{v}_i' + \sum_i m_i \bb{r}_i' \times \bb{v} \\
 	       &=    \bb{R}\times M \bb{v} + \sum_i \bb{r}_i'\times \bb{p}_i'
 \end{aligned}
 $$
+\end{theorem}
 
 In general $\bb{L}$ depends on choice of $O$ through $\bb{R}$ except when the center of mass is at rest $\bb{R} = 0$.
 
-The total kinetic energy of the system is $$
+\begin{theorem}
+\textnormal{The total kinetic energy of the system is }$$
 T = \sum_i \frac{1}{2}m_i v_i^2 =  \sum_i \frac{1}{2} m_i (\bb{v} + \bb{v}_i') (\bb{v} + \bb{v}_i') = \frac{1}{2} M v^2 + \sum_i \frac{1}{2}m_i (v_i')^2 
 $$
+\end{theorem}
 
 The ith particle has trajectory $\bb{r}_i(t)$ from time $a$ to $b$. Then the work is the change in kinetic energy.
 $$W_i = \int_a^b \bb{F}_i  \cdot  d\bb{r_i} =  \int_a^b \frac{d(m_i v_i)}{dt}   \cdot  \frac{d \bb{r_i}}{dt} dt =  \int_a^b  m_i \bb{\dot{v}}_i  \cdot \bb{v}_i dt =  \int_a^b  d(\frac{1}{2} m_i v_i^2) = T_i(b) - T_i(a)$$
@@ -88,5 +92,48 @@ $$
  W_i = \int_a^b \bb{F}_i  \cdot  d\bb{r_i}  = \int_a^b \bb{F}_i^{(e)}  \cdot  d\bb{r_i}  +  \sum_j \int_a^b \bb{F}_{ji} \cdot  d\bb{r_i}
 $$
 
+If the external force $\bb{F}_i^{(e)}$ is conservative, then $\bb{F}_i^{(e)} = -\grad{V_i}$
+
+$$
+   \int_a^b \bb{F}_i^{(e)}  \cdot  d\bb{r_i}
+    = - \int_a^b \grad{V_i} \cdot  d\bb{r_i} 
+    = - \int_a^b \frac{\partial V_i}{\partial x_i} dx_i + \frac{\partial V_i}{\partial y_i} dy_i +  \frac{\partial V_i}{\partial z_i} dz_i 
+    = -\int_a^b dV_i 
+    =- V_i |^b_a 
+$$
+
+If the action/reaction forces are conservative and central,  $V_{ji}(|\bb{r_i} -\bb{r_j}|)$ only depends on distance between ith and jth particle, hence it is symmetric $V_{ji} = V_{ij}$. Also 
+$$\bb{F}_{ji} = - \grad_{i}{V_{ij}} = - \bb{F}_{ij} =  \grad_{j}{V_{ji}} = \grad_{j}{V_{ij}} $$ 
+
+
+We can find the gradients of $V_{ij}$ with respect to $\bb{r_{ij}} =\bb{r_i} -\bb{r_j}$, 
+
+$$
+ \grad_{i}{V_{ij}} = \frac{\partial V_{ij}}{\partial \bb{r_i}} = \frac{\partial V_{ij}}{\partial \bb{r_{ij}}} \frac{\partial   \bb{r_{ij}}}{\partial \bb{r_i}} = \frac{\partial V_{ij}}{\partial \bb{r_{ij}}} = \grad_{ij}{V_{ij}} = - \grad_{j}{V_{ij}}
+$$
+
+ The work done by internal forces can be written in sums of pairs of potentials between ith and jth particle.
+$$
+\begin{aligned}
+	\sum_{i, j} \int_a^b \bb{F}_{ji} \cdot  d\bb{r_i}
+	&= -\sum_{i, j} \int_a^b  \grad_{j}{V_{ji}} \cdot  d\bb{r_i} \\
+	&= -\sum_{i < j} \int_a^b   \grad_{j}{V_{ji}} \cdot  d\bb{r_i} +  \grad_{i}{V_{ij}} \cdot  d\bb{r_j} \\
+	&= -\sum_{i < j} \int_a^b   \grad_{j}{V_{ij}} \cdot  d\bb{r_i} -  \grad_{j}{V_{ij}} \cdot  d\bb{r_j} \\
+	&= -\sum_{i < j} \int_a^b   \grad_{j}{V_{ij}} d(\bb{r_i} - \bb{r_j}) \\
+	&= -\sum_{i < j} \int_a^b   \grad_{j}{V_{ij}} d(\bb{r_{ij}}) \\
+	&=  \sum_{i < j} \int_a^b   \grad_{ij}{V_{ij}} d(\bb{r_{ij}}) \quad \quad (\textnormal{note that }\grad_{ij}{V_{ij}} = - \grad_{j}{V_{ij}}) \\
+	&=  \frac{1}{2} \sum_{i,j} \int_a^b   \grad_{ij}{V_{ij}} d(\bb{r_{ij}}) \\
+	&=  \frac{1}{2} \sum_{i,j} {V_{ij}} |^b_a
+\end{aligned}
+$$
+
+\begin{theorem}
+	\textnormal{Total potential energy $V$ when external and internal forces are conservative and internal forces also central is:}
+	$$ V = \sum_i V_i  + \frac{1}{2} \sum_{i,j} {V_{ij}}$$
+	
+	\textnormal{Such that total energy $T + V$ is conserved}
+\end{theorem}
+
+On a rigid body, $|\bb{r_{ij}}|$ is constant between any two points. Then $0 = d(r_{ij}^2) = d(\bb{r}_{ij} \cdot \bb{r}_{ij}) = 2 \bb{r}_{ij} \cdot d(\bb{r}_{ij})$. Therefore $d(\bb{r}_{ij})$ is perpendicular to $\bb{r}_{ij}$ which means the work done by internal force $\bb{F}_{ji} \cdot d(\bb{r}_{ij}) = 0$
 
 \end{document}
