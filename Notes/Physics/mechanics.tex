@@ -1,6 +1,5 @@
 \documentclass[12pt]{article}
 
-\include{pythonlisting}
 \input{../../definitions.tex}
 
 \title{Mechanics}
@@ -135,5 +134,134 @@ $$
 \end{theorem}
 
 On a rigid body, $|\bb{r_{ij}}|$ is constant between any two points. Then $0 = d(r_{ij}^2) = d(\bb{r}_{ij} \cdot \bb{r}_{ij}) = 2 \bb{r}_{ij} \cdot d(\bb{r}_{ij})$. Therefore $d(\bb{r}_{ij})$ is perpendicular to $\bb{r}_{ij}$ which means the work done by internal force $\bb{F}_{ji} \cdot d(\bb{r}_{ij}) = 0$
+
+\subsection{Constraints}
+\textbf{Holonomic Constraints} have the form $$f(\bb{r_1}, \bb{r_2}, \bb{r_3}, \ldots, t) = 0$$
+For rigid body, $r_{ij}^2 - c_{ij}^2 = 0$. Constraints can't be expressed as above are called non-holonomic (e.g. placing a particle on a sphere surface is non-holonomic: $r^2 - a^2 \geq 0$, it will slide and eventually fall off the sphere).
+
+\textbf{Rheonomous Constraints} contains time as an explicit variable. \textbf{Scleronomous Constraints} are not explicitly dependent on time.
+
+Constraints difficulties:
+\begin{enumerate}
+	\item the coordinates $r_i$ are no longer independent.
+	\item forces of constraint are unknown a priori but we know the effect. e.g. force of wall on gas particle.
+\end{enumerate}
+
+\textbf{Generalized Coordinates} can solve problem 1. Consider a system of $N$ particles without constraints, it has $3N$ independent coordinate (\textbf{degrees of freedom}). When there are $K$ \textbf{holonomic} constraints, we only have $3N-K$ degree of freedom, so we can re-parameterize the system with $q_1,\ldots,q_{3N-K}$ independent variables. 
+$$  \bb{r}_i = \bb{r}_i(q_1, q_2, \ldots, q_{3N-k}, t), \quad \textnormal{ for $1\leq i \leq N$}$$
+If the constraints are non-holonomic, we cannot eliminate the dependent variables this way. 
+
+\subsection{D'Alembert Principle and Lagrangian equations}
+
+\textbf{virtual displacement} of a system is a change of the configuration of the system as the result of any arbitrary infinitesimal change of the coordinates:  $\delta \bb{r}_i$, \textit{consistent with the forces and constraints imposed on the system at the given instant $t$}.  
+
+This is different from actual displacement of a system in time interval $dt$ during which the force and constraints might be changing.
+
+\textbf{When system is in equilibrium}, total force on each partcile $\bb{F}_i = 0$. So the \textbf{virtual work} $\bb{F}_i \cdot \delta \bb{r}_i = 0$.  Note that total force is the sum of applied force and constraint force: $\bb{F_i} = \bb{F}^{(a)}_i +  \bb{f}_i$. Therefore
+$$ \sum_i \bb{F}_i \cdot \delta \bb{r}_i =   \sum_i \bb{F}^{(a)}_i \cdot \delta \bb{r}_i +  \sum_i \bb{f}_i \cdot \delta \bb{r}_i = 0$$
+
+\begin{theorem}[Principle of virtual work]
+\textnormal{We assume \textbf{the total net virtual work done by constraint forces are zero} which is $\sum_i \bb{f}_i \cdot \delta \bb{r}_i = 0$,  we get the principle of virtual work for equilibrium for a system: $$ \sum_i \bb{F}^{(a)}_i \cdot \delta \bb{r}_i  = 0$$}
+\end{theorem}
+In general, $\bb{F}^{(a)}_i \neq 0$ and $\delta \bb{r}_i$ are not independent, so they can't vary freely. Not much can be said about them.
+
+Note that $\bb{F}_i = \dot{\bb{p}}_i \Rightarrow \bb{F}_i - \dot{\bb{p}}_i = 0$, we can write 
+$$
+ \begin{aligned}
+   &\quad \sum_i (\bb{F}_i - \dot{\bb{p}}_i) \cdot \delta \bb{r}_i  = 0 \\
+   &\Rightarrow \sum_i ( \bb{F}^{(a)}_i  - \bb{\dot{p}}_i  + \bb{f}_i ) \cdot \delta \bb{r}_i = 0 \\
+   &\Rightarrow \sum_i ( \bb{F}^{(a)}_i  - \bb{\dot{p}}_i) \cdot \delta \bb{r}_i + \bb{f}_i \cdot \delta \bb{r}_i = 0 \\ 
+   &\Rightarrow \sum_i ( \bb{F}^{(a)}_i  - \bb{\dot{p}}_i) \cdot \delta \bb{r}_i = 0 \\
+ \end{aligned}
+$$
+
+\begin{theorem}[D'Alembert Principle]
+\textnormal{ For an equilibrium system where the total net virtual work done by constraint forces are zero, we have $$\sum_i ( \bb{F}^{(a)}_i  - \bb{\dot{p}}_i) \cdot \delta \bb{r}_i = 0$$}
+\end{theorem}
+
+Suppose $\bb{r}_i = \bb{r}_i(q_1, \ldots, q_n, t)$,  we have velocity, $$\bb{v}_i = \bb{\dot{r}}_i = \sum_j \frac{\partial \bb{r}_i}{\partial q_j} \dot{q}_j + \frac{\partial \bb{r}_i}{\partial t} $$
+and $$ \delta \bb{r}_i = \sum_j \frac{\partial \bb{r_i}}{\partial q_j} \delta q_j$$
+
+Note that 
+$$\frac{\partial \bb{v}_i}{\partial \dot{q}_k} = \frac{\partial \bb{r}_i}{\partial q_j} \delta^k_j =  \frac{\partial \bb{r}_i}{\partial q_k}, \quad \quad \frac{d}{dt}\left(\frac{\partial \bb{r}_i}{\partial q_j} \right) 
+= \sum_k \frac{\partial^2 \bb{r}_i}{\partial q_j \partial q_k} \dot{q}_k + \frac{\partial^2 \bb{r}_i}{\partial q_j \partial t} 
+= \frac{\partial \bb{v}_i}{\partial q_j} 
+= \frac{\partial \bb{\dot{r}}_i}{\partial q_j} $$
+
+Then we have the following:
+$$
+  \begin{aligned}
+  	&\quad \sum_i \bb{\dot{p}}_i \cdot \delta \bb{r}_i  \\
+  	&=  \sum_i (m_i \dot{\bb{v}}_i) \cdot  \sum_j \frac{\partial \bb{r_i}}{\partial q_j} \delta q_j  \\
+  	&=  \sum_j \sum_i m_i \frac{d\bb{v}_i}{dt}  \cdot  \frac{\partial \bb{v_i}}{\partial \dot{q}_j} \delta q_j  \\
+  	&=  \sum_j \left\{  \sum_i \left( m_i \frac{d \bb{v}_i}{dt}  \cdot  \frac{\partial \bb{v_i}}{\partial \dot{q}_j}  +    m_i \bb{v}_i  \cdot \frac{d}{dt} \frac{\partial \bb{v_i}}{\partial \dot{q}_j}\right) - m_i \bb{v}_i  \cdot \frac{d}{dt} \frac{\partial \bb{v_i}}{\partial \dot{q}_j} \right\} \delta q_j, 
+  	\quad \textnormal{(adding 0)}\\
+  	&= \sum_j \left\{     
+  	\sum_i 
+  	\frac{d}{dt}\left(m_i \bb{v}_i  \cdot   \frac{\partial \bb{v}_i}{\partial \dot{q}_j} \right) - m_i \bb{v}_i  \cdot   \frac{\partial \bb{v}_i}{\partial q_j}
+  	 \right\}  \delta q_j,
+  	  \quad \textnormal{(chain rule)}  \\
+  	&= \sum_j \left\{     
+  	\sum_i 
+  	\frac{d}{dt}\left( \frac{1}{2} m_i  \frac{\partial (\bb{v}_i  \cdot \bb{v}_i)}{\partial \dot{q}_j} \right) - \frac{1}{2} m_i \frac{\partial (\bb{v}_i  \cdot \bb{v}_i)}{\partial q_j}
+    \right\}\delta q_j  \\
+  	&= \sum_j \left\{     
+  	\sum_i
+  	\frac{d}{dt}\left(  \frac{\partial T_i }{\partial \dot{q}_j} \right) -  \frac{\partial T_i}{\partial q_j}
+  	 \right\} \delta q_j, 
+  	 \quad \textnormal{($T_i$ is the kinetic energy $\frac{1}{2}m_iv_i^2$)} \\
+  	&= \sum_j \left\{ 
+  	\frac{d}{dt}\left(  \frac{\partial T}{\partial \dot{q}_j} \right) -  \frac{\partial T}{\partial q_j}
+  	 \right\}  \delta q_j\\
+  \end{aligned}
+$$
+
+
+We define \textbf{Generalized force} $Q_j$ such that 
+$$ \sum_i \bb{F}_i \cdot \delta \bb{r}_i 
+=  \sum_j   \left( \sum_i \bb{F}_i \cdot  \frac{\partial \bb{r}_i}{\partial q_j} \right) \delta q_j 
+ \equiv \sum_j   Q_j \delta q_j $$
+
+\begin{theorem}
+\textnormal{Then the D'Alember principle equation becomes}
+$$
+  \begin{aligned}
+  	&\quad \sum_i ( \bb{F}^{(a)}_i  - \bb{\dot{p}}_i) \cdot \delta \bb{r}_i = 0 \\
+  	&\Rightarrow \sum_j \left\{ 
+  	\frac{d}{dt}\left(  \frac{\partial T}{\partial \dot{q}_j} \right) -  \frac{\partial T}{\partial q_j} - Q_j
+  	 \right\}\delta q_j = 0 \\
+  	&\Rightarrow 	\frac{d}{dt}\left(  \frac{\partial T}{\partial \dot{q}_j} \right) -  \frac{\partial T}{\partial q_j} - Q_j = 0 \\
+  	&\Rightarrow 	\frac{d}{dt}\left(  \frac{\partial T}{\partial \dot{q}_j} \right) -  \frac{\partial T}{\partial q_j} = Q_j 
+  \end{aligned}
+$$
+Note: because each $\delta q_j$ is independent of one another, so the coefficient must vanish.
+\end{theorem}
+
+The term  $\frac{\partial T}{\partial q_j}$  is due to the curvature of the generalized coordinate $q_j$ (would be 0 in Cartesian coordinate).
+
+Now suppose the applied forces are conservatives which means $\bb{F}_i = -\grad V_i$,  then $$
+Q_j = \sum_i \bb{F}_i \cdot \frac{\partial \bb{r}_i}{\partial q_j} 
+= - \sum_i  \grad V_i \cdot \frac{\partial \bb{r}_i}{\partial q_j} 
+= - \sum_{i, k}  \frac{\partial V_i}{\partial r_i^k} \frac{\partial r_i^k}{\partial q_j} 
+\equiv - \frac{\partial V}{\partial q_j}$$
+Where $V(\bb{r}_1, \bb{r}_2, \ldots, \bb{r}_N, t)$. 
+
+Then $$
+\begin{aligned}
+	&\quad \quad \frac{d}{dt}\left(  \frac{\partial T}{\partial \dot{q}_j} \right) -  \frac{\partial T}{\partial q_j} -  Q_j = 0 \\ 
+	&\Rightarrow   \frac{d}{dt}\left(  \frac{\partial T}{\partial \dot{q}_j} \right) -  \frac{\partial T}{\partial q_j}  + \frac{\partial V}{\partial q_j} = 0 \\
+	&\Rightarrow   \frac{d}{dt}\left(  \frac{\partial T}{\partial \dot{q}_j} \right) -  \frac{\partial (T - V)}{\partial q_j} = 0 \\
+	&\Rightarrow   \frac{d}{dt}\left(  \frac{\partial (T - V)}{\partial \dot{q}_j} \right) -  \frac{\partial (T - V)}{\partial q_j} = 0
+	,\quad \textnormal{(Because $\frac{\partial V}{\partial \dot{q}_j} = 0$ )}
+\end{aligned}
+$$
+
+\begin{theorem}[Lagrange's equation]
+\textnormal{If the constraints forces do zero net virtual work and the applied forces are conservative. We have:
+  $$ \frac{d}{dt} \left(\frac{\partial L}{\partial \dot{q}_j}\right) - \frac{\partial L}{\partial q_j} = 0$$
+Where the lagrangian $L = T - V$.
+}
+\end{theorem}
+
 
 \end{document}
