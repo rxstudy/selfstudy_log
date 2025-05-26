@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+
+\input{../../definitions.tex}
+
+\title{PBRT notes}
+\begin{document}
+	\maketitle
+
+
+\subsubsection{Ray-Object Intersection}
+To find interaction of light with object at a point, we find the intersection. Given a ray $r$: $$r(t) = o + t \bb{d}$$
+ $o$ is ray's origin, $\bb{d}$ is direction vector, $t\in [0, \infty)$. For multiple intersections, find the minimum positive $t$ for the closest intersection.
+
+\subsubsection{Light distribution}
+We want to find the amount of light leaving at a point in the direction of the camera. Consider a light source has power $\Phi$, we want to find the differential irradiance (differential power per area) $$ dE = \frac{\Phi \cos\theta}{4\pi r^2}$$
+
+\subsubsection{Visibility}
+In ray tracer, to detect if light is visible from a point, we construct new ray called shadow rays from the point to the light to check for intersection.
+
+\subsubsection{Light scattering at surfaces}
+ Once we have the point location and incident lighting, we need to find how the incident lighting is scattered at the surface. Specifically, the amount of light energy scattered back along the ray that we traced from the camera.
+
+\textbf{Material} describes an object's apperance properties at each point. This is given by BRDF(Bidirectional reflectance distribution function), $$f_r(p, \omega_o, \omega_i)$$ where $\omega_o$ is the direction of the ray scattered back at the camera from point $p$, $\omega_i$ is the direction of the incident light at point $p$
+
+\subsubsection{Indirect Light transport}
+(Turner Whitted's 1980 paper)A ray from camera hit a mirror at point p we have shading $f_r(p, \omega_o, \omega_i)$, to include indirect specular reflection and transmission, we reflect the camera direction vector about surface normal and get a new vector  $\hat{\omega}_o$, we will use this vector as the new camera direction vector and recursively invoke the ray-tracing routine and add the contribution to the shading: $raytrace(p, \omega_o) = f_r(p, \omega_o, \omega_i) + raytrace(\hat{p}, \hat{\omega}_o)$ until $\hat{p}$ is not found.
+
+\begin{theorem}[General Light transport equation(Rendering equation)]
+measures light with respect to radiance. 
+
+$$L_o(p, \omega_o) = L_e(p, \omega_o) + \int_{S^2} f(p, \omega_o, \omega_i)L_i(p, \omega_i)|\cos\theta_i|d\omega_i$$	
+Where $L_o(p, \omega_o)$ (the outgoing radiance from a point $p$ in direction $\omega_o$) is $L_e(p, \omega_o)$(emitted radiance at that point in that direction) + the incident radiance from all directions on the sphere $S^2$ around $p$ scaled by the BSDF and a cosine term.
+\end{theorem}
+
+Turner Whitted's approach turns the integral into a sum of small number of directions.
+
+\subsubsection{Ray Propagation}
+Participating medium can affect light propagation by
+\begin{enumerate}
+	\item  extinguish (attenuate) light either by absorbing or scattering it in different direction. $T_r$ transmittance between ray origin and intersection point tells us how much light scattered at intersection point makes it back to the ray origin
+	\item add to the light. e.g. medium emits light (flame) or medium scatters light from other directions back along the ray. Find this with \textbf{Volume light transport equation}
+\end{enumerate}
+
+
+\end{document}
