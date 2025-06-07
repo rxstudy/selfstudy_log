@@ -160,6 +160,8 @@ This is different from actual displacement of a system in time interval $dt$ dur
 \textbf{When system is in equilibrium}, total force on each partcile $\bb{F}_i = 0$. So the \textbf{virtual work} $\bb{F}_i \cdot \delta \bb{r}_i = 0$.  Note that total force is the sum of applied force and constraint force: $\bb{F_i} = \bb{F}^{(a)}_i +  \bb{f}_i$. Therefore
 $$ \sum_i \bb{F}_i \cdot \delta \bb{r}_i =   \sum_i \bb{F}^{(a)}_i \cdot \delta \bb{r}_i +  \sum_i \bb{f}_i \cdot \delta \bb{r}_i = 0$$
 
+We are actually picking the generalized coordinates $q_i$ to get rid of the constraint equations so they become trivial $0=0$ on both side
+
 \begin{theorem}[Principle of virtual work]
 \textnormal{We assume \textbf{the total net virtual work done by constraint forces are zero} which is $\sum_i \bb{f}_i \cdot \delta \bb{r}_i = 0$,  we get the principle of virtual work for equilibrium for a system: $$ \sum_i \bb{F}^{(a)}_i \cdot \delta \bb{r}_i  = 0$$}
 \end{theorem}
@@ -259,9 +261,126 @@ $$
 \begin{theorem}[Lagrange's equation]
 \textnormal{If the constraints forces do zero net virtual work and the applied forces are conservative. We have:
   $$ \frac{d}{dt} \left(\frac{\partial L}{\partial \dot{q}_j}\right) - \frac{\partial L}{\partial q_j} = 0$$
-Where the lagrangian $L = T - V$.
+Where the lagrangian $L = T - V$. 
 }
 \end{theorem}
 
+\subsection{Velocity-dependent potentials and disspipation function}
+
+\begin{theorem}[Velocity dependent potential]
+\textnormal{
+	The lagrangian equation
+	$$ \frac{d}{dt} \left(\frac{\partial L}{\partial \dot{q}_j}\right) - \frac{\partial L}{\partial q_j} = 0$$
+ is valid even if the generalized forces are obtained from $U(q_j, \dot{q_j})$ where $$Q_j = -\frac{\partial U}{\partial q_j} + \frac{d}{dt}\left(\frac{\partial U}{\partial \dot{q}_j}\right)$$ $L$ will be $T-U$. $U$ is called a generalized potential.
+}
+\end{theorem}
+
+\begin{theorem}[Non potential force]
+\textnormal{
+If not all forces arise from a potential, then the following form of lagrangian is still valid. 
+$$ \frac{d}{dt} \left(\frac{\partial L}{\partial \dot{q}_j}\right) - \frac{\partial L}{\partial q_j} = Q_i$$
+Where $L$ contains the potential of conservative forces as before but $Q_i$ represent forces not arising from a  potential (i.e Frictions).
+}
+\end{theorem}
+
+Frictional forces are usually proportional to velocity of the particle (i.e $f_x = -k_x v_x$). Such type of friction can be derived from $$\mathcal{F} = \frac{1}{2}\sum_i^{\textnormal{\# of particles}} (k_x v_{ix}^2 + k_y v_{iy}^2 + k_z v_{iz}^2)$$ Such $\mathcal{F}$ is called Rayleigh's dissipation function. Then the friction force is $$ \bb{F}_f = -\grad_v \mathcal{F} $$ 
+For example, $\frac{\partial \mathcal{F}}{\partial v_{1x}} = - k_x v_{1x}$ is the x-direction friction force on the first particle.
+
+The work done by the friction force is $2\mathcal{F}$:
+$$ 
+\begin{aligned}
+ dW_f = \bb{F}_f \cdot d\bb{r} &= \bb{F}_f \cdot \frac{\partial \bb{r}}{\partial t} dt \\
+  &=  - \bb{F}_f \cdot \bb{v} dt \\ 
+  &= \grad_v \mathcal{F} \cdot \bb{v} dt \\ 
+  &= \sum_i \sum_{j \in \{x,y,z\}} \frac{\partial \mathcal{F}}{\partial v_{ij}}v_j   \\
+  &= \sum_i \sum_{j \in \{x,y,z\}} k_j (v_{ij})^2  dt \\
+  &= 2 \mathcal{F} dt
+\end{aligned}$$
+
+To find the generalized force $Q_i$ for such friction: Note that $\frac{\partial \bb{r_i}}{\partial q_j} = \frac{\partial \bb{v_i}}{\partial \dot{q}_j}$ from previous derivations.
+$$
+\begin{aligned}
+	Q_j &= \sum_i (\bb{F_f})_i \cdot \frac{\partial \bb{r}_i }{\partial q_j} = - \sum_i (\grad_v \mathcal{F})_i \cdot \frac{\partial \bb{r}_i }{\partial q_j}  \\ 
+	&=-\sum_i \left( \frac{\partial \mathcal{F}}{\partial v_{ix}} \frac{\partial r_{ix} }{\partial q_j} + \frac{\partial \mathcal{F}}{\partial v_{iy}} \frac{\partial r_{iy} }{\partial q_j} + \frac{\partial \mathcal{F}}{\partial v_{iz}} \frac{\partial r_{iz} }{\partial q_j}\right) \\
+	&=-\sum_i \left( \frac{\partial \mathcal{F}}{\partial v_{ix}} \frac{\partial v_{ix} }{\partial \dot{q}_j} + \frac{\partial \mathcal{F}}{\partial v_{iy}} \frac{\partial v_{iy} }{\partial \dot{q}_j} + \frac{\partial \mathcal{F}}{\partial v_{iz}} \frac{\partial v_{iz} }{\partial \dot{q}_j}\right) \\ 
+	&= -  \frac{\partial \mathcal{F}}{\partial  \dot{q}_j}
+\end{aligned}
+$$
+
+\begin{theorem}[Lagrangian with dissipation function]
+	When the non-conservative force is derived from a dissipation function $\mathcal{F}$ where $\bb{F_f} = -\grad_v \mathcal{F}$, the langragian is 
+	$$ \frac{d}{dt} \left(\frac{\partial L}{\partial \dot{q}_j}\right) - \frac{\partial L}{\partial q_j} + \frac{\partial \mathcal{F}}{\partial  \dot{q}_j} = 0 $$
+\end{theorem}
+
+\section{Variational Principle and Lagrange's Equation}
+
+
+
+\begin{theorem}[Frechet Derivative]
+	\textnormal{
+Consider a functional $J[y] = \int_a^b L(y, y', x) dx$ and its increment while holding $y$ fixed is then a function of $h$:
+ $$\Delta J[h] = \delta J[h]  + \epsilon||h||$$
+It is the sum of a linear functional (\textbf{variation}) of $J$ and a higher-than-first-order term $\epsilon||h||$ \\
+When $||h||$ is small and goes to 0, $\epsilon$ also goes to 0. Then we say the functional is \textbf{differentiable}.
+}
+\end{theorem}
+However, this notion of functional differential is so strong it may not exist and in those cases a weaker notion, like the Gateaux derivative is preferred. In many practical cases, the functional differential is defined as the \textbf{directional derivative}
+
+\begin{theorem}[Gateaux derivative]
+  A weaker version of Frechet Derivative. $$
+    \delta J[y, h] = \lim_{\alpha \rightarrow 0} \frac{J[y + \alpha h] - J[y]}{\alpha} = \left[\frac{d J[y + \alpha h]}{d \alpha} \right]_{\alpha =0}
+  $$
+\end{theorem}
+
+To derive the lagrange's equation, suppose $y_*$ is a stationary value for $J[y] = \int^a_b L(y, y', x)dx$. Then we consider $y(x; \alpha) = y_* + \alpha h(x)$ where $h(x)$ is any function with $f(a) = f(b) = 0$.
+$$ 
+ J(\alpha) = \int^b_a L(y_* + \alpha h, y_*' + \alpha h', x)dx \\
+$$
+Then $J$ is a function of $\alpha$, and 
+$$ \delta J[y, h] \equiv \left(\frac{dJ}{d\alpha}\right)_{\alpha = 0} = 0 $$
+because $y(x;\alpha = 0) = y_*$ a stationary value. So the functional's change with $\alpha$ should be 0.  So we arrive at the Gateaux derivative.
+Then we just calculate the derivative and integrate by parts:
+$$
+\begin{aligned}
+	 \delta J[y, h] &= \frac{dJ}{d\alpha} \atval_{\alpha = 0} \\
+	   &= \int^b_a \frac{\partial L}{\partial y}\frac{\partial y}{\partial \alpha} + \frac{\partial L}{\partial y'}\frac{\partial y'}{\partial \alpha} dx \\
+	   &= \int^b_a \frac{\partial L}{\partial y}h + \frac{\partial L}{\partial y'}h' dx \\
+	   &=  \int^b_a \frac{\partial L}{\partial y}h dx + \int^b_a \frac{\partial L}{\partial y'}h' dx \\
+	   &=  \int^b_a \frac{\partial L}{\partial y}h dx + \left(h\frac{\partial L}{\partial y'}\right)^b_a - \int^b_a \frac{d}{dx} \frac{\partial L}{\partial y'}h dx \\
+	   &= \int^b_a \left(\frac{\partial L}{\partial y} - \frac{d}{dx} \frac{\partial L}{\partial y'}\right) h dx, \quad \left(h(a)=h(b)=0 \Rightarrow \left(h\frac{\partial L}{\partial y'}\right)^b_a = 0\right)\\
+	   &= 0
+\end{aligned}
+$$
+Since $h$ is arbitrary, if the other term has a non zero region, $h$ can be defined as a bump in that region and 0 everywhere else. So we have lagrange's equation.
+$$\frac{\partial L}{\partial y} - \frac{d}{dx} \frac{\partial L}{\partial y'} = 0$$
+For the general case where $J = \int_a^b L(q_1,\ldots, q_n, \dot{q_1}, \ldots \dot{q}_n, t)dt$, we can just take $q_i(t, \alpha) = q_{i,*} + \alpha h_i$ and equates $\delta J = 0$ and apply the same procedure as above.
+\begin{theorem}[Hamilton's Principle]
+	\textnormal{The motion of a system in configuration space is such that  $$ 
+		\delta I = \delta \int_{t_1}^{t_2} L(q_1, \ldots, q_n, \dot{q}_1, \ldots, \dot{q}_n, t) dt = 0
+		$$ 
+		Note that when the constraint is holonomic,  Hamilton's principle is necessary and sufficient condition for Lagrange's equation
+		$$ \frac{\partial L}{\partial q_i} -  \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_i}\right) = 0, \quad \textnormal{for $i$ from $1$ to $n$}$$
+	}
+\end{theorem}
+
+\subsection{Hamilton's Principle with Constraints}
+To extend to certain nonholonomic constraints,  for $m$ constraints $f_\alpha$. We find the stationary point for the modified version of the functional: 
+$$ \begin{aligned} 
+	&\quad I = \int^b_a L + \sum_{\alpha = 1}^m \lambda_\alpha f_\alpha dt  \\
+	&\Rightarrow  \delta I[y, h]  \\
+	&= \frac{d}{d\epsilon} \int^b_a L + \sum_{\alpha = 1}^m \lambda_\alpha f_\alpha dt \\
+	&=  \frac{d}{d\epsilon} \left(\int^b_a L(q_i + \epsilon h_i, \dot{q}_i + \epsilon \dot{h}_i, t) dt  \right) +   \frac{d}{d\epsilon}  \left(\int_a^b \sum_{\alpha = 1}^m \lambda_\alpha f_\alpha (q_i + \epsilon h_i)dt \right) \\
+	&= \int_a^b \sum_i \left( \frac{\partial L}{\partial q_i} -  \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_i}\right) \right) h_i dt + \int_a^b  \sum_{\alpha = 1}^m \sum_i \lambda_\alpha \frac{\partial f_\alpha}{\partial q_i}h_i dt  \\
+	&= \int_a^b \sum_i \left( \frac{\partial L}{\partial q_i} -  \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_i}\right) +  \sum_{\alpha = 1}^m \lambda_\alpha \frac{\partial f_\alpha}{\partial q_i} \right) h_i dt \\
+	&= 0
+\end{aligned}$$ 
+
+\begin{theorem}
+\textnormal{
+ $$  \frac{\partial L}{\partial q_i} -  \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_i}\right) +  \sum_{\alpha = 1}^m \lambda_\alpha \frac{\partial f_\alpha}{\partial q_i} = 0 $$
+Note that for applied forces that don't stem from a potential, we have a $Q_i$ term which in this case is the lagrange multipler term so:
+$$ \frac{\partial L}{\partial q_i} -  \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_i}\right) = Q_i = - \sum_{\alpha = 1}^m \lambda_\alpha \frac{\partial f_\alpha}{\partial q_i} $$ 
+}
+\end{theorem}
 
 \end{document}
