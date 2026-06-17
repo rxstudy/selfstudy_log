@@ -1,0 +1,34 @@
+\documentclass[12pt]{article}
+
+\input{../../definitions.tex}
+
+\title{Calculus of Variation Notes}
+\begin{document}
+	\maketitle
+
+
+\begin{definition}[Functional] \textnormal{a functional $J$ maps a function $h$ to a real number}
+\end{definition}
+
+\begin{definition}[Continuity of functional]
+\textnormal{The functional $J[y]$ is continuous at point $\hat{y} \in \mathcal{C}$(normed linear space) if for any $\epsilon > 0, \exists \delta > 0$ such that $$ |J[y] - J[\hat{y}]| < \epsilon, \quad \textnormal{provided that } ||y - \hat{y}|| < \delta $$ } 
+\end{definition}
+
+The set of functions satisfying the constraints of a given variational problem are called the \textbf{admissible functions/curves}.  
+\begin{enumerate}
+	\item Given a functional, we should choose a function space such that the functional is continuous
+	\item Admissible functions in general is not a linear space. (Sum of two functions violates the constraints)
+\end{enumerate}
+
+\textbf{Linear functional} $\phi$ on $\mathcal{C}(a, b)$ examples:
+\begin{enumerate}
+	\item $\phi[h] = h(x_0)$ for a fixed point $x_0 \in [a,b]$
+	\item $\phi[h] = \int_a^b \sum_i \alpha_i(x) \frac{d^i h(x)}{d x^i} dx$.
+\end{enumerate}
+
+
+\begin{definition}[Differential/Variation of a functional]
+	\textnormal{Let $J$ be defined on a normed linear space,  let $$\Delta J[h] = J[y + h] - J[y]$$ be its increment. If $y$ is fixed, then $\Delta J[h]$ is a functional of $h$. Suppose $$\Delta[h] = \phi[h] + \epsilon ||h||$$ where $\phi[h]$ is a linear functional.}
+\end{definition}
+
+\end{document}

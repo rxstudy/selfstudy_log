@@ -8,7 +8,6 @@
 \begin{document}
 \maketitle
 
-\twocolumn
 \section{Definitions}
 
 \textbf{Space of linear function} $L(V, W)$ vector space of linear functions from $V$ to $W$.
@@ -39,9 +38,28 @@
 
 \textbf{Tensor Product}
 
+\textbf{Alternating Tensor}: we can turn a $k$-tensor $T\in T^k(V^*)$ into an alternating tensor Alt$(T) \in \Lambda^k(V^*)$. by defining:
+$$ \textnormal{Alt}(T) \equiv \frac{1}{k!} \sum_{\sigma \in S_k} (\textnormal{sgn} \sigma) (T\circ \sigma)$$
+where $S_k = \{\sigma(v_{1}, \ldots, v_k) = (v_{\sigma(1)}, \ldots, v_{\sigma(k)})\}$ is the group of all permutation of the arguments. 
+
+
+\textbf{Wedge Product}: After we construct the alternating tensors, we can define the wedge product between them.
+$$ T\wedge S = \binom{k+m}{k} \textnormal{Alt}(T \otimes S)$$
+where $T \in \Lambda^k(V^*)$, $S\in \Lambda^m(V^*)$ and $\textnormal{Alt}(T\wedge S) \in \Lambda^{k+m}(V^*)$.
+
+\textbf{Pullback of a Covariant Tensor}: $$(f^* T)_p(v_1,\ldots, v_k) = T(f_* v_1, \ldots, f_* v_k) = T(df(v_1),\ldots, df(v_k))$$
+
+\textbf{Lie Derivative of a tensor field}: Given a vector field $X$ on $M$, the Lie derivative of a $k$-covariant tensor field $T$ along $X$ is $$ L_XT \equiv \frac{d}{dt} (\psi_t^* T)\bigg{\rvert}_{t=0}$$, where $\psi_t = F(\cdot, t)$ with $F$ the local flow of $X$ at $p$.
+
+\textit{REMARK:} The intuition is simple, imagine $T$ is a measurement device in a river placed around a neighborhood of point $p$ and the water is flowing along a vector field $X$, we see that $\psi_t^*T(v_1,\ldots, v_k) = T(\psi_{t*}v_1, \ldots, \psi_{t*} v_k)$ which pushes forward the measurement device by $t$ amount along the local flow around $p$. Then we take the limit as $t$ goes to 0 like we do with usual function derivative to get the rate of change of the measurement device's reading along the flow. 
+
+
 \textbf{Exterior Product}
 
 \textbf{Differential forms} p-form is $C^\infty$ skew-symmetric covariant tensor field of degree $p$ (type $(0,p)$). Local basis has ${d \choose p}$ p-forms $dx^{i_1}\cdots dx^{i_p}$ where $(i_1,\ldots,i_p)$ is increasing.
+
+
+
 
 \onecolumn
 \section*{Case Study 1: Surface of a sphere}
