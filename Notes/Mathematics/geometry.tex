@@ -3,6 +3,7 @@
 \usepackage[margin=0.4in]{geometry}
 \include{pythonlisting}
 \input{../../definitions.tex}
+\DeclareMathOperator{\vol}{vol}
 \title{Geometry Note}
 \author{Ran Xie}
 \begin{document}
@@ -58,7 +59,392 @@ where $T \in \Lambda^k(V^*)$, $S\in \Lambda^m(V^*)$ and $\textnormal{Alt}(T\wedg
 
 \textbf{Differential forms} p-form is $C^\infty$ skew-symmetric covariant tensor field of degree $p$ (type $(0,p)$). Local basis has ${d \choose p}$ p-forms $dx^{i_1}\cdots dx^{i_p}$ where $(i_1,\ldots,i_p)$ is increasing.
 
+\newpage
+\section*{Vector Calculus via Differential Forms}
+Let $(M,g)$ be a Riemannian $3$-manifold. Let $\star$ be the Hodge star, $d$ the exterior derivative, $\sharp: T^*M \to TM$ and $\flat: TM \to T^*M$ the musical isomorphisms, and $\omega_g = \star 1$ the Riemannian volume form.
 
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.1\textwidth} >{\raggedright\arraybackslash}p{0.1\textwidth}  >{\raggedright\arraybackslash}p{0.35\textwidth} >{\raggedright\arraybackslash}X}
+	\hline
+	\textbf{Operation} & \textbf{Nabla} & \textbf{Differential Form Expression} & \textbf{Remarks / Coordinate Formula ($g_{ij}$)} \\
+	\hline
+	$\operatorname{grad} f$ & $\nabla f$  & $(df)^\sharp$ & $(\operatorname{grad} f)^i = g^{ij}\partial_j f$ \\
+	$\operatorname{div} X$  & $\nabla \cdot X$ &  $\star d \star (X^\flat)$ & $\operatorname{div} X = \frac{1}{\sqrt{|g|}}\partial_i(\sqrt{|g|} X^i)$ \\
+	$\operatorname{curl} X$ & $\nabla \times X$ & $\bigl(\star d (X^\flat)\bigr)^\sharp$ & $(\operatorname{curl} X)^i = \frac{1}{\sqrt{|g|}} \epsilon^{ijk}\partial_j(g_{k\ell}X^\ell)$ \\
+	$\Delta f$ & $\nabla^2f $ & $\star d \star d f$ & $\Delta f = \frac{1}{\sqrt{|g|}}\partial_i(\sqrt{|g|}g^{ij}\partial_j f)$ \\
+	\hline
+\end{tabularx}
+
+\subsection*{Musical Isomorphisms}
+For a vector field $X = X^i\partial_i$ and a 1-form $\alpha = \alpha_i dx^i$:
+\begin{align*}
+	X^\flat &= g_{ij} X^j dx^i, \\
+	\alpha^\sharp &= g^{ij} \alpha_j \partial_i.
+\end{align*}
+
+\subsection*{Hodge Star on $\mathbb{R}^3$ (Euclidean)}
+For standard $dx, dy, dz$:
+\begin{align*}
+	\star 1 &= dx\wedge dy\wedge dz, \\
+	\star dx &= dy\wedge dz, \quad \star dy = dz\wedge dx, \quad \star dz = dx\wedge dy, \\
+	\star (dy\wedge dz) &= dx, \quad \star (dz\wedge dx) = dy, \quad \star (dx\wedge dy) = dz, \\
+	\star (dx\wedge dy\wedge dz) &= 1.
+\end{align*}
+
+\subsection*{Key Identities}
+\begin{itemize}
+	\item $\operatorname{curl}(\operatorname{grad} f) = 0 \quad \Longleftrightarrow \quad d^2 = 0$.
+	\item $\operatorname{div}(\operatorname{curl} X) = 0 \quad \Longleftrightarrow \quad  \star d (d X^\flat)  = 0$
+	\item $\operatorname{curl}(\operatorname{curl} X) = \operatorname{grad}(\operatorname{div} X) - \Delta X$ (Vector Laplacian). But I can skip this to keep it concise.
+\end{itemize}
+\newpage
+
+\begin{table}[!htbp]
+	\centering
+	\small
+	\setlength{\tabcolsep}{4pt}
+	\begin{tabular}{>{\raggedright\arraybackslash}p{2.7cm} 
+			>{\raggedright\arraybackslash}p{5cm} 
+			>{\raggedright\arraybackslash}p{6cm} 
+			>{\raggedright\arraybackslash}p{5cm}}
+		\toprule
+		\textbf{System} & 
+		\textbf{Coordinates / Length form / Volume form} & 
+		\textbf{Hodge $\star$ on 1-forms (Area forms)} & 
+		\textbf{Hodge $\star$ on 2-forms} \\
+		\midrule
+		
+		% Euclidean
+		Euclidean (Cartesian) &
+		\( (x,y,z) \), \quad \( ds^2 = dx^2 + dy^2 + dz^2 \) \newline
+		\( \omega = dx \wedge dy \wedge dz \) &
+		\( \star dx = dy \wedge dz \), \newline
+		\( \star dy = dz \wedge dx \), \newline
+		\( \star dz = dx \wedge dy \) &
+		\( \star(dx \wedge dy) = dz \), \newline
+		\( \star(dy \wedge dz) = dx \), \newline
+		\( \star(dz \wedge dx) = dy \) \\
+		\addlinespace
+		
+		% Cylindrical
+		Cylindrical &
+		\( (\rho,\phi,z) \), \quad \( ds^2 = d\rho^2 + \rho^2 d\phi^2 + dz^2 \) \newline
+		\( \omega = \rho\, d\rho \wedge d\phi \wedge dz \) &
+		\( \star d\rho = \rho\, d\phi \wedge dz \), \newline
+		\( \star d\phi = \frac{1}{\rho}\, dz \wedge d\rho \), \newline
+		\( \star dz = \rho\, d\rho \wedge d\phi \) &
+		\( \star(d\rho \wedge d\phi) = \frac{1}{\rho}\, dz \), \newline
+		\( \star(d\phi \wedge dz) = \frac{1}{\rho}\, d\rho \), \newline
+		\( \star(dz \wedge d\rho) = \rho\, d\phi \) \\
+		\addlinespace
+		
+		% Spherical
+		Spherical &
+		\( (r,\theta,\phi) \), \quad \( ds^2 = dr^2 + r^2 d\theta^2 + r^2\sin^2\theta\, d\phi^2 \) \newline
+		\( \omega = r^2 \sin\theta\, dr \wedge d\theta \wedge d\phi \) &
+		\( \star dr = r^2\sin\theta\, d\theta \wedge d\phi \), \newline
+		\( \star d\theta = \sin\theta\, d\phi \wedge dr \), \newline
+		\( \star d\phi = \frac{1}{\sin\theta}\, dr \wedge d\theta \) &
+		\( \star(dr \wedge d\theta) = \sin\theta\, d\phi \), \newline
+		\( \star(d\theta \wedge d\phi) = \frac{1}{r^2\sin\theta}\, dr \), \newline
+		\( \star(d\phi \wedge dr) = \frac{1}{\sin\theta}\, d\theta \) \\
+		\addlinespace
+		
+		% Barycentric (2D triangle)
+		Barycentric (2D) &
+		\( (\lambda_1,\lambda_2),\quad \lambda_3 = 1-\lambda_1-\lambda_2 \) \newline
+		\( ds^2 = g_{11}d\lambda_1^2 + 2g_{12}d\lambda_1d\lambda_2 + g_{22}d\lambda_2^2 \), \newline
+		\( g_{ij} = (\mathbf{v}_i-\mathbf{v}_3)\cdot(\mathbf{v}_j-\mathbf{v}_3) \) \newline
+		\( \omega = \sqrt{G}\, d\lambda_1\wedge d\lambda_2, \quad G = \det(g_{ij}) \) &
+		\( \star d\lambda_1 = \sqrt{G}\bigl( -g^{12}d\lambda_1 + g^{11}d\lambda_2 \bigr) \), \newline
+		\( \star d\lambda_2 = \sqrt{G}\bigl( -g^{22}d\lambda_1 + g^{12}d\lambda_2 \bigr) \) \newline
+		where \( g^{ij} \) is the inverse of \( g_{ij} \) &
+		\( \star(d\lambda_1\wedge d\lambda_2) = \frac{1}{\sqrt{G}} \) \\
+		\bottomrule
+	\end{tabular}
+	\caption{Hodge star operator, length forms ($ds^2$), volume forms ($\omega$), and area forms ($\star dx^i$) in common coordinate systems. Orientation is $(1,2,3)$ with $\epsilon_{123}=1$; $g^{ij}$ denotes the inverse metric. In barycentric coordinates, $\star d\lambda_i$ gives the area form of the face opposite vertex $i$, weighted by the metric.}
+	\label{tab:hodge}
+\end{table}
+
+\newpage
+
+\subsubsection{Notations}
+Projection operator: $\langle \rangle_p: \bigwedge(V) \to \bigwedge_p(V)$,  $$\langle A\rangle_p = A_{[p]} \in \bigwedge_p(V)$$ is the p-vector component of the multivector $A$
+
+\begin{itemize}
+	\item Grade Involution: $\sharp(A_{[p]}) = \widehat{A}_{[p]} = (-1)^p A_{[p]}$ \\
+	\item Reversion: $\widetilde{(\bm{v}_1 \wedge \cdots \wedge \bm{v}_p)} = \bm{v}_p \wedge \cdots \wedge \bm{v}_1$ implies $\widetilde{A}_{[p]} = (-1)^{p(p-1)/2} A_{[p]}$
+	\item Conjugation: $\bar{A}_{[p]} = \widehat{\widetilde{A}}_{[p]} = \widetilde{\widehat{A}}_{[p]}$
+\end{itemize}
+
+
+
+\subsection{Grassmann Algebra}
+Flat operator $\flat: \bigwedge_p(V) \to \bigwedge^p(V)$ given by $$ (\bm{v}_1\wedge\cdots\wedge\bm{v}_p)_\flat = (\bm{v}_{1})_\flat \wedge \cdots \wedge (\bm{v}_{p})_\flat$$
+
+Extension of the bilinear metric $G: \bigwedge_p(V)\times \bigwedge_p(V) \to \mathbb{R}$ given by 
+$$
+\begin{aligned}
+	G(\bm{v}_1\wedge\cdots\wedge\bm{v}_p, \bm{u}_1\wedge\cdots\wedge\bm{u}_p) &= p!(\bm{v}_1\wedge\cdots\wedge\bm{v}_p)_\flat (\bm{u}_1\wedge\cdots\wedge\bm{u}_p) \\
+	&= (\bm{v}_p\wedge\cdots\wedge\bm{v}_1)_\flat \rfloor (\bm{u}_1\wedge\cdots\wedge\bm{u}_p) \\
+	&= \begin{Vmatrix}
+		g(\bm{v}_1, \bm{u}_1) & \cdots & g(\bm{v}_1, \bm{u}_p) \\
+		\vdots           &  \ddots  & \vdots \\
+		g(\bm{v}_p, \bm{u}_1) & \cdots & g(\bm{v}_p, \bm{u}_p) \\
+	\end{Vmatrix}
+\end{aligned}
+$$
+
+$G(A_{[p]}, B_{[q]}) = 0$ when $p\neq q$
+
+\section*{Hodge Star Identities}
+
+\subsection*{Left Contraction}
+$$\begin{aligned}
+    (\alpha\rfloor A_{[p]})(\alpha_1, \ldots, \alpha_{p-1}) &= p A_{[p]}(\alpha,\alpha_1, \ldots, \alpha_{p-1}) \\
+      &= p (\bm{v}_1 \wedge \ldots \wedge \bm{v}_p)(\alpha,\alpha_1, \ldots, \alpha_{p-1} ) \quad \quad \quad (\text{if } A_{[p]} = \bm{v}_1 \wedge \ldots \wedge \bm{v}_p ) \\
+      &= p \frac{1}{p!} \sum_{\sigma \in S_p} \epsilon(\sigma) \alpha(\bm{v}_{\sigma(1)}) \cdots \alpha_{p-1}(\bm{v}_\sigma(p)) \\
+      &=\frac{1}{(p-1)!} \begin{vmatrix}
+      	\alpha(\bm{v_1}) & \ldots & \alpha(\bm{v_p}) \\
+      	\alpha_1(\bm{v_1}) & \ldots & \alpha_1(\bm{v_p}) \\
+      	\vdots & \ldots & \vdots \\
+      	\alpha_{p-1}(\bm{v_1}) & \ldots & \alpha_{p-1}(\bm{v_p}) \\
+      \end{vmatrix}
+\end{aligned}$$
+
+So $$
+  (\alpha_1 \wedge \ldots \wedge\alpha_p)(\bm{v_1}\wedge \ldots \wedge \bm{v_p}) = \frac{1}{p!}  (\alpha_1 \wedge \ldots  \wedge \alpha_p)\rfloor (\bm{v_1}\wedge \ldots \wedge \bm{v_p}) = 
+  \begin{vmatrix}
+  \alpha_1(\bm{v_1}) & \ldots & \alpha_1(\bm{v_p}) \\
+  \vdots & \ddots & \vdots \\
+  \alpha_p(\bm{v_1}) & \ldots & \alpha_p(\bm{v_p}) \\
+  \end{vmatrix}
+$$
+
+\subsubsection*{Properties}
+\begin{itemize}
+	\item $\alpha \rfloor (\bm{v} \wedge \bm{u}) = (\alpha \rfloor \bm{v}) \bm{u} - \bm{v} (\alpha \rfloor \bm{u}) = \alpha(\bm{v}) \bm{u} - \bm{v} \alpha(\bm{u}) $
+	\item $\alpha \rfloor (A \wedge B) = (\alpha \rfloor A) \wedge B +  \hat{A} \wedge (\alpha \rfloor B)$ where $\hat{A}_{[p]} = \sharp A_{[p]} = (-1)^p A_{[p]}.$ (Graded Leibniz rule)
+	\item $(\alpha_1 \wedge \ldots \wedge \alpha_p) \rfloor = \alpha_1 \rfloor  \alpha_2 \rfloor \ldots \alpha_p \rfloor$
+\end{itemize}
+
+\subsection*{Orientation}
+For n linear independent vectors, $\bm{v_1}\wedge\ldots\wedge\bm{v_n} = J \bm{e_1}\wedge\ldots\wedge\bm{e_n}$. Orientation for $V^*$ and $V$ are $$\Omega_{V^*} = J' \bm{e^1}\wedge\ldots\wedge\bm{e^n}, \quad \quad \Omega_{V} = J \bm{e_1}\wedge\ldots\wedge\bm{e_n} $$
+They form two equivalent classes: $$ \begin{aligned}
+	[\Omega] &= \{A_{[n]} \in \bigwedge\nolimits_n(V) | A_{[n]} = J \Omega, \quad J > 0\} \\
+	[-\Omega] &= \{A_{[n]} \in \bigwedge\nolimits_n(V) | A_{[n]} = J \Omega, \quad J < 0\} \\
+\end{aligned}$$
+
+\subsection*{Quasi-Hodge star}
+Given $(V, \Omega_V)$, define 
+$$
+\begin{aligned}
+	&\bar{\star}: \bigwedge\nolimits_p (V) \rightarrow \bigwedge\nolimits^{n-p}, \quad \quad &\Psi^{[p]} \wedge \bar{\star} A_{[p]} = p! \Psi^{[p]} (A_{[p]})\Omega_{V^*} \\
+	&\underline{\star}: \bigwedge\nolimits^p (V) \rightarrow \bigwedge\nolimits_{n-p}, \quad \quad &A_{[p]} \wedge \underline{\star} \Psi^{[p]}  = p! \Psi^{[p]} (A_{[p]})\Omega_{V} \\
+\end{aligned}
+$$
+Then we derive $$  \bar{\star} A_{[p]} = \tilde{A}_{[p]} \rfloor \Omega_{V^*}, \quad \quad \quad \underline{\star} \Psi^{[p]} = \tilde{\Psi}^{[p]} \rfloor \Omega_V$$
+
+
+
+When $G$ is the Grassman extension of $g$ and $\Omega_V = \frac{1}{\sqrt{|\det g|}} e_1 \wedge \ldots \wedge e_n$(Pseudoscalar). Then we define hodge operator as composition of quasi hodge operator with the sharp/flat operator.
+ $$\star = \sharp \circ \bar{\star} = \underline{\star} \circ \flat$$
+It holds under the condition that $G(\Omega_V, \Omega_V) = 1$ which will make $\sharp \circ \bar{\star} = \underline{\star} \circ \flat$. 
+
+Moreover $$ A\wedge\star B = G(A, B) \Omega_V, \quad \quad \star 1 = \Omega_V \quad \quad \star A = \tilde{A}_\flat \rfloor \Omega_V$$
+
+For antiproduct(regressive product), we have $$ A_{[p]} \vee B_{[q]} = \star^{-1} (\star A_{[p]} \wedge \star B_{[q]})$$
+
+The $\bigwedge^p(V)$ to $\bigwedge^{n-p}(V)$ version for forms is defined as map $\overset{*}{\star} = \flat \circ \star \circ \sharp$
+
+\subsection*{Hodge Star Properties}
+Let \((M^n, g)\) be an oriented Riemannian \(n\)-manifold with volume form \(\omega = \star 1\). For \(\alpha, \beta \in \Omega^k(M)\):
+
+\begin{itemize}
+	\item \textbf{Distributive (linear):} \(\star(\alpha + \beta) = \star\alpha + \star\beta\).
+	\item \textbf{Double star:} \(\star\star\alpha = (-1)^{k(n-k)} \alpha\).
+	\item \textbf{Not commutative:} In general, \(\star(\alpha \wedge \beta) \neq \star\alpha \wedge \star\beta\). Instead, the wedge product interacts via the metric:
+	\[
+	\alpha \wedge \star\beta = \beta \wedge \star\alpha = \langle \alpha, \beta \rangle \, \omega,
+	\]
+	where \(\langle \alpha, \beta \rangle = g^{i_1j_1}\cdots g^{i_kj_k} \alpha_{i_1\dots i_k}\beta_{j_1\dots j_k}\).
+	\item \textbf{Volume identities:} \(\star 1 = \omega\), and \(\star \omega = 1\).
+	\item \textbf{Codifferential:} \(\delta\alpha = (-1)^{n(k+1)+1} \star d \star \alpha\), satisfying \(\delta = -d\) on \(\Omega^0\) (up to sign conventions).
+\end{itemize}
+
+
+\subsection{Clifford Algebra}
+
+
+$$
+\begin{tikzcd}[scale=1.8, transform shape, column sep=large, row sep=large, cells={nodes={font=\Large}}]
+	T(V) \arrow[rr, "\pi"']  & &  \mathrm{Cl}(V,g) \equiv \frac{T(V)}{I_{v\otimes v - g(v,v)\mathbf{1}}} \\
+	& & \\
+	\bigwedge(V) \equiv \frac{T(V)}{I_{v\otimes v}} \arrow[uu, "\iota"] \arrow[uurr, "\gamma= \pi \circ \iota"] &  &
+\end{tikzcd}
+$$
+
+Here:
+\begin{itemize}
+	\item \(\pi: T(V) \to \mathrm{Cl}(V,g)\) is the Clifford projection
+	\item \(\iota: \bigwedge(V) \to  T(V) \)  is the inclusion map,
+	\item \(\gamma: \bigwedge(V) \rightarrow \mathrm{Cl}(V,g)\) is the bijective vector-space isomorphism \textbf{Clifford mapping}. It is natural to use the same notation used for exterior algebra for Clifford algebra. $\mathrm{Cl}(V, g) = \bigoplus^{n}_{p=0}\bigwedge_p(V)$ and projection operators is $\langle\rangle_p: \mathrm{CL}(V, g) \to \bigwedge_p (V)$ is equivalently defined.
+\end{itemize}
+
+Equivalently, \(\gamma\) is the Clifford algebra's "linear section" that identifies exterior wedge products with antisymmetrized Clifford products:
+\[
+\gamma(v_1 \wedge \cdots \wedge v_k) = \frac{1}{k!} \sum_{\sigma \in S_k} \mathrm{sgn}(\sigma) \, v_{\sigma(1)} \cdots v_{\sigma(k)}.
+\]
+
+\subsubsection{Properties}
+\begin{itemize}
+	\item $ \bm{vu} = v \wedge u + g(\bm{v}, \bm{u})$
+	\item $\bm{vu} + \bm{uv} = 2g(\bm{v}, \bm{u})$
+	\item $ \bm{v}A_{[p]} = \bm{v}\wedge A_{[p]} + \bm{v}_\flat \rfloor A_{[p]} \qquad \text{( or } A_{[p]}\bm{v} = A_{[p]} \wedge \bm{v} +  A_{[p]} \lfloor \bm{v}_\flat \text{ )} $
+	\item $\bm{v} \wedge A = \frac{1}{2} (\bm{v}A + \hat{A}\bm{v})$
+	\item $\bm{v}_\flat \rfloor A = \frac{1}{2}(\bm{v}A - \hat{A}\bm{v}) $
+\end{itemize}
+
+
+\newpage
+
+\subsection*{Cartan's Magic Formula (Lie derivative)}
+For a vector field \(X\) and a differential form \(\alpha \in \Omega^k(M)\), the Lie derivative is:
+\[
+\mathcal{L}_X \alpha = d(\iota_X \alpha) + \iota_X(d\alpha),
+\]
+where \(\iota_X\) denotes interior multiplication. For a vector field \(Y\):
+\[
+\mathcal{L}_X Y = [X, Y].
+\]
+
+\subsection*{Cartan's Structure Equations}
+Let \(\{e_i\}\) be a local orthonormal frame, \(\{\theta^i\}\) its dual coframe, and \(\omega^i_{\;j}\) the connection 1-forms defined by \(\nabla_X e_j = \omega^i_{\;j}(X) e_i\) (Levi-Civita connection, torsion-free). The curvature 2-forms are \(\Omega^i_{\;j}\).
+
+\subsubsection*{Form versions}
+\begin{align}
+	&\text{First structure equation (torsion-free):} 
+	d\theta^i = -\omega^i_{\;j} \wedge \theta^j. \label{eq:first_form} \\
+	&\text{Second structure equation (curvature):} 
+	\Omega^i_{\;j} = d\omega^i_{\;j} + \omega^i_{\;k} \wedge \omega^k_{\;j}. \label{eq:second_form}
+\end{align}
+The Riemannian curvature tensor satisfies \(\Omega^i_{\;j} = \frac{1}{2} R^i_{\;jkl} \theta^k \wedge \theta^l\), i.e. \(R(X,Y)Z = \iota_Z \Omega(X,Y)\) (index conventions may vary).
+
+\subsubsection*{Vector field versions}
+For vector fields \(X,Y,Z\):
+\begin{align}
+	&\text{Torsion tensor (zero for Levi-Civita):} 
+	T(X,Y) = \nabla_X Y - \nabla_Y X - [X,Y]. \label{eq:torsion_vec} \\
+	&\text{Curvature tensor (Riemann):} 
+	R(X,Y)Z = \nabla_X\nabla_Y Z - \nabla_Y\nabla_X Z - \nabla_{[X,Y]}Z. \label{eq:curv_vec}
+\end{align}
+For a torsion-free connection, Equation~\eqref{eq:torsion_vec} simplifies to \(\nabla_X Y - \nabla_Y X = [X,Y]\), which is exactly the dual of Equation~\eqref{eq:first_form}.
+
+\subsection*{Relation between form and vector versions}
+The connection 1-form relates to the covariant derivative via:
+\[
+\omega^i_{\;j}(X) = \theta^i(\nabla_X e_j).
+\]
+The curvature forms relate to the Riemann tensor by:
+\[
+\Omega^i_{\;j}(X,Y) = \theta^i\bigl( R(X,Y) e_j \bigr).
+\]
+Equivalently, \(R(X,Y)Z = \iota_Z(\Omega^i_{\;j} \otimes e_i)\).
+
+
+\newpage
+
+
+\section*{Maxwell's Equations: Nabla vs. Differential Forms}
+\vspace{-0.5em}
+
+\subsection*{Definitions of the Differential Forms (Minkowski spacetime, metric \((-,+,+,+)\), SI units with \(c=1\))}
+
+Let \(\mathbf{E} = E_x dx + E_y dy + E_z dz\) and \(\mathbf{B} = B_x dx + B_y dy + B_z dz\) be the electric and magnetic field 1-forms. Define the \textbf{Faraday 2-form} \(F\) and the \textbf{current 3-form} \(J\):
+\[
+F = \mathbf{E} \wedge dt + \star_3\mathbf{B} 
+= E_x\, dx\wedge dt + E_y\, dy\wedge dt + E_z\, dz\wedge dt
++ B_x\, dy\wedge dz + B_y\, dz\wedge dx + B_z\, dx\wedge dy,
+\]
+\[
+J = \rho\, \omega - \mathbf{J}\cdot d\mathbf{S}\wedge dt
+= \rho\, dx\wedge dy\wedge dz - (J_x\, dy\wedge dz + J_y\, dz\wedge dx + J_z\, dx\wedge dy)\wedge dt,
+\]
+where \(\omega = dx\wedge dy\wedge dz\) is the Euclidean volume form, \(\star_3\) is the 3D Hodge star, and \(d\mathbf{S} = (dy\wedge dz,\; dz\wedge dx,\; dx\wedge dy)\).
+
+The Hodge star \(\star\) in 4D gives the dual 2-form:
+\[
+\star F = -\mathbf{E}\cdot d\mathbf{S} + \mathbf{B}\wedge dt 
+= -E_x\, dy\wedge dz - E_y\, dz\wedge dx - E_z\, dx\wedge dy
++ B_x\, dt\wedge dx + B_y\, dt\wedge dy + B_z\, dt\wedge dz.
+\]
+
+\subsection*{Side-by-Side Comparison}
+
+\begin{table}[!htbp]
+	\centering
+	\setlength{\tabcolsep}{6pt}
+	\begin{tabular}{>{\bfseries}l >{\raggedleft\arraybackslash}p{0.38\textwidth} >{\raggedright\arraybackslash}p{0.48\textwidth}}
+		\toprule
+		\textbf{Law} & \textbf{Vector Calculus (Nabla) -- SI} & \textbf{Differential Forms (SI with \(c=1\))} \\
+		\midrule
+		Gauss's law (electric) & 
+		\( \displaystyle \nabla\cdot\mathbf{E} = \frac{\rho}{\epsilon_0} \) & 
+		\( \displaystyle d\star F = \mu_0 J \) (coefficient of \( \omega \)) \\
+		\addlinespace
+		Gauss's law (magnetic) & 
+		\( \displaystyle \nabla\cdot\mathbf{B} = 0 \) & 
+		\( \displaystyle dF = 0 \) (coefficient of \( \omega \)) \\
+		\addlinespace
+		Faraday's law & 
+		\( \displaystyle \nabla\times\mathbf{E} = -\frac{\partial\mathbf{B}}{\partial t} \) & 
+		\( \displaystyle dF = 0 \) (coefficient of \( d\mathbf{S}\wedge dt \)) \\
+		\addlinespace
+		Ampère-Maxwell law & 
+		\( \displaystyle \nabla\times\mathbf{B} = \mu_0\mathbf{J} + \mu_0\epsilon_0\frac{\partial\mathbf{E}}{\partial t} \) & 
+		\( \displaystyle d\star F = \mu_0 J \) (coefficient of \( d\mathbf{S}\wedge dt \)) \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsection*{Compact Unified Form}
+
+In differential forms, the four equations reduce to just two geometric statements:
+
+\[
+\boxed{dF = 0} \qquad \text{(Bianchi identity / homogeneous equations)},
+\]
+\[
+\boxed{d\star F = \mu_0 J} \qquad \text{(source equation / inhomogeneous equations)}.
+\]
+
+\noindent
+Expanding \(dF=0\):
+\[
+dF = (\nabla\cdot\mathbf{B})\, \omega \;+\; \left(\nabla\times\mathbf{E} + \frac{\partial\mathbf{B}}{\partial t}\right)\cdot d\mathbf{S}\wedge dt = 0,
+\]
+which directly yields both \(\nabla\cdot\mathbf{B}=0\) and \(\nabla\times\mathbf{E} = -\partial_t\mathbf{B}\).
+
+Expanding \(d\star F = \mu_0 J\):
+\[
+d\star F = (\nabla\cdot\mathbf{E})\, \omega \;+\; \left(\nabla\times\mathbf{B} - \frac{\partial\mathbf{E}}{\partial t}\right)\cdot d\mathbf{S}\wedge dt 
+= \mu_0 \rho\, \omega - \mu_0 \mathbf{J}\cdot d\mathbf{S}\wedge dt,
+\]
+which yields both \(\nabla\cdot\mathbf{E} = \rho/\epsilon_0\) (since \(\mu_0\epsilon_0=1\)) and \(\nabla\times\mathbf{B} = \mu_0\mathbf{J} + \partial_t\mathbf{E}\).
+
+\subsection*{Reintroducing \(c\) and SI constants}
+
+If one wants to restore the speed of light \(c\), define the Faraday 2-form with proper SI units:
+\[
+F = \mathbf{E}\wedge (c\,dt) + \star_3\mathbf{B} \quad\text{or}\quad 
+F_{\text{SI}} = \frac{1}{c}\mathbf{E}\wedge dt + \star_3\mathbf{B}.
+\]
+With this normalisation, the equations become:
+\[
+dF = 0, \qquad d\star F = \mu_0 J,
+\]
+where \(J\) is defined exactly as above. Alternatively, in Gaussian units, the factor \(4\pi\) shifts between \(F\) and \(J\). The geometric structure \(dF=0,\; d\star F = J\) is universal; only the constants in the definition of \(J\) and \(F\) change.
+
+\newpage
 
 
 \onecolumn

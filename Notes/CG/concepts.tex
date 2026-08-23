@@ -1,0 +1,341 @@
+\documentclass[UTF8]{ctexart}
+
+\input{../../definitions.tex}
+\title{CG Concepts}
+\author{Ran Xie}
+\begin{document}
+	\maketitle
+	\tableofcontents
+
+\section*{Color Quantities}
+\begin{table}[h]
+	\centering
+	\caption{Key Concepts}
+	\begin{tabularx}{\textwidth}{| l | X | X |} % Vertical lines for all columns
+		\hline
+		\textbf{Concept} & \textbf{Definition} & \textbf{Remark} \\
+		\hline
+		CIE diagram 
+			& Wavelength from 380 to 780nm will decomposed into (x, y, z) values. This will create the horseshoe curve's boundary (called pure color). The interior are any light distribution by mixing those visible wavelengths 
+			& \begin{itemize}
+			 	\item Any light distribution is assigned a number (x, y, z). 
+			 	\item Any color within a triangle in the diagram is a composition of the 3 color vertices. 
+		 	  \end{itemize}   \\
+		\hline
+		RGB- Depth & number of bits used to represent RGB pixel. & 8-bit image has a depth of 24bits. \\
+		\hline
+	\end{tabularx} 	
+\end{table}
+
+\FloatBarrier % <-- The table MUST appear here, before the next section
+
+\section*{Color Model}
+\begin{table}[h]
+	\centering
+	\caption{Key Concepts}
+	\begin{tabularx}{\textwidth}{| l | X | X |} % Vertical lines for all columns
+	\hline
+	\textbf{Color Models} & \textbf{Definition} & \textbf{Remark} \\
+	\hline
+	CMY  
+	& $$\begin{pmatrix}
+		C \\ M \\ Y
+	\end{pmatrix} = \begin{pmatrix}
+		1 \\ 1\\ 1 
+	\end{pmatrix} - \begin{pmatrix}
+		R \\ G\\ B
+	\end{pmatrix}$$   
+	&  CMY are cryan, megenta and yellow.   \\
+	\hline
+	CMYK  
+	& CMY to CMYK conversion: $K = \min(C, M, Y)$ $$ \begin{pmatrix}
+		C \\ M \\ Y
+	\end{pmatrix} \rightarrow \frac{1}{1-K} \begin{pmatrix}C \\ M \\ Y \end{pmatrix} - \frac{K}{1-K} $$   
+	&  Black (K) is added because CMY are not pure in practice.\\
+	\hline
+	HSV 
+	&  $m = \min(R,G,B)$
+	$$
+	\begin{aligned}
+		V &= \max(R,G,B) \\
+		H &= 
+		\begin{cases} 
+			60^\circ \times \left( \dfrac{G - B}{V - m} \right) \pmod{360}, & \text{if } V = R \\[12pt]
+			60^\circ \times \left( 2 + \dfrac{B - R}{V - m} \right), & \text{if } V = G \\[12pt]
+			60^\circ \times \left( 4 + \dfrac{R - G}{V - m} \right), & \text{if } V = B
+		\end{cases} \\
+		S &= 
+		\begin{cases} 
+			0, & \text{if } V = 0 \\[8pt]
+			\dfrac{V - m}{V}, & \text{otherwise}
+		\end{cases}
+	\end{aligned}$$  
+	&  \begin{itemize}
+		\item Hue is the angular coordinate on the color wheel, representing the dominant wavelength. 
+		\item Saturation measures how far the RGB values deviate from a neutral gray (center of the color wheel). 
+		\item HSV color space uses Brightness(V), the value matches the RGB space. Pure color has full brightness.
+	\end{itemize} \\
+	\hline
+	HSI 
+	& $$ 
+	\begin{aligned}
+		H &=
+		\begin{cases}
+			\theta, & \text{if } B\leq G \\[12pt]
+			360 - \theta, &\text{if } B > G[12pt]
+		\end{cases} \\
+		\text{where } &\theta = \cos^{-1}\left[ \frac{\frac{1}{2}[(R-G) + (R-B)]}{\sqrt{(R-G)^2 + (R-B)(G-B)}} \right] \\
+		I &= \frac{R+G+B}{3} \\
+		S &= 1 - \frac{\min(R, G< B)}{I} \\
+	\end{aligned}
+	$$   
+	& HSI color space uses intensity, the value can go outside of RGB space. Pure color such as red only has 1/3 of the intensity. \\
+	\hline
+\end{tabularx} 	
+\end{table}
+
+\FloatBarrier % <-- The table MUST appear here, before the next section
+\section*{Rendering Quantities}
+
+\begin{table}[h]
+	\centering
+	\caption{Key Concepts}
+	\begin{tabularx}{\textwidth}{| l | X | X |} % Vertical lines for all columns
+		\hline
+		\textbf{Radiometry Terms} & \textbf{Definition} & \textbf{Remark} \\
+		\hline
+		Photon Energy(Q) &  $$Q = \frac{hc}{\lambda}$$ & measured in Joules(J) \\
+		\hline
+		Radiant Flux/Power  ($\Phi$) &  $$\Phi = \frac{dQ}{dt}$$ &  Total amount of energy passing through a surface/region of space per unit time. Measured in J/s == wattage(W)\\
+		\hline
+	    Irradiance (E) &  $$E(p) = \frac{d\Phi(p)}{dA}$$ & area density of flux arriving at a surface. (called Radiant exitance(M) if leaving a surface). Note $\cos(\theta)$ factor when light arrive at an angle  \\
+		\hline
+		Solid Angle ($\Omega$) & $$\Omega = \int_S d\omega = \int_S \frac{dA_{\text{proj}}}{r^2} =  \int_S \frac{\vec{r}\cdot\vec{n}}{r^3} dA $$ & The size of a distant object appears on the surface of a sphere whose center is the observer. Measure in (sr).   \\
+		\hline
+		Radiant Intensity (I) &  $$I = \frac{d\Phi}{d\omega}$$ & Angular density of emitted power (W/sr). The definition is over a cone of directions  $I=\frac{\Phi}{4\pi}$ if over the entire sphere of directions. \\
+		\hline
+		Radiance (L) & $$\begin{aligned}
+			 L(p, \omega) &= \frac{dE_{\omega}(p)}{d\omega} \\
+			     &= \frac{d^2\Phi}{d\omega d A^\perp} \\
+		\end{aligned} $$  & Measures irradiance with respect to solid angles. $E_\omega$ denotes the irradiance at the surface perp to the direction $\omega$. \\
+	\end{tabularx}
+\end{table}
+
+\begin{table}[h]
+	\centering
+	\caption{Key Concepts}
+	\begin{tabularx}{\textwidth}{| l | X | X |} % Vertical lines for all columns
+		\hline
+		\textbf{Photometry Terms} & Definition & \textbf{Remark} \\
+		\hline
+		Luminous Efficacy & & Unit is Lumen 流明 = $\text{m} / \text{W}$. E.g. traditional lightbulb is 15lm/W while LED is about 100~150lm/w \\
+		\hline
+		Luminous Flux & Total amount of visible light energy weighted by human vision &  Same as Radiant Flux but in Lumen. \\
+		\hline
+		Illuminance  & Lumen over an area (luminate or pass through) & Same as Irradiance but measured in lux 勒克斯 =  $\text{lm} / \text{m}^2$  \\
+		\hline
+		Luminous Intensity & Lumen along a direction(angle) &  Same as Intensity(Radiant) but measured in cd 坎德拉 = $\text{lm}/\text{sr}$ \\
+		\hline
+		Luminance (L) & Illuminance viewed from an angle  &  Same as Radiance but measure in nit 尼特 =  $\text{lm} / (\text{sr}\cdot\text{m}^2)$ \\
+	\end{tabularx}
+\end{table}
+
+\FloatBarrier % <-- The table MUST appear here, before the next section
+
+这些术语可以分为 辐射度量学 (Radiometry) 和 光度学 (Photometry) 两大体系。简单来说，辐射度量学客观地测量物理世界中的“光能量”（单位：瓦特W），而光度学则在此基础上，根据人眼对不同波长光线的敏感度进行加权，衡量的是“人眼感受到的亮度”（单位：流明lm）. 这七个概念构成了一个从粗到细描述光的完整体系：
+\begin{itemize}
+\item Radiant Flux (辐射通量) / Luminous Flux(光通量) ：光源总共发出了多少“光能量”。
+\item Radiant Intensity(辐射强度) / Luminous Intensity(发光强度)：在某个方向上发出了多少“光能量”。
+\item Irradiance (辐照度) / Illuminance (照度)：某个表面接收到了多少“光能量”。
+\item Radiance (辐射率) / Luminance (亮度)：某个表面从某个方向接收/发出了多少“光能量”。
+\end{itemize}
+
+Example 1: The sun has luminous intensity $I$ in the direction towards the earth, we can get the amount of illuminance to our eyes with $E = I/r^2$.  To get the luminance, we need to divide by how large the sun appears in our eyes which is the solid angle $\Omega$. But the $\Omega = \text{area of the sun} / r^2$. So the luminance $L = \frac{E}{\Omega} = \frac{I/r^2}{\text{area of the sun}/r^2} = I /\text{area of the sun} \text{(nit)}$. This is the "density" of how bright the sun is, it does NOT depend on distance even when the sun appears as a few pixels, the pixels are still that bright.
+
+Example 2: 真正的“照亮场景”流程（渲染方程视角）
+在渲染器（如虚幻引擎、离线渲染器）中，光从光源到你的眼睛，经历的是这样的步骤：
+\begin{itemize}
+	\item 第一步（输入）：光源发出光，到达物体表面某一点。计算单位面积接收到的光能量。这就是照度（Irradiance / Illuminance）。例如，平行光打在墙面某点产生了 500 lux 的照度。
+	\item 第二步（转换）：这个照度（500 lux）作为输入，传递给该点的材质（BRDF / 着色模型）。材质根据颜色（反照率）和粗糙度决定吸收多少、反射多少、向哪个方向反射。
+	\item 第三步（输出）：材质计算完成后，向摄像机方向射出反射光。这个反射光的密度. 这就是亮度（Luminance / Radiance），单位是 Nit。
+    \item 第四步（显示）：这个 Nit 值经过 Tone Mapping（色调映射），最终变成你屏幕上那个像素的颜色。
+\end{itemize}
+Example 3: 一个现实生活场景帮你秒懂：
+假设你在一个漆黑的房间里，左手拿一张白纸，右手拿一块黑炭。用同一支手电筒（发出固定的光通量 lm）同时照向它们。 手电筒照到白纸和黑炭上的照度（lux）是完全相同的（因为距离和角度一样）。 但是你眼睛看到的亮度（Nit）完全不同：白纸亮得刺眼，黑炭依然很暗。
+
+Remark: 为了帮你彻底区分，记住这两句“黑话”：
+\begin{itemize}
+	\item Illuminance（照度）：决定了物体表面“收到了多少光”（不看材质，只看入射光总量）。
+	\item Luminance（亮度）：决定了物体“看起来有多刺眼或明亮”（结合了材质后，最终进入眼睛的光）。
+\end{itemize}
+
+	
+\section*{1. Luminance (Rec. 709)}
+The perceived brightness of a color, computed as a weighted sum of linear RGB values.
+\begin{equation}
+	Y = 0.2126 \cdot R + 0.7152 \cdot G + 0.0722 \cdot B
+\end{equation}
+
+
+\section*{3. Hue (HSV Model)}
+The angular coordinate on the color wheel, representing the dominant wavelength.
+\begin{equation}
+	H = 
+	\begin{cases} 
+		60^\circ \times \left( \dfrac{G - B}{M - m} \right) \pmod{360}, & \text{if } M = R \\[12pt]
+		60^\circ \times \left( 2 + \dfrac{B - R}{M - m} \right), & \text{if } M = G \\[12pt]
+		60^\circ \times \left( 4 + \dfrac{R - G}{M - m} \right), & \text{if } M = B
+	\end{cases}
+\end{equation}
+(Defined when $M \neq m$; otherwise $H$ is undefined).
+
+\section*{4. Value / Brightness (HSV Model)}
+The overall intensity or strength of the light, independent of the color.
+\begin{equation}
+	V = \max(R, G, B)
+\end{equation}
+
+\section*{5. Opacity / Alpha (Transparency)}
+The fraction of a pixel covered by a foreground object, used in alpha blending.
+\begin{equation}
+	C_{out} = \alpha \cdot C_f + (1 - \alpha) \cdot C_b, \qquad \alpha \in [0, 1]
+\end{equation}
+
+\section*{6. Exposure (Linear Light Scaling)}
+Simulates the amount of light hitting a virtual sensor by applying a multiplicative gain.
+\begin{equation}
+	C_{out} = C_{in} \cdot 2^{EV}
+\end{equation}
+where $EV$ is the Exposure Value in "stops" (e.g., +1 doubles the brightness).
+
+\section*{7. Contrast (RMS Standard Deviation)}
+The statistical spread of pixel intensities from the mean luminance.
+\begin{equation}
+	C_{RMS} = \sqrt{ \frac{1}{N} \sum_{i=1}^{N} (I_i - \bar{I})^2 }
+	\quad \text{where} \quad 
+	\bar{I} = \frac{1}{N} \sum_{i=1}^{N} I_i
+\end{equation}
+Here, $I_i$ is the luminance of pixel $i$, and $N$ is the total number of pixels.
+
+\section*{8. Gamma Correction}
+A power-law function used to encode linear light into a non-linear display space.
+\begin{equation}
+	V_{out} = V_{in}^{\gamma}
+\end{equation}
+(For sRGB displays, encoding uses $\gamma \approx 1/2.2$, and decoding uses $V_{out} = V_{in}^{2.2}$).
+
+\section*{9. Chrominance (Color Difference)}
+In the YCbCr color space, chrominance represents the color information separated from luminance.
+\begin{align}
+	C_b &= 0.5643 \cdot (B - Y) \\
+	C_r &= 0.7133 \cdot (R - Y)
+\end{align}
+where $Y$ is the luminance defined in Section 1.
+
+\section*{10. Clipping (Hard Limiting)}
+A non-linear operation that restricts pixel values to a valid range (usually 0 to 1).
+\begin{equation}
+	C_{out} = \text{clamp}(C_{in}, 0, 1) = 
+	\begin{cases} 
+		0, & \text{if } C_{in} < 0 \\
+		1, & \text{if } C_{in} > 1 \\
+		C_{in}, & \text{otherwise}
+	\end{cases}
+\end{equation}
+
+
+\section*{Pixel Operations in Color Grading}
+
+Let \( C_{in} \) be the input value of a single color channel (R, G, or B) normalized to the range \([0, 1]\), and \( C_{out} \) be the resulting output value. 
+All operations are typically applied per channel, independently, unless otherwise specified.
+
+\subsection*{1. Gain (Multiplicative Scaling)}
+Multiplies every pixel value by a constant factor. This uniformly increases or decreases the overall brightness (exposure) of the image. It is analogous to turning the volume knob up or down.
+
+\textbf{Mathematical Operation:}
+\begin{equation}
+	C_{out} = C_{in} \times G
+\end{equation}
+where \( G > 0 \) is the gain factor.
+\begin{itemize}
+	\item \( G = 1.0 \): No change.
+	\item \( G > 1.0 \): Brightens the image.
+	\item \( 0 < G < 1.0 \): Darkens the image.
+\end{itemize}
+
+\subsection*{2. Offset (Additive Scaling)}
+Adds a constant value to every pixel. This shifts the entire histogram up or down, simultaneously affecting shadows, midtones, and highlights equally.
+
+\textbf{Mathematical Operation:}
+\begin{equation}
+	C_{out} = C_{in} + O
+\end{equation}
+where \( O \) is the offset value (can be positive or negative).
+\begin{itemize}
+	\item \( O > 0 \): Makes the entire image brighter (raises the black point).
+	\item \( O < 0 \): Makes the entire image darker (lowers the black point).
+\end{itemize}
+\textit{Note: Results are typically clamped to \([0, 1]\) after this operation to avoid invalid values.}
+
+\subsection*{3. Gamma (Power-Law Curve)}
+Applies a non-linear exponential curve to the pixel values. This adjusts the brightness of the midtones while preserving the extremes (blacks and whites). It is heavily used in display encoding (sRGB).
+
+\textbf{Mathematical Operation:}
+\begin{equation}
+	C_{out} = C_{in}^{\gamma}
+\end{equation}
+where \( \gamma > 0 \) is the gamma exponent.
+\begin{itemize}
+	\item \( \gamma = 1.0 \): No change (linear).
+	\item \( \gamma > 1.0 \): Darkens the midtones (stretches the low end).
+	\item \( 0 < \gamma < 1.0 \): Brightens the midtones (stretches the high end).
+\end{itemize}
+
+\subsection*{4. Lift (Shadow / Black Point Adjustment)}
+Adjusts the darkest parts of the image (shadows) while progressively affecting brighter pixels less. Unlike a standard Offset, Lift mainly targets the black point without drastically changing the highlights.
+
+\textbf{Mathematical Operation:}
+\begin{equation}
+	C_{out} = C_{in} + L \cdot (1 - C_{in})
+\end{equation}
+where \( L \) is the lift factor (usually between \(-1\) and \(1\)).
+\begin{itemize}
+	\item When \( C_{in} = 0 \) (pure black), \( C_{out} = L \). (This sets the new black point).
+	\item When \( C_{in} = 1 \) (pure white), \( C_{out} = 1 \). (Highlights remain completely unchanged).
+	\item \( L > 0 \): Lifts the shadows to a dark gray.
+	\item \( L < 0 \): Crushes the shadows toward pure black.
+\end{itemize}
+
+\subsection*{5. Saturation Adjustment (Color Intensity)}
+Controls the vividness of the colors without affecting the overall brightness. This is done by interpolating the original RGB values toward a grayscale (luminance) version of the image.
+
+First, compute the Luminance \( Y \) (using Rec. 709 weights):
+\begin{equation}
+	Y = 0.2126 \cdot R_{in} + 0.7152 \cdot G_{in} + 0.114 \cdot B_{in}
+\end{equation}
+
+Then, for each channel \( C \in \{R, G, B\} \), apply the interpolation:
+\begin{equation}
+	C_{out} = Y + S_{adj} \cdot (C_{in} - Y)
+\end{equation}
+where \( S_{adj} \ge 0 \) is the saturation factor.
+\begin{itemize}
+	\item \( S_{adj} = 1.0 \): No change (original saturation).
+	\item \( S_{adj} = 0.0 \): Fully desaturated (grayscale image). Every channel becomes equal to \( Y \).
+	\item \( S_{adj} > 1.0 \): Increases saturation (pushes colors further away from gray).
+	\item \( S_{adj} < 0 \): Inverts the color tone (pushes colors to the opposite side of the gray axis).
+\end{itemize}
+
+\subsection*{Applying All Operations in Sequence}
+In professional color grading (e.g., the ASC CDL standard), these operations are typically applied in the following order to avoid mathematical conflicts:
+\[
+C_{temp} = \text{Gain} \times \big( \text{Offset} + C_{in} \big)
+\]
+\[
+C_{mid} = C_{temp}^{\text{Gamma}}
+\]
+\[
+C_{final} = C_{mid} + \text{Lift} \cdot (1 - C_{mid}) \quad \text{(followed by Saturation on the RGB vector)}
+\]
+	
+\end{document}
