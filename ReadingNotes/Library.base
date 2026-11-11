@@ -1,0 +1,14 @@
+filters:
+  and:
+    - 'type == "book"'
+views:
+  - type: table
+    name: Books
+    order:
+      - file.name
+      - status
+      - author
+      - current_chapter
+      - current_page
+      - started
+      - finished
