@@ -4,7 +4,7 @@ type: index
 # Reading Notes
 
 ## Currently reading
-- [[Fluid Simulation For Computer Graphics]]
+- [[METADATA]]
 
 ## Library
 - [[Library.base|Book library]] — filter and sort books by status and progress.

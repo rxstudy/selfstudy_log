@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Books/Fluid Simulation For Computer Graphics.md",
+                "file": "Fluid Simulation For Computer Graphics/METADATA.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Fluid Simulation For Computer Graphics"
+              "title": "METADATA"
             }
           }
         ]
@@ -99,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Books/Fluid Simulation For Computer Graphics.md",
+                "file": "Fluid Simulation For Computer Graphics/METADATA.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Books/Fluid Simulation For Computer Graphics.md",
+                "file": "Fluid Simulation For Computer Graphics/METADATA.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -161,7 +161,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Books/Fluid Simulation For Computer Graphics.md",
+                "file": "Fluid Simulation For Computer Graphics/METADATA.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -191,12 +191,17 @@
   "active": "822b0d9ebc1408a3",
   "lastOpenFiles": [
     "Templates/Book Template.md",
+    "Fluid Simulation For Computer Graphics/Chapter 2 - Overview of Numerical Simulation.md",
+    "Fluid Simulation For Computer Graphics/Chapter 1 - The Equations of Fluids.md",
+    "Fluid Simulation For Computer Graphics/METADATA.md",
+    "Fluid Simulation For Computer Graphics/Misc.md",
+    "Books/Fluid Simulation For Computer Graphics.md",
+    "Fluid Simulation For Computer Graphics",
     "Attachments",
     "Experiments",
     "Concepts",
     "Library.base",
     "Templates",
-    "Books/Fluid Simulation For Computer Graphics.md",
     "Books",
     "Home.md"
   ]
